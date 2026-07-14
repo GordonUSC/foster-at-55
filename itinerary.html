@@ -163,7 +163,7 @@
   /* ---------- the weekend data ---------- */
   var EV={
     fanatics:{kind:'fun', day:'Thu-Sat Jul 16-18', ttl:'Fanatics Fest', when:'all weekend, passes good all four days', where:'Javits Center', area:'Midtown West', detail:'Cards, collectibles, and controlled chaos. Come and go around everything else.', transit:'7 train to 34 St-Hudson Yards, short walk'},
-    hamilton:{kind:'show', day:'Fri Jul 17', ttl:'Hamilton on Broadway', when:'Friday, before the festival', where:'Richard Rodgers Theatre, W 46th', area:'Theater District', detail:"Foster's tickets. Eat first at Joe Allen on Restaurant Row so you make curtain.", transit:'walk or a short cab from Midtown'},
+    hamilton:{kind:'show', day:'Thu Jul 16', ttl:'Hamilton on Broadway', when:'Thursday, around Fanatics Fest', where:'Richard Rodgers Theatre, W 46th', area:'Theater District', detail:"Foster's tickets. Eat first at Joe Allen on Restaurant Row so you make curtain.", transit:'walk or a short cab from Midtown'},
     breakaway:{kind:'rave', day:'Fri Jul 17', ttl:'Breakaway ft. Tiesto', when:'6pm to midnight', where:'Under the K Bridge Park', area:'Greenpoint, Brooklyn', detail:"Bren's borough. The cathedral moment: Adagio for Strings. Cabs beat trains after the set.", transit:'cab to Greenpoint, it is worth it'},
     zeds:{kind:'birthday', day:'SATURDAY JUL 18 · the birthday', ttl:'Zeds Dead', when:'doors 5pm, show 6pm, all ages', where:'Forest Hills Stadium', area:'Queens', detail:'Fifty-five, live, on the grass under the lights. The whole night is yours.', transit:'LIRR ~14 min from Manhattan to Forest Hills, off at Station Square, 5 min walk'},
     wc:{kind:'sports', day:'Sun Jul 19', ttl:'World Cup Final', when:'kickoff 3pm ET, table by 1:30', where:'Brickyard Craft Kitchen & Bar, 23 Park Place', area:'Tribeca / FiDi', detail:'Our reserved table. 40+ screens, 40 taps, brick-oven pizza, the Brickyard Burger. Eat where we watch.', transit:'2/3 to Park Place, A/C to Chambers St, or R/W to City Hall'},
@@ -203,7 +203,7 @@
       events:['brunch']}
   ];
 
-  var order=['fanatics','james','hamilton','ggpcall','breakaway','bagel','predinner','zeds','wc','brunch','g4c','whoopi'];
+  var order=['fanatics','hamilton','james','ggpcall','breakaway','bagel','predinner','zeds','wc','brunch','g4c','whoopi'];
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 
   var peopleEl=document.getElementById('people');
