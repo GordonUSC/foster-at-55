@@ -43,10 +43,36 @@ img{max-width:100%;display:block}
 /* ===== HERO ===== */
 .hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;z-index:2}
 .hero .ghost55{position:absolute;right:-3vw;top:48%;transform:translateY(-50%);font-family:"Syne",sans-serif;font-weight:800;
-  font-size:min(78vh,760px);line-height:0.7;color:transparent;-webkit-text-stroke:2px rgba(255,198,90,0.14);z-index:0;pointer-events:none;user-select:none}
+  font-size:min(78vh,760px);line-height:0.7;color:transparent;-webkit-text-stroke:2px rgba(255,198,90,0.22);z-index:0;pointer-events:none;user-select:none}
 .emblem{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);width:min(64vw,540px);z-index:1;opacity:0.9;pointer-events:none;
   filter:drop-shadow(0 0 50px rgba(157,255,92,0.28));display:none /* stood down for the Higgsfield toad-sage heroart; remove display:none to bring the line emblem back */}
-.heroart{position:absolute;inset:0;z-index:0;background:url("assets/gen/index-hero.jpg") center 30%/cover no-repeat;opacity:0.48}
+.heroart{position:absolute;inset:0;z-index:0;background:url("assets/gen/index-hero2.jpg") center 30%/cover no-repeat;opacity:0.55}
+.hero::before{content:"";position:absolute;inset:0;z-index:2;background:radial-gradient(56% 50% at 50% 46%,rgba(4,3,8,0.5),transparent 74%)}
+/* sakura drift */
+.petals{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+.petals i{position:absolute;top:-6%;width:11px;height:9px;background:#f7a8b8;border-radius:62% 4% 62% 4%;opacity:.55;
+  animation:petalfall linear infinite}
+.petals i:nth-child(1){left:6%;animation-duration:14s;animation-delay:0s;background:#ffc9d4}
+.petals i:nth-child(2){left:18%;animation-duration:17s;animation-delay:3s;width:9px;height:7px}
+.petals i:nth-child(3){left:31%;animation-duration:12s;animation-delay:6s;background:#ffd9e0}
+.petals i:nth-child(4){left:44%;animation-duration:19s;animation-delay:1.5s;width:8px;height:7px;opacity:.4}
+.petals i:nth-child(5){left:57%;animation-duration:15s;animation-delay:8s}
+.petals i:nth-child(6){left:68%;animation-duration:13s;animation-delay:4.5s;background:#ffc9d4;width:13px;height:10px}
+.petals i:nth-child(7){left:79%;animation-duration:18s;animation-delay:2s;background:#ffd9e0;opacity:.45}
+.petals i:nth-child(8){left:88%;animation-duration:16s;animation-delay:9s;width:9px;height:8px}
+.petals i:nth-child(9){left:95%;animation-duration:14s;animation-delay:5.5s;opacity:.5}
+@keyframes petalfall{0%{transform:translate3d(0,-6vh,0) rotate(0deg)}100%{transform:translate3d(-15vw,112vh,0) rotate(560deg)}}
+@media (prefers-reduced-motion:reduce){.petals{display:none}}
+/* hanko crew nav */
+.hanko-nav{display:flex;gap:14px;margin:14px 0 4px;flex-wrap:wrap;justify-content:center}
+.hanko-nav a{display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none}
+.hanko-nav .stamp{width:46px;height:46px;border-radius:9px;background:#e8482e;color:#ece0c8;display:grid;place-items:center;
+  font-family:"Shippori Mincho","Hiragino Mincho ProN",serif;font-weight:800;font-size:23px;transform:rotate(-2.5deg);
+  box-shadow:0 3px 10px rgba(0,0,0,.45);transition:transform .2s}
+.hanko-nav a:nth-child(even) .stamp{transform:rotate(2.5deg)}
+.hanko-nav a:hover .stamp{transform:rotate(0) scale(1.08)}
+.hanko-nav .lbl{font-family:"Space Mono",monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#8f8299}
+.hanko-nav a.here .stamp{background:#ffc65a;color:#040308}
 .hero::after{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(70% 60% at 50% 46%,transparent,rgba(6,5,9,0.55) 70%,var(--bg))}
 .hero .wrap{position:relative;z-index:3;padding:112px 0 90px;text-align:center}
 .kick{font-family:"Space Mono",monospace;font-size:12px;letter-spacing:0.30em;text-transform:uppercase;color:var(--gold);opacity:0.92}
@@ -341,6 +367,7 @@ footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;color:v
 <!-- ===== HERO ===== -->
 <header class="hero">
   <div class="heroart" aria-hidden="true"></div>
+  <div class="petals" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
   <div class="ghost55">55</div>
   <svg class="emblem" viewBox="0 0 200 200" fill="none" aria-hidden="true">
     <path id="bolt" d="M104 6 L84 76 H108 L74 158 L96 98 H72 L104 6Z" fill="#9dff5c"/>
@@ -400,8 +427,8 @@ footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;color:v
       <div class="night sun reveal">
         <div class="dow">Sun · Jul 19</div>
         <h3>The World Cup Final</h3>
-        <div class="ven">The Red Lion, Bleecker · your table</div>
-        <p>The seats you have been holding for a month, prime location near the screens, the crew four deep. The biggest match on earth. You planned that. You always plan that.</p>
+        <div class="ven">Brickyard Craft Kitchen &amp; Bar, 23 Park Place · your table</div>
+        <p>Forty screens, forty taps, brick-oven pizza, and the crew around one reserved table. The biggest match on earth. You planned that. You always plan that.</p>
       </div>
     </div>
   </div>
@@ -808,7 +835,7 @@ footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;color:v
         <div class="route"><div class="tm">Thu</div><div><div class="rh">Broadway then Javits</div><div class="rd">Hamilton in the afternoon or evening, Fanatics Fest passes good all four days, no rush.</div></div></div>
         <div class="route"><div class="tm">Fri</div><div><div class="rh">Under the bridge</div><div class="rd">Breakaway 6 to midnight. Cabs beat trains from the K Bridge after the set.</div></div></div>
         <div class="route"><div class="tm">Sat</div><div><div class="rh">Your day, on the grass</div><div class="rd">Orange and blue to Fanatics, then Forest Hills. Sunset over the eagles. Nothing to organize but where to stand.</div></div></div>
-        <div class="route"><div class="tm">Sun</div><div><div class="rh">The Red Lion, early</div><div class="rd">Down to Bleecker by 10 for your table. Doors 11, kickoff 3. Brunch before the world tunes in.</div></div></div>
+        <div class="route"><div class="tm">Sun</div><div><div class="rh">Brickyard, early</div><div class="rd">Down to 23 Park Place by 1:30 for the table. Kickoff 3. Long happy hour before the world tunes in.</div></div></div>
       </div>
     </div>
     <p class="body reveal" style="color:var(--muted);margin-top:24px">Wristbands sorted. Table sorted. Trains scouted. Someone is carrying the plan so you can carry nothing. That is the birthday gift underneath the birthday gift.</p>
@@ -833,7 +860,15 @@ footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;color:v
 </section>
 
 <footer>
-  <div class="wrap">Built with love for Foster Ladner Birch · Fang Speare · July 18, 2026 · New York</div>
+  <div class="wrap" style="text-align:center">
+    <nav class="hanko-nav" aria-label="crew pages">
+      <a class="here" href="index.html"><span class="stamp">家</span><span class="lbl">home</span></a>
+      <a href="eats.html"><span class="stamp">食</span><span class="lbl">eats</span></a>
+      <a href="primal.html"><span class="stamp">牙</span><span class="lbl">primal</span></a>
+      <a href="itinerary.html"><span class="stamp">旅</span><span class="lbl">plans</span></a>
+    </nav>
+    <div style="margin-top:14px">Built with love for Foster Ladner Birch · Fang Speare · July 18, 2026 · New York</div>
+  </div>
 </footer>
 
 <script>
@@ -911,7 +946,7 @@ var RM = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce
     cfg=cfg||{};
     var mg=cfg.master||0.95, rdur=cfg.rdur!=null?cfg.rdur:1.0, wdur=cfg.wdur||2.8;
     var dist=cfg.dist||4, Q=cfg.Q||12, depth=cfg.depth||1500, lfoA=cfg.lfoA||3, lfoB=cfg.lfoB||10;
-    var subHi=cfg.subHi||130, subLo=cfg.subLo||36, base=cfg.base||41.2, det=cfg.det||12, reeseG=cfg.reeseG||0.55;
+    var subHi=cfg.subHi||130, subLo=cfg.subLo||27, base=cfg.base||41.2, det=cfg.det||12, reeseG=cfg.reeseG||0.55;
     try{
       ctx=ctx||new AC(); if(ctx.state==='suspended') ctx.resume();
       var t=ctx.currentTime;

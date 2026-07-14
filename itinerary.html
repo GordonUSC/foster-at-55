@@ -68,6 +68,32 @@
   .snd b{color:var(--cyan)}
   a.home{display:inline-block;margin-top:8px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);text-decoration:none}
   footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--faint)}
+  /* lantern banner + hanko crew nav */
+  .heroimg{border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);margin:20px 0 4px;line-height:0}
+  .heroimg img{width:100%;height:auto;display:block}
+  .heroimg-capt{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--faint);text-align:center;margin-top:6px}
+  .hanko-nav{display:flex;gap:14px;margin:18px 0 4px;flex-wrap:wrap}
+  .hanko-nav a{display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none}
+  .hanko-nav .stamp{width:46px;height:46px;border-radius:9px;background:#e8482e;color:#ece0c8;display:grid;place-items:center;
+    font-family:"Shippori Mincho","Hiragino Mincho ProN",serif;font-weight:800;font-size:23px;transform:rotate(-2.5deg);
+    box-shadow:0 3px 10px rgba(0,0,0,.45);transition:transform .2s}
+  .hanko-nav a:nth-child(even) .stamp{transform:rotate(2.5deg)}
+  .hanko-nav a:hover .stamp{transform:rotate(0) scale(1.08)}
+  .hanko-nav .lbl{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
+  .hanko-nav a.here .stamp{background:var(--gold);color:#0f0c14}
+
+  /* the drop */
+  .dropfab{position:fixed;right:18px;bottom:18px;z-index:95;width:60px;height:60px;border-radius:50%;border:1px solid rgba(236,224,200,.28);
+    background:#e8482e;color:#ece0c8;font-family:"Space Mono",monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;
+    box-shadow:0 6px 22px rgba(0,0,0,.5);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+  .dropfab .k{font-family:"Shippori Mincho","Hiragino Mincho ProN",serif;font-size:21px;line-height:1;font-weight:800}
+  .dropfab:active{transform:scale(.92)}
+  .dropveil{position:fixed;inset:0;pointer-events:none;z-index:94;opacity:0;background:radial-gradient(120% 90% at 50% 115%,rgba(255,106,30,.5),rgba(193,24,26,.3) 45%,transparent 75%)}
+  body.dropping .dropveil{animation:dropveil 1.7s ease-out}
+  @keyframes dropveil{0%{opacity:0;transform:translateY(22%)}16%{opacity:1}100%{opacity:0;transform:none}}
+  body.dropping .wrap{animation:dropshake .5s}
+  @keyframes dropshake{0%,100%{transform:none}25%{transform:translateY(3px)}55%{transform:translateY(-2px)}80%{transform:translateY(1px)}}
+  @media (prefers-reduced-motion:reduce){body.dropping .wrap{animation:none}body.dropping .dropveil{animation:none}}
 </style>
 </head>
 <body>
@@ -78,6 +104,8 @@
     <h1>The weekend, yours.</h1>
     <p class="lede">Tap a name. You get exactly their weekend, only the events they are part of, laid out clear: what, when, where, and how to get there. Then send it straight to them. Sound on for the full feel.</p>
     <div class="snd">Audio is <b>on</b> for taps and choices. <span id="sndtoggle" style="color:var(--cyan);cursor:pointer;text-decoration:underline">mute</span></div>
+    <div class="heroimg"><img src="assets/gen/itin-lanterns.jpg" alt="Woodblock print of six glowing paper lanterns floating over the New York skyline at night, a tiny toad riding the lowest one"></div>
+    <div class="heroimg-capt">six lanterns over the city · one for each of us</div>
   </header>
 
   <div class="step"><span class="n">1</span> Pick whose weekend</div>
@@ -100,7 +128,12 @@
 
   <footer>
     Built from the real weekend plan. Each person sees only what they are part of. Times and venues are the current plan; confirm before you go.
-    <br><a class="home" href="index.html">← back to Foster's page</a>
+    <nav class="hanko-nav" aria-label="crew pages">
+      <a href="index.html"><span class="stamp">家</span><span class="lbl">home</span></a>
+      <a href="eats.html"><span class="stamp">食</span><span class="lbl">eats</span></a>
+      <a href="primal.html"><span class="stamp">牙</span><span class="lbl">primal</span></a>
+      <a class="here" href="itinerary.html"><span class="stamp">旅</span><span class="lbl">plans</span></a>
+    </nav>
   </footer>
 
 </div>
@@ -133,7 +166,8 @@
     hamilton:{kind:'show', day:'Fri Jul 17', ttl:'Hamilton on Broadway', when:'Friday, before the festival', where:'Richard Rodgers Theatre, W 46th', area:'Theater District', detail:"Foster's tickets. Eat first at Joe Allen on Restaurant Row so you make curtain.", transit:'walk or a short cab from Midtown'},
     breakaway:{kind:'rave', day:'Fri Jul 17', ttl:'Breakaway ft. Tiesto', when:'6pm to midnight', where:'Under the K Bridge Park', area:'Greenpoint, Brooklyn', detail:"Bren's borough. The cathedral moment: Adagio for Strings. Cabs beat trains after the set.", transit:'cab to Greenpoint, it is worth it'},
     zeds:{kind:'birthday', day:'SATURDAY JUL 18 · the birthday', ttl:'Zeds Dead', when:'doors 5pm, show 6pm, all ages', where:'Forest Hills Stadium', area:'Queens', detail:'Fifty-five, live, on the grass under the lights. The whole night is yours.', transit:'LIRR ~14 min from Manhattan to Forest Hills, off at Station Square, 5 min walk'},
-    wc:{kind:'sports', day:'Sun Jul 19', ttl:'World Cup Final', when:'kickoff 3pm ET, arrive by 10am for the table', where:'The Red Lion, 151 Bleecker St', area:'Greenwich Village', detail:'Walk-ins only, no reservations, so get there early. A real soccer pub for the final.', transit:'1 train to Christopher St, or a cab downtown'},
+    wc:{kind:'sports', day:'Sun Jul 19', ttl:'World Cup Final', when:'kickoff 3pm ET, table by 1:30', where:'Brickyard Craft Kitchen & Bar, 23 Park Place', area:'Tribeca / FiDi', detail:'Our reserved table. 40+ screens, 40 taps, brick-oven pizza, the Brickyard Burger. Eat where we watch.', transit:'2/3 to Park Place, A/C to Chambers St, or R/W to City Hall'},
+    predinner:{kind:'birthday', day:'SATURDAY JUL 18 · the birthday', ttl:'Pre-show birthday dinner', when:'3:00pm seating, out by 4:30', where:'Agora Taverna, 70-09 Austin St', area:'Forest Hills, 5 min from the gates', detail:'The locked table before Zeds Dead. Concert Saturday means the strip is slammed from 4pm, so we sit at 3 sharp.', transit:'LIRR to Forest Hills, Station Square exit, short walk up Austin St'},
     bagel:{kind:'fun', day:'Sat Jul 18 (flexible)', ttl:'Bagel meetup with Ian', when:'morning, before the show', where:'a good bagel spot, TBD', area:'downtown', detail:'Ian is around for the Zeds Dead show and wants a bagel hang. Easy morning move.', transit:'wherever is closest to home base'},
     brunch:{kind:'work', day:'Mon Jul 20', ttl:'GGP Scholars Brunch', when:'around 2pm', where:'venue confirming', area:'Midtown', detail:'GGP and the NYC community. Warm room, good people.', transit:'Midtown, easy'},
     g4c:{kind:'work', day:'Tue-Wed Jul 21-22', ttl:'Games for Change Festival', when:'daytime both days', where:'The Glasshouse', area:'Chelsea', detail:'Gordon and Eric run the Ignite Impact workshop. Theme: Reimagining Play.', transit:'Chelsea, walkable from Midtown'},
@@ -145,25 +179,31 @@
   var PEOPLE=[
     {nm:'Foster', tg:'the birthday king', email:'foster@ghostvoltagerecords.com',
       sum:'Your weekend, pure celebration. Five nights, one city, all of it aimed at Saturday.',
-      events:['fanatics','hamilton','breakaway','zeds','wc']},
+      events:['fanatics','hamilton','breakaway','predinner','zeds','wc']},
     {nm:'BrenBren', tg:'Brooklyn host + family', email:'brennanjmurphy1120@gmail.com',
       sum:'You are the local host. The fun runs through you, especially Breakaway in your borough.',
-      events:['fanatics','hamilton','breakaway','zeds','wc']},
+      events:['fanatics','hamilton','breakaway','predinner','zeds','wc']},
     {nm:'Gordon', tg:'host, juggling worlds', email:'gbellamy@gmail.com',
       sum:'Everything, plus the work threads woven in. The most loaded week of the five circles.',
-      events:['fanatics','james','hamilton','ggpcall','breakaway','zeds','wc','brunch','g4c','whoopi']},
+      events:['fanatics','james','hamilton','ggpcall','breakaway','predinner','zeds','wc','brunch','g4c','whoopi']},
     {nm:'Abdul Khan', tg:"Foster's friend, in town", email:'',
       sum:'In New York for the celebration. The big fun days with the crew.',
-      events:['fanatics','zeds','wc']},
+      events:['fanatics','predinner','zeds','wc']},
     {nm:'Ian Blount', tg:'at the Zeds Dead show', email:'',
       sum:'Around for Saturday, wants a bagel hang first. Based in SoHo.',
-      events:['bagel','zeds']},
+      events:['bagel','predinner','zeds']},
+    {nm:'John Cawley', tg:'in town with the crew', email:'',
+      sum:'Joining for the weekend anchors: the birthday show and the final.',
+      events:['predinner','zeds','wc']},
+    {nm:'Alex Rogers', tg:'GGP, landing Sunday', email:'alexrogers021@gmail.com',
+      sum:'In Sunday for the final stretch: the match with the crew, then the Monday brunch you help run.',
+      events:['wc','brunch']},
     {nm:'Mabel', tg:'GGP, hosting the brunch', email:'mabel.chung@gmail.com',
       sum:'Running the Monday Scholars brunch. That is your headline moment this week.',
       events:['brunch']}
   ];
 
-  var order=['fanatics','james','hamilton','ggpcall','breakaway','bagel','zeds','wc','brunch','g4c','whoopi'];
+  var order=['fanatics','james','hamilton','ggpcall','breakaway','bagel','predinner','zeds','wc','brunch','g4c','whoopi'];
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 
   var peopleEl=document.getElementById('people');
@@ -241,6 +281,47 @@
     if(navigator.clipboard){ navigator.clipboard.writeText(t).then(function(){document.getElementById('copied').textContent='copied ✓';}); }
     else { document.getElementById('copied').textContent='select all in the itinerary above'; }
   };
+})();
+</script>
+
+<div class="dropveil" aria-hidden="true"></div>
+<button class="dropfab" id="dropfab" aria-label="feel the drop"><span class="k">低</span><span>drop</span></button>
+<script>
+/* the super deep drop */
+(function(){
+  var b=document.getElementById('dropfab'); if(!b) return;
+  var AC=window.AudioContext||window.webkitAudioContext, ctx=null;
+  b.addEventListener('click',function(){
+    if(!AC) return;
+    try{
+      ctx=ctx||new AC(); if(ctx.state==='suspended') ctx.resume();
+      var t=ctx.currentTime;
+      var master=ctx.createGain(); master.gain.value=0.9;
+      var comp=ctx.createDynamicsCompressor();
+      comp.threshold.value=-14;comp.knee.value=18;comp.ratio.value=14;comp.attack.value=0.002;comp.release.value=0.22;
+      master.connect(comp).connect(ctx.destination);
+      var o=ctx.createOscillator(),g=ctx.createGain();
+      o.type='sine';o.frequency.setValueAtTime(90,t);o.frequency.exponentialRampToValueAtTime(26,t+1.6);
+      g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(1.0,t+0.05);g.gain.setValueAtTime(1.0,t+1.0);g.gain.exponentialRampToValueAtTime(0.0001,t+2.4);
+      o.connect(g);g.connect(master);o.start(t);o.stop(t+2.5);
+      var o2=ctx.createOscillator(),g2=ctx.createGain();
+      o2.type='triangle';o2.frequency.setValueAtTime(160,t);o2.frequency.exponentialRampToValueAtTime(42,t+0.28);
+      g2.gain.setValueAtTime(0.5,t);g2.gain.exponentialRampToValueAtTime(0.0001,t+0.55);
+      o2.connect(g2);g2.connect(master);o2.start(t);o2.stop(t+0.6);
+      var lp=ctx.createBiquadFilter();lp.type='lowpass';lp.frequency.value=110;lp.Q.value=11;
+      var wg=ctx.createGain();wg.gain.setValueAtTime(0.0001,t+0.5);wg.gain.exponentialRampToValueAtTime(0.42,t+0.7);wg.gain.exponentialRampToValueAtTime(0.0001,t+2.6);
+      var lfo=ctx.createOscillator(),lg=ctx.createGain();
+      lfo.type='sine';lfo.frequency.setValueAtTime(3.2,t+0.5);lfo.frequency.linearRampToValueAtTime(9,t+2.4);
+      lg.gain.value=900;lfo.connect(lg);lg.connect(lp.frequency);lfo.start(t+0.5);lfo.stop(t+2.6);
+      [-12,0,12].forEach(function(det){
+        var s=ctx.createOscillator();s.type='sawtooth';s.frequency.value=41.2;s.detune.value=det;
+        s.connect(lp);s.start(t+0.5);s.stop(t+2.6);
+      });
+      lp.connect(wg);wg.connect(master);
+      document.body.classList.add('dropping');
+      setTimeout(function(){document.body.classList.remove('dropping');},1700);
+    }catch(e){}
+  });
 })();
 </script>
 </body>

@@ -70,6 +70,28 @@
   .src a{color:var(--faint);text-decoration:underline}
   footer{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--faint)}
   .home{display:inline-block;margin-top:8px;font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--jade);text-decoration:none}
+  .hanko-nav{display:flex;gap:14px;margin:18px 0 4px;flex-wrap:wrap}
+  .hanko-nav a{display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none}
+  .hanko-nav .stamp{width:46px;height:46px;border-radius:9px;background:var(--verm);color:var(--bone);display:grid;place-items:center;
+    font-family:"Shippori Mincho","Hiragino Mincho ProN",serif;font-weight:800;font-size:23px;transform:rotate(-2.5deg);
+    box-shadow:0 3px 10px rgba(0,0,0,.45);transition:transform .2s}
+  .hanko-nav a:nth-child(even) .stamp{transform:rotate(2.5deg)}
+  .hanko-nav a:hover .stamp{transform:rotate(0) scale(1.08)}
+  .hanko-nav .lbl{font-family:"Space Mono",monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
+  .hanko-nav a.here .stamp{background:var(--gold);color:var(--char)}
+
+  /* the drop */
+  .dropfab{position:fixed;right:18px;bottom:18px;z-index:95;width:60px;height:60px;border-radius:50%;border:1px solid rgba(236,224,200,.28);
+    background:#e8482e;color:#ece0c8;font-family:"Space Mono",monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;
+    box-shadow:0 6px 22px rgba(0,0,0,.5);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+  .dropfab .k{font-family:"Shippori Mincho","Hiragino Mincho ProN",serif;font-size:21px;line-height:1;font-weight:800}
+  .dropfab:active{transform:scale(.92)}
+  .dropveil{position:fixed;inset:0;pointer-events:none;z-index:94;opacity:0;background:radial-gradient(120% 90% at 50% 115%,rgba(255,106,30,.5),rgba(193,24,26,.3) 45%,transparent 75%)}
+  body.dropping .dropveil{animation:dropveil 1.7s ease-out}
+  @keyframes dropveil{0%{opacity:0;transform:translateY(22%)}16%{opacity:1}100%{opacity:0;transform:none}}
+  body.dropping .wrap{animation:dropshake .5s}
+  @keyframes dropshake{0%,100%{transform:none}25%{transform:translateY(3px)}55%{transform:translateY(-2px)}80%{transform:translateY(1px)}}
+  @media (prefers-reduced-motion:reduce){body.dropping .wrap{animation:none}body.dropping .dropveil{animation:none}}
 </style>
 </head>
 <body>
@@ -82,12 +104,12 @@
     <div class="stamp">An exploration for Fang Speare · sound into sight</div>
 
     <div class="keyart">
-      <video autoplay muted loop playsinline preload="metadata" poster="assets/gen/primal-keyart.jpg" aria-label="Fang Speare key art film: a lone caveman with a spear faces a fanged predator under an ember sun, jade bass ripples rolling across the ground, in a woodblock and Primal style">
-        <source src="assets/gen/primal-film.mp4" type="video/mp4">
-        <img src="assets/gen/primal-keyart.jpg" alt="Fang Speare key art: a lone caveman with a spear faces a fanged predator under an ember sun, in a woodblock and Primal style">
+      <video autoplay muted loop playsinline preload="metadata" poster="assets/gen/primal-keyart2.jpg" aria-label="Fang Speare key art film: a laughing caveman rides a friendly fanged tyrannosaur past Mount Fuji, a paper lantern swinging from his spear, sakura petals in the wind, in a whimsical woodblock style">
+        <source src="assets/gen/primal-film2.mp4" type="video/mp4">
+        <img src="assets/gen/primal-keyart2.jpg" alt="Fang Speare key art: a laughing caveman rides a friendly fanged tyrannosaur past Mount Fuji, a paper lantern hanging from his spear">
       </video>
     </div>
-    <div class="capt">Fang Speare key-art film · Primal silhouette meets woodblock flat color · the ripples are the low end, the ember flare is the drop</div>
+    <div class="capt">Fang Speare key-art film · Fang and Spear ride together, the way the show always meant it · woodblock joy, lantern lit</div>
   </header>
 
   <section>
@@ -170,6 +192,10 @@
       <li><b>Brush and blade line.</b> Ink-brush strokes and hard silhouette edges, the meeting point of Tartakovsky's decisive shapes and the woodblock cutter's line.</li>
       <li><b>It scales across the label.</b> Cover art, stage visuals, merch, the AI-label look. One system, from a phone screen to Forest Hills.</li>
     </ul>
+
+    <div class="fam" style="margin-top:28px">Study · the buildup</div>
+    <div class="keyart"><img src="assets/gen/primal-keyart.jpg" alt="The standoff study: the caveman and the fanged predator face each other under a giant ember sun, jade ripples crossing the ground" loading="lazy"></div>
+    <div class="capt">the standoff · restraint before eruption · art rests in tension, then rides</div>
   </section>
 
   <section>
@@ -183,9 +209,55 @@
 
   <footer>
     <p>An exploration built from Foster's own insight that Fang Speare's soundscape relates to Primal. The name-to-characters link (Fang and Spear) and the wordless, beatboxed, silhouette-driven qualities are confirmed from the sources above. The visual system is a proposed direction, yours to shape, refuse, or build on.</p>
-    <a class="home" href="index.html">← back to Foster's page</a>
+    <nav class="hanko-nav" aria-label="crew pages">
+      <a href="index.html"><span class="stamp">家</span><span class="lbl">home</span></a>
+      <a href="eats.html"><span class="stamp">食</span><span class="lbl">eats</span></a>
+      <a class="here" href="primal.html"><span class="stamp">牙</span><span class="lbl">primal</span></a>
+      <a href="itinerary.html"><span class="stamp">旅</span><span class="lbl">plans</span></a>
+    </nav>
   </footer>
 
 </div>
+
+<div class="dropveil" aria-hidden="true"></div>
+<button class="dropfab" id="dropfab" aria-label="feel the drop"><span class="k">低</span><span>drop</span></button>
+<script>
+/* the super deep drop */
+(function(){
+  var b=document.getElementById('dropfab'); if(!b) return;
+  var AC=window.AudioContext||window.webkitAudioContext, ctx=null;
+  b.addEventListener('click',function(){
+    if(!AC) return;
+    try{
+      ctx=ctx||new AC(); if(ctx.state==='suspended') ctx.resume();
+      var t=ctx.currentTime;
+      var master=ctx.createGain(); master.gain.value=0.9;
+      var comp=ctx.createDynamicsCompressor();
+      comp.threshold.value=-14;comp.knee.value=18;comp.ratio.value=14;comp.attack.value=0.002;comp.release.value=0.22;
+      master.connect(comp).connect(ctx.destination);
+      var o=ctx.createOscillator(),g=ctx.createGain();
+      o.type='sine';o.frequency.setValueAtTime(90,t);o.frequency.exponentialRampToValueAtTime(26,t+1.6);
+      g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(1.0,t+0.05);g.gain.setValueAtTime(1.0,t+1.0);g.gain.exponentialRampToValueAtTime(0.0001,t+2.4);
+      o.connect(g);g.connect(master);o.start(t);o.stop(t+2.5);
+      var o2=ctx.createOscillator(),g2=ctx.createGain();
+      o2.type='triangle';o2.frequency.setValueAtTime(160,t);o2.frequency.exponentialRampToValueAtTime(42,t+0.28);
+      g2.gain.setValueAtTime(0.5,t);g2.gain.exponentialRampToValueAtTime(0.0001,t+0.55);
+      o2.connect(g2);g2.connect(master);o2.start(t);o2.stop(t+0.6);
+      var lp=ctx.createBiquadFilter();lp.type='lowpass';lp.frequency.value=110;lp.Q.value=11;
+      var wg=ctx.createGain();wg.gain.setValueAtTime(0.0001,t+0.5);wg.gain.exponentialRampToValueAtTime(0.42,t+0.7);wg.gain.exponentialRampToValueAtTime(0.0001,t+2.6);
+      var lfo=ctx.createOscillator(),lg=ctx.createGain();
+      lfo.type='sine';lfo.frequency.setValueAtTime(3.2,t+0.5);lfo.frequency.linearRampToValueAtTime(9,t+2.4);
+      lg.gain.value=900;lfo.connect(lg);lg.connect(lp.frequency);lfo.start(t+0.5);lfo.stop(t+2.6);
+      [-12,0,12].forEach(function(det){
+        var s=ctx.createOscillator();s.type='sawtooth';s.frequency.value=41.2;s.detune.value=det;
+        s.connect(lp);s.start(t+0.5);s.stop(t+2.6);
+      });
+      lp.connect(wg);wg.connect(master);
+      document.body.classList.add('dropping');
+      setTimeout(function(){document.body.classList.remove('dropping');},1700);
+    }catch(e){}
+  });
+})();
+</script>
 </body>
 </html>

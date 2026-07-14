@@ -73,6 +73,28 @@
   a{color:var(--cyan)}
   footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--faint)}
   .home{display:inline-block;margin-top:8px;font-family:var(--disp);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);text-decoration:none}
+  .hanko-nav{display:flex;gap:14px;margin:18px 0 4px;flex-wrap:wrap}
+  .hanko-nav a{display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none}
+  .hanko-nav .stamp{width:46px;height:46px;border-radius:9px;background:#e8482e;color:#ece0c8;display:grid;place-items:center;
+    font-family:"Shippori Mincho","Hiragino Mincho ProN",serif;font-weight:800;font-size:23px;transform:rotate(-2.5deg);
+    box-shadow:0 3px 10px rgba(0,0,0,.45);transition:transform .2s}
+  .hanko-nav a:nth-child(even) .stamp{transform:rotate(2.5deg)}
+  .hanko-nav a:hover .stamp{transform:rotate(0) scale(1.08)}
+  .hanko-nav .lbl{font-family:var(--mono,"Space Mono"),monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
+  .hanko-nav a.here .stamp{background:var(--gold);color:var(--bg)}
+
+  /* the drop */
+  .dropfab{position:fixed;right:18px;bottom:18px;z-index:95;width:60px;height:60px;border-radius:50%;border:1px solid rgba(236,224,200,.28);
+    background:#e8482e;color:#ece0c8;font-family:"Space Mono",monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;
+    box-shadow:0 6px 22px rgba(0,0,0,.5);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+  .dropfab .k{font-family:"Shippori Mincho","Hiragino Mincho ProN",serif;font-size:21px;line-height:1;font-weight:800}
+  .dropfab:active{transform:scale(.92)}
+  .dropveil{position:fixed;inset:0;pointer-events:none;z-index:94;opacity:0;background:radial-gradient(120% 90% at 50% 115%,rgba(255,106,30,.5),rgba(193,24,26,.3) 45%,transparent 75%)}
+  body.dropping .dropveil{animation:dropveil 1.7s ease-out}
+  @keyframes dropveil{0%{opacity:0;transform:translateY(22%)}16%{opacity:1}100%{opacity:0;transform:none}}
+  body.dropping .wrap{animation:dropshake .5s}
+  @keyframes dropshake{0%,100%{transform:none}25%{transform:translateY(3px)}55%{transform:translateY(-2px)}80%{transform:translateY(1px)}}
+  @media (prefers-reduced-motion:reduce){body.dropping .wrap{animation:none}body.dropping .dropveil{animation:none}}
 </style>
 </head>
 <body>
@@ -81,10 +103,10 @@
   <header>
     <div class="kick">Foster's 55th · NYC · July 16-23</div>
     <h1>Where the crew eats.</h1>
-    <p class="lede">A pocket food guide for the three of us, built around where we actually are each day. Home base on the Upper East Side, birthday night in Queens, the Final in the Village. And yes, the melon burger is the crown.</p>
+    <p class="lede">A pocket food guide for the three of us, built around where we actually are each day. Home base on the Upper East Side, birthday night in Queens, the Final in Tribeca. And yes, the melon burger is the crown.</p>
     <div class="stamp">For Gordon, Foster & BrenBren · walk-in friendly, group-sized</div>
-    <div class="heroimg"><img src="assets/gen/eats-hero.jpg" alt="Painted illustration of a char-grilled cheeseburger with cottage fries on a checkered tablecloth, the J.G. Melon order"></div>
-    <div class="heroimg-capt">the crown, as painted · char burger + cottage fries, Melon style</div>
+    <div class="heroimg"><img src="assets/gen/eats-hero2.jpg" alt="Whimsical woodblock print of a steaming cheeseburger and fries on a wooden stand over a seigaiha wave pattern, a small jade toad gazing up at it in admiration"></div>
+    <div class="heroimg-capt">the crown, honored as a woodblock still life · one admirer already in line</div>
   </header>
 
   <section>
@@ -94,7 +116,7 @@
       <h3>J.G. Melon</h3>
       <div class="addr">1291 Third Ave at E 74th St · Upper East Side</div>
       <p>The melon burger. The one we already know we love, and it happens to sit about three blocks from home base at 765 Park. A char-griddled classic on a squishy bun with a pile of cottage fries, checkered tablecloths, zero pretense. This is the anchor of the whole weekend: breakfast plan, hangover plan, "we have an hour" plan.</p>
-      <div class="note"><b>How it runs:</b> no reservations, walk-in only, gets a line at peak. Go off-hours (mid-afternoon, late morning) with the group. Cash-friendly, cards fine. There is also a <b>West Village J.G. Melon</b> near MacDougal and Bleecker, which lands us right by the World Cup Final spot on Sunday (see below).</div>
+      <div class="note"><b>How it runs:</b> no reservations, walk-in only, gets a line at peak. Go off-hours (mid-afternoon, late morning) with the group. Cash-friendly, cards fine. There is also a <b>West Village J.G. Melon</b> near MacDougal and Bleecker for whenever we are downtown.</div>
     </div>
   </section>
 
@@ -214,9 +236,9 @@
       <p>Zeds Dead is at Forest Hills Stadium (doors 5pm). So the birthday meal is either an early bite near the venue before the bass, or a proper celebration back in the city after. Both are covered.</p>
       <div class="opts">
         <div class="opt">
-          <h4>Before, near the venue</h4>
+          <h4>Before, near the venue · LOCK THIS NOW</h4>
           <div class="a">Forest Hills, Queens · walk to the stadium</div>
-          <p><b>Danny Brown Wine Bar &amp; Kitchen</b> for a real dinner (reserve), or <b>Nick's Pizza</b> for a coal-oven group classic, both minutes from the gates. Austin Street is the strip.</p>
+          <p><b>Agora Taverna</b> (Greek, 70-09 Austin St, ~5 min from the gates) is the reserve-now pick: proper sit-down, seat the crew at 3pm, out by 4:30, doors at 5. <b>Nick's Pizza</b> is the coal-oven walk-in backup and <b>Dirty Pierre's</b> at Station Square is the one-last-beer-by-the-gates move. Know before you go: <b>Station House takes no reservations on concert days</b>, and Danny Brown has closed, so the whole strip goes walk-in-crazy from 4pm. A booked table is the only calm one.</p>
         </div>
         <div class="opt">
           <h4>After, back in the city</h4>
@@ -224,7 +246,7 @@
           <p>Roll back for a late toast. A steakhouse or a loud, joyful spot fits 40 years of friendship. Tell me the vibe and I'll lock a reservation.</p>
         </div>
       </div>
-      <p style="margin-top:12px;font-size:13px;color:var(--faint)">Note: keep the birthday dinner loose so we can flow into the show without watching the clock. The night is yours.</p>
+      <p style="margin-top:12px;font-size:13px;color:var(--faint)">Note: it is a concert Saturday, so the pre-show table is the one thing we do NOT keep loose. Book the 3pm seating, and the rest of the night stays free-flowing. The night is yours.</p>
     </div>
   </section>
 
@@ -307,21 +329,21 @@
 
   <section>
     <h2><span class="pin" style="--tagc:var(--green)">Match day</span> World Cup Final · Sun 7/19</h2>
-    <p class="subhead">Watching at The Red Lion, 151 Bleecker. Village turf, and the West Village J.G. Melon is right here.</p>
+    <p class="subhead">Watching at Brickyard Craft Kitchen &amp; Bar, 23 Park Place, where Tribeca meets the Financial District. Our table, kickoff 3pm, get the headcount right.</p>
     <div class="grid">
       <div class="card" style="--cardc:var(--green)">
-        <div class="type">The melon, again</div>
-        <h3>J.G. Melon · West Village</h3>
-        <div class="addr">Near MacDougal &amp; Bleecker · a short walk from The Red Lion</div>
-        <p>Our burger, on the other side of town, minutes from the match. Pre-game fuel or post-final victory (or heartbreak) burger.</p>
-        <div class="why"><b>For:</b> bookending the Final with the thing we love.</div>
+        <div class="type">The venue · eat where we watch</div>
+        <h3>Brickyard Craft Kitchen &amp; Bar</h3>
+        <div class="addr">23 Park Place, between Church &amp; Broadway · (646) 449-0826</div>
+        <p>One of the biggest bars downtown: 40+ TVs, 40 taps (heavy on IPAs, margaritas on tap too), brick-oven pizza and wings. Order the Brickyard Burger (brisket-short rib blend with pork belly), rosemary fries for the table, and the buffalo chicken dip for the nervous minutes.</p>
+        <div class="why"><b>For:</b> the whole Final without leaving the seats. Kitchen and match under one roof.</div>
       </div>
       <div class="card" style="--cardc:var(--green)">
-        <div class="type">Village classic</div>
-        <h3>Mamoun's / Joe's Pizza</h3>
-        <div class="addr">Bleecker &amp; MacDougal area</div>
-        <p>Falafel and a legendary slice, both walkable from the pub for a cheap, perfect halftime or after-match bite.</p>
-        <div class="why"><b>For:</b> quick fuel without losing the table.</div>
+        <div class="type">Logistics + lore</div>
+        <h3>Getting there, knowing it</h3>
+        <div class="addr">2/3 to Park Place · A/C to Chambers St · R/W to City Hall</div>
+        <p>Lore: it is the old Barleycorn space, reborn as a sports bar in 2023 by the crew behind All Stars Bar &amp; Grill on 57th, and the long happy hour (from 11am) is the stuff of downtown legend. Arrive by 1:30 for a 3pm kickoff, claim the screens, settle in.</p>
+        <div class="why"><b>For:</b> walking in like regulars, not tourists.</div>
       </div>
     </div>
   </section>
@@ -353,7 +375,7 @@
       <ul>
         <li><b>J.G. Melon is walk-in only</b> at both locations. No reservations, go off-peak with three people and you're fine.</li>
         <li><b>The birthday dinner (Sat)</b> is the one worth reserving. Tell me before/after the show and I'll book it.</li>
-        <li><b>Theater and match days are tight.</b> The picks near Hamilton and The Red Lion are chosen for speed, not lingering.</li>
+        <li><b>Theater and match days are tight.</b> The picks near Hamilton are chosen for speed, and on Final Sunday we eat at Brickyard itself, so nobody loses a seat.</li>
         <li><b>Brooklyn is Bren's shout.</b> He's the local, these are just backups if he wants them.</li>
       </ul>
     </div>
@@ -361,7 +383,12 @@
 
   <footer>
     <p>Built from our own texts and where we'll each be this weekend. J.G. Melon is on here because we already love it (the melon-burger thread doesn't lie). The rest are picks matched to our locations and the way we eat: burgers, casual, celebratory. Confirm hours and reservations before we go, and tell me the birthday-dinner vibe and I'll lock it.</p>
-    <a class="home" href="index.html">← back to Foster's page</a>
+    <nav class="hanko-nav" aria-label="crew pages">
+      <a href="index.html"><span class="stamp">家</span><span class="lbl">home</span></a>
+      <a class="here" href="eats.html"><span class="stamp">食</span><span class="lbl">eats</span></a>
+      <a href="primal.html"><span class="stamp">牙</span><span class="lbl">primal</span></a>
+      <a href="itinerary.html"><span class="stamp">旅</span><span class="lbl">plans</span></a>
+    </nav>
   </footer>
 
 </div>
@@ -372,7 +399,7 @@
       {n:"J.G. Melon", a:"UES 1291 Third Ave, and West Village", note:"Our spot. The melon burger and cottage fries. Walk-in."},
       {n:"Corner Bistro", a:"West Village", note:"Dive-bar classic, the other great NYC burger."}]},
     {label:"Pizza", emoji:"🍕", keys:["pizza","slice","pie","pizzas"], spots:[
-      {n:"Joe's Pizza", a:"Greenwich Village, near the WC spot", note:"The perfect NY slice, minutes from The Red Lion."},
+      {n:"Joe's Pizza", a:"Greenwich Village", note:"The perfect NY slice, worth the detour any day of the week."},
       {n:"Roberta's", a:"Bushwick, Brooklyn", note:"Wood-fired pies, Bren's turf."},
       {n:"Nick's Pizza", a:"Forest Hills, Queens", note:"Coal-oven, right by the Saturday stadium."}]},
     {label:"Sushi and Japanese", emoji:"🍣", keys:["sushi","japanese","omakase","sashimi","nigiri"], spots:[
@@ -421,7 +448,7 @@
     {label:"Cocktails and bars", emoji:"🍸", keys:["cocktail","cocktails","bar","bars","drinks","drink","speakeasy"], spots:[
       {n:"Attaboy", a:"Lower East Side", note:"No menu, tell them your mood. Iconic."},
       {n:"Employees Only", a:"West Village", note:"Classic, near the WC-final turf."},
-      {n:"The Red Lion", a:"Bleecker St", note:"Our World Cup Final home base."}]},
+      {n:"Brickyard Craft Kitchen & Bar", a:"23 Park Place, Tribeca/FiDi", note:"Our World Cup Final home base. 40+ TVs, 40 taps, brick-oven pizza."}]},
     {label:"Diner and late night", emoji:"🌙", keys:["diner","late","late night","24 hour","comfort"], spots:[
       {n:"Veselka", a:"East Village", note:"24-hour Ukrainian, pierogi at 3am."}]}
   ];
@@ -464,7 +491,7 @@
 <script>
 (function(){
   // reservable sit-down spots (walk-in places like J.G. Melon, pizza, tacos left off on purpose)
-  var RSPOTS=["Churrascaria Plataforma (Brazilian)","Fogo de Chão (Brazilian)","Danny Brown Wine Bar & Kitchen (Forest Hills)","Via Carota (Italian)","The Penrose (UES)","Sushi of Gari (UES)","Keens Steakhouse (Midtown)","Trattoria Dell'Arte (Midtown)","Semma (Indian)","Cote (KBBQ)","Grand Central Oyster Bar","Jones Wood Foundry (UES)"];
+  var RSPOTS=["Churrascaria Plataforma (Brazilian)","Fogo de Chão (Brazilian)","Agora Taverna (Forest Hills)","Via Carota (Italian)","The Penrose (UES)","Sushi of Gari (UES)","Keens Steakhouse (Midtown)","Trattoria Dell'Arte (Midtown)","Semma (Indian)","Cote (KBBQ)","Grand Central Oyster Bar","Jones Wood Foundry (UES)"];
   var sel=document.getElementById('rspot');
   RSPOTS.forEach(function(s){var o=document.createElement('option');o.value=s;o.textContent=s;sel.appendChild(o);});
   function bare(s){return s.replace(/\s*\(.*?\)\s*/g,'').trim();}
@@ -483,6 +510,47 @@
     window.location.href='mailto:gbellamy@gmail.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
     msg('Opening an email to Gordon with the details. Hit send and Darby will book it.');
   };
+})();
+</script>
+
+<div class="dropveil" aria-hidden="true"></div>
+<button class="dropfab" id="dropfab" aria-label="feel the drop"><span class="k">低</span><span>drop</span></button>
+<script>
+/* the super deep drop */
+(function(){
+  var b=document.getElementById('dropfab'); if(!b) return;
+  var AC=window.AudioContext||window.webkitAudioContext, ctx=null;
+  b.addEventListener('click',function(){
+    if(!AC) return;
+    try{
+      ctx=ctx||new AC(); if(ctx.state==='suspended') ctx.resume();
+      var t=ctx.currentTime;
+      var master=ctx.createGain(); master.gain.value=0.9;
+      var comp=ctx.createDynamicsCompressor();
+      comp.threshold.value=-14;comp.knee.value=18;comp.ratio.value=14;comp.attack.value=0.002;comp.release.value=0.22;
+      master.connect(comp).connect(ctx.destination);
+      var o=ctx.createOscillator(),g=ctx.createGain();
+      o.type='sine';o.frequency.setValueAtTime(90,t);o.frequency.exponentialRampToValueAtTime(26,t+1.6);
+      g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(1.0,t+0.05);g.gain.setValueAtTime(1.0,t+1.0);g.gain.exponentialRampToValueAtTime(0.0001,t+2.4);
+      o.connect(g);g.connect(master);o.start(t);o.stop(t+2.5);
+      var o2=ctx.createOscillator(),g2=ctx.createGain();
+      o2.type='triangle';o2.frequency.setValueAtTime(160,t);o2.frequency.exponentialRampToValueAtTime(42,t+0.28);
+      g2.gain.setValueAtTime(0.5,t);g2.gain.exponentialRampToValueAtTime(0.0001,t+0.55);
+      o2.connect(g2);g2.connect(master);o2.start(t);o2.stop(t+0.6);
+      var lp=ctx.createBiquadFilter();lp.type='lowpass';lp.frequency.value=110;lp.Q.value=11;
+      var wg=ctx.createGain();wg.gain.setValueAtTime(0.0001,t+0.5);wg.gain.exponentialRampToValueAtTime(0.42,t+0.7);wg.gain.exponentialRampToValueAtTime(0.0001,t+2.6);
+      var lfo=ctx.createOscillator(),lg=ctx.createGain();
+      lfo.type='sine';lfo.frequency.setValueAtTime(3.2,t+0.5);lfo.frequency.linearRampToValueAtTime(9,t+2.4);
+      lg.gain.value=900;lfo.connect(lg);lg.connect(lp.frequency);lfo.start(t+0.5);lfo.stop(t+2.6);
+      [-12,0,12].forEach(function(det){
+        var s=ctx.createOscillator();s.type='sawtooth';s.frequency.value=41.2;s.detune.value=det;
+        s.connect(lp);s.start(t+0.5);s.stop(t+2.6);
+      });
+      lp.connect(wg);wg.connect(master);
+      document.body.classList.add('dropping');
+      setTimeout(function(){document.body.classList.remove('dropping');},1700);
+    }catch(e){}
+  });
 })();
 </script>
 </body>
