@@ -167,7 +167,8 @@
     breakaway:{kind:'rave', day:'Fri Jul 17', ttl:'Breakaway ft. Tiesto', when:'6pm to midnight', where:'Under the K Bridge Park', area:'Greenpoint, Brooklyn', detail:"Bren's borough. The cathedral moment: Adagio for Strings. Cabs beat trains after the set.", transit:'cab to Greenpoint, it is worth it'},
     zeds:{kind:'birthday', day:'SATURDAY JUL 18 · the birthday', ttl:'Zeds Dead · Journey of a Lifetime', when:'doors 5pm, show 6pm · sound off 10pm sharp (stadium curfew)', where:'Forest Hills Stadium', area:'Queens', detail:'Fifty-five, live, on the grass under the lights. ALLEYCVT and friends open, Zeds Dead close it out, and the 10pm curfew means the night still has a second act back in the city.', transit:'LIRR ~14 min from Manhattan to Forest Hills, off at Station Square, 5 min walk'},
     wc:{kind:'sports', day:'Sun Jul 19', ttl:'World Cup Final', when:'kickoff 3pm ET, table by 1:30', where:'Brickyard Craft Kitchen & Bar, 23 Park Place', area:'Tribeca / FiDi', detail:'Our reserved table. 40+ screens, 40 taps, brick-oven pizza, the Brickyard Burger. Eat where we watch.', transit:'2/3 to Park Place, A/C to Chambers St, or R/W to City Hall'},
-    predinner:{kind:'birthday', day:'SATURDAY JUL 18 · the birthday', ttl:'Pre-show birthday dinner', when:'3:00pm seating, out by 4:30', where:'Agora Taverna, 70-09 Austin St', area:'Forest Hills, 5 min from the gates', detail:'The locked table before Zeds Dead. Concert Saturday means the strip is slammed from 4pm, so we sit at 3 sharp.', transit:'LIRR to Forest Hills, Station Square exit, short walk up Austin St'},
+    knicks:{kind:'birthday', day:'SATURDAY JUL 18 · the birthday', ttl:'Knicks photo ops · Coach Mike Brown + Landry Shamet', when:'1:10pm group, then 2:20pm group · arrive 15-30 early', where:'Photo Op & Autograph Zone, 1st floor, Javits Center', area:'Midtown West', detail:'Reserved and paid. The championship head coach at 1, the sharpshooter at 2. Up to 4 of us in each shot, 2 prints + a digital copy per op. Gordon checks in with ID (name must match the order exactly).', transit:'7 to 34 St-Hudson Yards, or walk from Penn/Moynihan'},
+    predinner:{kind:'birthday', day:'SATURDAY JUL 18 · the birthday', ttl:'Pre-show birthday dinner', when:'3:30pm seating, out by 4:45', where:'Agora Taverna, 70-09 Austin St', area:'Forest Hills, 5 min from the gates', detail:'The locked table before Zeds Dead, timed off the photo ops: LIRR from Moynihan after the 2:20 shot lands us with time to spare. Concert Saturday means the strip is slammed, so a booked table is the only calm one.', transit:'LIRR to Forest Hills, Station Square exit, short walk up Austin St'},
     bagel:{kind:'fun', day:'Sat Jul 18 (flexible)', ttl:'Bagel meetup with Ian', when:'morning, before the show', where:'a good bagel spot, TBD', area:'downtown', detail:'Ian is around for the Zeds Dead show and wants a bagel hang. Easy morning move.', transit:'wherever is closest to home base'},
     brunch:{kind:'work', day:'Mon Jul 20', ttl:'GGP Scholars Brunch', when:'around 2pm', where:'venue confirming', area:'Midtown', detail:'GGP and the NYC community. Warm room, good people.', transit:'Midtown, easy'},
     g4c:{kind:'work', day:'Tue-Wed Jul 21-22', ttl:'Games for Change Festival', when:'daytime both days', where:'The Glasshouse', area:'Chelsea', detail:'Gordon and Eric run the Ignite Impact workshop. Theme: Reimagining Play.', transit:'Chelsea, walkable from Midtown'},
@@ -179,13 +180,13 @@
   var PEOPLE=[
     {nm:'Foster', tg:'the birthday king', email:'foster@ghostvoltagerecords.com',
       sum:'Your weekend, pure celebration. Five nights, one city, all of it aimed at Saturday.',
-      events:['fanatics','hamilton','breakaway','predinner','zeds','wc']},
+      events:['fanatics','hamilton','breakaway','knicks','predinner','zeds','wc']},
     {nm:'BrenBren', tg:'Brooklyn host + family', email:'brennanjmurphy1120@gmail.com',
       sum:'You are the local host. The fun runs through you, especially Breakaway in your borough.',
-      events:['fanatics','hamilton','breakaway','predinner','zeds','wc']},
+      events:['fanatics','hamilton','breakaway','knicks','predinner','zeds','wc']},
     {nm:'Gordon', tg:'host, juggling worlds', email:'gbellamy@gmail.com',
       sum:'Everything, plus the work threads woven in. The most loaded week of the five circles.',
-      events:['fanatics','james','hamilton','ggpcall','breakaway','predinner','zeds','wc','brunch','g4c','whoopi']},
+      events:['fanatics','james','hamilton','ggpcall','breakaway','knicks','predinner','zeds','wc','brunch','g4c','whoopi']},
     {nm:'Abdul Khan', tg:"Foster's friend, in town", email:'',
       sum:'In New York for the celebration. The big fun days with the crew.',
       events:['fanatics','predinner','zeds','wc']},
@@ -203,7 +204,7 @@
       events:['brunch']}
   ];
 
-  var order=['fanatics','hamilton','james','ggpcall','breakaway','bagel','predinner','zeds','wc','brunch','g4c','whoopi'];
+  var order=['fanatics','hamilton','james','ggpcall','breakaway','bagel','knicks','predinner','zeds','wc','brunch','g4c','whoopi'];
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 
   var peopleEl=document.getElementById('people');
