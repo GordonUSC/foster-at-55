@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fang Speare · Fifty-Five, Live · Foster Birch, July 18, 2026</title>
+<meta name="description" content="A birthday built for Foster Birch. Forty years of friendship, four nights in New York, the low end, the Knicks, the toad-sage, and one man fully alive at fifty-five.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Shippori+Mincho:wght@500;700;800&family=Space+Mono:wght@400;700&display=swap">
+<style>
+:root{
+  --bg:#060509; --ink:#f6f0ff; --muted:rgba(246,240,255,0.58);
+  --amber:#ffc65a; --gold:#ffdd8a; --magenta:#ff45b4; --violet:#9a6bff; --acid:#9dff5c; --cyan:#3ef0ff;
+  --vermilion:#e8482e; --indigo:#28306e; --jade:#3fae8f; --paper:#efe3cf;
+  --line:rgba(255,255,255,0.10); --card:rgba(255,255,255,0.035);
+  --accent:var(--amber);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:"Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.55}
+.wrap{width:min(1160px,92vw);margin:0 auto}
+.narrow{width:min(760px,92vw);margin:0 auto}
+a{color:var(--accent);text-decoration:none}
+img{max-width:100%;display:block}
+.mono{font-family:"Space Mono",monospace}
+.serif{font-family:"Shippori Mincho",serif}
+
+/* ===== BASS SPINE (identity + progress) ===== */
+.spine{position:fixed;top:0;left:0;width:100%;height:44px;z-index:90;pointer-events:none}
+.spine svg{width:100%;height:100%;display:block}
+.spine .wave{fill:none;stroke:var(--accent);stroke-width:2;opacity:0.9;filter:drop-shadow(0 0 6px var(--accent));transition:stroke .6s}
+.spine .prog{fill:none;stroke:var(--accent);stroke-width:2.4;opacity:1;filter:drop-shadow(0 0 9px var(--accent))}
+
+/* global slow light + grain */
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0.045;mix-blend-mode:screen;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+.driftbg{position:fixed;inset:-20%;z-index:0;pointer-events:none;opacity:0.35;filter:blur(70px);
+  background:radial-gradient(30% 40% at 20% 30%,rgba(154,107,255,0.4),transparent 70%),radial-gradient(30% 40% at 85% 70%,rgba(255,69,180,0.28),transparent 70%);
+  animation:drift 40s ease-in-out infinite alternate}
+@keyframes drift{0%{transform:translate3d(0,0,0)}100%{transform:translate3d(-4%,3%,0) scale(1.07)}}
+
+/* ===== HERO ===== */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;z-index:2}
+.hero .ghost55{position:absolute;right:-3vw;top:48%;transform:translateY(-50%);font-family:"Syne",sans-serif;font-weight:800;
+  font-size:min(78vh,760px);line-height:0.7;color:transparent;-webkit-text-stroke:2px rgba(255,198,90,0.14);z-index:0;pointer-events:none;user-select:none}
+.emblem{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);width:min(64vw,540px);z-index:1;opacity:0.9;pointer-events:none;
+  filter:drop-shadow(0 0 50px rgba(157,255,92,0.28))}
+.hero::after{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(70% 60% at 50% 46%,transparent,rgba(6,5,9,0.55) 70%,var(--bg))}
+.hero .wrap{position:relative;z-index:3;padding:112px 0 90px;text-align:center}
+.kick{font-family:"Space Mono",monospace;font-size:12px;letter-spacing:0.30em;text-transform:uppercase;color:var(--gold);opacity:0.92}
+h1.title{font-family:"Syne",sans-serif;font-weight:800;letter-spacing:-0.03em;line-height:0.82;
+  font-size:clamp(66px,17vw,230px);margin:14px 0 6px;color:#fff;text-shadow:0 0 40px rgba(255,198,90,0.35)}
+h1.title .fade{display:block;background:linear-gradient(96deg,#fff 12%,var(--amber) 46%,var(--magenta) 74%,var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+.alias{font-family:"Space Mono",monospace;letter-spacing:0.30em;text-transform:uppercase;font-size:clamp(11px,2.4vw,15px);color:var(--acid);margin-top:8px}
+.dates{font-family:"Syne",sans-serif;font-weight:700;font-size:clamp(15px,2vw,22px);letter-spacing:0.01em;margin-top:22px;color:var(--ink)}
+.cd{margin-top:30px;display:inline-flex;gap:20px;align-items:flex-end;flex-wrap:wrap;justify-content:center}
+.cd .lab{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);width:100%}
+.cd .u{text-align:center}
+.cd .n{font-family:"Syne",sans-serif;font-weight:800;font-size:clamp(30px,5vw,52px);line-height:1;color:#fff}
+.cd .t{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase;margin-top:5px}
+.dropbtn{margin-top:26px;font-family:"Space Mono",monospace;font-size:11.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--acid);
+  background:rgba(157,255,92,0.06);border:1px solid rgba(157,255,92,0.4);border-radius:999px;padding:11px 22px;cursor:pointer;transition:all .25s}
+.dropbtn:hover{background:rgba(157,255,92,0.16);box-shadow:0 0 26px rgba(157,255,92,0.4)}
+.scrollcue{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:3;font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.2em;color:var(--muted);text-transform:uppercase}
+/* drop bloom */
+.dropbloom{position:fixed;left:0;right:0;bottom:0;height:60vh;z-index:85;pointer-events:none;opacity:0;
+  background:radial-gradient(120% 100% at 50% 120%,rgba(157,255,92,0.5),rgba(154,107,255,0.4) 40%,transparent 72%)}
+body.dropping .dropbloom{animation:bloom 1.5s ease-out}
+@keyframes bloom{0%{opacity:0;transform:translateY(30%)}25%{opacity:1}100%{opacity:0;transform:translateY(0)}}
+
+/* ===== section scaffold ===== */
+section.band{position:relative;z-index:2;padding:clamp(70px,9vw,132px) 0;overflow:hidden}
+.ghostnum{position:absolute;font-family:"Syne",sans-serif;font-weight:800;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,0.05);
+  font-size:min(40vw,420px);line-height:0.7;z-index:0;pointer-events:none;user-select:none}
+.eyebrow{font-family:"Space Mono",monospace;font-size:12px;letter-spacing:0.24em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:12px;position:relative;z-index:2}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--line);max-width:110px}
+.htitle{font-family:"Syne",sans-serif;font-weight:800;letter-spacing:-0.02em;line-height:0.96;font-size:clamp(34px,5.6vw,74px);margin:14px 0 0;position:relative;z-index:2}
+.lede{max-width:660px;margin:20px 0 0;font-size:clamp(16px,1.4vw,19px);color:var(--muted);position:relative;z-index:2}
+.lede b{color:var(--ink);font-weight:600}
+p.body{max-width:62ch;margin:16px 0 0;color:rgba(246,240,255,0.82);font-size:16.5px;position:relative;z-index:2}
+
+/* scroll display word */
+.slab{position:relative;z-index:2;text-align:center;padding:clamp(30px,7vw,90px) 0}
+.slab .word{font-family:"Syne",sans-serif;font-weight:800;letter-spacing:-0.02em;line-height:0.8;font-size:clamp(80px,22vw,340px);
+  color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,0.14);will-change:transform,letter-spacing}
+
+/* ===== WEEKEND (four nights) ===== */
+.weekend{margin-top:clamp(38px,6vw,60px);display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.night{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--card);padding:24px 22px 26px;transition:transform .25s,border-color .25s}
+.night:hover{transform:translateY(-5px);border-color:rgba(255,198,90,0.4)}
+.night::before{content:"";position:absolute;inset:0;opacity:0.16;z-index:0}
+.night.thu::before{background:radial-gradient(120% 80% at 20% 0,var(--gold),transparent 62%)}
+.night.fri::before{background:radial-gradient(120% 80% at 20% 0,var(--cyan),transparent 62%)}
+.night.sat::before{background:radial-gradient(130% 90% at 30% 0,var(--acid),transparent 58%),radial-gradient(120% 80% at 85% 20%,var(--magenta),transparent 64%)}
+.night.sun::before{background:radial-gradient(120% 80% at 20% 0,var(--amber),transparent 62%)}
+.night>*{position:relative;z-index:1}
+.night .dow{font-family:"Space Mono",monospace;font-size:11.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted)}
+.night h3{font-family:"Syne",sans-serif;font-weight:800;font-size:22px;margin:8px 0 4px;letter-spacing:-0.01em}
+.night .ven{font-size:13px;color:var(--muted);margin-bottom:11px}
+.night p{font-size:13.5px;color:rgba(246,240,255,0.80)}
+.night.sat{border-color:rgba(157,255,92,0.45);box-shadow:0 0 44px -16px rgba(157,255,92,0.7)}
+.crown{display:inline-block;margin-top:12px;font-family:"Space Mono",monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#060509;background:var(--acid);padding:4px 10px;border-radius:999px;font-weight:700}
+
+/* ===== room: ZEDS DEAD (drops, dark, lit from below) ===== */
+.room-zd{--accent:var(--acid);background:
+   radial-gradient(120% 62% at 50% 122%, rgba(154,107,255,0.24), transparent 60%),
+   radial-gradient(80% 44% at 50% 110%, rgba(157,255,92,0.16), transparent 60%),
+   #040308}
+.starfield{position:absolute;inset:0;z-index:0;opacity:0.5;pointer-events:none;
+  background-image:radial-gradient(1px 1px at 20% 30%,#fff,transparent),radial-gradient(1px 1px at 70% 60%,#fff,transparent),radial-gradient(1px 1px at 40% 80%,#cbb3ff,transparent),radial-gradient(1px 1px at 85% 25%,#9dff5c,transparent),radial-gradient(1px 1px at 55% 15%,#fff,transparent),radial-gradient(1px 1px at 12% 70%,#fff,transparent);
+  animation:twinkle 6s ease-in-out infinite alternate}
+@keyframes twinkle{0%{opacity:0.35}100%{opacity:0.6}}
+.zd-skull{position:absolute;right:-6%;top:8%;width:min(46vw,520px);opacity:0.07;z-index:0;pointer-events:none}
+.vgrid{margin-top:26px;display:grid;grid-template-columns:2fr 1fr;gap:16px;position:relative;z-index:2}
+.vgrid .stack{display:grid;grid-template-rows:1fr 1fr;gap:16px}
+.vid{position:relative;border-radius:13px;overflow:hidden;border:1px solid rgba(255,255,255,0.14);background:#000;aspect-ratio:16/9;cursor:pointer}
+.vid.big{aspect-ratio:16/10}
+.vid img.thumb{width:100%;height:100%;object-fit:cover;opacity:0.8;transition:opacity .3s,transform .6s,filter .4s;filter:saturate(0.9)}
+.vid:hover img.thumb{opacity:1;transform:scale(1.05);filter:saturate(1.15)}
+.vid .play{position:absolute;inset:0;margin:auto;width:64px;height:64px;border-radius:50%;border:0;cursor:pointer;
+  background:rgba(6,5,9,0.5);color:#fff;font-size:20px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);
+  box-shadow:0 0 0 1px rgba(255,255,255,0.25),0 0 0 0 var(--accent);animation:pulsering 2.4s ease-out infinite}
+@keyframes pulsering{0%{box-shadow:0 0 0 1px rgba(255,255,255,0.25),0 0 0 0 rgba(157,255,92,0.5)}70%{box-shadow:0 0 0 1px rgba(255,255,255,0.25),0 0 0 18px rgba(157,255,92,0)}100%{box-shadow:0 0 0 1px rgba(255,255,255,0.25),0 0 0 0 rgba(157,255,92,0)}}
+.vid:hover .play{transform:scale(1.08)}
+.vid .vcap{position:absolute;left:0;right:0;bottom:0;padding:20px 14px 11px;font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.03em;color:#fff;background:linear-gradient(180deg,transparent,rgba(0,0,0,0.85))}
+.vid iframe{width:100%;height:100%;border:0;display:block}
+.tag{display:inline-flex;gap:8px;flex-wrap:wrap;margin-top:20px;position:relative;z-index:2}
+.tag span{font-family:"Space Mono",monospace;font-size:11px;border:1px solid var(--line);border-radius:999px;padding:5px 12px;color:var(--ink)}
+.facts{margin-top:26px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;position:relative;z-index:2}
+.fact{border:1px solid var(--line);border-radius:12px;padding:18px 16px;background:rgba(255,255,255,0.02)}
+.fact .fn{font-family:"Syne",sans-serif;font-weight:800;font-size:clamp(22px,2.6vw,30px);color:var(--accent);line-height:1}
+.fact .fl{font-size:12.5px;color:var(--muted);margin-top:7px}
+.herostat{margin-top:24px;border:1px solid var(--line);border-radius:16px;padding:30px 28px;background:rgba(255,255,255,0.02);display:flex;gap:26px;align-items:baseline;flex-wrap:wrap;position:relative;z-index:2}
+.herostat .big{font-family:"Syne",sans-serif;font-weight:800;font-size:clamp(52px,9vw,120px);line-height:0.9;color:var(--accent)}
+.herostat .cap{font-size:15px;color:var(--muted);max-width:34ch}
+.newalbum{margin-top:20px;border:1px solid rgba(157,255,92,0.4);border-radius:16px;overflow:hidden;position:relative;z-index:2;
+  background:radial-gradient(120% 100% at 85% 0,rgba(154,107,255,0.22),transparent 60%),radial-gradient(120% 100% at 10% 100%,rgba(157,255,92,0.12),transparent 60%),#050409;
+  display:grid;grid-template-columns:auto 1fr;gap:22px;padding:24px 26px;align-items:start}
+.newalbum .na-badge{font-family:"Space Mono",monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#050409;background:var(--acid);
+  padding:6px 12px;border-radius:999px;white-space:nowrap;align-self:center;font-weight:700}
+.newalbum h3{font-family:"Syne",sans-serif;font-weight:800;font-size:clamp(24px,3.4vw,38px);line-height:1;letter-spacing:-0.01em}
+.newalbum .na-sub{font-family:"Shippori Mincho",serif;font-style:italic;color:var(--gold);font-size:14px;margin-top:4px}
+.newalbum p{color:var(--muted);font-size:14.5px;margin-top:10px;max-width:60ch}
+.newalbum .na-links{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
+.newalbum .na-links a{font-family:"Space Mono",monospace;font-size:11.5px;letter-spacing:0.04em;color:var(--acid);border:1px solid rgba(157,255,92,0.4);
+  border-radius:999px;padding:8px 14px;transition:all .2s}
+.newalbum .na-links a:hover{background:rgba(157,255,92,0.14);box-shadow:0 0 20px rgba(157,255,92,0.35)}
+@media(max-width:640px){.newalbum{grid-template-columns:1fr;gap:14px}}
+.pull{margin:34px 0 0;padding:22px 26px;border-left:3px solid var(--accent);background:linear-gradient(90deg,rgba(255,255,255,0.04),transparent);
+  font-family:"Shippori Mincho",serif;font-size:clamp(18px,2.2vw,25px);line-height:1.4;color:var(--ink);position:relative;z-index:2}
+.pull .attr{display:block;margin-top:12px;font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)}
+.pull.grow{font-family:"Syne",sans-serif;font-weight:800;font-size:clamp(26px,4.4vw,54px);line-height:1.02;border-left:0;text-align:center;background:none;padding:10px 0}
+
+/* ===== room: FOREST HILLS (full-bleed, panoramic) ===== */
+.room-fh{--accent:var(--gold);background:linear-gradient(180deg,#0a0a12,#0c0b10)}
+.fh-inset{width:min(880px,92vw);margin:0 auto}
+.eagles{margin:30px auto 0;display:flex;justify-content:center;gap:18px;opacity:0.5;position:relative;z-index:2}
+.eagles svg{width:26px;height:26px}
+
+/* ===== room: TIESTO (rises, sunset gradient) ===== */
+.room-ti{--accent:var(--amber);background:linear-gradient(180deg,rgba(255,198,90,0.14),rgba(255,69,180,0.12) 46%,rgba(40,48,110,0.5) 100%),#070610}
+.sheen{position:relative;overflow:hidden}
+.sheen::after{content:"";position:absolute;top:0;left:-60%;width:60%;height:100%;z-index:3;pointer-events:none;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,0.28),transparent);animation:sweep 6s ease-in-out infinite}
+@keyframes sweep{0%{left:-60%}55%{left:120%}100%{left:120%}}
+.vfull{margin-top:24px;position:relative;z-index:2}
+.vfull .vid{aspect-ratio:21/9}
+
+/* ===== room: MYTH / FANG SPEARE (ukiyo-e, matte, wobbles) ===== */
+.room-myth{--accent:var(--vermilion);background:linear-gradient(180deg,#0c0a12,#0e0b12)}
+.room-myth .paper{position:absolute;inset:0;z-index:0;opacity:0.10;mix-blend-mode:multiply;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.5' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E")}
+.room-myth .inkband{position:absolute;left:0;right:0;height:2px;background:var(--vermilion);opacity:0.5}
+.mtitle{font-family:"Shippori Mincho",serif;font-weight:800;font-size:clamp(46px,9vw,120px);line-height:0.94;margin:14px 0 0;position:relative;z-index:2;color:var(--paper)}
+.mythrow{margin-top:34px;display:grid;grid-template-columns:0.92fr 1.08fr;gap:36px;align-items:start;position:relative;z-index:2}
+.printbox{position:relative;border:1px solid rgba(232,72,46,0.4);border-radius:6px;background:linear-gradient(180deg,rgba(40,48,110,0.22),rgba(232,72,46,0.06));padding:20px;overflow:hidden;
+  animation:wob 5.5s ease-in-out infinite}
+@keyframes wob{0%,100%{box-shadow:0 0 34px -14px rgba(232,72,46,0.5)}45%{box-shadow:0 0 54px -8px rgba(232,72,46,0.75)}70%{box-shadow:0 0 30px -16px rgba(232,72,46,0.4)}}
+.printbox svg{width:100%;height:auto;display:block}
+.woodlayer{opacity:0;transition:opacity 1.1s ease}
+.printbox.printed .woodlayer{opacity:1}
+.printbox.printed .l-indigo{transition-delay:.15s}
+.printbox.printed .l-verm{transition-delay:.5s}
+.printbox.printed .l-key{transition-delay:.05s}
+.seal{opacity:0;transform:scale(1.6) rotate(-8deg);transition:opacity .3s,transform .5s cubic-bezier(.2,1.5,.4,1)}
+.printbox.printed .seal{opacity:1;transform:scale(1) rotate(-6deg);transition-delay:.95s}
+.chain{margin-top:6px;display:flex;flex-direction:column}
+.chain .step{display:grid;grid-template-columns:30px 1fr;gap:14px;padding:12px 0;border-bottom:1px dashed var(--line)}
+.chain .step:last-child{border-bottom:0}
+.chain .glyph{font-family:"Shippori Mincho",serif;font-size:24px;color:var(--vermilion);text-align:center;line-height:1.1}
+.chain .st{font-weight:600;color:var(--ink)}
+.chain .sd{font-size:14px;color:var(--muted);margin-top:2px}
+/* pilgrimage strip */
+.pilgrim{margin-top:34px;display:grid;grid-template-columns:repeat(5,1fr);gap:12px;position:relative;z-index:2}
+.pil{border:1px solid var(--line);border-radius:12px;padding:16px 12px;text-align:center;background:rgba(255,255,255,0.02)}
+.pil svg{width:34px;height:34px;margin:0 auto 8px;display:block}
+.pil .pn{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.06em;color:var(--ink)}
+.pil .pd{font-size:11px;color:var(--muted);margin-top:3px}
+
+/* ON THE BILL (Foster's own slot) */
+.onbill{margin-top:34px;border:1px solid rgba(157,255,92,0.4);border-radius:16px;overflow:hidden;position:relative;z-index:2;
+  background:radial-gradient(120% 90% at 80% 10%,rgba(232,72,46,0.14),transparent 60%),#08060c;display:grid;grid-template-columns:1.1fr 1fr}
+.onbill .txt{padding:30px 30px}
+.onbill .head{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--acid)}
+.onbill h3{font-family:"Syne",sans-serif;font-weight:800;font-size:clamp(30px,4vw,46px);margin:8px 0 8px;line-height:0.98}
+.onbill p{color:var(--muted);font-size:15px;max-width:44ch}
+.onbill .player{position:relative;background:linear-gradient(135deg,#12101c,#060509);display:flex;align-items:center;justify-content:center;min-height:230px;cursor:pointer}
+.onbill .player .eq{display:flex;gap:5px;align-items:flex-end;height:64px}
+.onbill .player .eq i{width:6px;background:linear-gradient(180deg,var(--acid),var(--vermilion));border-radius:3px;animation:eq 1.1s ease-in-out infinite}
+.onbill .player .eq i:nth-child(2){animation-delay:.15s}.onbill .player .eq i:nth-child(3){animation-delay:.3s}.onbill .player .eq i:nth-child(4){animation-delay:.45s}.onbill .player .eq i:nth-child(5){animation-delay:.6s}.onbill .player .eq i:nth-child(6){animation-delay:.75s}.onbill .player .eq i:nth-child(7){animation-delay:.9s}
+.onbill .player .eq i{animation-play-state:paused}
+.onbill .player.playing .eq i{animation-play-state:running}
+.onbill .player.playing .pb{background:rgba(157,255,92,0.25)}
+@keyframes eq{0%,100%{height:16px}50%{height:60px}}
+.onbill .player .lbl{position:absolute;bottom:14px;left:0;right:0;text-align:center;font-family:"Space Mono",monospace;font-size:10.5px;letter-spacing:0.1em;color:var(--muted)}
+.onbill .player .pb{position:absolute;width:60px;height:60px;border-radius:50%;background:rgba(6,5,9,0.55);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;border:1px solid rgba(157,255,92,0.5);box-shadow:0 0 26px rgba(157,255,92,0.4)}
+
+/* ===== room: THE WHOLE MAN ===== */
+.room-man{background:linear-gradient(180deg,#0a0910,#08070c)}
+.grid-man{margin-top:clamp(34px,5vw,54px);display:grid;grid-template-columns:repeat(6,1fr);gap:16px;position:relative;z-index:2}
+.tile{border:1px solid var(--line);border-radius:16px;padding:24px 22px;background:var(--card);position:relative;overflow:hidden;transition:transform .25s,border-color .25s}
+.tile:hover{transform:translateY(-4px);border-color:rgba(255,198,90,0.35)}
+.tile .ti{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent)}
+.tile h4{font-family:"Syne",sans-serif;font-weight:800;font-size:21px;margin:8px 0 8px;line-height:1.0}
+.tile p{font-size:14px;color:var(--muted)}
+.tile.w3{grid-column:span 3}.tile.w2{grid-column:span 2}.tile.w4{grid-column:span 4}.tile.w6{grid-column:span 6}
+.tile.knicks{background:linear-gradient(135deg,rgba(247,127,0,0.16),rgba(0,107,182,0.16)),#0a0910;border-color:rgba(247,127,0,0.35)}
+.tile.knicks .ti{color:#ff8a3d}
+.tile .quotemini{font-family:"Shippori Mincho",serif;font-style:italic;color:var(--ink);font-size:15px;margin-top:8px}
+
+/* playlist */
+.setlist{margin-top:clamp(34px,5vw,52px);border:1px solid var(--line);border-radius:16px;overflow:hidden;position:relative;z-index:2;background:var(--card)}
+.setlist .sh{padding:22px 26px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px}
+.setlist .sh h3{font-family:"Syne",sans-serif;font-weight:800;font-size:24px}
+.setlist .sh .m{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)}
+.trk{display:grid;grid-template-columns:34px 1fr auto;gap:14px;align-items:center;padding:13px 26px;border-bottom:1px solid rgba(255,255,255,0.05);transition:background .2s}
+.trk:last-child{border-bottom:0}
+.trk:hover{background:rgba(255,255,255,0.03)}
+.trk .no{font-family:"Space Mono",monospace;font-size:12px;color:var(--muted)}
+.trk .nm{font-weight:600}.trk .nm span{color:var(--muted);font-weight:400}
+.trk .go{font-family:"Space Mono",monospace;font-size:11px;color:var(--accent);opacity:0;transition:opacity .2s}
+.trk:hover .go{opacity:1}
+
+/* forty years rail */
+.rail{margin-top:clamp(36px,5vw,54px);position:relative;z-index:2}
+.rail::before{content:"";position:absolute;left:12px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--amber),var(--magenta),var(--violet),var(--acid));opacity:0.5}
+.stop{position:relative;padding:0 0 32px 48px}
+.stop .dot{position:absolute;left:5px;top:5px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:2px solid var(--amber);box-shadow:0 0 0 4px rgba(255,198,90,0.12)}
+.stop .yr{font-family:"Space Mono",monospace;font-size:12px;letter-spacing:0.12em;color:var(--amber);text-transform:uppercase}
+.stop h4{font-family:"Syne",sans-serif;font-weight:800;font-size:20px;margin:4px 0 6px}
+.stop p{font-size:15px;color:var(--muted);max-width:60ch}
+
+/* note from Gordon */
+.room-note{background:radial-gradient(80% 60% at 50% 0,rgba(255,198,90,0.08),transparent 60%),#08070c}
+.note{margin:0 auto;max-width:720px;border:1px solid rgba(255,198,90,0.28);border-radius:18px;padding:clamp(30px,5vw,54px);background:linear-gradient(180deg,rgba(255,221,138,0.05),rgba(255,255,255,0.015));position:relative;z-index:2}
+.note .from{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber)}
+.note p{font-family:"Shippori Mincho",serif;font-size:clamp(17px,2vw,21px);line-height:1.6;color:var(--ink);margin-top:18px}
+.note p+p{margin-top:14px}
+.note .sig{font-family:"Shippori Mincho",serif;font-style:italic;font-size:22px;color:var(--gold);margin-top:22px}
+
+/* crew */
+.crew{margin-top:clamp(30px,4vw,44px);display:flex;gap:14px;flex-wrap:wrap;position:relative;z-index:2}
+.face{display:flex;flex-direction:column;align-items:center;gap:8px;width:104px}
+.face .av{width:74px;height:74px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:"Syne",sans-serif;font-weight:800;font-size:26px;color:#06050a;
+  background:conic-gradient(from 200deg,var(--amber),var(--magenta),var(--violet),var(--acid),var(--amber))}
+.face .fn2{font-weight:600;font-size:14px}
+.face .fr{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);text-align:center}
+
+/* photo gallery */
+.gallery{margin-top:clamp(34px,5vw,54px);column-count:3;column-gap:14px;position:relative;z-index:2}
+.frame{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#0d0c14;break-inside:avoid;margin:0 0 14px;display:block}
+.frame img{width:100%;height:auto;object-fit:cover;display:block;filter:saturate(1.03)}
+.frame .cap{position:absolute;left:0;right:0;bottom:0;padding:34px 16px 13px;font-family:"Space Mono",monospace;font-size:11.5px;letter-spacing:0.02em;color:#fff;background:linear-gradient(180deg,transparent,rgba(0,0,0,0.9))}
+@media(max-width:900px){.gallery{column-count:2}}
+@media(max-width:560px){.gallery{column-count:1}}
+
+/* logistics */
+.logi{background:linear-gradient(180deg,transparent,rgba(63,174,143,0.05),transparent)}
+.logi-grid{margin-top:30px;display:grid;grid-template-columns:1fr 1fr;gap:18px;position:relative;z-index:2}
+.card2{border:1px solid var(--line);border-radius:14px;background:var(--card);padding:24px 24px}
+.route{display:grid;grid-template-columns:66px 1fr;gap:16px;padding:13px 0;border-bottom:1px solid var(--line)}
+.route:last-child{border-bottom:0}
+.route .tm{font-family:"Space Mono",monospace;font-size:12.5px;color:var(--jade);padding-top:2px}
+.route .rh{font-family:"Syne",sans-serif;font-weight:700;font-size:15px}
+.route .rd{font-size:13.5px;color:var(--muted);margin-top:2px}
+.mini{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+
+/* closer */
+.closer{text-align:center;padding:clamp(80px,12vw,150px) 0;position:relative;overflow:hidden;z-index:2}
+.closer .big{font-family:"Syne",sans-serif;font-weight:800;letter-spacing:-0.02em;line-height:1.02;font-size:clamp(32px,5.4vw,72px);max-width:18ch;margin:0 auto;color:#fff;text-shadow:0 0 40px rgba(157,255,92,0.25)}
+.closer .sub{margin-top:22px;font-family:"Shippori Mincho",serif;font-style:italic;font-size:clamp(16px,2vw,21px);color:var(--gold)}
+.closer .photobg{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center 40%;opacity:0.4}
+.closer .photobg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,3,8,0.66),rgba(4,3,8,0.82) 70%,var(--bg))}
+.closer .wrap{position:relative;z-index:3}
+.knickstag{margin-top:20px;font-family:"Space Mono",monospace;font-size:12px;letter-spacing:0.24em;text-transform:uppercase;color:#ff8a3d}
+footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;color:var(--muted);font-size:12.5px;font-family:"Space Mono",monospace;letter-spacing:0.05em;position:relative;z-index:2}
+
+/* reveal + entrances */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.rise{opacity:0;transform:translateY(50px);filter:blur(10px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1),filter .9s ease}
+.rise.in{opacity:1;transform:none;filter:blur(0)}
+.ink{opacity:0;-webkit-mask-image:linear-gradient(90deg,#000,#000);mask-image:linear-gradient(90deg,#000,#000);-webkit-mask-size:0% 100%;mask-size:0% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;transition:opacity .2s,-webkit-mask-size 1.1s ease,mask-size 1.1s ease}
+.ink.in{opacity:1;-webkit-mask-size:100% 100%;mask-size:100% 100%}
+@media(prefers-reduced-motion:reduce){
+  .reveal,.rise,.ink{opacity:1;transform:none;filter:none;-webkit-mask-size:100% 100%;mask-size:100% 100%}
+  .driftbg,.sheen::after,.printbox,.starfield,.onbill .player .eq i,.vid .play{animation:none!important}
+  .spine .wave{stroke-width:1.5}
+}
+@media(max-width:900px){
+  .weekend{grid-template-columns:1fr 1fr}
+  .vgrid{grid-template-columns:1fr}.vgrid .stack{grid-template-rows:auto}
+  .facts{grid-template-columns:1fr 1fr}
+  .mythrow{grid-template-columns:1fr}
+  .pilgrim{grid-template-columns:repeat(2,1fr)}
+  .onbill{grid-template-columns:1fr}
+  .grid-man{grid-template-columns:1fr 1fr}
+  .tile.w3,.tile.w2,.tile.w4,.tile.w6{grid-column:span 2}
+  .logi-grid{grid-template-columns:1fr}
+  .emblem{width:82vw}.hero .ghost55{font-size:56vh;opacity:0.8}
+}
+@media(max-width:560px){
+  .weekend,.grid-man{grid-template-columns:1fr}
+  .tile.w3,.tile.w2,.tile.w4,.tile.w6{grid-column:auto}
+  .facts{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<!-- bass spine -->
+<div class="spine"><svg id="spineSvg" viewBox="0 0 1200 44" preserveAspectRatio="none">
+  <path class="wave" id="waveA" d=""></path>
+  <path class="prog" id="waveProg" d=""></path>
+</svg></div>
+<div class="driftbg"></div>
+<div class="grain"></div>
+<div class="dropbloom"></div>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="ghost55">55</div>
+  <svg class="emblem" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+    <path id="bolt" d="M104 6 L84 76 H108 L74 158 L96 98 H72 L104 6Z" fill="#9dff5c"/>
+    <ellipse cx="100" cy="160" rx="66" ry="32" fill="#3fae8f" opacity="0.9"/>
+    <ellipse cx="100" cy="151" rx="66" ry="32" fill="#28306e"/>
+    <path d="M40 150 q60 -34 120 0" stroke="#9dff5c" stroke-width="2" fill="none" opacity="0.6"/>
+    <circle cx="72" cy="140" r="14" fill="#9dff5c"/><circle cx="128" cy="140" r="14" fill="#9dff5c"/>
+    <circle cx="72" cy="141" r="6.5" fill="#040308"/><circle cx="128" cy="141" r="6.5" fill="#040308"/>
+    <path d="M60 164 Q100 186 140 164" stroke="#040308" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+    <path d="M44 150 L26 170 M156 150 L174 170" stroke="#3fae8f" stroke-width="7" stroke-linecap="round"/>
+  </svg>
+  <div class="wrap">
+    <div class="kick">The crew present, with forty years of love</div>
+    <h1 class="title">FOSTER<span class="fade">AT 55</span></h1>
+    <div class="alias">a.k.a. Fang Speare · the toad-sage of the low end</div>
+    <div class="dates">Four nights in New York · his birthday, Saturday July 18 · Zeds Dead at Forest Hills</div>
+    <div class="cd" id="cd">
+      <div class="lab">Until Fang Speare turns fifty-five, under the lights</div>
+      <div class="u"><div class="n" id="cd-d">--</div><div class="t">days</div></div>
+      <div class="u"><div class="n" id="cd-h">--</div><div class="t">hrs</div></div>
+      <div class="u"><div class="n" id="cd-m">--</div><div class="t">min</div></div>
+      <div class="u"><div class="n" id="cd-s">--</div><div class="t">sec</div></div>
+    </div>
+    <div><button class="dropbtn" id="dropBtn">▶ feel the drop</button></div>
+    <div style="margin-top:14px"><a href="eats.html" style="font:700 12px/1 'Futura','Trebuchet MS',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#e8b04b;text-decoration:none;border-bottom:1px solid rgba(232,176,75,.4);padding-bottom:3px">🍔 where the crew eats →</a></div>
+  </div>
+  <div class="scrollcue">drop in ↓</div>
+</header>
+
+<!-- ===== WEEKEND ===== -->
+<section class="band">
+  <div class="wrap">
+    <div class="ghostnum" style="left:-4vw;top:0">7/18</div>
+    <div class="eyebrow">Four nights, one long birthday</div>
+    <h2 class="htitle rise">The weekend<br>has a heartbeat.</h2>
+    <p class="lede reveal">Thursday the room where it happens and the cards. Friday the Godfather. Saturday the crown. Sunday the whole world holding its breath. It runs on bass, it runs on the Knicks, and it runs on the same small crew who have shown up for you for four decades. Abundance, not scarcity. Always.</p>
+    <div class="weekend">
+      <div class="night thu reveal">
+        <div class="dow">Thu · Jul 16</div>
+        <h3>Hamilton + Fanatics Fest</h3>
+        <div class="ven">Broadway, then Javits Center</div>
+        <p>You called it one of the best things you had seen in a long time. Now you are in the room where it happens, live. Then four-day passes to Fanatics Fest, cards and chaos, the good kind.</p>
+      </div>
+      <div class="night fri reveal">
+        <div class="dow">Fri · Jul 17</div>
+        <h3>Tiësto</h3>
+        <div class="ven">Breakaway · Under the K Bridge, Brooklyn</div>
+        <p>Your favorite spot in the city, under the bridge, skyline behind the stage. The man who lit the fire you caught at Ultra. Doors of the night self, wide open.</p>
+      </div>
+      <div class="night sat reveal">
+        <div class="dow">Sat · Jul 18 · your day</div>
+        <h3>Zeds Dead</h3>
+        <div class="ven">Forest Hills Stadium · doors 5, show 6</div>
+        <p>Orange and blue to Fanatics by day. Then a 1923 stadium where the Beatles once landed by helicopter, VIP deep the way our family rolls, watching Canada's best turn bass into a congregation.</p>
+        <span class="crown">★ the crown · happy birthday, Fos</span>
+      </div>
+      <div class="night sun reveal">
+        <div class="dow">Sun · Jul 19</div>
+        <h3>The World Cup Final</h3>
+        <div class="ven">The Red Lion, Bleecker · your table</div>
+        <p>The seats you have been holding for a month, prime location near the screens, the crew four deep. The biggest match on earth. You planned that. You always plan that.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- display slab -->
+<div class="slab"><div class="word" data-scrub="1">BASS</div></div>
+
+<!-- ===== ZEDS DEAD ===== -->
+<section class="band room-zd">
+  <div class="starfield"></div>
+  <svg class="zd-skull" viewBox="0 0 100 100" fill="#9dff5c" aria-hidden="true"><path d="M50 8c-20 0-32 14-32 33 0 10 5 16 10 20v12h10v-8h4v8h6v-8h4v8h10V61c5-4 10-10 10-20C72 22 70 8 50 8zM36 44a6 6 0 110 12 6 6 0 010-12zm28 0a6 6 0 110 12 6 6 0 010-12z"/></svg>
+  <div class="wrap">
+    <div class="ghostnum" style="right:-6vw;top:2%;-webkit-text-stroke-color:rgba(157,255,92,0.06)">ZD</div>
+    <div class="eyebrow">The headline · Saturday, your birthday</div>
+    <h2 class="htitle rise">Zeds Dead.<br>Two men, no genre.</h2>
+    <p class="lede reveal">A joke name off a <i>Pulp Fiction</i> line, about a man who turned out not to be dead after all. Fitting, for the birthday of someone who walked into this music at fifty and came fully alive. DC and Hooks spent fifteen years refusing to pick a lane. So did you. Gordon will tell you all night they are Canada's best. Tonight, on your birthday, you just might let him have it.</p>
+
+    <div class="vgrid reveal">
+      <div class="vid big" data-id="PznTpt71ZOs">
+        <img class="thumb" src="https://img.youtube.com/vi/PznTpt71ZOs/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/PznTpt71ZOs/hqdefault.jpg'" alt="Zeds Dead, Collapse 2.0" loading="lazy">
+        <button class="play" aria-label="Play Collapse 2.0">▶</button>
+        <span class="vcap">Collapse 2.0 · the one that hits in the sternum</span>
+      </div>
+      <div class="stack">
+        <div class="vid" data-id="1mo8NZ1U5os">
+          <img class="thumb" src="https://img.youtube.com/vi/1mo8NZ1U5os/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/1mo8NZ1U5os/hqdefault.jpg'" alt="Zeds Dead, One Of These Mornings" loading="lazy">
+          <button class="play" aria-label="Play One Of These Mornings">▶</button>
+          <span class="vcap">One Of These Mornings</span>
+        </div>
+        <div class="vid" data-id="VJm7IPrBmLY">
+          <img class="thumb" src="https://img.youtube.com/vi/VJm7IPrBmLY/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/VJm7IPrBmLY/hqdefault.jpg'" alt="Zeds Dead, Lost You" loading="lazy">
+          <button class="play" aria-label="Play Lost You">▶</button>
+          <span class="vcap">Lost You · platinum in Canada</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="herostat reveal">
+      <div class="big" data-count="12">12</div>
+      <div class="cap">consecutive sold-out Deadrocks nights at Red Rocks, the bass pilgrimage you know by heart. Now the Journey Of A Lifetime tour lands on Forest Hills, on the one night that is literally yours.</div>
+    </div>
+
+    <div class="newalbum reveal">
+      <div class="na-badge">▶ just dropped · June 30, 2026</div>
+      <div class="na-body">
+        <h3>Return to the Return</h3>
+        <div class="na-sub">(of the Spectrum of Intergalactic Happiness)</div>
+        <p>A surprise 14-track album, no warning, no rollout, straight into the void. Their third LP in a year that also marks 15 years of Zeds Dead and 10 of Deadbeats. Homework for the birthday boy: put it on before Saturday so you know every drop when it hits Forest Hills.</p>
+        <div class="na-links">
+          <a href="https://open.spotify.com/artist/67qogtRNI0GjUr8PlaG6Zh" target="_blank" rel="noopener">Listen on Spotify ↗</a>
+          <a href="https://www.youtube.com/results?search_query=Zeds+Dead+Return+to+the+Return+of+the+Spectrum+of+Intergalactic+Happiness" target="_blank" rel="noopener">Find it on YouTube ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tag reveal"><span>neon on black</span><span>skulls &amp; cosmos</span><span>sub-bass as congregation</span><span>ALLEYCVT supporting</span><span>VIP all weekend</span><span>$1/ticket to music education</span></div>
+  </div>
+</section>
+
+<!-- ===== FOREST HILLS ===== -->
+<section class="band room-fh">
+  <div class="wrap"><div class="ghostnum" style="left:-3vw;top:4%">1923</div></div>
+  <div class="fh-inset">
+    <div class="eyebrow">The room · where you turn fifty-five</div>
+    <h2 class="htitle rise">A stadium the age<br>of a legend.</h2>
+    <p class="body reveal">Forest Hills Stadium was built in 1923, a horseshoe of weathered concrete crowned by eleven stone eagles, home of American tennis for half a century. Then the music came. On <b>August 28, 1964</b>, the Beatles arrived here by helicopter, set down on a grass tennis court while sixteen thousand people screamed. Two nights, thirty-one thousand fans, a record the venue has never broken.</p>
+    <p class="body reveal">You already know the helicopter part. Your crew has a name for exactly that entrance. <b>#CopterSquad.</b> Sixty-two years after the Fab Four came down out of the sky over these grounds, Fang Speare walks in on foot, through a quiet Tudor garden village, to turn fifty-five under an open sky. Ringo himself comes back to this same stage on October 1. The room keeps welcoming the ones who show up for the music.</p>
+    <div class="eagles reveal" aria-hidden="true">
+      <svg viewBox="0 0 40 40" fill="#ffdd8a"><path d="M20 6l4 8 10-2-6 8 8 6-11 1-1 9-1-9-11-1 8-6-6-8 10 2z"/></svg>
+      <svg viewBox="0 0 40 40" fill="#ffdd8a"><path d="M20 6l4 8 10-2-6 8 8 6-11 1-1 9-1-9-11-1 8-6-6-8 10 2z"/></svg>
+      <svg viewBox="0 0 40 40" fill="#ffdd8a"><path d="M20 6l4 8 10-2-6 8 8 6-11 1-1 9-1-9-11-1 8-6-6-8 10 2z"/></svg>
+      <svg viewBox="0 0 40 40" fill="#ffdd8a"><path d="M20 6l4 8 10-2-6 8 8 6-11 1-1 9-1-9-11-1 8-6-6-8 10 2z"/></svg>
+      <svg viewBox="0 0 40 40" fill="#ffdd8a"><path d="M20 6l4 8 10-2-6 8 8 6-11 1-1 9-1-9-11-1 8-6-6-8 10 2z"/></svg>
+    </div>
+    <div class="pull serif reveal" style="--accent:var(--gold)">The sky goes from gold to indigo over an open stage, the eagles turn to silhouettes, and just past the walls the Tudor rooftops go silent. Then the sub-bass starts, and the whole horseshoe becomes one body.
+      <span class="attr">what Saturday night feels like</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TIESTO ===== -->
+<section class="band room-ti">
+  <div class="wrap">
+    <div class="eyebrow">Friday · the Godfather, at the water</div>
+    <h2 class="htitle rise">Tiësto.<br>Where it began.</h2>
+    <p class="lede reveal">A kid from Breda who became the Godfather of EDM. In 2004 he was the first DJ ever to play an Olympic opening ceremony, ninety minutes for the athletes in Athens. Your first festival ever was Ultra, where his name is scripture. Friday he closes Breakaway's debut New York night at Under the K Bridge, your favorite spot in the city, skyline glowing behind him.</p>
+    <div class="vfull reveal sheen">
+      <div class="vid" data-id="nkBJzfHpq_A">
+        <img class="thumb" src="https://img.youtube.com/vi/nkBJzfHpq_A/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/nkBJzfHpq_A/hqdefault.jpg'" alt="Tiësto live at Tomorrowland" loading="lazy">
+        <button class="play" aria-label="Play Tiësto at Tomorrowland">▶</button>
+        <span class="vcap">Live at Tomorrowland · the scale of it</span>
+      </div>
+    </div>
+    <div class="tag reveal"><span>Under the K Bridge Park</span><span>6pm to midnight</span><span>the cathedral: Adagio For Strings</span><span>D.O.D · Lilly Palmer on the bill</span></div>
+    <div class="pull grow reveal">Late is not lesser.<br>Late is just a longer run-up.</div>
+  </div>
+</section>
+
+<!-- ===== FANG SPEARE / MYTH ===== -->
+<section class="band room-myth">
+  <div class="paper"></div>
+  <div class="inkband" style="top:0"></div>
+  <div class="wrap">
+    <div class="eyebrow">The name · the myth · your own music</div>
+    <h2 class="mtitle ink">火雷也<br>Fang Speare.</h2>
+    <p class="lede reveal">You did not pick your producer name by accident. It grew from a myth you traced yourself, from Japanese folklore back through Chinese legend, on a January afternoon of trading screenshots. <b>Jiraiya</b> means "Young Thunder," the toad-riding sage. And here is the part that was built for you: the woodblock master who printed Jiraiya's likeness in 1852, <b>Utagawa Kunisada</b>, is the same artist whose prints you collect and frame and give to the people you love. The floating world on your wall drew the sage whose name you now DJ under.</p>
+
+    <div class="mythrow">
+      <div class="printbox reveal" id="printbox">
+        <svg viewBox="0 0 300 340" aria-label="Jiraiya, the toad-riding sage, in a woodblock style">
+          <!-- indigo water field -->
+          <g class="woodlayer l-indigo">
+            <rect x="0" y="0" width="300" height="340" fill="#1a2050"/>
+            <path d="M0 250 q40 -18 80 0 t80 0 t80 0 t80 0 V340 H0Z" fill="#28306e"/>
+            <path d="M0 280 q40 -16 80 0 t80 0 t80 0 t80 0 V340 H0Z" fill="#323b86"/>
+          </g>
+          <!-- jade toad -->
+          <g class="woodlayer l-jade">
+            <ellipse cx="150" cy="250" rx="96" ry="52" fill="#2f6d59"/>
+            <ellipse cx="150" cy="238" rx="96" ry="52" fill="#3fae8f"/>
+            <circle cx="112" cy="220" r="20" fill="#3fae8f"/><circle cx="188" cy="220" r="20" fill="#3fae8f"/>
+            <circle cx="112" cy="221" r="9" fill="#0c0a12"/><circle cx="188" cy="221" r="9" fill="#0c0a12"/>
+          </g>
+          <!-- vermilion rider + spear + robe -->
+          <g class="woodlayer l-verm">
+            <path d="M150 96 L138 150 q-6 26 12 40 l0 30 q-16 6 -16 22 l40 0 q0 -16 -16 -22 l0 -30 q18 -14 12 -40 z" fill="#e8482e"/>
+            <circle cx="150" cy="86" r="16" fill="#f0d9c2"/>
+            <path d="M150 60 L150 210" stroke="#c9c2b6" stroke-width="4"/>
+            <path d="M150 56 l10 8 -10 8 -10 -8 z" fill="#ffdd8a"/>
+          </g>
+          <!-- black key lightning + linework -->
+          <g class="woodlayer l-key">
+            <path d="M230 30 L206 96 H224 L196 168 L214 110 H196 Z" fill="#9dff5c" opacity="0.92"/>
+            <path d="M60 40 L78 96 H62 L86 150" stroke="#0c0a12" stroke-width="3" fill="none" opacity="0.5"/>
+            <path d="M64 250 q86 -40 172 0" stroke="#0c0a12" stroke-width="2" fill="none" opacity="0.5"/>
+          </g>
+          <!-- hanko seal -->
+          <g class="seal">
+            <rect x="238" y="270" width="46" height="46" rx="4" fill="#e8482e"/>
+            <text x="261" y="300" font-family="Shippori Mincho, serif" font-size="26" fill="#0c0a12" text-anchor="middle" font-weight="800">蛙</text>
+          </g>
+        </svg>
+      </div>
+      <div class="chain reveal">
+        <div class="step"><div class="glyph">蟾</div><div><div class="st">Liu Hai &amp; the money toad</div><div class="sd">A Daoist immortal and his three-legged golden toad, spitting coins. The oldest root, the one you found first.</div></div></div>
+        <div class="step"><div class="glyph">仙</div><div><div class="st">Gama Sennin, the Toad Immortal</div><div class="sd">The legend crosses to Japan and becomes the toad hermit. The bridge.</div></div></div>
+        <div class="step"><div class="glyph">雷</div><div><div class="st">Jiraiya · Young Thunder</div><div class="sd">The folk hero who rides the toad and calls down the storm. Your name's true source.</div></div></div>
+        <div class="step"><div class="glyph">蛙</div><div><div class="st">The Toad Sage of Naruto</div><div class="sd">The legendary mentor who pours everything into the next generation, and dies making sure they rise. You already are him.</div></div></div>
+        <div class="step"><div class="glyph">⚡</div><div><div class="st">Fang Speare, 2026</div><div class="sd">A sage who rides the low end the way Jiraiya rode the toad. Bass instead of storms.</div></div></div>
+      </div>
+    </div>
+
+    <p class="lede reveal" style="margin-top:38px">And the sound has a family too. The dark, experimental bass of <b>Whyte Fang</b>, the alias Alison Wonderland built to go heavier and truer, exactly the way you built Fang Speare to go be someone heavier. <b>Boogie T</b> and <b>Dirt Monkey</b> together, Wonder Twin powers activate. The reese bass, the half-time, the drop that lands in the chest. You do not just love the lore. You chase the weight.</p>
+
+    <!-- the pilgrimage -->
+    <div class="pilgrim reveal">
+      <div class="pil"><svg viewBox="0 0 40 40" fill="none" stroke="#e8482e" stroke-width="2"><path d="M4 30 L14 12 L22 24 L28 16 L36 30Z"/></svg><div class="pn">Red Rocks</div><div class="pd">the cathedral</div></div>
+      <div class="pil"><svg viewBox="0 0 40 40" fill="none" stroke="#3fae8f" stroke-width="2"><path d="M6 26 h28 l-4 8 h-20z"/><path d="M20 8 v18 M12 14 h16"/></svg><div class="pn">The Bass Boat</div><div class="pd">Boogie T + Dirt Monkey</div></div>
+      <div class="pil"><svg viewBox="0 0 40 40" fill="none" stroke="#9dff5c" stroke-width="2"><circle cx="20" cy="20" r="5"/><path d="M20 15 v-8 M25 20 h9 M20 25 v9 M15 20 h-9"/><path d="M8 8 l6 6 M32 8 l-6 6"/></svg><div class="pn">#CopterSquad</div><div class="pd">EDC, three years running</div></div>
+      <div class="pil"><svg viewBox="0 0 40 40" fill="none" stroke="#9a6bff" stroke-width="2"><path d="M8 28 q6 -16 12 0 t12 0"/><circle cx="20" cy="14" r="3"/></svg><div class="pn">bassPOD</div><div class="pd">the low-end pilgrimage</div></div>
+      <div class="pil"><svg viewBox="0 0 40 40" fill="none" stroke="#ffc65a" stroke-width="2"><rect x="8" y="10" width="24" height="20" rx="3"/><path d="M14 30 v4 M26 30 v4"/></svg><div class="pn">Crew AI label</div><div class="pd">the tool, serving the weight</div></div>
+    </div>
+
+    <!-- ON THE BILL -->
+    <div class="onbill reveal">
+      <div class="txt">
+        <div class="head">★ on the bill</div>
+        <h3>Fang Speare</h3>
+        <p>Zeds Dead. Tiësto. And you. Same wall, same font, one of them now. You always wanted to be an executive producer. At fifty-five you are running an AI record label out of a toad myth, learning from Ace Aura, cutting lit-hop with MC Lars. This is that beat. Poe, ninety-two BPM, the Lars remix. Press play on the sage.</p>
+      </div>
+      <div class="player" id="fsPlayer" title="Fang Speare, live" role="button" tabindex="0">
+        <audio id="fsAudio" src="assets/fang-speare-poe-beat.mp3" preload="none"></audio>
+        <div class="eq" id="fsEq"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="pb" id="fsPb">▶</div>
+        <div class="lbl" id="fsLbl">Fang Speare · Poe Beat, 92 BPM (Lars remix) · press play</div>
+      </div>
+    </div>
+
+    <div class="tag reveal" style="margin-top:22px"><span>Kunisada, who drew Jiraiya</span><span>Kuniyoshi in AI, contemporary themes</span><span>Bando Shuka I</span><span>Young Thunder → Fang Speare</span></div>
+
+    <!-- DIG DEEPER · the archive -->
+    <div class="reveal" style="margin-top:52px;border-top:1px solid rgba(232,72,46,.4);padding-top:34px">
+      <div class="eyebrow" style="color:#e8482e">Dig deeper · the whole bloodline of the name</div>
+      <h3 style="font-family:'Shippori Mincho',serif;font-size:clamp(22px,3.5vw,30px);margin:6px 0 6px;color:#f4ede0;font-weight:800">Follow every thread to its source.</h3>
+      <p style="color:#c8bfae;max-width:66ch;font-size:15px;margin:0 0 24px">You traced this yourself once, on a January afternoon. Here is the map to trace it further, the folklore, the woodblocks, the anime, and the lit-hop, each link a real door into the history.</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div style="background:rgba(26,32,80,.5);border:1px solid rgba(63,174,143,.4);border-radius:14px;padding:18px 20px">
+          <div style="font-size:26px;line-height:1">蟾</div>
+          <div style="font-family:'Shippori Mincho',serif;font-size:18px;color:#3fae8f;font-weight:800;margin:6px 0 3px">The toad lineage</div>
+          <div style="font-size:12.5px;color:#9a90a8;margin-bottom:10px">From a Chinese immortal's coin-toad to the sage who dies so the young rise.</div>
+          <div style="display:flex;flex-direction:column;gap:7px;font-size:14px">
+            <a href="https://en.wikipedia.org/wiki/Liu_Haichan" target="_blank" rel="noopener" style="color:#f0d9c2;text-decoration:none;border-bottom:1px solid rgba(232,72,46,.5);padding-bottom:2px">Liu Hai &amp; the money toad, the oldest root ↗</a>
+            <a href="https://en.wikipedia.org/wiki/Jin_Chan" target="_blank" rel="noopener" style="color:#f0d9c2;text-decoration:none;border-bottom:1px solid rgba(232,72,46,.5);padding-bottom:2px">Jin Chan, the three-legged golden toad ↗</a>
+            <a href="https://en.wikipedia.org/wiki/Jiraiya_(The_Tale_of_the_Gallant_Jiraiya)" target="_blank" rel="noopener" style="color:#f0d9c2;text-decoration:none;border-bottom:1px solid rgba(232,72,46,.5);padding-bottom:2px">Jiraiya, the gallant folktale hero ↗</a>
+            <a href="https://en.wikipedia.org/wiki/Jiraiya_(Naruto)" target="_blank" rel="noopener" style="color:#f0d9c2;text-decoration:none;border-bottom:1px solid rgba(232,72,46,.5);padding-bottom:2px">Jiraiya, the Toad Sage of Naruto ↗</a>
+          </div>
+        </div>
+
+        <div style="background:rgba(26,32,80,.5);border:1px solid rgba(232,72,46,.4);border-radius:14px;padding:18px 20px">
+          <div style="font-size:26px;line-height:1">画</div>
+          <div style="font-family:'Shippori Mincho',serif;font-size:18px;color:#e8482e;font-weight:800;margin:6px 0 3px">The floating world</div>
+          <div style="font-size:12.5px;color:#9a90a8;margin-bottom:10px">The woodblock masters you collect drew the sage whose name you DJ under.</div>
+          <div style="display:flex;flex-direction:column;gap:7px;font-size:14px">
+            <a href="https://en.wikipedia.org/wiki/Utagawa_Kunisada" target="_blank" rel="noopener" style="color:#f0d9c2;text-decoration:none;border-bottom:1px solid rgba(232,72,46,.5);padding-bottom:2px">Utagawa Kunisada, on your wall ↗</a>
+            <a href="https://en.wikipedia.org/wiki/Utagawa_Kuniyoshi" target="_blank" rel="noopener" style="color:#f0d9c2;text-decoration:none;border-bottom:1px solid rgba(232,72,46,.5);padding-bottom:2px">Kuniyoshi, master of the giant-toad prints ↗</a>
+            <a href="https://ukiyo-e.org/search?q=jiraiya" target="_blank" rel="noopener" style="color:#f0d9c2;text-decoration:none;border-bottom:1px solid rgba(232,72,46,.5);padding-bottom:2px">Browse real Jiraiya woodblock prints ↗</a>
+            <a href="https://en.wikipedia.org/wiki/Ukiyo-e" target="_blank" rel="noopener" style="color:#f0d9c2;text-decoration:none;border-bottom:1px solid rgba(232,72,46,.5);padding-bottom:2px">Ukiyo-e, the floating world itself ↗</a>
+          </div>
+        </div>
+
+        <div style="background:rgba(26,32,80,.5);border:1px solid rgba(157,255,92,.35);border-radius:14px;padding:18px 20px">
+          <div style="font-size:26px;line-height:1">詩</div>
+          <div style="font-family:'Shippori Mincho',serif;font-size:18px;color:#9dff5c;font-weight:800;margin:6px 0 3px">The literary thread</div>
+          <div style="font-size:12.5px;color:#9a90a8;margin-bottom:10px">The pun hiding in your name, and the Poe beat that makes the sage speak in verse.</div>
+          <div style="display:flex;flex-direction:column;gap:7px;font-size:14px">
+            <a href="https://en.wikipedia.org/wiki/William_Shakespeare" target="_blank" rel="noopener" style="color:#f0d9c2;text-decoration:none;border-bottom:1px solid rgba(232,72,46,.5);padding-bottom:2px">Shakespeare, the pun in Fang Speare ↗</a>
+            <a href="https://en.wikipedia.org/wiki/The_Raven" target="_blank" rel="noopener" style="color:#f0d9c2;text-decoration:none;border-bottom:1px solid rgba(232,72,46,.5);padding-bottom:2px">Poe, "The Raven," the source of your beat ↗</a>
+            <a href="https://en.wikipedia.org/wiki/MC_Lars" target="_blank" rel="noopener" style="color:#f0d9c2;text-decoration:none;border-bottom:1px solid rgba(232,72,46,.5);padding-bottom:2px">MC Lars &amp; the birth of lit-hop ↗</a>
+            <a href="https://www.youtube.com/results?search_query=MC+Lars+Mr+Raven" target="_blank" rel="noopener" style="color:#f0d9c2;text-decoration:none;border-bottom:1px solid rgba(232,72,46,.5);padding-bottom:2px">"Mr. Raven," Lars turns Poe into rap ↗</a>
+          </div>
+        </div>
+
+        <div style="background:rgba(26,32,80,.5);border:1px solid rgba(154,107,255,.4);border-radius:14px;padding:18px 20px">
+          <div style="font-size:26px;line-height:1">⚡</div>
+          <div style="font-family:'Shippori Mincho',serif;font-size:18px;color:#9a6bff;font-weight:800;margin:6px 0 3px">The weight</div>
+          <div style="font-size:12.5px;color:#9a90a8;margin-bottom:10px">The sound family Fang Speare was built to run with. Bass instead of storms.</div>
+          <div style="display:flex;flex-direction:column;gap:7px;font-size:14px">
+            <a href="https://en.wikipedia.org/wiki/Alison_Wonderland_(musician)" target="_blank" rel="noopener" style="color:#f0d9c2;text-decoration:none;border-bottom:1px solid rgba(232,72,46,.5);padding-bottom:2px">Alison Wonderland, who built Whyte Fang ↗</a>
+            <a href="https://www.youtube.com/results?search_query=Whyte+Fang+Deep+End" target="_blank" rel="noopener" style="color:#f0d9c2;text-decoration:none;border-bottom:1px solid rgba(232,72,46,.5);padding-bottom:2px">Whyte Fang, the heavier, truer alias ↗</a>
+            <a href="https://www.youtube.com/results?search_query=Boogie+T+Dirt+Monkey" target="_blank" rel="noopener" style="color:#f0d9c2;text-decoration:none;border-bottom:1px solid rgba(232,72,46,.5);padding-bottom:2px">Boogie T + Dirt Monkey, Wonder Twins ↗</a>
+            <a href="https://www.youtube.com/results?search_query=Ace+Aura+color+bass" target="_blank" rel="noopener" style="color:#f0d9c2;text-decoration:none;border-bottom:1px solid rgba(232,72,46,.5);padding-bottom:2px">Ace Aura, the label teacher ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:22px;background:linear-gradient(180deg,rgba(232,72,46,.1),rgba(26,32,80,.35));border:1px solid rgba(255,198,90,.4);border-radius:14px;padding:20px 24px">
+        <div style="font-family:'Shippori Mincho',serif;font-size:16px;color:#ffc65a;font-weight:800;margin-bottom:8px">How it all relates · one current, two channels</div>
+        <p style="color:#d8cfbe;font-size:14.5px;margin:0;max-width:74ch">One story runs the length of it. A Daoist immortal and his coin-spitting toad cross the sea to become Japan's toad hermit, who becomes the storm-calling folk hero <b style="color:#f4ede0">Jiraiya</b>, who gets carved into woodblocks by the very ukiyo-e masters you frame and gift (<b style="color:#f4ede0">Kunisada, Kuniyoshi</b>), who is reborn as <b style="color:#f4ede0">Naruto's</b> mentor-sage, the one who pours everything into the next generation and dies making sure they rise, who becomes <b style="color:#f4ede0">you</b>, riding the low end the way he rode the toad. Laid over that myth is a second channel, literary: the <b style="color:#f4ede0">Shakespeare</b> pun folded into your own name, and the <b style="color:#f4ede0">Poe</b> beat you cut with MC Lars, so the sage does not just drop, he speaks in verse. Folklore, woodblock, anime, and lit-hop, four rivers, one man on the bill.</p>
+      </div>
+
+      <a href="primal.html" style="display:block;margin-top:18px;background:linear-gradient(96deg,#ff6a1e,#c1181a);border-radius:14px;padding:20px 24px;text-decoration:none;box-shadow:0 12px 34px rgba(193,24,26,.32)">
+        <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#2a0d06;font-weight:700">Your question · answered</div>
+        <div style="font-family:'Shippori Mincho',serif;font-size:clamp(18px,3vw,24px);color:#1a0806;font-weight:800;margin:4px 0 2px">Fang. Spear. The soundscape of Primal, and your visual identity →</div>
+        <div style="font-size:13.5px;color:#3a1109">You said Fang Speare relates to Primal. It runs deeper than you knew: the name IS the anime's two heroes. Dig in.</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- display slab -->
+<div class="slab"><div class="word" data-scrub="1" style="-webkit-text-stroke-color:rgba(255,138,61,0.16)">FOS</div></div>
+
+<!-- ===== THE WHOLE MAN ===== -->
+<section class="band room-man">
+  <div class="wrap">
+    <div class="eyebrow">Not only a bass guy · the whole Foster</div>
+    <h2 class="htitle rise">Fifty-five reasons,<br>call it what you love.</h2>
+    <p class="lede reveal">Because you are the guy who reads every president in order, climbs on the weekend, hosts everyone at the Cape, and has logged more shows and more table-tennis rallies with the boys than anyone can count. Here is the rest of you, on the record.</p>
+
+    <div class="grid-man">
+      <div class="tile knicks w3 reveal">
+        <div class="ti">Up the Knicks · Bing Bong</div>
+        <h4>The promised land, at last.</h4>
+        <p>You bathed in the glow of a Knickerbocker championship run and called it finally reaching the promised land. Captain Clutch. Clyde Frazier as your model for graceful aging. Orange and blue to Fanatics on your birthday, obviously.</p>
+      </div>
+      <div class="tile w3 reveal">
+        <div class="ti">Squash · lifelong</div>
+        <h4>Rising up the rankings at 55.</h4>
+        <p>Gold member, box leagues, four and oh some months, chasing your VO2 max back above fifty so you can compete. And squash finally goes Olympic in LA 2028. Buy the good tickets. You said you would be there.</p>
+      </div>
+      <div class="tile w2 reveal">
+        <div class="ti">The library</div>
+        <h4>Grant. Marcus Aurelius. Buchanan.</h4>
+        <p>Every US president in order, Chernow on the nightstand, Meditations for the hard days. The autodidact who reads his way through everything.</p>
+      </div>
+      <div class="tile w2 reveal">
+        <div class="ti">The collector's eye</div>
+        <h4>Kunisada on the wall.</h4>
+        <p>You decode woodblock prints, hunt the quiet moment before the storm, and gift framed prints to the people you love. A Bando for Gordon. Something with defiant elegance for Georgia.</p>
+      </div>
+      <div class="tile w2 reveal">
+        <div class="ti">The night owl host</div>
+        <h4>Cape Cod, waiting up.</h4>
+        <p>Cataumet at sunset, the ping-pong table, biking to Woods Hole, the spare bed always made. "I'm a night owl, will be waiting." The most at-peace version of you.</p>
+      </div>
+      <div class="tile w3 reveal">
+        <div class="ti">The dungeon party · with BrenBren</div>
+        <h4>Arch Cleric Fos blesses Paladin Bren.</h4>
+        <p>The tall guys, the Timbuk2 hand-me-down, poker at the Guitar Hotel, ping-pong wars and bass drops traded back and forth. But mostly this: the way you show up for Bren, backing him, encouraging him, blessing every step of his journey. Gordon sees it, and loves you for it.</p>
+      </div>
+      <div class="tile w3 reveal">
+        <div class="ti">The vault of bits</div>
+        <h4>Foscation. Chilling like a villain.</h4>
+        <p>The Addex maces that made us Conan, "your grip will be a-macing," that MACEdonia. VIP or nothing for these lads. LEGO as the greatest toy ever, four-player M.U.L.E. still owed at the Cape. The health desk to Gordon's music beat, little by little, consistency over intensity.</p>
+      </div>
+    </div>
+
+    <!-- setlist -->
+    <div class="setlist reveal">
+      <div class="sh">
+        <h3>Fang Speare's 55 · the set</h3>
+        <div class="m">the heads Foster keeps in rotation · tap to hear</div>
+      </div>
+      <a class="trk" href="https://www.youtube.com/results?search_query=Boogie+T+Dirt+Monkey" target="_blank" rel="noopener"><span class="no">01</span><span class="nm">Boogie T b2b Dirt Monkey <span>· Wonder Twin powers activate</span></span><span class="go">play ↗</span></a>
+      <a class="trk" href="https://www.youtube.com/results?search_query=Mersiv" target="_blank" rel="noopener"><span class="no">02</span><span class="nm">Mersiv <span>· the wallpaper to your life</span></span><span class="go">play ↗</span></a>
+      <a class="trk" href="https://www.youtube.com/results?search_query=Tape+B+dubstep" target="_blank" rel="noopener"><span class="no">03</span><span class="nm">Tape B <span>· the heavy wubz that stretch your spine</span></span><span class="go">play ↗</span></a>
+      <a class="trk" href="https://www.youtube.com/results?search_query=Whyte+Fang+Deep+End" target="_blank" rel="noopener"><span class="no">04</span><span class="nm">Whyte Fang <span>· the heavier, truer alias</span></span><span class="go">play ↗</span></a>
+      <a class="trk" href="https://www.youtube.com/results?search_query=Peekaboo+dubstep" target="_blank" rel="noopener"><span class="no">05</span><span class="nm">Peekaboo <span>· your fave</span></span><span class="go">play ↗</span></a>
+      <a class="trk" href="https://www.youtube.com/results?search_query=Level+Up+bass+music" target="_blank" rel="noopener"><span class="no">06</span><span class="nm">Level Up <span>· the hidden gem of the evening</span></span><span class="go">play ↗</span></a>
+      <a class="trk" href="https://www.youtube.com/results?search_query=Ace+Aura" target="_blank" rel="noopener"><span class="no">07</span><span class="nm">Ace Aura <span>· your mentor for the next 90 days</span></span><span class="go">play ↗</span></a>
+      <a class="trk" href="https://www.youtube.com/results?search_query=Zeds+Dead+Collapse+2.0" target="_blank" rel="noopener"><span class="no">08</span><span class="nm">Zeds Dead <span>· Collapse 2.0 · Canada's best, and tonight is yours</span></span><span class="go">play ↗</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FORTY YEARS ===== -->
+<section class="band">
+  <div class="wrap">
+    <div class="ghostnum" style="right:-2vw;top:2%">40</div>
+    <div class="eyebrow">Why this weekend is really a monument</div>
+    <h2 class="htitle rise">Forty years,<br>in five stops.</h2>
+    <p class="lede reveal">The gift you gave in your twenties came back to you in your fifties. That is the whole story.</p>
+    <div class="rail">
+      <div class="stop reveal"><div class="dot"></div><div class="yr">Fall 1985 · Phillips Exeter</div>
+        <h4>Webster North, and the tone you set</h4>
+        <p>The year you stood up to Sam Anson, the biggest bully in the dorm, and beat him. In Gordon's eyes you ended the bullying in Webster North and set the tone for everyone. That is who you have always been, the one who protects the room. Sophomore year, and the longest friendship in Gordon's life. It never stopped.</p>
+      </div>
+      <div class="stop reveal"><div class="dot"></div><div class="yr">The 1990s · Foster City</div>
+        <h4>You packed up your life</h4>
+        <p>You dropped everything and moved west to help Gordon launch a career in an industry that barely existed yet. Roommates again. That act of loyalty is the root of the net-giver everyone leans on now. Then home to New York, for the family business and for art school.</p>
+      </div>
+      <div class="stop reveal"><div class="dot"></div><div class="yr">2018 onward · Park Avenue</div>
+        <h4>The open door</h4>
+        <p>The spare bed always made. The shirt and tie lent before the big day. The one who hosts, funds, and shows up. Abundance, never scarcity. You bet on the people you love, out loud.</p>
+      </div>
+      <div class="stop reveal"><div class="dot"></div><div class="yr">2022 · Ultra Miami, and every show since</div>
+        <h4>Not a phase. A whole life.</h4>
+        <p>Gordon took you to Ultra and you fell the way everyone does. Then came the years: EDC with the helicopter squad, the Bass Boat, Red Rocks, and more shows and more table-tennis rallies with Gordon and Brennan than anyone can count. The student became a devotee, then a regular, then a producer.</p>
+      </div>
+      <div class="stop reveal"><div class="dot"></div><div class="yr">2026 · now</div>
+        <h4>Fang Speare arrives</h4>
+        <p>A modular rig, a DGX Spark, an AI record label, and a producer name pulled from a toad-riding sage. You did not follow Gordon down the AI rabbit hole. You sprinted ahead. Fifty-five, and the mentor became an artist.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== THE CREW, IN FRAME ===== -->
+<section class="band room-man">
+  <div class="wrap">
+    <div class="eyebrow">Who fills the horseshoe · the real ones</div>
+    <h2 class="htitle rise">Not a gradient.<br>These faces.</h2>
+    <p class="lede reveal">Forty years of friendship has names, and a lot of shows, and even more table tennis. Here is the crew, for real.</p>
+    <div class="gallery">
+      <div class="frame reveal"><img src="assets/p_fosgor.jpg" alt="Foster and Gordon in New York" loading="lazy"><div class="cap">Forty years, one grin.</div></div>
+      <div class="frame reveal"><img src="assets/p_fosbren.jpg" alt="Foster and Brennan at a show-night dinner" loading="lazy"><div class="cap">Bren and Fos, show-night fuel.</div></div>
+      <div class="frame reveal"><img src="assets/p_beach.jpg" alt="Foster, Gordon and the crew at sunset on the Cape" loading="lazy"><div class="cap">Golden hour on the Cape.</div></div>
+      <div class="frame reveal"><img src="assets/p_wwe.jpg" alt="Foster and Gordon at WrestleMania" loading="lazy"><div class="cap">This is where legends are made.</div></div>
+      <div class="frame reveal"><img src="assets/photo_all3.jpg" alt="Foster, Brennan and Gordon together" loading="lazy"><div class="cap">All of us. The whole point.</div></div>
+      <div class="frame reveal"><img src="assets/p_mellon.jpg" alt="the crew out to eat" loading="lazy"><div class="cap">The melon-burger summit.</div></div>
+      <div class="frame reveal"><img src="assets/p_soccer.jpg" alt="Brennan and Gordon at the soccer bar" loading="lazy"><div class="cap">It's all good. Match day.</div></div>
+      <div class="frame reveal"><img src="assets/p_chill.jpg" alt="Foster on the festival lawn" loading="lazy"><div class="cap">Chilling like a villain.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NOTE FROM GORDON ===== -->
+<section class="band room-note">
+  <div class="wrap">
+    <div class="eyebrow" style="justify-content:center">One seat in the stadium, just us</div>
+    <div class="note reveal">
+      <div class="from">A note from Gordon</div>
+      <p>Fos. Forty years ago you were across the hall in Webster North and I had no idea I had just met the person who would keep showing up for the rest of my life. You packed up your whole world and moved west so I could chase a job in an industry nobody believed in yet. I have never forgotten that. It is the reason I know what loyalty looks like.</p>
+      <p>So when I took you to Ultra, I was just trying to hand a little of it back. I did not expect you to run past me. Watching you become Fang Speare, an actual producer at fifty-five, debating the drop with me at midnight, gifting me a Kunisada off your own wall, has been one of the great joys of getting older next to you. And the way you have taken Brennan under your wing, backing him and cheering him on and blessing his every move, means more to me than I could ever put in a text.</p>
+      <p>This weekend is not a party. It is a thank-you. For the spare bed, the open door, the abundance, the forty years. Happy birthday, brother. Let's ride the low end.</p>
+      <div class="sig">Up the Knicks, always. LYMI, Gordon</div>
+    </div>
+    <div class="crew reveal">
+      <div class="face"><div class="av">F</div><div class="fn2">Foster</div><div class="fr">the birthday · Fang Speare</div></div>
+      <div class="face"><div class="av">G</div><div class="fn2">Gordon</div><div class="fr">heli-buddy · 40 years</div></div>
+      <div class="face"><div class="av">B</div><div class="fn2">BrenBren</div><div class="fr">Paladin · Brooklyn host</div></div>
+      <div class="face"><div class="av" style="background:conic-gradient(from 40deg,var(--jade),var(--cyan),var(--violet),var(--jade))">+</div><div class="fn2">the crew</div><div class="fr">filling the horseshoe</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LOGISTICS ===== -->
+<section class="band logi">
+  <div class="wrap">
+    <div class="eyebrow">The concierge card · details that exceed expectation</div>
+    <h2 class="htitle rise">Everything handled,<br>so you just arrive.</h2>
+    <p class="lede reveal">For once, the net-giver does not carry the plan. Someone else has it, timed to the minute, so Saturday belongs only to the music.</p>
+    <div class="logi-grid">
+      <div class="card2 reveal">
+        <div class="mini">Getting to Forest Hills · Saturday</div>
+        <div class="route"><div class="tm">fastest</div><div><div class="rh">LIRR from Manhattan</div><div class="rd">Penn or Grand Central Madison to Forest Hills, about 14 minutes. Off at Station Square, a five-minute walk to the gates. Board the front cars.</div></div></div>
+        <div class="route"><div class="tm">easy</div><div><div class="rh">E or F train, express</div><div class="rd">To 71st Avenue, roughly 25 minutes from Midtown, short walk south. The E and F run late for the way home.</div></div></div>
+        <div class="route"><div class="tm">note</div><div><div class="rh">Open-air, no umbrellas</div><div class="rd">Doors 5, show 6. Leave the East Side by 4 and you are early with room to breathe on the grass concourse.</div></div></div>
+      </div>
+      <div class="card2 reveal">
+        <div class="mini">The weekend, timed</div>
+        <div class="route"><div class="tm">Thu</div><div><div class="rh">Broadway then Javits</div><div class="rd">Hamilton in the afternoon or evening, Fanatics Fest passes good all four days, no rush.</div></div></div>
+        <div class="route"><div class="tm">Fri</div><div><div class="rh">Under the bridge</div><div class="rd">Breakaway 6 to midnight. Cabs beat trains from the K Bridge after the set.</div></div></div>
+        <div class="route"><div class="tm">Sat</div><div><div class="rh">Your day, on the grass</div><div class="rd">Orange and blue to Fanatics, then Forest Hills. Sunset over the eagles. Nothing to organize but where to stand.</div></div></div>
+        <div class="route"><div class="tm">Sun</div><div><div class="rh">The Red Lion, early</div><div class="rd">Down to Bleecker by 10 for your table. Doors 11, kickoff 3. Brunch before the world tunes in.</div></div></div>
+      </div>
+    </div>
+    <p class="body reveal" style="color:var(--muted);margin-top:24px">Wristbands sorted. Table sorted. Trains scouted. Someone is carrying the plan so you can carry nothing. That is the birthday gift underneath the birthday gift.</p>
+    <div class="reveal" style="margin-top:28px;text-align:center">
+      <a href="eats.html" style="display:inline-block;font:800 15px/1 'Futura','Trebuchet MS',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#040308;background:linear-gradient(92deg,#ff5c8a,#e8b04b);padding:15px 26px;border-radius:12px;text-decoration:none;box-shadow:0 10px 30px rgba(255,92,138,.3)">🍔 Where the crew eats · the food guide →</a>
+      <div style="margin-top:10px;font-size:12.5px;color:var(--muted)">J.G. Melon and every stop, mapped to where we are each day.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CLOSER ===== -->
+<section class="closer room-zd">
+  <div class="photobg" style="background-image:url('assets/p_beach.jpg')"></div>
+  <div class="starfield"></div>
+  <div class="wrap">
+    <div class="big reveal">Fifty-five, live. The sage rides the low end tonight.</div>
+    <div class="sub serif reveal">Forty years a friend. One night the whole city is your festival.</div>
+    <div class="knickstag reveal">Happy birthday, Fos · Up the Knicks · Abundance always</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Built with love for Foster Ladner Birch · Fang Speare · July 18, 2026 · New York</div>
+</footer>
+
+<script>
+var RM = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ===== bass spine: reactive waveform + progress ===== */
+(function(){
+  var svg=document.getElementById('spineSvg'), wave=document.getElementById('waveA'), prog=document.getElementById('waveProg');
+  var W=1200, H=44, mid=H/2, N=60, amp=3, targetAmp=3, lastY=0, phase=0;
+  function build(a, frac){
+    var d='M0 '+mid, pts=Math.round(N*(frac==null?1:frac));
+    for(var i=0;i<=(frac==null?N:pts);i++){
+      var x=(i/N)*W;
+      var y=mid+Math.sin(i*0.5+phase)*a*(1+ (i%3)*0.25);
+      d+=' L'+x.toFixed(1)+' '+y.toFixed(1);
+    }
+    return d;
+  }
+  function frame(){
+    amp+=(targetAmp-amp)*0.08;
+    targetAmp+=(3-targetAmp)*0.04; /* decay to rest */
+    if(!RM) phase+=0.05;
+    var h=document.documentElement.scrollHeight-innerHeight;
+    var frac=h>0?Math.min(1,scrollY/h):0;
+    wave.setAttribute('d',build(amp));
+    prog.setAttribute('d',build(Math.max(amp,4),frac));
+    requestAnimationFrame(frame);
+  }
+  addEventListener('scroll',function(){
+    var dy=Math.abs(scrollY-lastY); lastY=scrollY;
+    targetAmp=Math.min(16,3+dy*0.35);
+  },{passive:true});
+  frame();
+  window.__spikeSpine=function(){targetAmp=18;};
+})();
+
+/* per-section accent handoff to the spine + drift */
+(function(){
+  var map=[['room-zd','#9dff5c'],['room-fh','#ffdd8a'],['room-ti','#ffc65a'],['room-myth','#e8482e'],['room-man','#ff8a3d'],['room-note','#ffc65a'],['logi','#3fae8f']];
+  var root=document.documentElement;
+  var io=new IntersectionObserver(function(en){en.forEach(function(e){
+    if(e.isIntersecting){
+      var c='#ffc65a';
+      map.forEach(function(m){if(e.target.classList.contains(m[0]))c=m[1];});
+      document.querySelector('.spine').style.setProperty('--accent',c);
+    }});},{threshold:0.5});
+  document.querySelectorAll('section').forEach(function(s){io.observe(s);});
+})();
+
+/* ===== countdown to Zeds Dead: Sat Jul 18 2026, 6:00pm ET = 22:00 UTC ===== */
+(function(){
+  var target=new Date('2026-07-18T22:00:00Z').getTime();
+  function id(i){return document.getElementById(i);}
+  var d=id('cd-d'),h=id('cd-h'),m=id('cd-m'),s=id('cd-s'),lab=document.querySelector('#cd .lab');
+  function p(n){return String(n).padStart(2,'0');}
+  function tick(){
+    var diff=target-Date.now();
+    if(diff<=0){ if(lab) lab.textContent='It is here. Fifty-five, live.'; d.textContent='00';h.textContent='00';m.textContent='00';s.textContent='00'; return;}
+    d.textContent=Math.floor(diff/864e5);h.textContent=p(Math.floor(diff/36e5)%24);
+    m.textContent=p(Math.floor(diff/6e4)%60);s.textContent=p(Math.floor(diff/1e3)%60);
+  }
+  tick();setInterval(tick,1000);
+})();
+
+/* ===== THE DROP: riser -> sub boom -> filthy wub reese bass ===== */
+(function(){
+  var btn=document.getElementById('dropBtn');
+  var AC=window.AudioContext||window.webkitAudioContext, ctx=null;
+  function noiseBuf(dur){
+    var b=ctx.createBuffer(1,Math.max(1,Math.floor(ctx.sampleRate*dur)),ctx.sampleRate), d=b.getChannelData(0);
+    for(var i=0;i<d.length;i++) d[i]=Math.random()*2-1; return b;
+  }
+  function playDrop(cfg){
+    if(!AC) return 0;
+    cfg=cfg||{};
+    var mg=cfg.master||0.95, rdur=cfg.rdur!=null?cfg.rdur:1.0, wdur=cfg.wdur||2.8;
+    var dist=cfg.dist||4, Q=cfg.Q||12, depth=cfg.depth||1500, lfoA=cfg.lfoA||3, lfoB=cfg.lfoB||10;
+    var subHi=cfg.subHi||130, subLo=cfg.subLo||36, base=cfg.base||41.2, det=cfg.det||12, reeseG=cfg.reeseG||0.55;
+    try{
+      ctx=ctx||new AC(); if(ctx.state==='suspended') ctx.resume();
+      var t=ctx.currentTime;
+      /* master chain with a limiter so the low end slams without clipping to mush */
+      var master=ctx.createGain(); master.gain.value=mg;
+      var comp=ctx.createDynamicsCompressor();
+      comp.threshold.value=-14; comp.knee.value=18; comp.ratio.value=14; comp.attack.value=0.002; comp.release.value=0.22;
+      master.connect(comp).connect(ctx.destination);
+
+      /* ---------- RISER (the build) ---------- */
+      var noise=ctx.createBufferSource(); noise.buffer=noiseBuf(rdur+0.2);
+      var bp=ctx.createBiquadFilter(); bp.type='bandpass'; bp.Q.value=1.1;
+      bp.frequency.setValueAtTime(350,t); bp.frequency.exponentialRampToValueAtTime(9000,t+rdur);
+      var ng=ctx.createGain(); ng.gain.setValueAtTime(0.0001,t); ng.gain.exponentialRampToValueAtTime(0.34,t+rdur); ng.gain.exponentialRampToValueAtTime(0.0001,t+rdur+0.06);
+      noise.connect(bp).connect(ng).connect(master); noise.start(t); noise.stop(t+rdur+0.15);
+      var uzi=ctx.createOscillator(), ug=ctx.createGain();
+      uzi.type='sawtooth'; uzi.frequency.setValueAtTime(160,t); uzi.frequency.exponentialRampToValueAtTime(1100,t+rdur);
+      ug.gain.setValueAtTime(0.0001,t); ug.gain.exponentialRampToValueAtTime(0.14,t+rdur); ug.gain.exponentialRampToValueAtTime(0.0001,t+rdur+0.06);
+      uzi.connect(ug).connect(master); uzi.start(t); uzi.stop(t+rdur+0.1);
+
+      var it=t+rdur, wend=it+wdur;   /* IMPACT */
+
+      /* ---------- SUB BOOM (808 dive, holds under the wubs) ---------- */
+      var sub=ctx.createOscillator(), sg=ctx.createGain();
+      sub.type='sine'; sub.frequency.setValueAtTime(subHi,it); sub.frequency.exponentialRampToValueAtTime(subLo,it+0.45);
+      sg.gain.setValueAtTime(0.0001,it); sg.gain.exponentialRampToValueAtTime(1.0,it+0.015); sg.gain.exponentialRampToValueAtTime(0.34,it+0.5);
+      sg.gain.setValueAtTime(0.34,wend-0.3); sg.gain.exponentialRampToValueAtTime(0.0001,wend);
+      sub.connect(sg).connect(master); sub.start(it); sub.stop(wend+0.05);
+
+      /* click transient on impact */
+      var pk=ctx.createOscillator(), pg=ctx.createGain();
+      pk.type='triangle'; pk.frequency.setValueAtTime(200,it); pk.frequency.exponentialRampToValueAtTime(55,it+0.14);
+      pg.gain.setValueAtTime(0.8,it); pg.gain.exponentialRampToValueAtTime(0.0001,it+0.2);
+      pk.connect(pg).connect(master); pk.start(it); pk.stop(it+0.22);
+
+      /* ---------- WUB REESE: detuned saws -> distortion -> resonant LP w/ accelerating LFO ---------- */
+      var shaper=ctx.createWaveShaper(), cv=new Float32Array(2048);
+      for(var j=0;j<2048;j++){ var x=j/2048*2-1; cv[j]=Math.tanh(x*dist); } shaper.curve=cv; shaper.oversample='4x';
+      var lp=ctx.createBiquadFilter(); lp.type='lowpass'; lp.Q.value=Q; lp.frequency.value=900;
+      var reese=ctx.createGain(); reese.gain.value=0.0;
+      var fs=[base,base,base*2], ds=[-det,det+1,0];
+      if(cfg.grit){ fs.push(base*4); ds.push(-3); }   /* extra octave of filth on the heavy one */
+      for(var k=0;k<fs.length;k++){ var o=ctx.createOscillator(); o.type='sawtooth'; o.frequency.value=fs[k]; o.detune.value=ds[k]; o.connect(reese); o.start(it); o.stop(wend+0.05); }
+      reese.connect(shaper).connect(lp).connect(master);
+      reese.gain.setValueAtTime(0.0001,it); reese.gain.exponentialRampToValueAtTime(reeseG,it+0.02);
+      reese.gain.setValueAtTime(reeseG,wend-0.25); reese.gain.exponentialRampToValueAtTime(0.0001,wend);
+      /* THE WUB: LFO on the cutoff, accelerating for the filthy growl */
+      var lfo=ctx.createOscillator(); lfo.type='sine';
+      lfo.frequency.setValueAtTime(lfoA,it); lfo.frequency.linearRampToValueAtTime(lfoB,wend);
+      var lfoDepth=ctx.createGain(); lfoDepth.gain.value=depth;
+      lfo.connect(lfoDepth).connect(lp.frequency);
+      lfo.start(it); lfo.stop(wend+0.05);
+
+      return {impact:rdur, wub:wdur};
+    }catch(e){ return 0; }
+  }
+  function bloom(){ document.body.classList.remove('dropping'); void document.body.offsetWidth; document.body.classList.add('dropping'); if(window.__spikeSpine)window.__spikeSpine(); }
+  function spikes(startMs,wubSec,count){ var step=(wubSec*1000)/count; for(var n=0;n<count;n++){ (function(ms){ setTimeout(function(){ if(window.__spikeSpine) window.__spikeSpine(); },ms); })(startMs+n*step); } }
+  function drop(){
+    /* DROP 1 */
+    var r=playDrop();
+    if(!r){ bloom(); return; }
+    setTimeout(bloom, r.impact*1000);
+    spikes(r.impact*1000, r.wub, 16);
+    /* DROP 2: heavier, lower, filthier, right after the first tail */
+    var gap=(r.impact + r.wub + 0.12)*1000;
+    setTimeout(function(){
+      var r2=playDrop({master:1.0, rdur:0.7, wdur:3.4, dist:7, Q:16, depth:2100, lfoA:4, lfoB:15, subHi:150, subLo:28, base:36.7, det:18, reeseG:0.64, grit:true});
+      if(r2){ setTimeout(bloom, r2.impact*1000); spikes(r2.impact*1000, r2.wub, 24); }
+    }, gap);
+  }
+  if(btn) btn.addEventListener('click',drop);
+})();
+
+/* ===== video facades ===== */
+(function(){
+  document.querySelectorAll('.vid').forEach(function(v){
+    v.addEventListener('click',function(){
+      var idv=v.getAttribute('data-id'); if(!idv||v.dataset.loaded) return;
+      v.dataset.loaded='1';
+      var f=document.createElement('iframe');
+      f.src='https://www.youtube.com/embed/'+idv+'?autoplay=1&rel=0&modestbranding=1';
+      f.allow='autoplay; encrypted-media; picture-in-picture'; f.allowFullscreen=true;
+      f.title=v.querySelector('.vcap')?v.querySelector('.vcap').textContent:'video';
+      v.innerHTML=''; v.appendChild(f);
+    });
+  });
+  var fp=document.getElementById('fsPlayer');
+  if(fp){
+    var au=document.getElementById('fsAudio'), pb=document.getElementById('fsPb'), lbl=document.getElementById('fsLbl');
+    var REST='Fang Speare · Poe Beat, 92 BPM (Lars remix) · press play';
+    function toggle(){
+      if(!au)return;
+      if(au.paused){
+        au.play().then(function(){fp.classList.add('playing');pb.textContent='⏸';lbl.textContent='Fang Speare · now playing · Poe Beat (Lars remix)';if(window.__spikeSpine)window.__spikeSpine();})
+        .catch(function(){lbl.textContent='tap once more to play';});
+      } else { au.pause(); fp.classList.remove('playing'); pb.textContent='▶'; lbl.textContent=REST; }
+    }
+    fp.addEventListener('click',toggle);
+    fp.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}});
+    if(au) au.addEventListener('ended',function(){fp.classList.remove('playing');pb.textContent='▶';lbl.textContent=REST;});
+  }
+})();
+
+/* ===== reveals + entrances ===== */
+(function(){
+  var els=document.querySelectorAll('.reveal,.rise,.ink');
+  if(!('IntersectionObserver'in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.14});
+  els.forEach(function(e){io.observe(e)});
+})();
+
+/* woodblock print-on-scroll */
+(function(){
+  var pb=document.getElementById('printbox'); if(!pb)return;
+  if(RM){pb.classList.add('printed');return;}
+  var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){pb.classList.add('printed');io.disconnect();}});},{threshold:0.3});
+  io.observe(pb);
+})();
+
+/* count-up hero stat */
+(function(){
+  var el=document.querySelector('[data-count]'); if(!el)return;
+  var to=+el.getAttribute('data-count');
+  if(RM){el.textContent=to;return;}
+  var io=new IntersectionObserver(function(en){en.forEach(function(e){
+    if(e.isIntersecting){var n=0;var t=setInterval(function(){n++;el.textContent=n;if(n>=to)clearInterval(t);},70);io.disconnect();}
+  });},{threshold:0.6});
+  io.observe(el);
+})();
+
+/* scroll-scrubbed display words */
+(function(){
+  if(RM)return;
+  var words=document.querySelectorAll('.word[data-scrub]');
+  function upd(){
+    words.forEach(function(w){
+      var r=w.getBoundingClientRect(), vh=innerHeight;
+      var p=1-(r.top+r.height/2)/vh; /* -~ .. ~ */
+      var ls=Math.max(-0.02,Math.min(0.2,0.06+p*0.14));
+      w.style.letterSpacing=ls+'em';
+      w.style.transform='translateY('+(p*-20)+'px)';
+    });
+  }
+  addEventListener('scroll',upd,{passive:true}); upd();
+})();
+
+/* hero load-in */
+(function(){
+  if(RM)return;
+  var t=document.querySelector('h1.title'), em=document.querySelector('.emblem');
+  if(t){t.style.filter='blur(14px)';t.style.opacity='0';t.style.transition='opacity 1s ease, filter 1s ease';}
+  if(em){em.style.opacity='0';em.style.transition='opacity 1.2s ease';}
+  requestAnimationFrame(function(){setTimeout(function(){
+    if(em)em.style.opacity='0.9';
+    if(t){t.style.filter='blur(0)';t.style.opacity='1';}
+  },120);});
+})();
+</script>
+</body>
+</html>

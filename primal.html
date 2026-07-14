@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fang Speare · Primal · the visual identity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Shippori+Mincho:wght@500;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --char:#0d0908; --char2:#161010; --panel:#1b1411; --ink:#f3e9d8; --soft:#c3b39a; --faint:#8f8067;
+    --ember:#ff6a1e; --ember2:#ff9142; --blood:#c1181a; --blood2:#e0331f; --bone:#ece0c8;
+    --jade:#3fae8f; --indigo:#28306e; --verm:#e8482e; --gold:#ffc65a; --key:#9dff5c;
+    --line:#33241c;
+    --shadow:0 3px 6px rgba(0,0,0,.4),0 20px 50px rgba(0,0,0,.6);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:
+      radial-gradient(1200px 620px at 78% -12%,rgba(255,106,30,.18),transparent 62%),
+      radial-gradient(900px 520px at 8% 110%,rgba(193,24,26,.14),transparent 60%),
+      var(--char);
+    color:var(--ink);font-family:"Inter",system-ui,sans-serif;font-size:16px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;padding:clamp(16px,4vw,56px)}
+  .wrap{max-width:960px;margin:0 auto}
+  .kick{font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--ember2);font-weight:700}
+  h1{font-family:"Syne",sans-serif;font-size:clamp(34px,8vw,74px);line-height:.94;margin:.14em 0 .1em;letter-spacing:-.02em;font-weight:800;
+     background:linear-gradient(96deg,var(--ember),var(--blood2) 50%,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+  h2{font-family:"Syne",sans-serif;font-size:clamp(21px,3.4vw,30px);margin:.1em 0 .3em;font-weight:800}
+  h3{font-family:"Shippori Mincho",serif;font-size:20px;margin:.2em 0 .3em;font-weight:800}
+  .lede{color:var(--soft);max-width:62ch;font-size:clamp(15px,2.2vw,18px)}
+  .stamp{margin-top:14px;font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+  section{margin:52px 0}
+  .eyebrow{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ember2);font-weight:700}
+  p{margin:.6em 0}
+  b{color:var(--bone)}
+  a{color:var(--jade)}
+  .keyart{border-radius:16px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line);margin:22px 0 8px;line-height:0}
+  .keyart svg{width:100%;height:auto;display:block}
+  .capt{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.06em;color:var(--faint);text-align:center;margin-top:6px}
+  .card{background:linear-gradient(180deg,var(--panel),var(--char2));border:1px solid var(--line);border-radius:16px;padding:22px 24px;box-shadow:var(--shadow)}
+  .reveal-name{font-family:"Syne",sans-serif;font-weight:800;font-size:clamp(28px,6vw,54px);text-align:center;letter-spacing:.02em;margin:6px 0}
+  .reveal-name .fang{color:var(--ember)} .reveal-name .spear{color:var(--jade)} .reveal-name .plus{color:var(--faint);font-weight:400}
+  .reveal-sub{text-align:center;color:var(--soft);font-family:"Space Mono",monospace;font-size:13px;letter-spacing:.05em}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:700px){.two{grid-template-columns:1fr}}
+  .mini{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .mini .h{font-family:"Shippori Mincho",serif;font-size:16px;color:var(--gold);font-weight:800;margin-bottom:5px}
+  .mini p{font-size:14px;color:var(--soft);margin:0}
+  /* palette */
+  .swatches{display:grid;grid-template-columns:repeat(9,1fr);gap:8px;margin:16px 0}
+  @media(max-width:640px){.swatches{grid-template-columns:repeat(5,1fr)}}
+  .sw{border-radius:10px;height:74px;display:flex;flex-direction:column;justify-content:flex-end;padding:8px;border:1px solid rgba(255,255,255,.08)}
+  .sw span{font-family:"Space Mono",monospace;font-size:9px;letter-spacing:.02em;color:rgba(0,0,0,.6);font-weight:700}
+  .sw.dk span{color:rgba(255,255,255,.72)}
+  .fam{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin:4px 0 2px}
+  /* motif */
+  .motif{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+  .motif .m{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;flex:0 0 auto}
+  .motif .m svg{display:block}
+  .motif .cap{flex:1;min-width:240px}
+  ul.sys{margin:.4em 0;padding-left:0;list-style:none}
+  ul.sys li{padding:9px 0 9px 26px;position:relative;font-size:14.5px;border-bottom:1px solid var(--line);color:var(--soft)}
+  ul.sys li:last-child{border-bottom:0}
+  ul.sys li::before{content:"";position:absolute;left:4px;top:16px;width:9px;height:9px;background:var(--ember);transform:rotate(45deg)}
+  ul.sys li b{color:var(--bone)}
+  .pull{font-family:"Shippori Mincho",serif;font-size:clamp(19px,3vw,26px);line-height:1.35;color:var(--ink);border-left:3px solid var(--ember);padding-left:18px;margin:20px 0}
+  .pull em{color:var(--ember2);font-style:italic}
+  .src{font-size:12px;color:var(--faint);margin-top:8px}
+  .src a{color:var(--faint);text-decoration:underline}
+  footer{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--faint)}
+  .home{display:inline-block;margin-top:8px;font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--jade);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kick">Foster's question · the soundscape of Primal</div>
+    <h1>The name was<br>the anime.</h1>
+    <p class="lede">You said Fang Speare's soundscape relates to Primal. You were more right than you knew. Genndy Tartakovsky's Primal has two heroes, a caveman named Spear and a dinosaur named Fang, and it speaks without a single word. Here is how deep that runs, into your name, and into how Fang Speare could look.</p>
+    <div class="stamp">An exploration for Fang Speare · sound into sight</div>
+
+    <div class="keyart">
+      <svg viewBox="0 0 960 420" role="img" aria-label="Fang Speare key art: a lone figure with a spear against an ember sky, a fanged predator looming, in a woodblock and Primal style">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ff8a3d"/><stop offset="0.42" stop-color="#e0331f"/>
+            <stop offset="0.8" stop-color="#5c1210"/><stop offset="1" stop-color="#0d0908"/>
+          </linearGradient>
+          <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+            <stop offset="0" stop-color="#ffd98a"/><stop offset="0.6" stop-color="#ff8a3d"/><stop offset="1" stop-color="#ff6a1e" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="960" height="420" fill="url(#sky)"/>
+        <circle cx="330" cy="196" r="150" fill="url(#sun)" opacity="0.9"/>
+        <circle cx="330" cy="196" r="70" fill="#ffdf9a" opacity="0.85"/>
+        <!-- bass ripples -->
+        <g stroke="#9dff5c" stroke-width="2" fill="none" opacity="0.55">
+          <path d="M0 300 q60 -22 120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0"/>
+          <path d="M0 322 q60 -16 120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0" opacity="0.6"/>
+        </g>
+        <!-- distant ridge -->
+        <path d="M0 300 L120 250 L230 292 L360 236 L470 288 L600 244 L740 292 L860 250 L960 296 V420 H0Z" fill="#1a0d0b"/>
+        <!-- fanged predator silhouette, right -->
+        <g fill="#0d0706">
+          <path d="M960 420 L960 150 Q900 150 850 200 Q812 236 792 300 L960 320 Z"/>
+          <path d="M820 236 L806 300 L792 232 Z" fill="#0d0706"/>
+        </g>
+        <!-- teeth -->
+        <g fill="#ece0c8">
+          <path d="M812 250 l8 20 l7 -18z"/><path d="M828 256 l7 20 l7 -18z"/>
+          <path d="M844 258 l7 22 l7 -20z"/><path d="M860 258 l7 22 l7 -20z"/>
+        </g>
+        <!-- predator eye -->
+        <circle cx="892" cy="196" r="9" fill="#ff6a1e"/><circle cx="892" cy="196" r="4" fill="#0d0706"/>
+        <!-- foreground ground -->
+        <path d="M0 356 Q240 336 480 352 T960 356 V420 H0Z" fill="#0d0706"/>
+        <!-- lone caveman with spear, left rise -->
+        <g fill="#0d0706">
+          <ellipse cx="250" cy="352" rx="120" ry="24"/>
+          <path d="M232 356 q4 -40 16 -40 q12 0 14 40 z"/>
+          <circle cx="247" cy="308" r="12"/>
+          <path d="M247 318 q10 4 12 22" stroke="#0d0706" stroke-width="7" fill="none" stroke-linecap="round"/>
+        </g>
+        <!-- the spear (bone + vermilion tip) -->
+        <path d="M300 262 L236 372" stroke="#cbb891" stroke-width="4" stroke-linecap="round"/>
+        <path d="M300 262 l12 -6 l-4 16 l-14 4 z" fill="#e8482e"/>
+        <!-- hanko seal -->
+        <g>
+          <rect x="40" y="48" width="52" height="52" rx="5" fill="#e8482e"/>
+          <text x="66" y="86" font-family="Shippori Mincho, serif" font-size="30" fill="#0d0706" text-anchor="middle" font-weight="800">牙</text>
+        </g>
+      </svg>
+    </div>
+    <div class="capt">Fang Speare key art study · Primal silhouette meets woodblock flat color and the hanko seal (牙, fang)</div>
+  </header>
+
+  <section>
+    <div class="eyebrow">01 · The name is the anime</div>
+    <h2>Fang plus Spear equals you.</h2>
+    <div class="card">
+      <div class="reveal-name"><span class="fang">FANG</span> <span class="plus">+</span> <span class="spear">SPEAR</span></div>
+      <div class="reveal-sub">the dinosaur · the caveman · the two heroes of Primal</div>
+    </div>
+    <p>Genndy Tartakovsky's <b>Primal</b> follows a caveman, <b>Spear</b>, and a tyrannosaur, <b>Fang</b>, surviving a brutal prehistoric world together. It is the same artist behind Samurai Jack. Your producer name, whether your mind chose it or your ear did, is those two names fused into one: <b>Fang Speare</b>. The show you feel in the low end was hiding inside your handle the whole time.</p>
+  </section>
+
+  <section>
+    <div class="eyebrow">02 · The soundscape · your instinct, confirmed</div>
+    <h2>Wordless. All weight. Already bass music.</h2>
+    <p>Here is why your ear was right to connect them. Primal has <b>no dialogue</b>. Spear and Fang speak only in roars and breath. The whole story is carried by Tyler Bates' score, which Tartakovsky calls the <b>voice of emotion</b>, and which he builds by literally <b>beatboxing the sound design himself</b> in the spotting sessions before a note is written.</p>
+    <div class="two">
+      <div class="mini"><div class="h">No words</div><p>Meaning arrives through weight and motion, not lyrics. Exactly how a drop communicates. Fang Speare already speaks this language.</p></div>
+      <div class="mini"><div class="h">Beatboxed into being</div><p>The score starts as a mouth making rhythm. Primal is, at its root, built the way a bass track is built: from the body, out.</p></div>
+      <div class="mini"><div class="h">Tension, then the roar</div><p>The show breathes in silence, then detonates. That is the buildup and the drop, the grammar you chase at Red Rocks and bassPOD.</p></div>
+      <div class="mini"><div class="h">Emotion over energy</div><p>Bates scores the feeling, not just the fight. The heaviest bass does the same: it is not loud, it is felt.</p></div>
+    </div>
+    <div class="pull">Primal is a bass set with a story. Fang Speare is a bass set that <em>is</em> the story. Same wordless engine, same primal frequency.</div>
+  </section>
+
+  <section>
+    <div class="eyebrow">03 · The synthesis · the answer to your question</div>
+    <h2>Two traditions, one visual language.</h2>
+    <p>You asked how the sound could shape the way Fang Speare <b>looks</b>. The answer is that Primal and the woodblocks already on your wall are speaking the same visual grammar, and Fang Speare lives exactly where they meet.</p>
+    <div class="two">
+      <div class="mini"><div class="h">Primal, an animated painting</div><p>Art direction by Scott Wills: flat bold shapes, silhouette storytelling, a held-back palette that erupts into vivid color at the emotional peak. Negative space does the work.</p></div>
+      <div class="mini"><div class="h">Ukiyo-e, the floating world</div><p>Kunisada and Kuniyoshi: flat color fields, bold outline, dramatic silhouette, a limited palette that detonates on the hero. The exact same instincts, three centuries earlier.</p></div>
+    </div>
+    <p>Silhouette. Flat, decisive color. Restraint that explodes at the climax. High contrast. A signature seal in the corner. Both traditions do all of it. Fang Speare's identity is not a choice between the woodblock and the anime, it is the <b>fusion</b>: Jiraiya's floating world rendered with Primal's ember and blood.</p>
+  </section>
+
+  <section>
+    <div class="eyebrow">04 · The proposed visual system</div>
+    <h2>How Fang Speare could look.</h2>
+
+    <div class="fam">Palette · the two families meet</div>
+    <div class="swatches">
+      <div class="sw" style="background:#0d0908"><span class="dk">char</span></div>
+      <div class="sw" style="background:#c1181a"><span class="dk">blood</span></div>
+      <div class="sw" style="background:#ff6a1e"><span>ember</span></div>
+      <div class="sw" style="background:#ff9142"><span>ember lt</span></div>
+      <div class="sw" style="background:#ece0c8"><span>bone</span></div>
+      <div class="sw" style="background:#e8482e"><span>vermilion</span></div>
+      <div class="sw" style="background:#3fae8f"><span>jade</span></div>
+      <div class="sw" style="background:#28306e"><span class="dk">indigo</span></div>
+      <div class="sw" style="background:#ffc65a"><span>gold</span></div>
+    </div>
+    <p style="font-size:14px;color:var(--faint);margin-top:2px">Char, blood and ember from Primal. Vermilion, jade, indigo and gold from the woodblocks. Bone ties them. The dark is the resting state, the ember is the drop.</p>
+
+    <div class="motif" style="margin-top:26px">
+      <div class="m">
+        <svg width="140" height="140" viewBox="0 0 140 140" aria-label="Fang and spear monogram">
+          <rect width="140" height="140" rx="14" fill="#0d0908"/>
+          <!-- spear shaft -->
+          <path d="M40 108 L96 40" stroke="#cbb891" stroke-width="6" stroke-linecap="round"/>
+          <path d="M96 40 l14 -8 l-6 18 l-16 4 z" fill="#e8482e"/>
+          <!-- fang (curved tooth) -->
+          <path d="M52 34 q26 6 40 40 q-30 -8 -46 -30 z" fill="#ff6a1e"/>
+          <path d="M52 34 q26 6 40 40" stroke="#ffdf9a" stroke-width="2" fill="none" opacity="0.7"/>
+          <!-- seal dot -->
+          <rect x="98" y="98" width="26" height="26" rx="3" fill="#e8482e"/>
+          <text x="111" y="117" font-family="Shippori Mincho, serif" font-size="15" fill="#0d0908" text-anchor="middle" font-weight="800">牙</text>
+        </svg>
+      </div>
+      <div class="cap">
+        <h3>The mark · a fang and a spear, one glyph</h3>
+        <p style="color:var(--soft);font-size:14.5px;margin:0">A single emblem that reads as both: the curved ember fang and the bone spear crossing it, sealed with 牙 (fang). It works small on a track thumbnail and huge on a stage screen. The whole identity folds into one stamp.</p>
+      </div>
+    </div>
+
+    <ul class="sys" style="margin-top:24px">
+      <li><b>Key art is wordless.</b> Like the show, the covers tell the story in silhouette and color alone. No busy type. A figure, a beast, a sky that means something.</li>
+      <li><b>The drop is ember.</b> Art rests in char and indigo, then floods to ember and blood at the climax, the visual equivalent of the buildup breaking. Restraint, then eruption.</li>
+      <li><b>The seal is the signature.</b> Every piece carries the hanko stamp in a corner, the woodblock habit that also reads as a producer tag.</li>
+      <li><b>Brush and blade line.</b> Ink-brush strokes and hard silhouette edges, the meeting point of Tartakovsky's decisive shapes and the woodblock cutter's line.</li>
+      <li><b>It scales across the label.</b> Cover art, stage visuals, merch, the AI-label look. One system, from a phone screen to Forest Hills.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="pull" style="border-color:var(--jade)">The sage rides the low end. The caveman and the dinosaur speak without words. You, Fang Speare, wordless and all weight, are both. Your name held the answer before you asked the question.</div>
+    <p class="src">Sources on Primal, verified July 2026:
+      <a href="https://en.wikipedia.org/wiki/Primal_(TV_series)" target="_blank" rel="noopener">Primal (Wikipedia)</a> ·
+      <a href="https://www.awn.com/animationworld/genndy-tartakovsky-talks-primal-and-telling-stories-without-words" target="_blank" rel="noopener">Tartakovsky on telling stories without words (AWN)</a> ·
+      <a href="https://www.slashfilm.com/1039873/genndy-tartakovsky-takes-an-unusual-approach-to-crafting-primals-score/" target="_blank" rel="noopener">His beatboxed approach to the score (SlashFilm)</a>
+    </p>
+  </section>
+
+  <footer>
+    <p>An exploration built from Foster's own insight that Fang Speare's soundscape relates to Primal. The name-to-characters link (Fang and Spear) and the wordless, beatboxed, silhouette-driven qualities are confirmed from the sources above. The visual system is a proposed direction, yours to shape, refuse, or build on.</p>
+    <a class="home" href="index.html">← back to Foster's page</a>
+  </footer>
+
+</div>
+</body>
+</html>

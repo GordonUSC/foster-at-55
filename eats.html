@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where the Crew Eats · NYC Birthday Weekend</title>
+<style>
+  :root{
+    --bg:#120f14; --panel:#1b161f; --panel2:#221b28; --ink:#f5eefb; --soft:#c3b6cf; --faint:#8f8299;
+    --line:#312838; --gold:#e8b04b; --pink:#ff5c8a; --cyan:#4de0d0; --violet:#a678ff; --green:#7ce08a;
+    --shadow:0 2px 4px rgba(0,0,0,.3),0 16px 40px rgba(0,0,0,.5);
+    --sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --disp:"Futura","Trebuchet MS",var(--sans);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:
+      radial-gradient(1100px 500px at 80% -8%,rgba(166,120,255,.16),transparent 60%),
+      radial-gradient(900px 500px at 10% 108%,rgba(255,92,138,.13),transparent 60%),
+      var(--bg);
+    color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;
+    padding:clamp(16px,4vw,54px)}
+  .wrap{max-width:940px;margin:0 auto}
+  .kick{font-family:var(--disp);font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);font-weight:700}
+  h1{font-family:var(--disp);font-size:clamp(30px,6.5vw,60px);line-height:.98;margin:.12em 0 .12em;letter-spacing:-.01em;font-weight:800;
+    background:linear-gradient(92deg,var(--pink),var(--gold) 55%,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{color:var(--soft);max-width:60ch;font-size:clamp(15px,2.2vw,18px)}
+  .stamp{margin-top:12px;font-family:var(--disp);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+  section{margin:40px 0}
+  h2{font-family:var(--disp);font-size:clamp(19px,3vw,26px);margin:.1em 0 .1em;font-weight:800;display:flex;align-items:center;gap:12px}
+  h2 .pin{font-size:12px;font-family:var(--disp);letter-spacing:.1em;text-transform:uppercase;color:var(--bg);background:var(--tagc,var(--gold));padding:4px 9px;border-radius:6px;font-weight:800;white-space:nowrap}
+  .subhead{color:var(--faint);font-size:13.5px;margin:2px 0 14px}
+  /* hero JG Melon */
+  .crown{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--gold);border-radius:18px;
+    padding:24px 26px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .crown::after{content:"🍔";position:absolute;right:16px;top:8px;font-size:74px;opacity:.16;transform:rotate(-8deg)}
+  .crown .badge{display:inline-block;font-family:var(--disp);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--bg);background:var(--gold);padding:4px 10px;border-radius:6px;font-weight:800}
+  .crown h3{font-family:var(--disp);font-size:clamp(24px,4vw,34px);margin:12px 0 4px;font-weight:800}
+  .crown .addr{color:var(--gold);font-size:14px;font-weight:600}
+  .crown p{color:var(--soft);margin:10px 0 0;max-width:64ch}
+  .crown .note{margin-top:12px;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:10px}
+  .crown .note b{color:var(--ink)}
+  /* cards grid */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:680px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow);
+    border-top:3px solid var(--cardc,var(--violet))}
+  .card h3{font-family:var(--disp);font-size:18px;margin:0 0 2px;font-weight:800}
+  .card .type{font-size:12px;color:var(--cardc);font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+  .card .addr{font-size:12.5px;color:var(--faint);margin:6px 0}
+  .card p{font-size:13.5px;color:var(--soft);margin:6px 0 0}
+  .card .why{font-size:12.5px;color:var(--faint);margin-top:8px;border-top:1px dashed var(--line);padding-top:7px}
+  .card .why b{color:var(--gold)}
+  /* birthday callout */
+  .bday{background:linear-gradient(180deg,rgba(255,92,138,.14),var(--panel));border:1px solid var(--pink);border-radius:16px;padding:22px 24px;box-shadow:var(--shadow)}
+  .bday .badge{display:inline-block;font-family:var(--disp);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--bg);background:var(--pink);padding:4px 10px;border-radius:6px;font-weight:800}
+  .bday h3{font-family:var(--disp);font-size:22px;margin:10px 0 4px;font-weight:800}
+  .bday p{color:var(--soft);margin:6px 0 0}
+  .bday .opts{margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:680px){.bday .opts{grid-template-columns:1fr}}
+  .bday .opt{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+  .bday .opt h4{margin:0 0 3px;font-family:var(--disp);font-size:15px}
+  .bday .opt .a{font-size:12px;color:var(--faint)}
+  .bday .opt p{font-size:12.5px;color:var(--soft);margin:5px 0 0}
+  /* group rules */
+  .rules{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 20px;box-shadow:var(--shadow)}
+  .rules ul{margin:.3em 0;padding-left:20px}
+  .rules li{margin:5px 0;font-size:14px;color:var(--soft)}
+  .rules li b{color:var(--ink)}
+  a{color:var(--cyan)}
+  footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--faint)}
+  .home{display:inline-block;margin-top:8px;font-family:var(--disp);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kick">Foster's 55th · NYC · July 16-23</div>
+    <h1>Where the crew eats.</h1>
+    <p class="lede">A pocket food guide for the three of us, built around where we actually are each day. Home base on the Upper East Side, birthday night in Queens, the Final in the Village. And yes, the melon burger is the crown.</p>
+    <div class="stamp">For Gordon, Foster & BrenBren · walk-in friendly, group-sized</div>
+  </header>
+
+  <section>
+    <h2><span class="pin" style="--tagc:var(--gold)">The one non-negotiable</span></h2>
+    <div class="crown">
+      <span class="badge">🏆 Our spot</span>
+      <h3>J.G. Melon</h3>
+      <div class="addr">1291 Third Ave at E 74th St · Upper East Side</div>
+      <p>The melon burger. The one we already know we love, and it happens to sit about three blocks from home base at 765 Park. A char-griddled classic on a squishy bun with a pile of cottage fries, checkered tablecloths, zero pretense. This is the anchor of the whole weekend: breakfast plan, hangover plan, "we have an hour" plan.</p>
+      <div class="note"><b>How it runs:</b> no reservations, walk-in only, gets a line at peak. Go off-hours (mid-afternoon, late morning) with the group. Cash-friendly, cards fine. There is also a <b>West Village J.G. Melon</b> near MacDougal and Bleecker, which lands us right by the World Cup Final spot on Sunday (see below).</div>
+    </div>
+  </section>
+
+  <style>
+    .ask{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--gold);border-radius:16px;padding:20px 22px;box-shadow:var(--shadow)}
+    .ask .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+    .ask input{flex:1;min-width:200px;background:#0e0b12;border:1px solid var(--line);border-radius:10px;padding:13px 15px;color:var(--ink);font-size:15px;font-family:inherit}
+    .ask input::placeholder{color:var(--faint)}
+    .ask button.go{background:linear-gradient(92deg,var(--pink),var(--gold));color:#120f14;border:0;border-radius:10px;padding:13px 22px;font-weight:800;font-family:var(--disp);letter-spacing:.05em;text-transform:uppercase;cursor:pointer;font-size:13px}
+    .ask .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+    .ask .chips .c{background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:12.5px;color:var(--soft);cursor:pointer}
+    .ask .chips .c:hover{border-color:var(--gold);color:var(--ink)}
+    #results{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media(max-width:680px){#results{grid-template-columns:1fr}}
+    .rhead{grid-column:1/-1;font-family:var(--disp);font-size:15px;color:var(--gold);font-weight:800;letter-spacing:.03em;margin-top:4px}
+    .rcard{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;border-top:3px solid var(--gold)}
+    .rcard h4{font-family:var(--disp);font-size:16px;margin:0 0 2px;font-weight:800}
+    .rcard .a{font-size:12px;color:var(--faint)}
+    .rcard p{font-size:13px;color:var(--soft);margin:6px 0 0}
+    .rmiss{grid-column:1/-1;color:var(--soft);font-size:14px;background:var(--panel);border:1px dashed var(--line);border-radius:10px;padding:14px 16px}
+  </style>
+  <section>
+    <h2><span class="pin" style="--tagc:var(--gold)">Craving something?</span> Ask the guide</h2>
+    <p class="subhead">Type any food and I'll point the crew somewhere good near where we are that day. Try sushi, tacos, bbq, ramen, steak, brunch.</p>
+    <div class="ask">
+      <div class="row">
+        <input id="q" type="text" placeholder="what are you craving?" autocomplete="off" aria-label="Craving">
+        <button class="go" id="goBtn">find it</button>
+      </div>
+      <div class="chips" id="chips"></div>
+      <div id="results"></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="pin" style="--tagc:var(--violet)">Home base</span> Upper East Side</h2>
+    <p class="subhead">Around 765 Park Ave, where we're staying. Easy walk-outs for the crew.</p>
+    <div class="grid">
+      <div class="card" style="--cardc:var(--violet)">
+        <div class="type">Coffee + morning</div>
+        <h3>Via Quadronno</h3>
+        <div class="addr">25 E 73rd St · a few blocks from home</div>
+        <p>Tiny Milanese cafe, serious espresso and panini. The civilized "before we do anything" stop.</p>
+        <div class="why"><b>For:</b> a quiet start before a big festival day.</div>
+      </div>
+      <div class="card" style="--cardc:var(--violet)">
+        <div class="type">Dinner · neighborhood</div>
+        <h3>The Penrose</h3>
+        <div class="addr">1590 Second Ave · UES</div>
+        <p>Good gastropub burgers and cocktails, roomy, group-friendly, laid back. The unfussy sit-down near home.</p>
+        <div class="why"><b>For:</b> a relaxed crew dinner with zero fuss.</div>
+      </div>
+      <div class="card" style="--cardc:var(--violet)">
+        <div class="type">Late + fun</div>
+        <h3>Jones Wood Foundry</h3>
+        <div class="addr">401 E 76th St · UES</div>
+        <p>British pub with a back garden, fish and chips, good beer. Room to spread out with a group.</p>
+        <div class="why"><b>For:</b> a lively nightcap close to the pillow.</div>
+      </div>
+      <div class="card" style="--cardc:var(--violet)">
+        <div class="type">If we want to level up</div>
+        <h3>Tanoshi / a UES sushi night</h3>
+        <div class="addr">Yorkville, UES</div>
+        <p>Tiny omakase counter if we want one nicer, hands-in-the-air meal near home. Books up, so reserve early.</p>
+        <div class="why"><b>For:</b> the one "treat" dinner without leaving the neighborhood.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="pin" style="--tagc:var(--pink)">The big one</span> Foster's Birthday · Sat 7/18</h2>
+    <div class="bday">
+      <span class="badge">🎂 55 &amp; Zeds Dead in Queens</span>
+      <h3>Birthday dinner, built around the show</h3>
+      <p>Zeds Dead is at Forest Hills Stadium (doors 5pm). So the birthday meal is either an early bite near the venue before the bass, or a proper celebration back in the city after. Both are covered.</p>
+      <div class="opts">
+        <div class="opt">
+          <h4>Before, near the venue</h4>
+          <div class="a">Forest Hills, Queens · walk to the stadium</div>
+          <p><b>Danny Brown Wine Bar &amp; Kitchen</b> for a real dinner (reserve), or <b>Nick's Pizza</b> for a coal-oven group classic, both minutes from the gates. Austin Street is the strip.</p>
+        </div>
+        <div class="opt">
+          <h4>After, back in the city</h4>
+          <div class="a">Manhattan · late celebration</div>
+          <p>Roll back for a late toast. A steakhouse or a loud, joyful spot fits 40 years of friendship. Tell me the vibe and I'll lock a reservation.</p>
+        </div>
+      </div>
+      <p style="margin-top:12px;font-size:13px;color:var(--faint)">Note: keep the birthday dinner loose so we can flow into the show without watching the clock. The night is yours.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="pin" style="--tagc:#00a859">Foster's request</span> Brazilian steakhouse</h2>
+    <p class="subhead">You asked, so it is locked in. Endless skewers, picanha, the works. A churrascaria is a genuine contender for the birthday feast.</p>
+    <div class="grid">
+      <div class="card" style="--cardc:#00a859">
+        <div class="type">Rodizio classic</div>
+        <h3>Churrascaria Plataforma</h3>
+        <div class="addr">316 W 49th St · Theater District, near Hamilton</div>
+        <p>The old-school all-you-can-eat churrasco. Green means keep the skewers coming. Loud, festive, built for a crew celebrating.</p>
+        <div class="why"><b>For:</b> the birthday feast, steps from the Broadway night.</div>
+      </div>
+      <div class="card" style="--cardc:#00a859">
+        <div class="type">Polished rodizio</div>
+        <h3>Fogo de Chão</h3>
+        <div class="addr">Midtown</div>
+        <p>The reliable, gleaming version: picanha, lamb, the market table. Never a miss for a group with an appetite.</p>
+        <div class="why"><b>For:</b> a safe, excellent group churrasco.</div>
+      </div>
+      <div class="card" style="--cardc:#00a859">
+        <div class="type">Casual + Little Brazil</div>
+        <h3>Emporium Brazil</h3>
+        <div class="addr">W 46th St · Little Brazil, near Times Sq</div>
+        <p>Grill plus buffet on the Little Brazil block. Lower-key and cheaper if the crew wants churrasco without the full rodizio ceremony.</p>
+        <div class="why"><b>For:</b> the relaxed version near the theaters.</div>
+      </div>
+      <div class="card" style="--cardc:#00a859">
+        <div class="type">Queens side</div>
+        <h3>Malagueta</h3>
+        <div class="addr">Astoria, Queens</div>
+        <p>A beloved neighborhood Brazilian spot on the Queens side, an option the day we are out toward Forest Hills.</p>
+        <div class="why"><b>For:</b> Brazilian without leaving the borough on Saturday.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="pin" style="--tagc:var(--cyan)">Fanatics Fest</span> Midtown West</h2>
+    <p class="subhead">Around the Javits Center (34th &amp; 11th). Fast, close, get back to the cards and collectibles.</p>
+    <div class="grid">
+      <div class="card" style="--cardc:var(--cyan)">
+        <div class="type">Quick + hearty</div>
+        <h3>Hudson Yards food hall</h3>
+        <div class="addr">Mercado Little Spain / the Hudson Yards options</div>
+        <p>A short walk from Javits, lots of choices for a split crew, no wait to sit. Refuel and go.</p>
+        <div class="why"><b>For:</b> a fast midday reset between sessions.</div>
+      </div>
+      <div class="card" style="--cardc:var(--cyan)">
+        <div class="type">Sit-down nearby</div>
+        <h3>The Tuck Room / Legacy Records</h3>
+        <div class="addr">Hudson Yards / Hell's Kitchen edge</div>
+        <p>If we want a real table and a drink after a big Fanatics day, this side of town has solid options minutes away.</p>
+        <div class="why"><b>For:</b> the "we earned a sit-down" moment.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="pin" style="--tagc:var(--gold)">Pre-show</span> Hamilton · Theater District</h2>
+    <p class="subhead">Fri 7/17, Richard Rodgers on W 46th. Eat before the curtain, then Brooklyn for Tiesto.</p>
+    <div class="grid">
+      <div class="card" style="--cardc:var(--gold)">
+        <div class="type">Classic pre-theater</div>
+        <h3>Joe Allen</h3>
+        <div class="addr">326 W 46th St · Restaurant Row</div>
+        <p>The Broadway institution, steps from the theater, used to getting you fed and out before the overture. Reserve.</p>
+        <div class="why"><b>For:</b> on-time curtain, zero stress.</div>
+      </div>
+      <div class="card" style="--cardc:var(--gold)">
+        <div class="type">Fast + great</div>
+        <h3>Los Tacos No. 1</h3>
+        <div class="addr">Times Sq / near the theaters</div>
+        <p>If it's a grab-and-go night before the show and Brooklyn, this is the reliable quick hit that never disappoints.</p>
+        <div class="why"><b>For:</b> tight timing before the festival.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="pin" style="--tagc:var(--green)">Match day</span> World Cup Final · Sun 7/19</h2>
+    <p class="subhead">Watching at The Red Lion, 151 Bleecker. Village turf, and the West Village J.G. Melon is right here.</p>
+    <div class="grid">
+      <div class="card" style="--cardc:var(--green)">
+        <div class="type">The melon, again</div>
+        <h3>J.G. Melon · West Village</h3>
+        <div class="addr">Near MacDougal &amp; Bleecker · a short walk from The Red Lion</div>
+        <p>Our burger, on the other side of town, minutes from the match. Pre-game fuel or post-final victory (or heartbreak) burger.</p>
+        <div class="why"><b>For:</b> bookending the Final with the thing we love.</div>
+      </div>
+      <div class="card" style="--cardc:var(--green)">
+        <div class="type">Village classic</div>
+        <h3>Mamoun's / Joe's Pizza</h3>
+        <div class="addr">Bleecker &amp; MacDougal area</div>
+        <p>Falafel and a legendary slice, both walkable from the pub for a cheap, perfect halftime or after-match bite.</p>
+        <div class="why"><b>For:</b> quick fuel without losing the table.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="pin" style="--tagc:var(--cyan)">BrenBren's turf</span> Brooklyn</h2>
+    <p class="subhead">Bren's the local host, and Tiesto/Breakaway is out at Under the K Bridge Park (Greenpoint) Fri night. Let him pick, but here are strong ones.</p>
+    <div class="grid">
+      <div class="card" style="--cardc:var(--cyan)">
+        <div class="type">Pizza destination</div>
+        <h3>Roberta's</h3>
+        <div class="addr">Bushwick</div>
+        <p>The famous wood-fired pies, fun, loud, group energy. A Brooklyn rite of passage that fits the crew.</p>
+        <div class="why"><b>For:</b> a proper Brooklyn night with Bren.</div>
+      </div>
+      <div class="card" style="--cardc:var(--cyan)">
+        <div class="type">Near the festival</div>
+        <h3>Greenpoint eats</h3>
+        <div class="addr">Greenpoint · near Under the K Bridge Park</div>
+        <p>Grab something solid in Greenpoint before the gates. Bren knows the block, this is his call to make.</p>
+        <div class="why"><b>For:</b> fuel before Tiesto.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="rules">
+      <h2 style="font-size:18px;margin-bottom:8px"><span class="pin" style="--tagc:var(--faint)">Crew notes</span></h2>
+      <ul>
+        <li><b>J.G. Melon is walk-in only</b> at both locations. No reservations, go off-peak with three people and you're fine.</li>
+        <li><b>The birthday dinner (Sat)</b> is the one worth reserving. Tell me before/after the show and I'll book it.</li>
+        <li><b>Theater and match days are tight.</b> The picks near Hamilton and The Red Lion are chosen for speed, not lingering.</li>
+        <li><b>Brooklyn is Bren's shout.</b> He's the local, these are just backups if he wants them.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <p>Built from our own texts and where we'll each be this weekend. J.G. Melon is on here because we already love it (the melon-burger thread doesn't lie). The rest are picks matched to our locations and the way we eat: burgers, casual, celebratory. Confirm hours and reservations before we go, and tell me the birthday-dinner vibe and I'll lock it.</p>
+    <a class="home" href="index.html">← back to Foster's page</a>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var MENU = [
+    {label:"Burgers", emoji:"🍔", keys:["burger","burgers","melon","patty"], spots:[
+      {n:"J.G. Melon", a:"UES 1291 Third Ave, and West Village", note:"Our spot. The melon burger and cottage fries. Walk-in."},
+      {n:"Corner Bistro", a:"West Village", note:"Dive-bar classic, the other great NYC burger."}]},
+    {label:"Pizza", emoji:"🍕", keys:["pizza","slice","pie","pizzas"], spots:[
+      {n:"Joe's Pizza", a:"Greenwich Village, near the WC spot", note:"The perfect NY slice, minutes from The Red Lion."},
+      {n:"Roberta's", a:"Bushwick, Brooklyn", note:"Wood-fired pies, Bren's turf."},
+      {n:"Nick's Pizza", a:"Forest Hills, Queens", note:"Coal-oven, right by the Saturday stadium."}]},
+    {label:"Sushi and Japanese", emoji:"🍣", keys:["sushi","japanese","omakase","sashimi","nigiri"], spots:[
+      {n:"Sushi of Gari", a:"UES, near home base", note:"Beloved omakase close to the apartment. Reserve."},
+      {n:"Nami Nori", a:"West Village", note:"Open hand-rolls, fun and quick."}]},
+    {label:"Ramen and noodles", emoji:"🍜", keys:["ramen","noodle","noodles","udon","pho"], spots:[
+      {n:"Ippudo", a:"East Village", note:"The gateway bowl, rich tonkotsu."},
+      {n:"Momofuku Noodle Bar", a:"East Village", note:"Chang's original, pork buns a must."}]},
+    {label:"Tacos and Mexican", emoji:"🌮", keys:["taco","tacos","mexican","burrito","quesadilla"], spots:[
+      {n:"Los Tacos No. 1", a:"Chelsea Market and Times Sq", note:"Best quick tacos in the city, near the theaters."},
+      {n:"Cosme", a:"Flatiron", note:"Upscale modern Mexican if you want to sit."}]},
+    {label:"Steak", emoji:"🥩", keys:["steak","steakhouse","meat","chop"], spots:[
+      {n:"Keens Steakhouse", a:"Midtown", note:"Old-NY mutton chop, clubby and legendary."},
+      {n:"Peter Luger", a:"Williamsburg, Brooklyn", note:"The porterhouse pilgrimage."}]},
+    {label:"Brazilian steakhouse", emoji:"🇧🇷", keys:["brazilian","brazil","churrasco","churrascaria","rodizio","picanha","brazilian steak"], spots:[
+      {n:"Churrascaria Plataforma", a:"Theater District, near Hamilton", note:"Classic all-you-can-eat rodizio, endless skewers. Group heaven."},
+      {n:"Fogo de Chão", a:"Midtown", note:"Polished churrasco, reliable for a crew."},
+      {n:"Emporium Brazil", a:"Little Brazil, W 46th St", note:"Casual grill and buffet near Times Sq."},
+      {n:"Malagueta", a:"Astoria, Queens", note:"Neighborhood Brazilian on the Queens side."}]},
+    {label:"Italian", emoji:"🍝", keys:["italian","pasta","trattoria","risotto"], spots:[
+      {n:"Via Carota", a:"West Village", note:"Rustic, gorgeous, walk-in lines worth it."},
+      {n:"Trattoria Dell'Arte", a:"Midtown, near Carnegie Hall", note:"Group-friendly, near the Monday brunch zone."}]},
+    {label:"Thai", emoji:"🌶️", keys:["thai","curry thai","pad"], spots:[
+      {n:"SriPraPhai", a:"Woodside, Queens", note:"The real deal, on the way to Forest Hills."},
+      {n:"Fish Cheeks", a:"NoHo", note:"Bright Thai seafood, always a hit."}]},
+    {label:"Korean and KBBQ", emoji:"🍲", keys:["korean","kbbq","bulgogi","kimchi","kbarbecue"], spots:[
+      {n:"Cote", a:"Flatiron", note:"Michelin KBBQ, the splurge grill night."},
+      {n:"Koreatown, 32nd St", a:"Midtown", note:"A whole block of Korean, late and lively."}]},
+    {label:"BBQ", emoji:"🍖", keys:["bbq","barbecue","brisket","ribs","smoke"], spots:[
+      {n:"Hometown Bar-B-Que", a:"Red Hook, Brooklyn", note:"Texas-style, some of the best in the city."}]},
+    {label:"Seafood and oysters", emoji:"🦪", keys:["seafood","oyster","oysters","fish","lobster","clam"], spots:[
+      {n:"Grand Central Oyster Bar", a:"Midtown", note:"A NY institution under the terminal."},
+      {n:"Maison Premiere", a:"Williamsburg", note:"Oysters and absinthe, gorgeous room."}]},
+    {label:"Brunch and breakfast", emoji:"🥞", keys:["brunch","breakfast","eggs","pancake","pancakes","morning"], spots:[
+      {n:"Via Quadronno", a:"UES, near home base", note:"Tiny Milanese cafe, great start to a day."},
+      {n:"Jack's Wife Freda", a:"Soho and West Village", note:"All-day crowd-pleaser, easy group brunch."}]},
+    {label:"Bagels and deli", emoji:"🥯", keys:["bagel","bagels","deli","lox","pastrami","sandwich"], spots:[
+      {n:"Russ & Daughters", a:"Lower East Side", note:"Appetizing legend, bagel and lox done right."},
+      {n:"Katz's Delicatessen", a:"Lower East Side", note:"The pastrami on rye, a rite of passage."}]},
+    {label:"Indian", emoji:"🍛", keys:["indian","tandoori","dosa","biryani"], spots:[
+      {n:"Semma", a:"West Village", note:"Michelin-starred South Indian, book ahead."},
+      {n:"Adda", a:"Long Island City, Queens", note:"Bold and fun, near the Queens side."}]},
+    {label:"Dessert and sweets", emoji:"🍪", keys:["dessert","sweet","sweets","ice cream","cookie","cookies","cake"], spots:[
+      {n:"Levain Bakery", a:"UES and more", note:"The giant warm cookie, famous for a reason."},
+      {n:"Big Gay Ice Cream", a:"East Village", note:"Soft serve with a wink."}]},
+    {label:"Cocktails and bars", emoji:"🍸", keys:["cocktail","cocktails","bar","bars","drinks","drink","speakeasy"], spots:[
+      {n:"Attaboy", a:"Lower East Side", note:"No menu, tell them your mood. Iconic."},
+      {n:"Employees Only", a:"West Village", note:"Classic, near the WC-final turf."},
+      {n:"The Red Lion", a:"Bleecker St", note:"Our World Cup Final home base."}]},
+    {label:"Diner and late night", emoji:"🌙", keys:["diner","late","late night","24 hour","comfort"], spots:[
+      {n:"Veselka", a:"East Village", note:"24-hour Ukrainian, pierogi at 3am."}]}
+  ];
+  var CHIPS = ["Burgers","Pizza","Sushi","Ramen","Tacos","Steak","Italian","Thai","Korean","BBQ","Seafood","Brunch","Bagels","Dessert","Cocktails"];
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function findMatches(qraw){
+    var q=(qraw||"").toLowerCase().trim();
+    if(q.length<2) return [];
+    return MENU.filter(function(m){
+      if(m.label.toLowerCase().indexOf(q)>-1) return true;
+      return m.keys.some(function(k){return q.indexOf(k)>-1 || k.indexOf(q)>-1;});
+    });
+  }
+  function render(qraw){
+    var res=document.getElementById('results');
+    var matches=findMatches(qraw);
+    if(!matches.length){
+      res.innerHTML='<div class="rmiss">Haven\'t mapped <b>"'+esc(qraw)+'"</b> yet. Text Gordon and we\'ll add it to the guide.</div>';
+      return;
+    }
+    var html='';
+    matches.forEach(function(m){
+      html+='<div class="rhead">'+m.emoji+' '+esc(m.label)+'</div>';
+      m.spots.forEach(function(s){
+        html+='<div class="rcard"><h4>'+esc(s.n)+'</h4><div class="a">'+esc(s.a)+'</div><p>'+esc(s.note)+'</p></div>';
+      });
+    });
+    res.innerHTML=html;
+  }
+  var input=document.getElementById('q'), btn=document.getElementById('goBtn'), chips=document.getElementById('chips');
+  CHIPS.forEach(function(c){
+    var el=document.createElement('span'); el.className='c'; el.textContent=c;
+    el.onclick=function(){input.value=c; render(c);};
+    chips.appendChild(el);
+  });
+  btn.onclick=function(){render(input.value);};
+  input.addEventListener('keydown',function(e){if(e.key==='Enter'){render(input.value);}});
+})();
+</script>
+</body>
+</html>
