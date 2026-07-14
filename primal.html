@@ -36,7 +36,7 @@
   b{color:var(--bone)}
   a{color:var(--jade)}
   .keyart{border-radius:16px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line);margin:22px 0 8px;line-height:0}
-  .keyart svg{width:100%;height:auto;display:block}
+  .keyart svg,.keyart video,.keyart img{width:100%;height:auto;display:block}
   .capt{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.06em;color:var(--faint);text-align:center;margin-top:6px}
   .card{background:linear-gradient(180deg,var(--panel),var(--char2));border:1px solid var(--line);border-radius:16px;padding:22px 24px;box-shadow:var(--shadow)}
   .reveal-name{font-family:"Syne",sans-serif;font-weight:800;font-size:clamp(28px,6vw,54px);text-align:center;letter-spacing:.02em;margin:6px 0}
@@ -82,58 +82,12 @@
     <div class="stamp">An exploration for Fang Speare · sound into sight</div>
 
     <div class="keyart">
-      <svg viewBox="0 0 960 420" role="img" aria-label="Fang Speare key art: a lone figure with a spear against an ember sky, a fanged predator looming, in a woodblock and Primal style">
-        <defs>
-          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#ff8a3d"/><stop offset="0.42" stop-color="#e0331f"/>
-            <stop offset="0.8" stop-color="#5c1210"/><stop offset="1" stop-color="#0d0908"/>
-          </linearGradient>
-          <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
-            <stop offset="0" stop-color="#ffd98a"/><stop offset="0.6" stop-color="#ff8a3d"/><stop offset="1" stop-color="#ff6a1e" stop-opacity="0"/>
-          </radialGradient>
-        </defs>
-        <rect width="960" height="420" fill="url(#sky)"/>
-        <circle cx="330" cy="196" r="150" fill="url(#sun)" opacity="0.9"/>
-        <circle cx="330" cy="196" r="70" fill="#ffdf9a" opacity="0.85"/>
-        <!-- bass ripples -->
-        <g stroke="#9dff5c" stroke-width="2" fill="none" opacity="0.55">
-          <path d="M0 300 q60 -22 120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0"/>
-          <path d="M0 322 q60 -16 120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0" opacity="0.6"/>
-        </g>
-        <!-- distant ridge -->
-        <path d="M0 300 L120 250 L230 292 L360 236 L470 288 L600 244 L740 292 L860 250 L960 296 V420 H0Z" fill="#1a0d0b"/>
-        <!-- fanged predator silhouette, right -->
-        <g fill="#0d0706">
-          <path d="M960 420 L960 150 Q900 150 850 200 Q812 236 792 300 L960 320 Z"/>
-          <path d="M820 236 L806 300 L792 232 Z" fill="#0d0706"/>
-        </g>
-        <!-- teeth -->
-        <g fill="#ece0c8">
-          <path d="M812 250 l8 20 l7 -18z"/><path d="M828 256 l7 20 l7 -18z"/>
-          <path d="M844 258 l7 22 l7 -20z"/><path d="M860 258 l7 22 l7 -20z"/>
-        </g>
-        <!-- predator eye -->
-        <circle cx="892" cy="196" r="9" fill="#ff6a1e"/><circle cx="892" cy="196" r="4" fill="#0d0706"/>
-        <!-- foreground ground -->
-        <path d="M0 356 Q240 336 480 352 T960 356 V420 H0Z" fill="#0d0706"/>
-        <!-- lone caveman with spear, left rise -->
-        <g fill="#0d0706">
-          <ellipse cx="250" cy="352" rx="120" ry="24"/>
-          <path d="M232 356 q4 -40 16 -40 q12 0 14 40 z"/>
-          <circle cx="247" cy="308" r="12"/>
-          <path d="M247 318 q10 4 12 22" stroke="#0d0706" stroke-width="7" fill="none" stroke-linecap="round"/>
-        </g>
-        <!-- the spear (bone + vermilion tip) -->
-        <path d="M300 262 L236 372" stroke="#cbb891" stroke-width="4" stroke-linecap="round"/>
-        <path d="M300 262 l12 -6 l-4 16 l-14 4 z" fill="#e8482e"/>
-        <!-- hanko seal -->
-        <g>
-          <rect x="40" y="48" width="52" height="52" rx="5" fill="#e8482e"/>
-          <text x="66" y="86" font-family="Shippori Mincho, serif" font-size="30" fill="#0d0706" text-anchor="middle" font-weight="800">牙</text>
-        </g>
-      </svg>
+      <video autoplay muted loop playsinline preload="metadata" poster="assets/gen/primal-keyart.jpg" aria-label="Fang Speare key art film: a lone caveman with a spear faces a fanged predator under an ember sun, jade bass ripples rolling across the ground, in a woodblock and Primal style">
+        <source src="assets/gen/primal-film.mp4" type="video/mp4">
+        <img src="assets/gen/primal-keyart.jpg" alt="Fang Speare key art: a lone caveman with a spear faces a fanged predator under an ember sun, in a woodblock and Primal style">
+      </video>
     </div>
-    <div class="capt">Fang Speare key art study · Primal silhouette meets woodblock flat color and the hanko seal (牙, fang)</div>
+    <div class="capt">Fang Speare key-art film · Primal silhouette meets woodblock flat color · the ripples are the low end, the ember flare is the drop</div>
   </header>
 
   <section>

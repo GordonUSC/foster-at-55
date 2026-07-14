@@ -45,7 +45,8 @@ img{max-width:100%;display:block}
 .hero .ghost55{position:absolute;right:-3vw;top:48%;transform:translateY(-50%);font-family:"Syne",sans-serif;font-weight:800;
   font-size:min(78vh,760px);line-height:0.7;color:transparent;-webkit-text-stroke:2px rgba(255,198,90,0.14);z-index:0;pointer-events:none;user-select:none}
 .emblem{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);width:min(64vw,540px);z-index:1;opacity:0.9;pointer-events:none;
-  filter:drop-shadow(0 0 50px rgba(157,255,92,0.28))}
+  filter:drop-shadow(0 0 50px rgba(157,255,92,0.28));display:none /* stood down for the Higgsfield toad-sage heroart; remove display:none to bring the line emblem back */}
+.heroart{position:absolute;inset:0;z-index:0;background:url("assets/gen/index-hero.jpg") center 30%/cover no-repeat;opacity:0.48}
 .hero::after{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(70% 60% at 50% 46%,transparent,rgba(6,5,9,0.55) 70%,var(--bg))}
 .hero .wrap{position:relative;z-index:3;padding:112px 0 90px;text-align:center}
 .kick{font-family:"Space Mono",monospace;font-size:12px;letter-spacing:0.30em;text-transform:uppercase;color:var(--gold);opacity:0.92}
@@ -339,6 +340,7 @@ footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;color:v
 
 <!-- ===== HERO ===== -->
 <header class="hero">
+  <div class="heroart" aria-hidden="true"></div>
   <div class="ghost55">55</div>
   <svg class="emblem" viewBox="0 0 200 200" fill="none" aria-hidden="true">
     <path id="bolt" d="M104 6 L84 76 H108 L74 158 L96 98 H72 L104 6Z" fill="#9dff5c"/>
@@ -812,7 +814,9 @@ footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;color:v
     <p class="body reveal" style="color:var(--muted);margin-top:24px">Wristbands sorted. Table sorted. Trains scouted. Someone is carrying the plan so you can carry nothing. That is the birthday gift underneath the birthday gift.</p>
     <div class="reveal" style="margin-top:28px;text-align:center">
       <a href="eats.html" style="display:inline-block;font:800 15px/1 'Futura','Trebuchet MS',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#040308;background:linear-gradient(92deg,#ff5c8a,#e8b04b);padding:15px 26px;border-radius:12px;text-decoration:none;box-shadow:0 10px 30px rgba(255,92,138,.3)">🍔 Where the crew eats · the food guide →</a>
-      <div style="margin-top:10px;font-size:12.5px;color:var(--muted)">J.G. Melon and every stop, mapped to where we are each day.</div>
+      <div style="margin-top:10px;font-size:12.5px;color:var(--muted)">J.G. Melon and every stop, mapped to where we are each day. Reserve right from the page.</div>
+      <div style="margin-top:16px"><a href="itinerary.html" style="display:inline-block;font:800 15px/1 'Futura','Trebuchet MS',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#040308;background:linear-gradient(92deg,#4de0d0,#a678ff);padding:15px 26px;border-radius:12px;text-decoration:none;box-shadow:0 10px 30px rgba(166,120,255,.3)">🗺️ Everyone's itinerary · pick a name →</a></div>
+      <div style="margin-top:10px;font-size:12.5px;color:var(--muted)">Tap any person, see only their weekend, send it to them. Sound on.</div>
     </div>
   </div>
 </section>

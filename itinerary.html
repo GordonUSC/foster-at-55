@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Weekend, Yours · Foster's Birthday Itineraries</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0f0c14; --panel:#1a1520; --panel2:#221a2a; --ink:#f5eefb; --soft:#c3b6cf; --faint:#8f8299; --line:#2f2638;
+    --pink:#ff5c8a; --gold:#e8b04b; --cyan:#4de0d0; --violet:#a678ff; --green:#7ce08a; --amber:#ff9142;
+    --shadow:0 2px 5px rgba(0,0,0,.35),0 18px 44px rgba(0,0,0,.5);
+    --disp:"Syne",sans-serif; --mono:"Space Mono",monospace; --sans:"Inter",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:
+      radial-gradient(1100px 520px at 82% -10%,rgba(166,120,255,.18),transparent 60%),
+      radial-gradient(820px 460px at 6% 108%,rgba(255,92,138,.12),transparent 60%),
+      var(--bg);
+    color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;
+    padding:clamp(16px,4vw,52px)}
+  .wrap{max-width:900px;margin:0 auto}
+  .kick{font-family:var(--mono);font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);font-weight:700}
+  h1{font-family:var(--disp);font-size:clamp(30px,6.5vw,58px);line-height:.98;margin:.14em 0 .12em;letter-spacing:-.01em;font-weight:800;
+     background:linear-gradient(94deg,var(--pink),var(--gold) 55%,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{color:var(--soft);max-width:60ch;font-size:clamp(15px,2.2vw,18px)}
+  .step{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--violet);font-weight:700;margin:30px 0 10px;display:flex;align-items:center;gap:10px}
+  .step .n{background:var(--violet);color:#0f0c14;width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:800}
+  /* people picker */
+  .people{display:flex;flex-wrap:wrap;gap:10px}
+  .person{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 16px;cursor:pointer;transition:transform .12s,border-color .12s;display:flex;flex-direction:column;gap:2px;min-width:130px}
+  .person:hover{transform:translateY(-2px);border-color:var(--violet)}
+  .person.on{border-color:var(--gold);background:var(--panel2);box-shadow:0 0 0 1px var(--gold) inset}
+  .person .nm{font-family:var(--disp);font-weight:800;font-size:16px}
+  .person .tg{font-size:11.5px;color:var(--faint)}
+  /* clarity banner */
+  .clar{margin-top:18px;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px;padding:16px 20px;box-shadow:var(--shadow);display:none}
+  .clar.show{display:block}
+  .clar .who{font-family:var(--disp);font-size:22px;font-weight:800}
+  .clar .sum{color:var(--soft);font-size:14px;margin-top:2px}
+  .clar .counts{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+  .clar .cx{font-family:var(--mono);font-size:11px;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:4px 9px;color:var(--soft)}
+  /* itinerary */
+  #itin{margin-top:16px;display:none;flex-direction:column;gap:12px}
+  #itin.show{display:flex}
+  .day{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin:10px 0 2px;font-weight:700}
+  .ev{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow);border-left:4px solid var(--kc,var(--violet))}
+  .ev .top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .ev .ttl{font-family:var(--disp);font-size:19px;font-weight:800;flex:1;min-width:60%}
+  .ev .badge{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--kc);border:1px solid var(--kc);border-radius:5px;padding:2px 7px}
+  .ev .when{font-family:var(--mono);font-size:12.5px;color:var(--amber);margin-top:6px}
+  .ev .where{font-size:14px;color:var(--ink);margin-top:2px}
+  .ev .where .area{color:var(--faint)}
+  .ev .detail{font-size:13.5px;color:var(--soft);margin-top:7px}
+  .ev .transit{font-size:12.5px;color:var(--faint);margin-top:7px;border-top:1px dashed var(--line);padding-top:7px}
+  .ev .transit b{color:var(--cyan)}
+  .k-fun{--kc:var(--cyan)} .k-show{--kc:var(--gold)} .k-rave{--kc:var(--violet)}
+  .k-birthday{--kc:var(--pink)} .k-sports{--kc:var(--green)} .k-work{--kc:#7f8aa0}
+  /* actions */
+  .acts{margin-top:18px;display:none;gap:10px;flex-wrap:wrap}
+  .acts.show{display:flex}
+  .btn{border:0;border-radius:11px;padding:14px 22px;font-family:var(--disp);font-weight:800;letter-spacing:.04em;text-transform:uppercase;font-size:13px;cursor:pointer;text-decoration:none;display:inline-block}
+  .btn.send{background:linear-gradient(92deg,var(--pink),var(--gold));color:#0f0c14}
+  .btn.copy{background:var(--panel);color:var(--ink);border:1px solid var(--line)}
+  #copied{font-family:var(--mono);font-size:12px;color:var(--green);align-self:center}
+  .snd{margin-top:16px;font-family:var(--mono);font-size:11px;color:var(--faint)}
+  .snd b{color:var(--cyan)}
+  a.home{display:inline-block;margin-top:8px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);text-decoration:none}
+  footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--faint)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kick">Foster's 55th · New York · July 16 to 23</div>
+    <h1>The weekend, yours.</h1>
+    <p class="lede">Tap a name. You get exactly their weekend, only the events they are part of, laid out clear: what, when, where, and how to get there. Then send it straight to them. Sound on for the full feel.</p>
+    <div class="snd">Audio is <b>on</b> for taps and choices. <span id="sndtoggle" style="color:var(--cyan);cursor:pointer;text-decoration:underline">mute</span></div>
+  </header>
+
+  <div class="step"><span class="n">1</span> Pick whose weekend</div>
+  <div class="people" id="people"></div>
+
+  <div class="clar" id="clar">
+    <div class="who" id="clarWho"></div>
+    <div class="sum" id="clarSum"></div>
+    <div class="counts" id="clarCounts"></div>
+  </div>
+
+  <div class="step" id="step2" style="display:none"><span class="n">2</span> Their weekend, clear</div>
+  <div id="itin"></div>
+
+  <div class="acts" id="acts">
+    <a class="btn send" id="sendBtn" href="#">✉ send this itinerary</a>
+    <button class="btn copy" id="copyBtn">copy it</button>
+    <span id="copied"></span>
+  </div>
+
+  <footer>
+    Built from the real weekend plan. Each person sees only what they are part of. Times and venues are the current plan; confirm before you go.
+    <br><a class="home" href="index.html">← back to Foster's page</a>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  /* ---------- interactive audio (Web Audio, no files) ---------- */
+  var AC=null, muted=false;
+  function ac(){ if(!AC){ try{AC=new (window.AudioContext||window.webkitAudioContext)();}catch(e){} } return AC; }
+  function tone(freq,dur,type,vol,slideTo){
+    if(muted) return; var c=ac(); if(!c) return;
+    var o=c.createOscillator(), g=c.createGain();
+    o.type=type||'sine'; o.frequency.value=freq;
+    if(slideTo) o.frequency.exponentialRampToValueAtTime(slideTo, c.currentTime+dur);
+    g.gain.value=0.0001; g.gain.exponentialRampToValueAtTime(vol||0.14, c.currentTime+0.012);
+    g.gain.exponentialRampToValueAtTime(0.0001, c.currentTime+dur);
+    o.connect(g); g.connect(c.destination); o.start(); o.stop(c.currentTime+dur+0.02);
+  }
+  var SND={
+    tick:function(){ tone(520,0.06,'triangle',0.10); },
+    select:function(){ tone(330,0.10,'triangle',0.13,660); setTimeout(function(){tone(660,0.12,'sine',0.10);},60); },
+    confirm:function(){ tone(392,0.12,'sine',0.14,523); setTimeout(function(){tone(523,0.16,'sine',0.13,784);},110); },
+    open:function(){ tone(180,0.18,'sawtooth',0.06,90); }
+  };
+  document.getElementById('sndtoggle').onclick=function(){ muted=!muted; this.textContent=muted?'unmute':'mute'; if(!muted) SND.tick(); };
+
+  /* ---------- the weekend data ---------- */
+  var EV={
+    fanatics:{kind:'fun', day:'Thu-Sat Jul 16-18', ttl:'Fanatics Fest', when:'all weekend, passes good all four days', where:'Javits Center', area:'Midtown West', detail:'Cards, collectibles, and controlled chaos. Come and go around everything else.', transit:'7 train to 34 St-Hudson Yards, short walk'},
+    hamilton:{kind:'show', day:'Fri Jul 17', ttl:'Hamilton on Broadway', when:'Friday, before the festival', where:'Richard Rodgers Theatre, W 46th', area:'Theater District', detail:"Foster's tickets. Eat first at Joe Allen on Restaurant Row so you make curtain.", transit:'walk or a short cab from Midtown'},
+    breakaway:{kind:'rave', day:'Fri Jul 17', ttl:'Breakaway ft. Tiesto', when:'6pm to midnight', where:'Under the K Bridge Park', area:'Greenpoint, Brooklyn', detail:"Bren's borough. The cathedral moment: Adagio for Strings. Cabs beat trains after the set.", transit:'cab to Greenpoint, it is worth it'},
+    zeds:{kind:'birthday', day:'SATURDAY JUL 18 · the birthday', ttl:'Zeds Dead', when:'doors 5pm, show 6pm, all ages', where:'Forest Hills Stadium', area:'Queens', detail:'Fifty-five, live, on the grass under the lights. The whole night is yours.', transit:'LIRR ~14 min from Manhattan to Forest Hills, off at Station Square, 5 min walk'},
+    wc:{kind:'sports', day:'Sun Jul 19', ttl:'World Cup Final', when:'kickoff 3pm ET, arrive by 10am for the table', where:'The Red Lion, 151 Bleecker St', area:'Greenwich Village', detail:'Walk-ins only, no reservations, so get there early. A real soccer pub for the final.', transit:'1 train to Christopher St, or a cab downtown'},
+    bagel:{kind:'fun', day:'Sat Jul 18 (flexible)', ttl:'Bagel meetup with Ian', when:'morning, before the show', where:'a good bagel spot, TBD', area:'downtown', detail:'Ian is around for the Zeds Dead show and wants a bagel hang. Easy morning move.', transit:'wherever is closest to home base'},
+    brunch:{kind:'work', day:'Mon Jul 20', ttl:'GGP Scholars Brunch', when:'around 2pm', where:'venue confirming', area:'Midtown', detail:'GGP and the NYC community. Warm room, good people.', transit:'Midtown, easy'},
+    g4c:{kind:'work', day:'Tue-Wed Jul 21-22', ttl:'Games for Change Festival', when:'daytime both days', where:'The Glasshouse', area:'Chelsea', detail:'Gordon and Eric run the Ignite Impact workshop. Theme: Reimagining Play.', transit:'Chelsea, walkable from Midtown'},
+    whoopi:{kind:'show', day:'Wed Jul 22 eve', ttl:'The Whoopi Monologues', when:'evening', where:'Lincoln Center, Mitzi E. Newhouse', area:'Upper West Side', detail:'An ensemble piece. Dinner before, courtesy of the Bains.', transit:'1 train to 66 St-Lincoln Center'},
+    james:{kind:'work', day:'Fri Jul 17', ttl:'Sync with James (Microsoft)', when:'11:00am ET', where:'call', area:'', detail:'Quick work call before the fun starts.', transit:''},
+    ggpcall:{kind:'work', day:'Fri Jul 17', ttl:'GGP action call (Sinjin, Alex, Eric)', when:'3:00pm ET', where:'call', area:'', detail:'CYSTEM and scholars planning.', transit:''}
+  };
+
+  var PEOPLE=[
+    {nm:'Foster', tg:'the birthday king', email:'foster@ghostvoltagerecords.com',
+      sum:'Your weekend, pure celebration. Five nights, one city, all of it aimed at Saturday.',
+      events:['fanatics','hamilton','breakaway','zeds','wc']},
+    {nm:'BrenBren', tg:'Brooklyn host + family', email:'brennanjmurphy1120@gmail.com',
+      sum:'You are the local host. The fun runs through you, especially Breakaway in your borough.',
+      events:['fanatics','hamilton','breakaway','zeds','wc']},
+    {nm:'Gordon', tg:'host, juggling worlds', email:'gbellamy@gmail.com',
+      sum:'Everything, plus the work threads woven in. The most loaded week of the five circles.',
+      events:['fanatics','james','hamilton','ggpcall','breakaway','zeds','wc','brunch','g4c','whoopi']},
+    {nm:'Abdul Khan', tg:"Foster's friend, in town", email:'',
+      sum:'In New York for the celebration. The big fun days with the crew.',
+      events:['fanatics','zeds','wc']},
+    {nm:'Ian Blount', tg:'at the Zeds Dead show', email:'',
+      sum:'Around for Saturday, wants a bagel hang first. Based in SoHo.',
+      events:['bagel','zeds']},
+    {nm:'Mabel', tg:'GGP, hosting the brunch', email:'mabel.chung@gmail.com',
+      sum:'Running the Monday Scholars brunch. That is your headline moment this week.',
+      events:['brunch']}
+  ];
+
+  var order=['fanatics','james','hamilton','ggpcall','breakaway','bagel','zeds','wc','brunch','g4c','whoopi'];
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+  var peopleEl=document.getElementById('people');
+  var current=null;
+  PEOPLE.forEach(function(p){
+    var el=document.createElement('div'); el.className='person';
+    el.innerHTML='<span class="nm">'+esc(p.nm)+'</span><span class="tg">'+esc(p.tg)+'</span>';
+    el.onmouseenter=function(){SND.tick();};
+    el.onclick=function(){ SND.select(); choose(p, el); };
+    peopleEl.appendChild(el);
+  });
+
+  function choose(p, el){
+    current=p;
+    document.querySelectorAll('.person').forEach(function(n){n.classList.remove('on');});
+    el.classList.add('on');
+    // clarity banner
+    document.getElementById('clarWho').textContent=p.nm+"'s weekend";
+    document.getElementById('clarSum').textContent=p.sum;
+    var evs=p.events.map(function(k){return EV[k];});
+    var funCount=evs.filter(function(e){return e.kind!=='work';}).length;
+    var workCount=evs.filter(function(e){return e.kind==='work';}).length;
+    var cc=document.getElementById('clarCounts'); cc.innerHTML='';
+    [[evs.length,'events'],[funCount,'for fun'],[workCount,'work']].forEach(function(pair){
+      if(pair[0]>0){var s=document.createElement('span');s.className='cx';s.textContent=pair[0]+' '+pair[1];cc.appendChild(s);}
+    });
+    document.getElementById('clar').classList.add('show');
+    document.getElementById('step2').style.display='flex';
+    // build itinerary in weekend order
+    var itin=document.getElementById('itin'); itin.innerHTML='';
+    var lastDay='';
+    order.forEach(function(k){
+      if(p.events.indexOf(k)<0) return;
+      var e=EV[k];
+      if(e.day!==lastDay){ var d=document.createElement('div'); d.className='day'; d.textContent=e.day; itin.appendChild(d); lastDay=e.day; }
+      var card=document.createElement('div'); card.className='ev k-'+e.kind;
+      card.innerHTML='<div class="top"><span class="ttl">'+esc(e.ttl)+'</span><span class="badge">'+e.kind+'</span></div>'+
+        '<div class="when">'+esc(e.when)+'</div>'+
+        (e.where?'<div class="where">'+esc(e.where)+(e.area?' <span class="area">· '+esc(e.area)+'</span>':'')+'</div>':'')+
+        '<div class="detail">'+esc(e.detail)+'</div>'+
+        (e.transit?'<div class="transit"><b>Getting there:</b> '+esc(e.transit)+'</div>':'');
+      itin.appendChild(card);
+    });
+    itin.classList.add('show');
+    document.getElementById('acts').classList.add('show');
+    setTimeout(function(){ document.getElementById('clar').scrollIntoView({behavior:'smooth',block:'nearest'}); },80);
+  }
+
+  function plainText(p){
+    var lines=[p.nm+"'s weekend · Foster's 55th, NYC, July 16 to 23", '', p.sum, ''];
+    var lastDay='';
+    order.forEach(function(k){
+      if(p.events.indexOf(k)<0) return; var e=EV[k];
+      if(e.day!==lastDay){ lines.push('· '+e.day); lastDay=e.day; }
+      lines.push(e.ttl+'  ('+e.when+')');
+      if(e.where) lines.push('   '+e.where+(e.area?', '+e.area:''));
+      lines.push('   '+e.detail);
+      if(e.transit) lines.push('   Getting there: '+e.transit);
+      lines.push('');
+    });
+    return lines.join('\n');
+  }
+
+  document.getElementById('sendBtn').addEventListener('click',function(ev){
+    if(!current) return; SND.confirm();
+    var subj="Your weekend at Foster's 55th (NYC, Jul 16-23)";
+    var body=plainText(current)+'\nSee the full site: https://gordonusc.github.io/foster-at-55/\n\nLYMI,\nGordon';
+    var to=current.email||'';
+    this.href='mailto:'+encodeURIComponent(to)+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
+    // let the mailto proceed
+  });
+  document.getElementById('copyBtn').onclick=function(){
+    if(!current) return; SND.confirm();
+    var t=plainText(current);
+    if(navigator.clipboard){ navigator.clipboard.writeText(t).then(function(){document.getElementById('copied').textContent='copied ✓';}); }
+    else { document.getElementById('copied').textContent='select all in the itinerary above'; }
+  };
+})();
+</script>
+</body>
+</html>

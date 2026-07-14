@@ -25,6 +25,9 @@
     background:linear-gradient(92deg,var(--pink),var(--gold) 55%,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
   .lede{color:var(--soft);max-width:60ch;font-size:clamp(15px,2.2vw,18px)}
   .stamp{margin-top:12px;font-family:var(--disp);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+  .heroimg{border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);margin:20px 0 0;line-height:0}
+  .heroimg img{width:100%;height:auto;display:block}
+  .heroimg-capt{font-family:var(--disp);font-size:11px;letter-spacing:.08em;color:var(--faint);text-align:center;margin-top:6px}
   section{margin:40px 0}
   h2{font-family:var(--disp);font-size:clamp(19px,3vw,26px);margin:.1em 0 .1em;font-weight:800;display:flex;align-items:center;gap:12px}
   h2 .pin{font-size:12px;font-family:var(--disp);letter-spacing:.1em;text-transform:uppercase;color:var(--bg);background:var(--tagc,var(--gold));padding:4px 9px;border-radius:6px;font-weight:800;white-space:nowrap}
@@ -80,6 +83,8 @@
     <h1>Where the crew eats.</h1>
     <p class="lede">A pocket food guide for the three of us, built around where we actually are each day. Home base on the Upper East Side, birthday night in Queens, the Final in the Village. And yes, the melon burger is the crown.</p>
     <div class="stamp">For Gordon, Foster & BrenBren · walk-in friendly, group-sized</div>
+    <div class="heroimg"><img src="assets/gen/eats-hero.jpg" alt="Painted illustration of a char-grilled cheeseburger with cottage fries on a checkered tablecloth, the J.G. Melon order"></div>
+    <div class="heroimg-capt">the crown, as painted · char burger + cottage fries, Melon style</div>
   </header>
 
   <section>
@@ -121,6 +126,48 @@
       </div>
       <div class="chips" id="chips"></div>
       <div id="results"></div>
+    </div>
+  </section>
+
+  <style>
+    .resv{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--pink);border-radius:16px;padding:20px 22px;box-shadow:var(--shadow)}
+    .resv .fields{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px;margin-top:6px}
+    @media(max-width:640px){.resv .fields{grid-template-columns:1fr 1fr}}
+    .resv label{display:flex;flex-direction:column;gap:4px;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);font-weight:700}
+    .resv select,.resv input{background:#0e0b12;border:1px solid var(--line);border-radius:9px;padding:11px 12px;color:var(--ink);font-size:14.5px;font-family:inherit}
+    .resv .other{grid-column:1/-1}
+    .resv .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .resv .go{border:0;border-radius:10px;padding:13px 20px;font-weight:800;font-family:var(--disp);letter-spacing:.05em;text-transform:uppercase;cursor:pointer;font-size:13px}
+    .resv .book{background:linear-gradient(92deg,var(--gold),#ff9142);color:#120f14}
+    .resv .darby{background:linear-gradient(92deg,var(--cyan),var(--violet));color:#120f14}
+    #rmsg{margin-top:12px;font-size:13.5px;color:var(--soft)}
+  </style>
+  <section>
+    <h2><span class="pin" style="--tagc:var(--pink)">Reservations desk</span> Lock a table</h2>
+    <p class="subhead">Pick a spot, a night, a headcount. Open the booking yourself, or hand it to Darby and it lands in Gordon's inbox to lock for the crew.</p>
+    <div class="resv">
+      <div class="fields">
+        <label>Spot
+          <select id="rspot"></select>
+        </label>
+        <label>Party
+          <input id="rparty" type="number" value="3" min="1" max="20">
+        </label>
+        <label>Time
+          <input id="rtime" type="text" placeholder="e.g. 8pm">
+        </label>
+        <label class="other">Or type any place (overrides the dropdown)
+          <input id="rother" type="text" placeholder="somewhere not on the list">
+        </label>
+        <label class="other">Date
+          <input id="rdate" type="date">
+        </label>
+      </div>
+      <div class="row">
+        <button class="go book" id="rbook">find a table ↗</button>
+        <button class="go darby" id="rdarby">have Darby lock it</button>
+      </div>
+      <div id="rmsg"></div>
     </div>
   </section>
 
@@ -399,7 +446,7 @@
     matches.forEach(function(m){
       html+='<div class="rhead">'+m.emoji+' '+esc(m.label)+'</div>';
       m.spots.forEach(function(s){
-        html+='<div class="rcard"><h4>'+esc(s.n)+'</h4><div class="a">'+esc(s.a)+'</div><p>'+esc(s.note)+'</p></div>';
+        html+='<div class="rcard"><h4>'+esc(s.n)+'</h4><div class="a">'+esc(s.a)+'</div><p>'+esc(s.note)+'</p><a href="https://www.opentable.com/s?term='+encodeURIComponent(s.n)+'" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;font-size:12px;color:var(--gold);font-weight:700;text-decoration:none">book a table ↗</a></div>';
       });
     });
     res.innerHTML=html;
@@ -412,6 +459,30 @@
   });
   btn.onclick=function(){render(input.value);};
   input.addEventListener('keydown',function(e){if(e.key==='Enter'){render(input.value);}});
+})();
+</script>
+<script>
+(function(){
+  // reservable sit-down spots (walk-in places like J.G. Melon, pizza, tacos left off on purpose)
+  var RSPOTS=["Churrascaria Plataforma (Brazilian)","Fogo de Chão (Brazilian)","Danny Brown Wine Bar & Kitchen (Forest Hills)","Via Carota (Italian)","The Penrose (UES)","Sushi of Gari (UES)","Keens Steakhouse (Midtown)","Trattoria Dell'Arte (Midtown)","Semma (Indian)","Cote (KBBQ)","Grand Central Oyster Bar","Jones Wood Foundry (UES)"];
+  var sel=document.getElementById('rspot');
+  RSPOTS.forEach(function(s){var o=document.createElement('option');o.value=s;o.textContent=s;sel.appendChild(o);});
+  function bare(s){return s.replace(/\s*\(.*?\)\s*/g,'').trim();}
+  function chosen(){var o=document.getElementById('rother').value.trim();return o||sel.value;}
+  function msg(t){document.getElementById('rmsg').textContent=t;}
+  document.getElementById('rbook').onclick=function(){
+    var s=chosen(); if(!s){msg('Pick a spot or type one first.');return;}
+    window.open('https://www.opentable.com/s?term='+encodeURIComponent(bare(s)+' New York'),'_blank','noopener');
+    msg('Opening OpenTable for '+bare(s)+'. If it is walk-in only, just show up.');
+  };
+  document.getElementById('rdarby').onclick=function(){
+    var s=chosen(); if(!s){msg('Pick a spot or type one first.');return;}
+    var d=document.getElementById('rdate').value, p=document.getElementById('rparty').value, t=document.getElementById('rtime').value;
+    var subj='Reservation request: '+bare(s);
+    var body='Darby, please lock a table for us.\n\nSpot: '+bare(s)+'\nParty: '+(p||'3')+'\nDate: '+(d||'(let us know what is open)')+'\nTime: '+(t||'flexible')+'\n\nThank you!\nFoster';
+    window.location.href='mailto:gbellamy@gmail.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
+    msg('Opening an email to Gordon with the details. Hit send and Darby will book it.');
+  };
 })();
 </script>
 </body>
