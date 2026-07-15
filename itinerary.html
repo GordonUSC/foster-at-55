@@ -20,7 +20,7 @@
       var(--bg);
     color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;
     padding:clamp(16px,4vw,52px)}
-  .wrap{max-width:900px;margin:0 auto}
+  .wrap{max-width:900px;margin:0 auto;position:relative;z-index:1}
   .kick{font-family:var(--mono);font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);font-weight:700}
   h1{font-family:var(--disp);font-size:clamp(30px,6.5vw,58px);line-height:.98;margin:.14em 0 .12em;letter-spacing:-.01em;font-weight:800;
      background:linear-gradient(94deg,var(--pink),var(--gold) 55%,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -31,6 +31,7 @@
   .people{display:flex;flex-wrap:wrap;gap:10px}
   .person{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 16px;cursor:pointer;transition:transform .12s,border-color .12s;display:flex;flex-direction:column;gap:2px;min-width:130px}
   .person:hover{transform:translateY(-2px);border-color:var(--violet)}
+  .person:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
   .person.on{border-color:var(--gold);background:var(--panel2);box-shadow:0 0 0 1px var(--gold) inset}
   .person .nm{font-family:var(--disp);font-weight:800;font-size:16px}
   .person .tg{font-size:11.5px;color:var(--faint)}
@@ -94,9 +95,22 @@
   body.dropping .wrap{animation:dropshake .5s}
   @keyframes dropshake{0%,100%{transform:none}25%{transform:translateY(3px)}55%{transform:translateY(-2px)}80%{transform:translateY(1px)}}
   @media (prefers-reduced-motion:reduce){body.dropping .wrap{animation:none}body.dropping .dropveil{animation:none}}
+  /* sakura drift (house style, matches index/eats/primal) */
+  .petals{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+  .petals i{position:absolute;top:-6%;width:11px;height:9px;background:#f7a8b8;border-radius:62% 4% 62% 4%;opacity:.5;animation:petalfall linear infinite}
+  .petals i:nth-child(1){left:6%;animation-duration:14s;animation-delay:0s;background:#ffc9d4}
+  .petals i:nth-child(2){left:20%;animation-duration:17s;animation-delay:3s;width:9px;height:7px}
+  .petals i:nth-child(3){left:34%;animation-duration:12s;animation-delay:6s;background:#ffd9e0}
+  .petals i:nth-child(4){left:48%;animation-duration:19s;animation-delay:1.5s;width:8px;height:7px;opacity:.38}
+  .petals i:nth-child(5){left:61%;animation-duration:15s;animation-delay:8s}
+  .petals i:nth-child(6){left:73%;animation-duration:13s;animation-delay:4.5s;background:#ffc9d4;width:13px;height:10px}
+  .petals i:nth-child(7){left:86%;animation-duration:18s;animation-delay:2s;background:#ffd9e0;opacity:.42}
+  @keyframes petalfall{0%{transform:translate3d(0,-6vh,0) rotate(0deg)}100%{transform:translate3d(-15vw,112vh,0) rotate(560deg)}}
+  @media (prefers-reduced-motion:reduce){.petals{display:none}}
 </style>
 </head>
 <body>
+<div class="petals" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
 <div class="wrap">
 
   <header>
@@ -111,7 +125,7 @@
   <div class="step"><span class="n">1</span> Pick whose weekend</div>
   <div class="people" id="people"></div>
 
-  <div class="clar" id="clar">
+  <div class="clar" id="clar" role="status" aria-live="polite">
     <div class="who" id="clarWho"></div>
     <div class="sum" id="clarSum"></div>
     <div class="counts" id="clarCounts"></div>
@@ -162,13 +176,13 @@
 
   /* ---------- the weekend data ---------- */
   var EV={
-    fanatics:{kind:'fun', day:'Thu-Sat Jul 16-18', ttl:'Fanatics Fest', when:'all weekend, passes good all four days', where:'Javits Center', area:'Midtown West', detail:'Cards, collectibles, and controlled chaos. Come and go around everything else.', transit:'7 train to 34 St-Hudson Yards, short walk'},
+    fanatics:{kind:'fun', day:'Thu-Sun Jul 16-19', ttl:'Fanatics Fest', when:'floor open all four days, your pass is good every one of them', where:'Javits Center', area:'Midtown West', detail:'Cards, collectibles, and controlled chaos, worn in Knicks orange and blue. Come and go around everything else. Floor hours: Thu 1 to 8, Fri and Sat 10 to 7, Sun 10 to 5.', transit:'7 train to 34 St-Hudson Yards, short walk'},
     hamilton:{kind:'show', day:'Thu Jul 16', ttl:'Hamilton on Broadway', when:'7:00pm curtain, about 2h45m', where:'Richard Rodgers Theatre, W 46th', area:'Theater District', detail:"Foster's tickets. Tacos first at Los Tacos No. 1 on W 43rd, three blocks from the theater, then curtain. Out around 9:45.", transit:'walk or a short cab from Midtown'},
-    breakaway:{kind:'rave', day:'Fri Jul 17', ttl:'Breakaway ft. Tiesto', when:'6pm to midnight', where:'Under the K Bridge Park', area:'Greenpoint, Brooklyn', detail:"Bren's borough. The cathedral moment: Adagio for Strings. Cabs beat trains after the set.", transit:'cab to Greenpoint, it is worth it'},
+    breakaway:{kind:'rave', day:'Fri Jul 17', ttl:'Breakaway ft. Tiesto (extended set)', when:'doors 6pm · Tiesto extended 10pm to midnight', where:'Under the K Bridge Park', area:'Greenpoint, Brooklyn', detail:"Bren's borough, presented by Celsius. Updated running order on the main stage: Daniel Lerman 6, DJ Mandy 6:45, Lilly Palmer 7:50, D.O.D 8:55, then Tiesto closes with a two-hour extended set 10 to 12. The cathedral moment: Adagio for Strings. Be at the main stage by 9:45. Cabs beat trains after the set.", transit:'cab to Greenpoint, it is worth it'},
     zeds:{kind:'birthday', day:'SATURDAY JUL 18 · the birthday', ttl:'Zeds Dead · Journey of a Lifetime', when:'doors 5pm, show 6pm · sound off 10pm sharp (stadium curfew)', where:'Forest Hills Stadium', area:'Queens', detail:'Fifty-five, live, on the grass under the lights. ALLEYCVT and friends open, Zeds Dead close it out, and the 10pm curfew means the night still has a second act back in the city.', transit:'LIRR ~14 min from Manhattan to Forest Hills, off at Station Square, 5 min walk'},
     wc:{kind:'sports', day:'Sun Jul 19', ttl:'World Cup Final', when:'kickoff 3pm ET, table by 1:30', where:'Brickyard Craft Kitchen & Bar, 23 Park Place', area:'Tribeca / FiDi', detail:'Our reserved table. 40+ screens, 40 taps, brick-oven pizza, the Brickyard Burger. Eat where we watch.', transit:'2/3 to Park Place, A/C to Chambers St, or R/W to City Hall'},
     knicks:{kind:'birthday', day:'SATURDAY JUL 18 · the birthday', ttl:'Knicks photo ops · Coach Mike Brown + Landry Shamet', when:'1:10pm group, then 2:20pm group · arrive 15-30 early', where:'Photo Op & Autograph Zone, 1st floor, Javits Center', area:'Midtown West', detail:'Reserved and paid. The championship head coach at 1, the sharpshooter at 2. Up to 4 of us in each shot, 2 prints + a digital copy per op. Gordon checks in with ID (name must match the order exactly).', transit:'7 to 34 St-Hudson Yards, or walk from Penn/Moynihan'},
-    predinner:{kind:'birthday', day:'SATURDAY JUL 18 · the birthday', ttl:'Pre-show birthday dinner', when:'3:30pm seating, out by 4:45', where:'Agora Taverna, 70-09 Austin St', area:'Forest Hills, 5 min from the gates', detail:'The locked table before Zeds Dead, timed off the photo ops: LIRR from Moynihan after the 2:20 shot lands us with time to spare. Concert Saturday means the strip is slammed, so a booked table is the only calm one.', transit:'LIRR to Forest Hills, Station Square exit, short walk up Austin St'},
+    predinner:{kind:'birthday', day:'SATURDAY JUL 18 · the birthday', ttl:'Pre-show birthday dinner', when:'3:30pm seating, out by 4:45', where:'Agora Taverna, 70-09 Austin St', area:'Forest Hills, 5 min from the gates', detail:'The locked table before Zeds Dead, timed off the photo ops: LIRR from Moynihan after the 2:20 shot lands us with time to spare. Concert Saturday means the strip is slammed, so a booked table is the calm one.', transit:'LIRR to Forest Hills, Station Square exit, short walk up Austin St'},
     bagel:{kind:'fun', day:'Sat Jul 18 (flexible)', ttl:'Bagel meetup with Ian', when:'morning, before the show', where:'a good bagel spot, TBD', area:'downtown', detail:'Ian is around for the Zeds Dead show and wants a bagel hang. Easy morning move.', transit:'wherever is closest to home base'},
     brunch:{kind:'work', day:'Mon Jul 20', ttl:'GGP Scholars Brunch', when:'around 2pm', where:'venue confirming', area:'Midtown', detail:'GGP and the NYC community. Warm room, good people.', transit:'Midtown, easy'},
     g4c:{kind:'work', day:'Tue-Wed Jul 21-22', ttl:'Games for Change Festival', when:'daytime both days', where:'The Glasshouse', area:'Chelsea', detail:'Gordon and Eric run the Ignite Impact workshop. Theme: Reimagining Play.', transit:'Chelsea, walkable from Midtown'},
@@ -211,16 +225,19 @@
   var current=null;
   PEOPLE.forEach(function(p){
     var el=document.createElement('div'); el.className='person';
+    el.setAttribute('role','button'); el.setAttribute('tabindex','0'); el.setAttribute('aria-pressed','false');
+    el.setAttribute('aria-label',p.nm+', '+p.tg+'. See their weekend.');
     el.innerHTML='<span class="nm">'+esc(p.nm)+'</span><span class="tg">'+esc(p.tg)+'</span>';
     el.onmouseenter=function(){SND.tick();};
     el.onclick=function(){ SND.select(); choose(p, el); };
+    el.onkeydown=function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); SND.select(); choose(p, el); } };
     peopleEl.appendChild(el);
   });
 
   function choose(p, el){
     current=p;
-    document.querySelectorAll('.person').forEach(function(n){n.classList.remove('on');});
-    el.classList.add('on');
+    document.querySelectorAll('.person').forEach(function(n){n.classList.remove('on');n.setAttribute('aria-pressed','false');});
+    el.classList.add('on'); el.setAttribute('aria-pressed','true');
     // clarity banner
     document.getElementById('clarWho').textContent=p.nm+"'s weekend";
     document.getElementById('clarSum').textContent=p.sum;

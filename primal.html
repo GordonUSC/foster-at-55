@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fang Speare · Primal · the visual identity</title>
+<meta name="description" content="Fang Speare's visual identity for Foster Birch at 55. The name traces from Jiraiya the toad sage and Kunisada's woodblocks to Genndy Tartakovsky's Primal, rendered in ember and blood.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Shippori+Mincho:wght@500;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -22,7 +23,27 @@
       var(--char);
     color:var(--ink);font-family:"Inter",system-ui,sans-serif;font-size:16px;line-height:1.6;
     -webkit-font-smoothing:antialiased;padding:clamp(16px,4vw,56px)}
-  .wrap{max-width:960px;margin:0 auto}
+  .wrap{max-width:960px;margin:0 auto;position:relative;z-index:1}
+  /* sakura drift (house cohesion) */
+  .petals{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+  .petals i{position:absolute;top:-6%;width:11px;height:9px;background:#f7a8b8;border-radius:62% 4% 62% 4%;opacity:.42;animation:petalfall linear infinite}
+  .petals i:nth-child(1){left:7%;animation-duration:16s;animation-delay:0s;background:#ffc9d4}
+  .petals i:nth-child(2){left:22%;animation-duration:19s;animation-delay:3s;width:9px;height:7px}
+  .petals i:nth-child(3){left:38%;animation-duration:14s;animation-delay:6s;background:#ffd9e0}
+  .petals i:nth-child(4){left:53%;animation-duration:21s;animation-delay:1.5s;width:8px;height:7px;opacity:.3}
+  .petals i:nth-child(5){left:67%;animation-duration:17s;animation-delay:8s}
+  .petals i:nth-child(6){left:81%;animation-duration:15s;animation-delay:4.5s;background:#ffc9d4;width:12px;height:10px}
+  .petals i:nth-child(7){left:93%;animation-duration:18s;animation-delay:2s;background:#ffd9e0;opacity:.36}
+  @keyframes petalfall{0%{transform:translate3d(0,-6vh,0) rotate(0deg)}100%{transform:translate3d(-14vw,112vh,0) rotate(540deg)}}
+  @media (prefers-reduced-motion:reduce){.petals{display:none}}
+  /* film pause control (a11y: pause mechanism for autoplaying motion) */
+  .filmwrap{position:relative}
+  .filmtoggle{position:absolute;right:10px;bottom:10px;z-index:3;width:36px;height:36px;border-radius:50%;
+    border:1px solid rgba(236,224,200,.38);background:rgba(13,9,8,.62);color:var(--bone);
+    font-family:"Space Mono",monospace;font-size:12px;line-height:1;cursor:pointer;display:grid;place-items:center;
+    -webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);transition:background .2s}
+  .filmtoggle:hover{background:rgba(13,9,8,.85)}
+  .filmtoggle:focus-visible{outline:2px solid var(--ember);outline-offset:2px}
   .kick{font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--ember2);font-weight:700}
   h1{font-family:"Syne",sans-serif;font-size:clamp(34px,8vw,74px);line-height:.94;margin:.14em 0 .1em;letter-spacing:-.02em;font-weight:800;
      background:linear-gradient(96deg,var(--ember),var(--blood2) 50%,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -95,6 +116,7 @@
 </style>
 </head>
 <body>
+<div class="petals" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
 <div class="wrap">
 
   <header>
@@ -103,11 +125,12 @@
     <p class="lede">You said Fang Speare's soundscape relates to Primal. You were more right than you knew. Genndy Tartakovsky's Primal has two heroes, a caveman named Spear and a dinosaur named Fang, and it speaks without a single word. Here is how deep that runs, into your name, and into how Fang Speare could look.</p>
     <div class="stamp">An exploration for Fang Speare · sound into sight</div>
 
-    <div class="keyart">
-      <video autoplay muted loop playsinline preload="metadata" poster="assets/gen/primal-keyart2.jpg" aria-label="Fang Speare key art film: a laughing caveman rides a friendly fanged tyrannosaur past Mount Fuji, a paper lantern swinging from his spear, sakura petals in the wind, in a whimsical woodblock style">
+    <div class="keyart filmwrap">
+      <video id="herofilm" autoplay muted loop playsinline preload="metadata" poster="assets/gen/primal-keyart2.jpg" aria-label="Fang Speare key art film: a laughing caveman rides a friendly fanged tyrannosaur past Mount Fuji, a paper lantern swinging from his spear, sakura petals in the wind, in a whimsical woodblock style. The film is silent.">
         <source src="assets/gen/primal-film2.mp4" type="video/mp4">
         <img src="assets/gen/primal-keyart2.jpg" alt="Fang Speare key art: a laughing caveman rides a friendly fanged tyrannosaur past Mount Fuji, a paper lantern hanging from his spear">
       </video>
+      <button class="filmtoggle" id="filmtoggle" type="button" aria-label="pause the film" aria-pressed="false">&#10073;&#10073;</button>
     </div>
     <div class="capt">Fang Speare key-art film · Fang and Spear ride together, the way the show always meant it · woodblock joy, lantern lit</div>
   </header>
@@ -123,7 +146,18 @@
   </section>
 
   <section>
-    <div class="eyebrow">02 · The soundscape · your instinct, confirmed</div>
+    <div class="eyebrow">02 · The deeper root · Young Thunder</div>
+    <h2>Before Spear and Fang, there was the toad sage.</h2>
+    <p>Long before Primal, you rode as <b>Young Thunder</b>. That was never just a handle. Young Thunder is the plain reading of <b>JIRAIYA</b>, the toad riding sage of Japanese folklore. Jiraiya learns his magic from a mountain hermit, summons a colossal toad, and rides it into battle. His name carries the sense of young thunder. Your first alias was a sage on the back of a friendly beast. Your name now is a caveman on the back of a friendly beast. You have been telling the same story your whole life.</p>
+    <div class="two">
+      <div class="mini"><div class="h">The bloodline</div><p>Liu Hai and the three legged money toad in China, to the immortal Gama Sennin, to Jiraiya, to Naruto's Toad Sage. One unbroken line of toad riding sages, and you are standing in the middle of it.</p></div>
+      <div class="mini"><div class="h">Kunisada, 1852</div><p>Utagawa Kunisada, the ukiyo-e master whose prints hang on your wall, personally illustrated Jiraiya in 1852. The exact artist you collect drew the exact sage your first name was drawn from.</p></div>
+    </div>
+    <div class="pull" style="border-color:var(--gold)">The woodblock, the toad sage, the thunder, and Fang Speare are one continuous line. You did not pick this world. You were born into the middle of it, and you kept <em>riding</em>.</div>
+  </section>
+
+  <section>
+    <div class="eyebrow">03 · The soundscape · your instinct, confirmed</div>
     <h2>Wordless. All weight. Already bass music.</h2>
     <p>Here is why your ear was right to connect them. Primal has <b>no dialogue</b>. Spear and Fang speak only in roars and breath. The whole story is carried by Tyler Bates' score, which Tartakovsky calls the <b>voice of emotion</b>, and which he builds by literally <b>beatboxing the sound design himself</b> in the spotting sessions before a note is written.</p>
     <div class="two">
@@ -136,7 +170,7 @@
   </section>
 
   <section>
-    <div class="eyebrow">03 · The synthesis · the answer to your question</div>
+    <div class="eyebrow">04 · The synthesis · the answer to your question</div>
     <h2>Two traditions, one visual language.</h2>
     <p>You asked how the sound could shape the way Fang Speare <b>looks</b>. The answer is that Primal and the woodblocks already on your wall are speaking the same visual grammar, and Fang Speare lives exactly where they meet.</p>
     <div class="two">
@@ -147,7 +181,7 @@
   </section>
 
   <section>
-    <div class="eyebrow">04 · The proposed visual system</div>
+    <div class="eyebrow">05 · The proposed visual system</div>
     <h2>How Fang Speare could look.</h2>
 
     <div class="fam">Palette · the two families meet</div>
@@ -199,6 +233,17 @@
   </section>
 
   <section>
+    <div class="eyebrow">06 · The reinvention · fifty-five, and just getting loud</div>
+    <h2>You did not inherit the myth. You are still writing it.</h2>
+    <p>Here is the part no lineage can do for you. At <b>fifty-five</b>, you are teaching yourself bass music production from the ground up. You started a label, <b>Ghost Voltage Records</b>, a name that already carries the whole identity above: the ghost that speaks without words, the voltage that breaks as the drop. And it is not just a plan. There is already a track pressed into the world, <b>Fang Speare, Poe Beat</b>, the Lars remix, a collab with MC Lars. The sage is not a costume you found. It is a craft you chose, in real time, on purpose.</p>
+    <div class="two">
+      <div class="mini"><div class="h">The mentor</div><p><b>Ace Aura</b> is showing you the way in, so you are learning this the honest way, from someone who has actually walked it. You are not doing this alone.</p></div>
+      <div class="mini"><div class="h">The study list</div><p>Boogie T, Mersiv, Tape B, Peekaboo, Whyte Fang, Level Up. You study the heavy hitters the way you read the presidents in order, one after another, all the way through.</p></div>
+    </div>
+    <p>Most people at fifty-five are guarding what they already built. You are picking up a new instrument and aiming it at a festival stage. Abundance, not scarcity. The myth handed you a name. You are the one turning it up.</p>
+  </section>
+
+  <section>
     <div class="pull" style="border-color:var(--jade)">The sage rides the low end. The caveman and the dinosaur speak without words. You, Fang Speare, wordless and all weight, are both. Your name held the answer before you asked the question.</div>
     <p class="src">Sources on Primal, verified July 2026:
       <a href="https://en.wikipedia.org/wiki/Primal_(TV_series)" target="_blank" rel="noopener">Primal (Wikipedia)</a> ·
@@ -222,6 +267,25 @@
 <div class="dropveil" aria-hidden="true"></div>
 <button class="dropfab" id="dropfab" aria-label="feel the drop"><span class="k">低</span><span>drop</span></button>
 <script>
+/* hero film: pause control + reduced-motion respect */
+(function(){
+  var v=document.getElementById('herofilm'), ft=document.getElementById('filmtoggle');
+  if(!v||!ft) return;
+  function sync(){
+    var paused=v.paused;
+    ft.innerHTML=paused?'&#9654;':'&#10073;&#10073;';
+    ft.setAttribute('aria-label',paused?'play the film':'pause the film');
+    ft.setAttribute('aria-pressed',paused?'true':'false');
+  }
+  try{
+    if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches){
+      v.removeAttribute('autoplay'); v.pause(); v.currentTime=0;
+    }
+  }catch(e){}
+  ft.addEventListener('click',function(){ if(v.paused){v.play();} else {v.pause();} });
+  v.addEventListener('play',sync); v.addEventListener('pause',sync);
+  sync();
+})();
 /* the super deep drop */
 (function(){
   var b=document.getElementById('dropfab'); if(!b) return;
