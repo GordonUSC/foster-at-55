@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#07060d">
+<title>Tonight · Breakaway NYC + Dinner · the crew guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#07060d; --bg2:#0c0a17; --card:#110e20; --card2:#15112a;
+    --ink:#f4f1ff; --soft:#c8c2e0; --mut:#8b84a8; --mut2:#645d80;
+    --line:rgba(255,255,255,.09); --line2:rgba(255,255,255,.05);
+    --mag:#ff3d81; --cyan:#37e6ff; --viol:#a970ff; --gold:#e8b955; --gold2:#f0d08a;
+    --grad:linear-gradient(100deg,var(--mag),var(--viol) 55%,var(--cyan));
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+  body{
+    background:
+      radial-gradient(120% 60% at 50% -8%,rgba(169,112,255,.16),transparent 60%),
+      radial-gradient(80% 40% at 100% 0%,rgba(55,230,255,.08),transparent 55%),
+      var(--bg);
+    color:var(--ink);font-family:"Inter",system-ui,-apple-system,sans-serif;
+    line-height:1.5;letter-spacing:.005em;overflow-x:hidden;
+    padding:max(env(safe-area-inset-top),8px) 0 calc(env(safe-area-inset-bottom) + 40px);
+  }
+  .wrap{max-width:680px;margin:0 auto;padding:0 18px}
+  h1,h2,h3,.mono{font-family:"Space Grotesk",sans-serif}
+  .mono{font-variant-numeric:tabular-nums}
+  a{color:inherit;text-decoration:none}
+
+  /* ---------- hero ---------- */
+  .hero{padding:26px 0 8px;text-align:center}
+  .kick{font-family:"Space Grotesk";font-weight:600;font-size:11.5px;letter-spacing:.42em;text-transform:uppercase;
+    background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero h1{font-size:clamp(38px,13vw,62px);font-weight:700;line-height:.92;margin:12px 0 6px;letter-spacing:-.02em}
+  .hero h1 .b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero .sub{color:var(--soft);font-size:15px;max-width:34ch;margin:0 auto}
+  .crew{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin:18px 0 6px}
+  .crew span{font-size:12px;font-weight:600;padding:5px 11px;border:1px solid var(--line);border-radius:100px;color:var(--soft);
+    background:rgba(255,255,255,.02)}
+  .crew span b{color:var(--ink)}
+
+  /* ---------- fact strip ---------- */
+  .facts{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:20px 0 8px}
+  .fact{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 13px}
+  .fact .l{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
+  .fact .v{font-family:"Space Grotesk";font-weight:600;font-size:15px;margin-top:3px}
+  .fact .v small{color:var(--soft);font-weight:400;font-size:12.5px;font-family:"Inter"}
+
+  /* ---------- section headers ---------- */
+  .sec{margin:34px 0 14px;display:flex;align-items:baseline;gap:10px}
+  .sec .n{font-family:"Space Grotesk";font-weight:700;font-size:12px;color:var(--mut2);letter-spacing:.1em}
+  .sec h2{font-size:23px;font-weight:700;letter-spacing:-.01em}
+  .sec .tail{flex:1;height:1px;background:var(--line);align-self:center}
+
+  /* ---------- plan timeline ---------- */
+  .plan{position:relative;padding-left:22px}
+  .plan::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:2px;
+    background:linear-gradient(var(--mag),var(--viol),var(--cyan))}
+  .step{position:relative;padding:0 0 18px 0}
+  .step::before{content:"";position:absolute;left:-21px;top:4px;width:12px;height:12px;border-radius:50%;
+    background:var(--bg);border:2px solid var(--viol);box-shadow:0 0 0 3px rgba(169,112,255,.14)}
+  .step .t{font-family:"Space Grotesk";font-weight:600;font-size:12px;color:var(--cyan);letter-spacing:.04em}
+  .step .h{font-weight:600;font-size:15.5px;margin:1px 0 2px}
+  .step .d{color:var(--mut);font-size:13px}
+
+  /* ---------- headliner ---------- */
+  .head{position:relative;border-radius:20px;padding:22px 20px;overflow:hidden;
+    background:linear-gradient(150deg,rgba(255,61,129,.16),rgba(55,230,255,.10)),var(--card2);
+    border:1px solid rgba(255,255,255,.12)}
+  .head .tag{display:inline-block;font-family:"Space Grotesk";font-weight:600;font-size:10px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--bg);background:var(--grad);padding:4px 10px;border-radius:100px}
+  .head h3{font-size:34px;font-weight:700;letter-spacing:-.02em;margin:12px 0 2px}
+  .head .meta{color:var(--soft);font-size:13px;font-weight:500;margin-bottom:10px}
+  .head p{color:var(--soft);font-size:14px}
+
+  /* ---------- act cards ---------- */
+  .acts{display:flex;flex-direction:column;gap:11px}
+  .act{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:15px 16px;
+    transition:border-color .2s,transform .2s}
+  .act:active{transform:scale(.992)}
+  .act .top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .act h3{font-size:19px;font-weight:600;letter-spacing:-.01em}
+  .act .gen{font-family:"Space Grotesk";font-weight:600;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    padding:4px 9px;border-radius:100px;white-space:nowrap;flex:0 0 auto}
+  .g-mag{color:var(--mag);background:rgba(255,61,129,.12);border:1px solid rgba(255,61,129,.3)}
+  .g-cyan{color:var(--cyan);background:rgba(55,230,255,.1);border:1px solid rgba(55,230,255,.28)}
+  .g-viol{color:var(--viol);background:rgba(169,112,255,.12);border:1px solid rgba(169,112,255,.3)}
+  .act .from{font-size:12px;color:var(--mut);margin:3px 0 8px;font-weight:500}
+  .act .from b{color:var(--soft);font-weight:600}
+  .act p{font-size:13.5px;color:var(--soft)}
+  .act .row{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:10px;font-size:12.5px}
+  .act .row .k{color:var(--mut2);font-family:"Space Grotesk";font-weight:600;font-size:10px;letter-spacing:.1em;
+    text-transform:uppercase;display:block;margin-bottom:2px}
+  .act .knownfor{flex:1;min-width:150px}
+  .act .knownfor .val{color:var(--ink);font-weight:500}
+  .act .expect{flex:1;min-width:150px}
+  .act .expect .val{color:var(--soft)}
+  .listen{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-family:"Space Grotesk";
+    font-weight:600;font-size:12px;color:var(--ink);padding:8px 13px;border-radius:100px;
+    background:rgba(255,255,255,.05);border:1px solid var(--line)}
+  .listen:active{background:rgba(255,255,255,.1)}
+  .listen .dot{width:7px;height:7px;border-radius:50%;background:#1db954;box-shadow:0 0 8px #1db954}
+
+  .risers{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:15px 16px}
+  .risers h3{font-size:16px;font-weight:600;margin-bottom:3px}
+  .risers .lead{font-size:12.5px;color:var(--mut);margin-bottom:10px}
+  .risers .item{padding:9px 0;border-top:1px solid var(--line2);display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+  .risers .item:first-of-type{border-top:0}
+  .risers .item .nm{font-weight:600;font-size:14.5px}
+  .risers .item .ds{font-size:12px;color:var(--mut);text-align:right;flex:1}
+
+  /* ---------- dinner ---------- */
+  .dine{border-radius:20px;padding:22px 20px;overflow:hidden;position:relative;
+    background:linear-gradient(160deg,rgba(232,185,85,.14),rgba(232,185,85,.03)),var(--card2);
+    border:1px solid rgba(232,185,85,.28)}
+  .dine .tag{display:inline-block;font-family:"Space Grotesk";font-weight:600;font-size:10px;letter-spacing:.2em;
+    text-transform:uppercase;color:#241c07;background:linear-gradient(100deg,var(--gold),var(--gold2));padding:4px 10px;border-radius:100px}
+  .dine h3{font-size:28px;font-weight:700;letter-spacing:-.01em;margin:12px 0 1px;color:var(--gold2)}
+  .dine .meta{color:var(--soft);font-size:13px;margin-bottom:12px}
+  .dine p{font-size:14px;color:var(--soft)}
+  .order{margin:14px 0 4px}
+  .order .k{font-family:"Space Grotesk";font-weight:600;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:7px}
+  .dish{display:flex;gap:9px;padding:7px 0;border-top:1px solid rgba(232,185,85,.14);font-size:13.5px}
+  .dish:first-of-type{border-top:0}
+  .dish .b{color:var(--gold2);font-weight:600;white-space:nowrap}
+  .dish .x{color:var(--mut)}
+  .dcall{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+  .btn{flex:1;min-width:130px;text-align:center;font-family:"Space Grotesk";font-weight:600;font-size:13.5px;
+    padding:12px;border-radius:12px;border:1px solid rgba(232,185,85,.4);color:var(--gold2);background:rgba(232,185,85,.08)}
+  .btn.solid{background:linear-gradient(100deg,var(--gold),var(--gold2));color:#241c07;border-color:transparent}
+  .btn:active{filter:brightness(1.1)}
+
+  /* ---------- venue / logistics ---------- */
+  .logi{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}
+  .logi .line{display:flex;gap:10px;padding:9px 0;border-top:1px solid var(--line2);font-size:13.5px;align-items:baseline}
+  .logi .line:first-child{border-top:0}
+  .logi .k{color:var(--mut2);font-family:"Space Grotesk";font-weight:600;font-size:10px;letter-spacing:.1em;
+    text-transform:uppercase;flex:0 0 82px}
+  .logi .v{color:var(--soft);flex:1}
+  .logi .v b{color:var(--ink)}
+  .maplink{color:var(--cyan);font-weight:600}
+
+  .note{font-size:12.5px;color:var(--mut);background:rgba(255,255,255,.03);border:1px solid var(--line2);
+    border-radius:12px;padding:11px 13px;margin-top:14px}
+  .note b{color:var(--soft)}
+
+  footer{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--mut2);font-size:11px}
+  footer a{color:var(--mut);text-decoration:underline;text-underline-offset:2px}
+  footer .src{display:flex;flex-wrap:wrap;gap:4px 10px;margin-top:6px}
+  .sign{text-align:center;color:var(--mut2);font-size:12px;margin-top:16px;font-family:"Space Grotesk"}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="kick">Tonight · Friday, July 17</div>
+    <h1>Breakaway<br><span class="b">NYC.</span></h1>
+    <p class="sub">Tiësto under the Kosciuszko Bridge. Brooklyn's first Breakaway, and the crew's warm-up for Foster's birthday.</p>
+    <div class="crew">
+      <span><b>Gordon</b></span><span><b>Foster</b></span><span><b>Brennan</b></span><span><b>Abdul</b></span>
+    </div>
+  </header>
+
+  <!-- FACTS -->
+  <div class="facts">
+    <div class="fact"><div class="l">Where</div><div class="v">Under the K Bridge Park<br><small>Greenpoint, Brooklyn 11222</small></div></div>
+    <div class="fact"><div class="l">When</div><div class="v">6 PM – Midnight<br><small>doors at 6, Tiësto closes</small></div></div>
+    <div class="fact"><div class="l">The rules</div><div class="v">18+ · ID<br><small>no same-day re-entry</small></div></div>
+    <div class="fact"><div class="l">The layout</div><div class="v">2 stages<br><small>+ a silent disco</small></div></div>
+  </div>
+
+  <!-- PLAN -->
+  <div class="sec"><span class="n">01</span><h2>The plan</h2><span class="tail"></span></div>
+  <div class="plan">
+    <div class="step"><div class="t">~5:45 PM</div><div class="h">Dinner — Gage &amp; Tollner</div><div class="d">Downtown Brooklyn chophouse (details below). Book it, eat early, don't rush.</div></div>
+    <div class="step"><div class="t">~7:15 PM</div><div class="h">Cab to Greenpoint</div><div class="d">Fulton St → Under the K Bridge is a ~15 min ride. Beat the door line.</div></div>
+    <div class="step"><div class="t">7:30–10 PM</div><div class="h">Work the two stages</div><div class="d">Catch the risers and the mid-card (D.O.D, Lilly Palmer, Oppidan, camoufly). Duck into the silent disco.</div></div>
+    <div class="step"><div class="t">~10:30 PM → 12</div><div class="h">Tiësto closes it out</div><div class="d">Main stage, skyline behind him. Save something in the tank.</div></div>
+  </div>
+  <div class="note">⏱️ <b>Set times aren't posted yet</b> — Breakaway lists them "coming soon." Check the festival app / their Instagram day-of for the exact stage splits. Times above are the smart-money estimate for a 6pm–midnight single-header.</div>
+
+  <!-- HEADLINER -->
+  <div class="sec"><span class="n">02</span><h2>The headliner</h2><span class="tail"></span></div>
+  <div class="head">
+    <span class="tag">Closing · Main Stage</span>
+    <h3>Tiësto</h3>
+    <div class="meta">Breda, Netherlands · big-room / mainstage EDM · Grammy winner</div>
+    <p>The reason the night exists. Twenty-five years from trance pioneer to the biggest name in dance, and still the cleanest festival closer alive — "The Business," "Red Lights," "Adagio for Strings," the Ultra sets that pulled Foster into all of this in the first place. Expect the hits, the pyro-scale energy, and a skyline backdrop. Full-circle for the crew.</p>
+    <a class="listen" href="https://open.spotify.com/search/Tiesto" target="_blank" rel="noopener"><span class="dot"></span>Listen on Spotify</a>
+  </div>
+
+  <!-- ACTS -->
+  <div class="sec"><span class="n">03</span><h2>Undercard</h2><span class="tail"></span></div>
+  <div class="acts">
+
+    <div class="act">
+      <div class="top"><h3>D.O.D</h3><span class="gen g-mag">Tech House</span></div>
+      <div class="from"><b>Daniel O'Donnell</b> · Bury, Manchester, UK</div>
+      <p>British hitmaker who coined his own lane, "Future Jack." Big, bright, bouncy tech-house that lands on the pop charts without losing the club. The most singalong-friendly of the undercard.</p>
+      <div class="row">
+        <div class="knownfor"><span class="k">Known for</span><span class="val">"Somedays" (#1 UK Dance), "Every Step," "Set Me Free"</span></div>
+        <div class="expect"><span class="k">Live</span><span class="val">Peak-time euphoria, vocal drops, hands up</span></div>
+      </div>
+      <a class="listen" href="https://open.spotify.com/search/D.O.D%20dj" target="_blank" rel="noopener"><span class="dot"></span>Listen</a>
+    </div>
+
+    <div class="act">
+      <div class="top"><h3>Lilly Palmer</h3><span class="gen g-viol">Techno</span></div>
+      <div class="from"><b>Sonja Rauschenbach</b> · Nuremberg, Germany</div>
+      <p>Death-metal kid turned techno force. Signature 150-BPM peak-time with melancholic melodies over electrifying basslines. Drumcode's "We Control" hit #1 on Beatport; her debut LP <b>Bigger Than Techno</b> just dropped this spring. Mixmag's "most exciting names in techno."</p>
+      <div class="row">
+        <div class="knownfor"><span class="k">Known for</span><span class="val">"We Control," "Resonate," "Hare Ram"</span></div>
+        <div class="expect"><span class="k">Live</span><span class="val">Fast, driving, dark — the hardest set of the night</span></div>
+      </div>
+      <a class="listen" href="https://open.spotify.com/search/Lilly%20Palmer" target="_blank" rel="noopener"><span class="dot"></span>Listen</a>
+    </div>
+
+    <div class="act">
+      <div class="top"><h3>Oppidan</h3><span class="gen g-cyan">UK Garage</span></div>
+      <div class="from"><b>Isobel Fielding</b> · North London → Bristol · (she/her)</div>
+      <p>One of the fastest-rising names in UK garage — 2-step and 4x4 bass with a BBC Radio 1 residency. Sold-out energy from Glastonbury to Creamfields. A great early-to-mid catch before the big room takes over.</p>
+      <div class="row">
+        <div class="knownfor"><span class="k">Known for</span><span class="val">"See Me" (with camoufly), "Mr. Sandman," "Armed &amp; Dangerous"</span></div>
+        <div class="expect"><span class="k">Live</span><span class="val">Skippy, bass-forward, joyful</span></div>
+      </div>
+      <a class="listen" href="https://open.spotify.com/search/Oppidan%20garage" target="_blank" rel="noopener"><span class="dot"></span>Listen</a>
+    </div>
+
+    <div class="act">
+      <div class="top"><h3>camoufly</h3><span class="gen g-cyan">Bass / Funky House</span></div>
+      <div class="from">Masked producer · Italy</div>
+      <p>The anonymous one in the crochet hat. A genre shapeshifter — stutter house, funky house, bass house — who slides between styles mid-set. Debut album <b>New Skin</b> landed in 2025. Fun fact for the crew: he co-produced Oppidan's "See Me," so those two sets rhyme.</p>
+      <div class="row">
+        <div class="knownfor"><span class="k">Known for</span><span class="val"><b>New Skin</b> (2025), stutter-house edits &amp; remixes</span></div>
+        <div class="expect"><span class="k">Live</span><span class="val">Groovy, clubby, unpredictable</span></div>
+      </div>
+      <a class="listen" href="https://open.spotify.com/artist/6ZmJg6NCjGmRgC2GEI86pQ" target="_blank" rel="noopener"><span class="dot"></span>Listen</a>
+    </div>
+
+    <div class="act">
+      <div class="top"><h3>Arlo</h3><span class="gen g-viol">House / Techno</span></div>
+      <div class="from">Bristol, UK · Party Response label</div>
+      <p>Bristol underground — a deep-house approach that pushes into a jackin', big-room sound. Runs the Party Response series and radio show; co-signs from Octo Octa and T.E.E.D. Early-slot energy that rewards showing up on time.</p>
+      <div class="row">
+        <div class="knownfor"><span class="k">Known for</span><span class="val">Party Response Vol.1 (w/ Shadow Child)</span></div>
+        <div class="expect"><span class="k">Live</span><span class="val">Deep → jackin', builds a room</span></div>
+      </div>
+      <a class="listen" href="https://open.spotify.com/search/Arlo%20Party%20Response" target="_blank" rel="noopener"><span class="dot"></span>Listen</a>
+    </div>
+
+    <div class="act">
+      <div class="top"><h3>DJ Mandy</h3><span class="gen g-mag">Rave / Hard Dance</span></div>
+      <div class="from">Belgium</div>
+      <p>Rave-forward, high-octane sets built off her breakout "RaggaDrop" (30M+ streams). A Tomorrowland / EDC / Defqon regular. If you want the adrenaline spike between the groovier acts, this is it.</p>
+      <div class="row">
+        <div class="knownfor"><span class="k">Known for</span><span class="val">"RaggaDrop," festival main-stage sets</span></div>
+        <div class="expect"><span class="k">Live</span><span class="val">Loud, fast, all-gas</span></div>
+      </div>
+      <a class="listen" href="https://open.spotify.com/search/DJ%20Mandy%20RaggaDrop" target="_blank" rel="noopener"><span class="dot"></span>Listen</a>
+    </div>
+
+    <div class="act">
+      <div class="top"><h3>Wes Mills</h3><span class="gen g-cyan">Dance / Electronic</span></div>
+      <div class="from">USA</div>
+      <p>Rising electronic DJ/producer trading in feel-good, nostalgic, high-energy sets. Smaller public catalog than the headliners — the kind of name you catch fresh now and brag about later.</p>
+      <div class="row">
+        <div class="knownfor"><span class="k">Vibe</span><span class="val">Joyful, nostalgic, up-tempo</span></div>
+        <div class="expect"><span class="k">Live</span><span class="val">Warm-up energy, crowd-pleasing</span></div>
+      </div>
+      <a class="listen" href="https://open.spotify.com/search/Wes%20Mills%20dj" target="_blank" rel="noopener"><span class="dot"></span>Listen</a>
+    </div>
+
+  </div>
+
+  <!-- RISERS -->
+  <div style="margin-top:11px"></div>
+  <div class="risers">
+    <h3>Openers &amp; local risers</h3>
+    <div class="lead">Early slots, thin public catalogs — the ones to discover live and screenshot the Shazam.</div>
+    <div class="item"><span class="nm">Daniel Lerman</span><span class="ds">Early-set opener · one to catch fresh</span></div>
+    <div class="item"><span class="nm">Griffen Haas</span><span class="ds">Rising regional DJ · warm-up energy</span></div>
+    <div class="item"><span class="nm">Jivan Calderone</span><span class="ds">Undercard riser · new name to watch</span></div>
+  </div>
+
+  <!-- DINNER -->
+  <div class="sec"><span class="n">04</span><h2>Dinner first</h2><span class="tail"></span></div>
+  <div class="dine">
+    <span class="tag">The pre-game · book ahead</span>
+    <h3>Gage &amp; Tollner</h3>
+    <div class="meta">372 Fulton St, Downtown Brooklyn · oyster &amp; chop house since 1879 · NYT Top 100</div>
+    <p>A landmarked Brooklyn institution — arched mirrors, a long dark-wood bar, gaslit glamour — closed in 2004 and lovingly revived in 2021 by chef <b>Sohui Kim</b> with Ben Schneider &amp; St. John Frizell. Grass-fed dry-aged steaks, a raw bar of East Coast oysters, and a few dishes with a quiet Korean tilt. Exactly Foster's lane.</p>
+    <div class="order">
+      <div class="k">Order this</div>
+      <div class="dish"><span class="b">She-Crab Soup</span><span class="x">— the Edna Lewis classic, sherry-finished blue-crab bisque</span></div>
+      <div class="dish"><span class="b">Clams Casino</span><span class="x">— broiled with house kimchi + bacon butter, the Korean twist</span></div>
+      <div class="dish"><span class="b">Oysters Rockefeller</span><span class="x">— plus a raw-bar tower to start for the table</span></div>
+      <div class="dish"><span class="b">Dry-aged steaks &amp; chops</span><span class="x">— the whole point of a chophouse</span></div>
+      <div class="dish"><span class="b">Parker House Rolls</span><span class="x">— + Devils-on-Horseback (dates, almond, bacon)</span></div>
+      <div class="dish"><span class="b">Baked Alaska</span><span class="x">— or the Brooklyn cheesecake, if there's room</span></div>
+    </div>
+    <p style="font-size:12.5px;color:var(--mut);margin-top:10px">🍸 Happy hour "teeny 'tinis" at the bar if you land early. Friday dinner service starts 5 PM.</p>
+    <div class="dcall">
+      <a class="btn solid" href="https://www.gageandtollner.com/gage-and-tollner-menus/" target="_blank" rel="noopener">Book / see menu ↗</a>
+      <a class="btn" href="tel:+13476893677">Call · (347) 689-3677</a>
+    </div>
+  </div>
+
+  <!-- LOGISTICS -->
+  <div class="sec"><span class="n">05</span><h2>Logistics</h2><span class="tail"></span></div>
+  <div class="logi">
+    <div class="line"><span class="k">Venue</span><span class="v"><b>Under the K Bridge Park</b> — Greenpoint, Brooklyn 11222, beneath the Kosciuszko Bridge, waterfront with skyline views. <a class="maplink" href="https://maps.apple.com/?q=Under%20the%20K%20Bridge%20Park%20Brooklyn" target="_blank" rel="noopener">Open in Maps ↗</a></span></div>
+    <div class="line"><span class="k">Dinner</span><span class="v"><b>Gage &amp; Tollner</b> — 372 Fulton St, 11201. <a class="maplink" href="https://maps.apple.com/?q=Gage%20and%20Tollner%20Brooklyn" target="_blank" rel="noopener">Open in Maps ↗</a></span></div>
+    <div class="line"><span class="k">Doors</span><span class="v">6:00 PM · music to midnight</span></div>
+    <div class="line"><span class="k">Getting there</span><span class="v">Greenpoint has limited subway — <b>cab / rideshare is smart</b>, and surge will hit at midnight. Line one up before Tiësto's last track.</span></div>
+    <div class="line"><span class="k">Bring</span><span class="v"><b>Photo ID</b> (18+ door), phone, a light layer for the waterfront. No same-day re-entry, so don't leave and expect back in.</span></div>
+    <div class="line"><span class="k">Silent disco</span><span class="v">Third option if the main stages are packed — worth a lap.</span></div>
+  </div>
+
+  <div class="note">🎧 <b>For the group chat:</b> Oppidan and camoufly share DNA (he produced her "See Me"), Lilly Palmer is your hardest/darkest set, D.O.D is the biggest singalong, and Tiësto ties the whole night back to the Ultra set that started Foster's bass journey. Then it's Zeds Dead + the birthday tomorrow.</div>
+
+  <div class="sign">Made for the crew by Darby · have a night, boys 🌉</div>
+
+  <footer>
+    Sources — verified today:
+    <div class="src">
+      <a href="https://www.breakawayfestival.com/festival/new-york-city-2026" target="_blank" rel="noopener">Breakaway NYC (official)</a>
+      <a href="https://edm.com/events/breakaway-music-festival-new-york-lineup-2026/" target="_blank" rel="noopener">EDM.com lineup</a>
+      <a href="https://www.beatportal.com/articles/1320992-tiesto-d-o-d-and-lilly-palmer-lead-breakaway-festivals-new-york-debut" target="_blank" rel="noopener">Beatportal</a>
+      <a href="https://en.wikipedia.org/wiki/D.O.D._(DJ)" target="_blank" rel="noopener">D.O.D</a>
+      <a href="https://en.wikipedia.org/wiki/Lilly_Palmer" target="_blank" rel="noopener">Lilly Palmer</a>
+      <a href="https://ra.co/dj/oppidan" target="_blank" rel="noopener">Oppidan (RA)</a>
+      <a href="https://ra.co/dj/camoufly/biography" target="_blank" rel="noopener">camoufly (RA)</a>
+      <a href="https://www.gageandtollner.com/" target="_blank" rel="noopener">Gage &amp; Tollner</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
