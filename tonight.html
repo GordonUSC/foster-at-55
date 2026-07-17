@@ -149,6 +149,18 @@
     border-radius:12px;padding:11px 13px;margin-top:14px}
   .note b{color:var(--soft)}
 
+  /* schedule grid */
+  .sched{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:start}
+  .sched .col{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:6px;display:flex;flex-direction:column;gap:5px}
+  .ch{font-family:"Space Grotesk";font-weight:700;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;padding:9px;border-radius:9px;text-align:center}
+  .ch.main{background:linear-gradient(100deg,var(--mag),var(--viol));color:#fff}
+  .ch.creek{background:rgba(255,255,255,.06);color:var(--soft);border:1px solid var(--line)}
+  .slot{display:flex;flex-direction:column;padding:8px 9px;border-radius:9px;background:rgba(255,255,255,.02);border:1px solid var(--line2)}
+  .slot .tm{font-family:"Space Grotesk";font-variant-numeric:tabular-nums;font-size:11px;color:var(--mut);font-weight:600}
+  .slot .ar{font-weight:600;font-size:14px;margin-top:1px}
+  .slot .ar em{color:var(--mag);font-style:normal;font-weight:600;font-size:10.5px;letter-spacing:.04em}
+  .slot.hero-slot{background:linear-gradient(120deg,rgba(255,61,129,.2),rgba(55,230,255,.1));border-color:rgba(255,255,255,.18)}
+  .slot.hero-slot .ar{font-size:15.5px}
   footer{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--mut2);font-size:11px}
   footer a{color:var(--mut);text-decoration:underline;text-underline-offset:2px}
   footer .src{display:flex;flex-wrap:wrap;gap:4px 10px;margin-top:6px}
@@ -173,18 +185,32 @@
     <div class="fact"><div class="l">Where</div><div class="v">Under the K Bridge Park<br><small>Greenpoint, Brooklyn 11222</small></div></div>
     <div class="fact"><div class="l">When</div><div class="v">6 PM – Midnight<br><small>doors at 6, Tiësto closes</small></div></div>
     <div class="fact"><div class="l">The rules</div><div class="v">18+ · ID<br><small>no same-day re-entry</small></div></div>
-    <div class="fact"><div class="l">The layout</div><div class="v">2 stages<br><small>+ a silent disco</small></div></div>
+    <div class="fact"><div class="l">The layout</div><div class="v">Main + Creekside<br><small>2 stages + silent disco</small></div></div>
   </div>
 
-  <!-- PLAN -->
-  <div class="sec"><span class="n">01</span><h2>The plan</h2><span class="tail"></span></div>
-  <div class="plan">
-    <div class="step"><div class="t">~5:45 PM</div><div class="h">Dinner — Gage &amp; Tollner</div><div class="d">Downtown Brooklyn chophouse (details below). Book it, eat early, don't rush.</div></div>
-    <div class="step"><div class="t">~7:15 PM</div><div class="h">Cab to Greenpoint</div><div class="d">Fulton St → Under the K Bridge is a ~15 min ride. Beat the door line.</div></div>
-    <div class="step"><div class="t">7:30–10 PM</div><div class="h">Work the two stages</div><div class="d">Catch the risers and the mid-card (D.O.D, Lilly Palmer, Oppidan, camoufly). Duck into the silent disco.</div></div>
-    <div class="step"><div class="t">~10:30 PM → 12</div><div class="h">Tiësto closes it out</div><div class="d">Main stage, skyline behind him. Save something in the tank.</div></div>
+  <!-- SET TIMES -->
+  <div class="sec"><span class="n">01</span><h2>Set times</h2><span class="tail"></span></div>
+  <div class="note" style="margin-bottom:14px">✅ <b>Official running order.</b> Two stages — <b>Main</b> and <b>Creekside</b>. Doors 6 PM, Tiësto gets an <b>extended set, 10 PM–midnight.</b> Crew move: dinner at Gage &amp; Tollner ~5, cab to Greenpoint, be through the door by <b>~6:45 for DJ Mandy.</b></div>
+  <div class="sched">
+    <div class="col">
+      <div class="ch main">Main Stage</div>
+      <div class="slot hero-slot"><span class="tm">10:00 – 12:00 AM</span><span class="ar">Tiësto <em>· EXTENDED</em></span></div>
+      <div class="slot"><span class="tm">8:55 – 9:55 PM</span><span class="ar">D.O.D</span></div>
+      <div class="slot"><span class="tm">7:50 – 8:50 PM</span><span class="ar">Lilly Palmer</span></div>
+      <div class="slot"><span class="tm">6:45 – 7:45 PM</span><span class="ar">DJ Mandy</span></div>
+      <div class="slot"><span class="tm">6:00 – 6:45 PM</span><span class="ar">Daniel Lerman</span></div>
+    </div>
+    <div class="col">
+      <div class="ch creek">Creekside</div>
+      <div class="slot"><span class="tm">10:45 – 11:45 PM</span><span class="ar">Oppidan</span></div>
+      <div class="slot"><span class="tm">9:40 – 10:40 PM</span><span class="ar">camoufly</span></div>
+      <div class="slot"><span class="tm">8:35 – 9:35 PM</span><span class="ar">Arlo</span></div>
+      <div class="slot"><span class="tm">7:45 – 8:30 PM</span><span class="ar">Wes Mills</span></div>
+      <div class="slot"><span class="tm">6:50 – 7:40 PM</span><span class="ar">Jivan Calderone</span></div>
+      <div class="slot"><span class="tm">6:00 – 6:45 PM</span><span class="ar">Griffen Haas</span></div>
+    </div>
   </div>
-  <div class="note">⏱️ <b>Set times aren't posted yet</b> — Breakaway lists them "coming soon." Check the festival app / their Instagram day-of for the exact stage splits. Times above are the smart-money estimate for a 6pm–midnight single-header.</div>
+  <div class="note" style="margin-top:12px">⚡ <b>The one real clash:</b> Tiësto's extended set (10–12, Main) runs over <b>camoufly</b> (9:40–10:40) and <b>Oppidan</b> (10:45–11:45) on Creekside. You can't have both. My call: <b>ride Tiësto</b> for the full-circle close, and catch camoufly's first 20 minutes on the way in. If Foster wants the deeper bass over the hits, flip it — camoufly + Oppidan on Creekside, give up Tiësto's back half.</div>
 
   <!-- HEADLINER -->
   <div class="sec"><span class="n">02</span><h2>The headliner</h2><span class="tail"></span></div>
