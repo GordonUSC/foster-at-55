@@ -167,6 +167,21 @@ td.n{font-family:var(--f-mono);font-size:13px;font-variant-numeric:tabular-nums;
 .presets{display:flex;flex-wrap:wrap;gap:8px}
 
 
+
+.seqbig{min-width:96px!important;font-weight:600}
+.seqwrap{overflow-x:auto}
+.seqgrid{display:grid;grid-template-columns:52px repeat(16,minmax(24px,1fr));gap:3px;min-width:560px}
+.seqgrid .rl{font-family:var(--f-mono);font-size:10px;color:var(--mist);display:flex;align-items:center}
+.seqgrid .cell{height:24px;background:#16213a;border:1px solid rgba(236,226,204,.08);border-radius:3px;padding:0;cursor:pointer}
+.seqgrid .cell.beat{background:#1d2b47}
+.seqgrid .cell.on{background:var(--ember);border-color:var(--ember)}
+.seqgrid .cell.acc.on{background:#c4412f}.seqgrid .cell.sld.on{background:var(--jade)}
+.seqgrid .cell.ph{outline:2px solid var(--paper);outline-offset:-2px}
+.synth.studio .seqgrid .cell{background:#3a3a3a;border-color:#1a1a1a;border-radius:1px}
+.synth.studio .seqgrid .cell.beat{background:#444}
+.synth.studio .seqgrid .cell.on{background:#ffb532}
+.synth.studio .seqgrid .rl{color:#b4b4b4;font-family:Arial,Helvetica,sans-serif}
+
 .viewbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
 .viewbar button{background:transparent;border:1px solid var(--line);color:var(--mist);font-family:var(--f-mono);font-size:12px;padding:8px 12px}
 .viewbar button[aria-pressed="true"]{border-color:var(--ember);color:var(--paper)}
@@ -279,6 +294,19 @@ footer{padding-block:40px 60px;color:var(--mist);font-size:14px}
         <button data-s="sine" aria-pressed="true">Smooth</button><button data-s="triangle">Triangle</button><button data-s="square">Hard</button><button data-s="sawup">Saw up</button><button data-s="sawdown">Saw down</button>
         <button id="retrig" aria-pressed="true">Restart on note: on</button>
       </div>
+    </div>
+    <div class="frate seq">
+      <div class="frhead"><span class="eyebrow">Sequencer · 16 steps into the bass</span><span class="mono" id="o_seq">Stopped · 140 BPM · 1/16 steps</span></div>
+      <div class="frrow">
+        <button id="seqPlay" class="seqbig">▶ Play</button>
+        <button data-pat="riddim">Riddim</button><button data-pat="half">Halftime</button><button data-pat="tekeli">Tekeli-li</button><button data-pat="clear">Clear</button>
+      </div>
+      <div class="seqwrap"><div class="seqgrid" id="seqGrid" role="grid" aria-label="Step sequencer"></div></div>
+      <div class="knobs">
+        <label>Swing <output id="o_swing">0%</output><input type="range" id="k_swing" min="0" max="60" step="1" value="0"></label>
+        <label>Note length <output id="o_gate">60%</output><input type="range" id="k_gate" min="10" max="100" step="1" value="60"></label>
+      </div>
+      <p class="mono" style="color:var(--mist);margin:0">Tap a square to put a note on that step. Bottom rows: A for accent (louder), S for slide (glide into the next note). Tempo is shared with the filter wobble.</p>
     </div>
     <div class="frate envp">
       <div class="frhead"><span class="eyebrow">Envelope · attack, decay, sustain, release</span><span class="mono" id="o_env">A 10 ms · D 300 ms · S 70% · R 400 ms</span></div>
@@ -759,7 +787,8 @@ document.getElementById("wake").addEventListener("click",()=>{S.drop(0);const h=
   function setWave(){if(!voice)return;const w=wave();voice.o.forEach(x=>x.setPeriodicWave(w));}
   function trig(peak){const t=AC.currentTime,g=voice.amp.gain,a=+E.a.value/1000,d=+E.d.value/1000,su=+E.s.value/100;const cur=envAt(t)*envPeak;g.cancelScheduledValues(t);g.setValueAtTime(cur,t);g.linearRampToValueAtTime(peak,t+Math.max(.003,a));g.setTargetAtTime(peak*su,t+Math.max(.003,a),Math.max(.005,d/3));envPeak=peak;envOn=t;envGate=true;}
   function on(mul){if(!voice)build();else if(retrig)newLfo();curMul=mul;apply();trig(0.9);}
-  function off(){if(!voice||latched)return;const t=AC.currentTime,g=voice.amp.gain,lv=envAt(t);g.cancelScheduledValues(t);g.setValueAtTime(lv*envPeak,t);g.setTargetAtTime(0,t,Math.max(.01,+E.r.value/4000));envOffLvl=lv;envOff=t;envGate=false;}
+  function off(){if(latched)return;rel();}
+  function rel(){if(!voice)return;const t=AC.currentTime,g=voice.amp.gain,lv=envAt(t);g.cancelScheduledValues(t);g.setValueAtTime(lv*envPeak,t);g.setTargetAtTime(0,t,Math.max(.01,+E.r.value/4000));envOffLvl=lv;envOff=t;envGate=false;}
   const E={a:$("k_a"),d:$("k_d"),s:$("k_s"),r:$("k_r"),ewt:$("k_ewt"),ecut:$("k_ecut")};let envOn=-9,envOff=-9,envGate=false,envPeak=0.9,envOffLvl=0,lastWtPos=-1;
   function envAt(t){const a=+E.a.value/1000,d=+E.d.value/1000,su=+E.s.value/100;if(envGate){const x=t-envOn;if(x<a)return a>0?x/a:1;return su+(1-su)*Math.exp(-(x-a)/Math.max(.005,d/3));}const y=t-envOff;return Math.max(0,envOffLvl*Math.exp(-y/Math.max(.01,+E.r.value/4000)));}
   Object.entries(K).forEach(([k,el])=>el.addEventListener("input",()=>{if(k==="wt")setWave();if(k==="drive"&&voice)voice.sh.curve=curve(+el.value);apply();}));
@@ -792,6 +821,27 @@ document.getElementById("wake").addEventListener("click",()=>{S.drop(0);const h=
     const ew=+E.ewt.value/100,ecu=+E.ecut.value/100;
     if(ew!==0){const pos=Math.max(0,Math.min(3,+K.wt.value+ew*3*e));if(Math.abs(pos-lastWtPos)>0.03){lastWtPos=pos;const wv2=AC.createPeriodicWave(table(pos),new Float32Array(N));voice.o.forEach(x=>x.setPeriodicWave(wv2));}}
     if(ecu!==0){const c=cutHz(Math.max(0,Math.min(1,+K.cut.value+ecu*e)));voice.lp.frequency.setTargetAtTime(c,t,0.008);voice.lg.gain.setTargetAtTime(c*(+K.depth.value/100)*0.95,t,0.008);}})();
+  /* sequencer */
+  const ROWS=[["Oct",5],["b7",4],["5th",3],["4th",2],["m3",1],["Root",0]],MULS=[1,1.189,1.335,1.498,1.782,2];
+  let sq=new Array(16).fill(-1),acc=new Array(16).fill(false),sld=new Array(16).fill(false),playing=false,stepI=0,nextT=0,timer=null,relT=null,lastOn=false;
+  const grid=$("seqGrid"),cells={};
+  function mkRow(label,key){const l=document.createElement("div");l.className="rl";l.textContent=label;grid.appendChild(l);for(let i=0;i<16;i++){const c=document.createElement("button");c.className="cell"+(i%4===0?" beat":"")+(key==="A"?" acc":key==="S"?" sld":"");c.setAttribute("aria-label",label+" step "+(i+1));c.onclick=()=>{ctx();if(key==="A")acc[i]=!acc[i];else if(key==="S")sld[i]=!sld[i];else sq[i]=sq[i]===key?-1:key;paint();};grid.appendChild(c);(cells[key]=cells[key]||[])[i]=c;}}
+  ROWS.forEach(([l,k])=>mkRow(l,k));mkRow("A","A");mkRow("S","S");
+  function paint(){ROWS.forEach(([,k])=>cells[k].forEach((c,i)=>c.classList.toggle("on",sq[i]===k)));cells.A.forEach((c,i)=>c.classList.toggle("on",acc[i]));cells.S.forEach((c,i)=>c.classList.toggle("on",sld[i]));}
+  function playhead(i){Object.values(cells).forEach(arr=>arr.forEach((c,j)=>c.classList.toggle("ph",j===i)));}
+  function legato(mul){curMul=mul;const t=AC.currentTime,f=hz(+K.pitch.value)*curMul;voice.o.forEach(x=>x.frequency.setTargetAtTime(f,t,0.045));}
+  function stepDur(){return 60/(+K.bpm.value)/4;}
+  function playStep(i){playhead(i);const n=sq[i],prev=(i+15)%16;document.querySelectorAll(".pad").forEach((p,j)=>p.classList.toggle("on",j===n));window.__seqPad=n;
+    if(n<0){if(!sld[prev]||sq[prev]<0){rel();lastOn=false;}return;}
+    clearTimeout(relT);if(lastOn&&sld[prev]&&sq[prev]>=0){legato(MULS[n]);}else{if(!voice)build();else if(retrig)newLfo();curMul=MULS[n];apply();trig(acc[i]?1.0:0.68);}lastOn=true;
+    if(!sld[i]){relT=setTimeout(()=>{rel();lastOn=false;window.__seqPad=-1;document.querySelectorAll(".pad").forEach(p=>p.classList.remove("on"));},stepDur()*1000*(+$("k_gate").value/100));}}
+  function sched(){while(nextT<AC.currentTime+0.12){const i=stepI,sw=(i%2)?stepDur()*(+$("k_swing").value/100)*0.66:0,at=nextT+sw,d=Math.max(0,(at-AC.currentTime)*1000);setTimeout(()=>{if(playing)playStep(i);},d);nextT+=stepDur();stepI=(stepI+1)%16;}
+    $("o_seq").textContent="Playing · "+K.bpm.value+" BPM · step "+(stepI+1)+"/16";}
+  $("seqPlay").onclick=()=>{ctx();playing=!playing;const b=$("seqPlay");if(playing){if(!voice)build();stepI=0;nextT=AC.currentTime+0.05;timer=setInterval(sched,25);b.textContent="■ Stop";b.setAttribute("aria-pressed","true");}else{clearInterval(timer);clearTimeout(relT);rel();lastOn=false;window.__seqPad=-1;playhead(-1);document.querySelectorAll(".pad").forEach(p=>p.classList.remove("on"));b.textContent="▶ Play";b.setAttribute("aria-pressed","false");$("o_seq").textContent="Stopped · "+K.bpm.value+" BPM · 1/16 steps";}};
+  const PAT={riddim:{n:[0,-1,-1,0,-1,-1,0,-1,0,-1,-1,0,-1,0,-1,-1],a:[0,8],s:[]},half:{n:[0,-1,-1,-1,-1,-1,3,-1,-1,-1,0,-1,-1,-1,4,-1],a:[0,10],s:[6]},tekeli:{n:[0,-1,2,-1,3,-1,2,-1,0,-1,5,-1,4,-1,3,2],a:[0,8,10],s:[3,7,14]}};
+  document.querySelectorAll("[data-pat]").forEach(b=>b.onclick=()=>{const p=PAT[b.dataset.pat];if(!p){sq.fill(-1);acc.fill(false);sld.fill(false);}else{sq=p.n.slice();acc=sq.map((_,i)=>p.a.includes(i));sld=sq.map((_,i)=>p.s.includes(i));}paint();});
+  $("k_swing").addEventListener("input",e=>$("o_swing").textContent=e.target.value+"%");$("k_gate").addEventListener("input",e=>$("o_gate").textContent=e.target.value+"%");
+  sq=PAT.riddim.n.slice();acc=sq.map((_,i)=>PAT.riddim.a.includes(i));paint();
   window.__fs={on:on,off:off,K:K,getDiv:()=>div,setDiv:d=>{div=d==="free"?"free":+d;press("#divs",String(d),"d");if(retrig)newLfo();apply();}};
   const P={hyper:{k:{wt:0,pitch:0,det:0,drive:0,cut:0.35,res:0,depth:0},d:1,s:"sine"},tekeli:{k:{wt:1.2,pitch:0.22,det:22,drive:25,cut:0.48,res:4,depth:30},d:0.5,s:"triangle"},old:{k:{wt:3,pitch:0.3,det:12,drive:85,cut:0.55,res:14,depth:70},d:3,s:"sine"},riddim:{k:{wt:2,pitch:0.35,det:4,drive:60,cut:0.5,res:12,depth:85},d:2,s:"square"}};
   document.querySelectorAll("[data-p]").forEach(b=>b.addEventListener("click",()=>{const p=P[b.dataset.p];Object.entries(p.k).forEach(([k,v])=>K[k].value=v);div=p.d;shape=p.s;press("#divs",String(div),"d");press("#shapes",shape,"s");newLfo();setWave();if(voice)voice.sh.curve=curve(+K.drive.value);apply();on(1);if(!latched)setTimeout(off,1800);}));
@@ -874,7 +924,7 @@ document.getElementById("wake").addEventListener("click",()=>{S.drop(0);const h=
   let td=null;
   (function loop(){requestAnimationFrame(loop);let rms=0;if(typeof analyser!=="undefined"&&analyser){if(!td||td.length!==analyser.fftSize)td=new Float32Array(analyser.fftSize);analyser.getFloatTimeDomainData(td);let s=0;for(let i=0;i<td.length;i+=4)s+=td[i]*td[i];rms=Math.sqrt(s/(td.length/4));}
     const lvl=Math.min(1,rms*3.2);glow.intensity=lvl*3;
-    pads.forEach((p,i)=>{if(!p)return;const m=p.isMesh?p.material:(p.children[0]&&p.children[0].material);if(m&&m.emissive)m.emissiveIntensity+=(((i===padOn)?1.6:0)+lvl*0.25-m.emissiveIntensity)*0.25;});
+    pads.forEach((p,i)=>{if(!p)return;const m=p.isMesh?p.material:(p.children[0]&&p.children[0].material);if(m&&m.emissive)m.emissiveIntensity+=(((i===padOn||i===window.__seqPad)?1.6:0)+lvl*0.25-m.emissiveIntensity)*0.25;});
     const t=performance.now()/1000;rings.forEach((g,i)=>{const ph=((t*0.8+i/3)%1);const sc=1+ph*0.6+lvl*0.4;g.scale.set(sc,sc,sc);g.material.opacity=(1-ph)*(0.25+lvl*0.9);});
     if(scrTex)scrTex.needsUpdate=true;if(wtTex)wtTex.needsUpdate=true;r.render(scene,cam);})();
   addEventListener("resize",()=>{cam.aspect=W()/H();cam.updateProjectionMatrix();r.setSize(W(),H());});
