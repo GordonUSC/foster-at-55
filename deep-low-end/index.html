@@ -145,6 +145,8 @@ td.n{font-family:var(--f-mono);font-size:13px;font-variant-numeric:tabular-nums;
 .shake{animation:shake .5s}
 @keyframes shake{0%,100%{transform:none}20%{transform:translate(-6px,3px)}40%{transform:translate(5px,-4px)}60%{transform:translate(-4px,-2px)}80%{transform:translate(3px,4px)}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media print{#idol,#idolNote,.btn-wake,.wake .note,#ecoFilters,#eco,#viz,.player,#altar .progress{display:none!important}.print-only{display:block!important}section{break-inside:auto}.step,.row,figure,.card{break-inside:avoid}}
+.print-only{display:none}
 footer{padding-block:40px 60px;color:var(--mist);font-size:14px}
 .src li{margin-bottom:6px;font-size:14px;overflow-wrap:anywhere}
 </style>
@@ -157,6 +159,7 @@ footer{padding-block:40px 60px;color:var(--mist);font-size:14px}
   <div class="eyebrow">For Foster, from Gordon · October 13, 2026</div>
   <h1>FANG <span>SPEARE</span></h1>
   <p class="sub">The frog sage of the low end. Lovecraft's drowned gods, bass music's deepest frequencies, and a road map from two tracks today to a Brooklyn stage in July 2027.</p>
+  <p class="print-only mono" style="border:1px solid var(--ember);padding:10px 12px;margin-top:12px">This is the printed edition. Play the glyphs, spin the 3D map and the idol, and hear the bass at <b>gordonusc.github.io/foster-at-55/deep-low-end/</b></p>
   <div class="hero-media">
     <video id="heroVid" src="a/rlyeh.mp4" poster="a/rlyeh-frame.jpg" autoplay muted loop playsinline aria-label="Animated woodblock: the frog sage blows a didgeridoo on a drowned monolith while sound rings pulse toward a waking tentacled god."></video>
   </div>
@@ -210,7 +213,7 @@ footer{padding-block:40px 60px;color:var(--mist);font-size:14px}
       <p>Clark Ashton Smith, Lovecraft's friend and correspondent, created <b>Tsathoggua</b> in "The Tale of Satampra Zeiros" (written 1929, <i>Weird Tales</i>, November 1931): squat, pot-bellied, "his head was more like a monstrous toad than a deity." He sleeps in caverns under Mount Voormithadreth in <b>Hyperborea</b>, a warm northern kingdom buried by the advancing ice sheets of the Pleistocene.</p>
       <p>Lovecraft adopted him in "The Mound" and "The Whisperer in Darkness," and named him in <i>At the Mountains of Madness</i>, the very story Foster's site and his track <b>Tekeli-li</b> already draw from. The frog sage and the Antarctic expedition are one world.</p>
       <p>Among the Mythos gods, Tsathoggua is the lazy, less malevolent one who holds deep knowledge. That is a sage. A second fit: in "The Doom That Came to Sarnath" (1920) the beings of Ib are green, bulge-eyed and voiceless. Fang Speare gives them a voice, and it is all bass.</p>
-      <p><span class="tag v">Public domain note</span> "The Whisperer in Darkness" (August 1931) enters the US public domain on January 1, 2027, and Smith's Tsathoggua story likely does too. A July 2027 show lands in Tsathoggua's first public-domain summer. <i>At the Mountains of Madness</i> stays under US copyright until 2032, so keep borrowing its themes, not long passages.</p>
+      <p><span class="tag v">Public domain note</span> "The Whisperer in Darkness" (August 1931) enters the US public domain on January 1, 2027, and Smith's Tsathoggua story likely does too. A July 2027 show lands in Tsathoggua's first public-domain summer. Rights to <i>At the Mountains of Madness</i> depend on the edition: Project Gutenberg treats the 1936 magazine text as US public domain with no renewal found, but later editions, illustrations and adaptations can carry their own rights. Check the specific edition before quoting at length.</p>
     </div>
     <figure class="plate" style="margin:0">
       <img src="a/1-hyperborea.jpg" alt="Woodblock print of a glacier city in Hyperborea under aurora; a giant sleepy toad god in a cavern; a small frog sage plays a didgeridoo on a bridge, orange sound waves rolling down the stairs.">
@@ -259,7 +262,7 @@ footer{padding-block:40px 60px;color:var(--mist);font-size:14px}
       <tr><td>deadmau5</td><td><a href="https://en.wikipedia.org/wiki/4%C3%974%3D12" target="_blank" rel="noopener">Cthulhu Sleeps</a>; Rlyehs Lament (2014)</td><td class="n">2010 · mau5trap</td><td>Progressive</td></tr>
     </tbody>
   </table></div>
-  <p class="prose" style="margin-top:14px"><b>Where Fang Speare is different:</b> his two tracks already sit inside one story (At the Mountains of Madness), with a character, a site that is an instrument, and a label. INHUMAN made a concept album; nobody has made a character. And underneath it all is real science: in a 2003 concert experiment, hidden 17 Hz infrasound made 22 percent of listeners report unease or chills. The sub is the horror.</p>
+  <p class="prose" style="margin-top:14px"><b>Where Fang Speare is different:</b> his two tracks already sit inside one story (At the Mountains of Madness), with a character, a site that is an instrument, and a label. INHUMAN made a concept album; nobody has made a character. And underneath it all is real science: in a 2003 concert experiment, pieces laced with hidden 17 Hz infrasound drew about 22 percent more reports of unusual experiences, from unease and chills to calm. It does not prove bass equals horror, but it shows the low end moves people below hearing.</p>
 </section>
 
 <!-- ETHICS -->
@@ -356,7 +359,6 @@ footer{padding-block:40px 60px;color:var(--mist);font-size:14px}
       <tr><td>Elsewhere, Zone One (Bushwick)</td><td class="n">260</td><td>Built for emerging artists, serious sound, bass-friendly crowd.</td><td>Private events form; price on inquiry</td></tr>
       <tr><td>Le Poisson Rouge, Gallery Bar</td><td class="n">150</td><td>Birthday scale, Village location, host keeps ticket revenue.</td><td>events@lprnyc.com; room fee plus F&amp;B</td></tr>
       <tr><td>Elsewhere, Hall</td><td class="n">750</td><td>The stretch goal if friends-of-friends turn out.</td><td>Same form</td></tr>
-      <tr><td>Schimanski (Williamsburg)</td><td class="n">750</td><td>Bass-music regular room; a later step.</td><td>Venue booking</td></tr>
     </tbody>
   </table></div>
   <h3 style="margin-top:28px">Budget ranges (estimates, to confirm with each vendor)</h3>
@@ -475,7 +477,7 @@ footer{padding-block:40px 60px;color:var(--mist);font-size:14px}
     <li>World Fantasy Award: <a href="https://locusmag.com/2015/11/world-fantasy-trophy-change" target="_blank" rel="noopener">Locus</a>. LaValle: <a href="https://www.npr.org/transcripts/468558238" target="_blank" rel="noopener">NPR</a>. Winter Tide: <a href="https://fantasy-faction.com/2017/winter-tide-by-ruthanna-emrys" target="_blank" rel="noopener">Fantasy-Faction</a>.</li>
     <li>Drexciya: <a href="https://en.wikipedia.org/wiki/Drexciya" target="_blank" rel="noopener">Wikipedia</a>; <a href="https://mixmag.net/feature/drexciya-history-interview-feature" target="_blank" rel="noopener">Mixmag</a>. Black Quantum Futurism: <a href="https://sjmusart.org/event/moor-mother-rasheedah-phillips-black-quantum-futurism" target="_blank" rel="noopener">SJMA</a>.</li>
     <li>Ace Aura: <a href="https://en.wikipedia.org/wiki/Ace_Aura" target="_blank" rel="noopener">Wikipedia</a>. MC Lars: <a href="https://en.wikipedia.org/wiki/MC_Lars" target="_blank" rel="noopener">Wikipedia</a>.</li>
-    <li>Venues: <a href="https://web.elsewhere.club/pages/private-events" target="_blank" rel="noopener">Elsewhere private events</a>; <a href="https://lpr.com/rentals-private-events/" target="_blank" rel="noopener">LPR rentals</a>; <a href="https://app.ckord.com/venues/schimanski" target="_blank" rel="noopener">Schimanski</a>. Tools: <a href="https://www.ableton.com/push" target="_blank" rel="noopener">Push 3</a>; <a href="https://resolume.com/shop" target="_blank" rel="noopener">Resolume</a>; <a href="https://derivative.ca/shop" target="_blank" rel="noopener">TouchDesigner</a>.</li>
+    <li>Venues: <a href="https://web.elsewhere.club/pages/private-events" target="_blank" rel="noopener">Elsewhere private events</a>; <a href="https://lpr.com/rentals-private-events/" target="_blank" rel="noopener">LPR rentals</a>; Tools: <a href="https://www.ableton.com/push" target="_blank" rel="noopener">Push 3</a>; <a href="https://resolume.com/shop" target="_blank" rel="noopener">Resolume</a>; <a href="https://derivative.ca/shop" target="_blank" rel="noopener">TouchDesigner</a>.</li>
     <li>NecronomiCon Providence: <a href="https://necronomicon-providence.com/welcome/" target="_blank" rel="noopener">official site</a>.</li>
     <li>Mythos bass tracks: Apple Music and Deezer listings linked in the table. Infrasound experiment: <a href="https://www.theguardian.com/science/2003/sep/08/sciencenews.science" target="_blank" rel="noopener">The Guardian, 2003</a>. Lovecraft, <a href="https://www.hplovecraft.com/writings/texts/fiction/mez.aspx" target="_blank" rel="noopener">The Music of Erich Zann</a>.</li>
     <li>Ecosystem nodes: each links to its official page, checked Oct 13, 2026.</li>
@@ -561,7 +563,7 @@ const GLYPHS = [
  {k:"elder", n:"Elder Sign", s:()=>S.bell(0,73.4), card:{h:"Answering Lovecraft", p:"Victor LaValle's The Ballad of Black Tom. Misha Green's Lovecraft Country. Ruthanna Emrys's Winter Tide. The best Mythos work now talks back to the author's bigotry. The frog sage can be the hero of the deep, not the thing to fear."}},
  {k:"shog", n:"Shoggoth", s:()=>S.riddim(0,140), card:{h:"The wubz button", p:"Foster's own note: his synth site needs an easy mode that delivers quick fun. One huge button that plays a perfect drop, the full engine behind it. This altar is a sketch of that idea.", img:"a/4-synth.jpg", alt:"Stone synthesizer plate"}},
  {k:"didge", n:"Didgeridoo", s:()=>S.didge(0,3.2), card:{h:"The sage's instrument", p:"In Foster's character sheet the frog carries a didgeridoo and wears a woven basket hat. A didgeridoo is a drone instrument that lives in the same low range as a dubstep sub. The sage was always a bass player."}},
- {k:"necro", n:"Necronomicon · 50\u00a0Hz", s:()=>{S.reese(0,2.6,50);S.hold(0,50,2.4,0.5)}, card:{h:"Public domain, 2027", p:"The Whisperer in Darkness, which names Tsathoggua, enters the US public domain on January 1, 2027. A July 2027 show lands in Tsathoggua's first public-domain summer. At the Mountains of Madness stays protected until 2032."}},
+ {k:"necro", n:"Necronomicon · 50\u00a0Hz", s:()=>{S.reese(0,2.6,50);S.hold(0,50,2.4,0.5)}, card:{h:"Public domain, 2027", p:"The Whisperer in Darkness, which names Tsathoggua, enters the US public domain on January 1, 2027. A July 2027 show lands in Tsathoggua's first public-domain summer. At the Mountains of Madness rights depend on the edition; check before quoting."}},
  {k:"drex", n:"Drexciya", s:()=>{S.sonar(0);S.sub(0.2,80,40,2)}, card:{h:"Drexciya's deep", p:"Detroit's Drexciya imagined an undersea nation born of African women thrown from slave ships. The same deep ocean as Innsmouth, told from inside. A Black counter-myth that bass music already carries."}},
  {k:"deep", n:"Deep One", s:()=>S.growl(0,1.8,49), card:{h:"The live show", p:"July 2027, a 150 to 260 capacity Brooklyn room, a 45-minute hybrid set, friends in the crowd and the woodblock world behind him.", vid:"a/live.mp4", poster:"a/live-frame.jpg"}},
  {k:"yog", n:"Yog-Sothoth", s:()=>{S.bell(0,98);S.bell(0.2,146.8);S.bell(0.4,110)}, card:{h:"Listen: Ghost Voltage Radio", p:"A four-minute, two-host podcast episode about Fang Speare and the Mythos. Tap below to jump to the road map chapter.", pod:172.4}},
