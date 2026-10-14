@@ -145,8 +145,31 @@ td.n{font-family:var(--f-mono);font-size:13px;font-variant-numeric:tabular-nums;
 .shake{animation:shake .5s}
 @keyframes shake{0%,100%{transform:none}20%{transform:translate(-6px,3px)}40%{transform:translate(5px,-4px)}60%{transform:translate(-4px,-2px)}80%{transform:translate(3px,4px)}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-@media print{#idol,#idolNote,.btn-wake,.wake .note,#ecoFilters,#eco,#viz,.player,#altar .progress{display:none!important}.print-only{display:block!important}section{break-inside:auto}.step,.row,figure,.card{break-inside:avoid}}
+@media print{#synth,#idol,#idolNote,.btn-wake,.wake .note,#ecoFilters,#eco,#viz,.player,#altar .progress{display:none!important}.print-only{display:block!important}section{break-inside:auto}.step,.row,figure,.card{break-inside:avoid}}
 .print-only{display:none}
+.synth{border:1px solid var(--line);background:var(--ink);padding:16px;display:grid;gap:16px}
+.screens{display:grid;grid-template-columns:minmax(0,2.2fr) minmax(0,1fr);gap:12px}
+@media(max-width:640px){.screens{grid-template-columns:minmax(0,1fr)}}
+.scr{position:relative;border:1px solid var(--line);background:#070c16}
+.scr canvas{width:100%;height:auto;display:block}
+.scrl{position:absolute;left:8px;top:6px;font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--mist)}
+.pads{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+@media(max-width:520px){.pads{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.pad{aspect-ratio:1.4;background:var(--tide);border:1px solid var(--line);font-family:var(--f-mono);font-size:12px;color:var(--paper);touch-action:none;user-select:none;-webkit-user-select:none}
+.pad.on{background:var(--ember);color:var(--abyss);border-color:var(--ember)}
+.knobs{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px 18px}
+.knobs label{display:grid;gap:4px;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mist)}
+.knobs output{color:var(--ember);float:right}
+.knobs input[type=range]{width:100%;accent-color:var(--ember)}
+.presets{display:flex;flex-wrap:wrap;gap:8px}
+
+.frate{border:1px solid var(--ember);padding:12px;display:grid;gap:10px;background:#0e1626}
+.frhead{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline}
+#lfoview{width:100%;height:auto;background:#070c16;border:1px solid var(--line)}
+.frrow{display:flex;flex-wrap:wrap;gap:6px}
+.frrow button{background:transparent;border:1px solid var(--line);color:var(--mist);font-family:var(--f-mono);font-size:12px;padding:8px 11px;min-width:52px}
+.frrow button[aria-pressed="true"]{background:var(--ember);border-color:var(--ember);color:var(--abyss)}
+
 footer{padding-block:40px 60px;color:var(--mist);font-size:14px}
 .src li{margin-bottom:6px;font-size:14px;overflow-wrap:anywhere}
 </style>
@@ -178,6 +201,51 @@ footer{padding-block:40px 60px;color:var(--mist);font-size:14px}
   <div class="altar" id="altarGrid"></div>
   <div class="progress"><span class="mono" id="count">0 / 12 awake</span><div class="bar"><i id="barFill"></i></div></div>
   <div id="reveal" aria-live="polite"></div>
+</section>
+
+<!-- SYNTH -->
+<section id="synth">
+  <div class="eyebrow">The Tsathoggua synth · a wavetable bass you can play</div>
+  <h2>See the bass. Bend it.</h2>
+  <p class="prose">Hold a pad and watch the actual sound wave move. Slide the wavetable from a pure sine to saw, square and a custom Tsathoggua wave. Drive it into distortion, close the filter, and set the wobble. Pitch goes down to 20 Hz for a real subwoofer. Every glyph above shows on this scope too.</p>
+  <div class="synth">
+    <div class="screens">
+      <div class="scr"><canvas id="scope" width="900" height="260" aria-label="Live oscilloscope of the sound wave"></canvas><span class="scrl">Scope · the live sound wave</span></div>
+      <div class="scr"><canvas id="wtview" width="400" height="260" aria-label="Current wavetable shape"></canvas><span class="scrl" id="wtname">Wavetable · Sine</span></div>
+    </div>
+    <div class="pads" id="pads"></div>
+    <div class="knobs">
+      <label>Wavetable <output id="o_wt">Sine</output><input type="range" id="k_wt" min="0" max="3" step="0.01" value="0"></label>
+      <label>Pitch <output id="o_pitch">44 Hz</output><input type="range" id="k_pitch" min="0" max="1" step="0.001" value="0.31"></label>
+      <label>Unison spread <output id="o_det">8 cents</output><input type="range" id="k_det" min="0" max="50" step="1" value="8"></label>
+      <label>Drive <output id="o_drive">10</output><input type="range" id="k_drive" min="0" max="100" step="1" value="10"></label>
+      <label>Filter <output id="o_cut">1200 Hz</output><input type="range" id="k_cut" min="0" max="1" step="0.001" value="0.6"></label>
+      <label>Resonance <output id="o_res">6</output><input type="range" id="k_res" min="0" max="24" step="0.5" value="6"></label>
+    </div>
+    <div class="frate">
+      <div class="frhead"><span class="eyebrow">Filter movement · the wobble</span><span class="mono" id="o_rate">1/8 at 140 BPM = 4.67 Hz</span></div>
+      <canvas id="lfoview" width="900" height="110" aria-label="Live view of the filter sweeping"></canvas>
+      <div class="frrow" id="divs" role="group" aria-label="Tempo-synced rate">
+        <button data-d="0.25">1/1</button><button data-d="0.5">1/2</button><button data-d="1">1/4</button><button data-d="1.5">1/4T</button><button data-d="2" aria-pressed="true">1/8</button><button data-d="3">1/8T</button><button data-d="4">1/16</button><button data-d="6">1/16T</button><button data-d="8">1/32</button><button data-d="free">Free</button>
+      </div>
+      <div class="knobs">
+        <label>Tempo <output id="o_bpm">140 BPM</output><input type="range" id="k_bpm" min="70" max="180" step="1" value="140"></label>
+        <label>Free rate <output id="o_free">4.0 Hz</output><input type="range" id="k_free" min="0" max="20" step="0.05" value="4"></label>
+        <label>Depth <output id="o_depth">40</output><input type="range" id="k_depth" min="0" max="100" step="1" value="40"></label>
+      </div>
+      <div class="frrow" id="shapes" role="group" aria-label="Sweep shape">
+        <button data-s="sine" aria-pressed="true">Smooth</button><button data-s="triangle">Triangle</button><button data-s="square">Hard</button><button data-s="sawup">Saw up</button><button data-s="sawdown">Saw down</button>
+        <button id="retrig" aria-pressed="true">Restart on note: on</button>
+      </div>
+    </div>
+    <div class="presets">
+      <button class="pbtn ghost" data-p="hyper">Hyperborea · 20 Hz sub</button>
+      <button class="pbtn ghost" data-p="tekeli">Tekeli-li · ice reese</button>
+      <button class="pbtn ghost" data-p="old">Old Ones · growl</button>
+      <button class="pbtn ghost" data-p="riddim">Riddim · square wobble</button>
+      <button class="pbtn" id="latch" aria-pressed="false">Latch: off</button>
+    </div>
+  </div>
 </section>
 
 <!-- WHO -->
@@ -591,6 +659,75 @@ function finale(){
 }
 document.getElementById("finClose").onclick=()=>{document.getElementById("finale").hidden=true;document.getElementById("finVid").pause();};
 document.getElementById("wake").addEventListener("click",()=>{S.drop(0);const h=document.querySelector(".hero-media");setTimeout(()=>{h.classList.add("shake");setTimeout(()=>h.classList.remove("shake"),600)},1600);});
+
+/* ---------- TSATHOGGUA WAVETABLE SYNTH ---------- */
+(function(){
+  const N=48, NAMES=["Sine","Saw","Square","Tsathoggua"];
+  const T=[new Float32Array(N),new Float32Array(N),new Float32Array(N),new Float32Array(N)];
+  for(let n=1;n<N;n++){T[0][n]=n===1?1:0;T[1][n]=1/n;T[2][n]=n%2?1/n:0;
+    // custom: strong 1st, vowel-like bumps around 3-5 and 9-11, a little odd grit up top
+    T[3][n]=(n===1?1:0)+0.8*Math.exp(-Math.pow(n-4,2)/2)+0.5*Math.exp(-Math.pow(n-10,2)/3)+(n%2?0.12/n:0);}
+  function table(pos){const i=Math.min(2,Math.floor(pos)),f=pos-i,out=new Float32Array(N);for(let n=0;n<N;n++)out[n]=T[i][n]*(1-f)+T[i+1][n]*f;return out;}
+  const $=id=>document.getElementById(id);
+  const K={wt:$("k_wt"),pitch:$("k_pitch"),det:$("k_det"),drive:$("k_drive"),cut:$("k_cut"),res:$("k_res"),bpm:$("k_bpm"),free:$("k_free"),depth:$("k_depth")};
+  let div=2, shape="sine", retrig=true, lfoT0=0;
+  const DL={"0.25":"1/1","0.5":"1/2","1":"1/4","1.5":"1/4T","2":"1/8","3":"1/8T","4":"1/16","6":"1/16T","8":"1/32"};
+  function rate(){return div==="free"?+K.free.value:(+K.bpm.value/60)*div;}
+  function makeLfo(){const l=AC.createOscillator();if(shape==="sine"||shape==="square"||shape==="triangle"){l.type=shape;}else{const n=32,re=new Float32Array(n),im=new Float32Array(n);for(let k=1;k<n;k++)im[k]=(shape==="sawup"?-1:1)*Math.pow(-1,k+1)/k;l.setPeriodicWave(AC.createPeriodicWave(re,im));}l.frequency.value=rate();return l;}
+  function newLfo(){if(!voice)return;try{voice.lfo.stop();voice.lfo.disconnect();}catch(e){}const l=makeLfo();l.connect(voice.lg);l.start();voice.lfo=l;lfoT0=AC.currentTime;}
+  if(!K.wt) return;
+  const hz=v=>20*Math.pow(110/20,v), cutHz=v=>40*Math.pow(8000/40,v);
+  let voice=null, latched=false, held=0, curMul=1;
+  function curve(d){const k=d*4,n=1024,c=new Float32Array(n);for(let i=0;i<n;i++){const x=i*2/n-1;c[i]=d<=0?x:Math.tanh(x*(1+k/4))/Math.tanh(1+k/4);}return c;}
+  function wave(){const h=table(+K.wt.value),imag=new Float32Array(N);return AC.createPeriodicWave(h,imag,{disableNormalization:false});}
+  function build(){ctx();const o=[],g=AC.createGain(),sh=AC.createWaveShaper(),lp=AC.createBiquadFilter(),amp=AC.createGain(),lfo=makeLfo(),lg=AC.createGain();
+    const w=wave();for(let i=0;i<3;i++){const x=AC.createOscillator();x.setPeriodicWave(w);x.connect(g);o.push(x);}
+    g.gain.value=0.33;sh.curve=curve(+K.drive.value);sh.oversample="4x";lp.type="lowpass";lfo.connect(lg);lg.connect(lp.frequency);
+    g.connect(sh);sh.connect(lp);lp.connect(amp);amp.gain.value=0;amp.connect(master);o.forEach(x=>x.start());lfo.start();lfoT0=AC.currentTime;
+    voice={o,g,sh,lp,amp,lfo,lg};apply();}
+  function apply(){const v=voice,f=hz(+K.pitch.value)*curMul,d=+K.det.value,c=cutHz(+K.cut.value);
+    $("o_wt").textContent=NAMES[Math.round(+K.wt.value)];$("wtname").textContent="Wavetable · "+NAMES[Math.min(3,Math.floor(+K.wt.value+0.001))]+(+K.wt.value%1>0.02?" → "+NAMES[Math.min(3,Math.floor(+K.wt.value)+1)]:"");
+    $("o_pitch").textContent=Math.round(f)+" Hz";$("o_det").textContent=d+" cents";$("o_drive").textContent=K.drive.value;$("o_cut").textContent=Math.round(c)+" Hz";$("o_res").textContent=K.res.value;$("o_rate").textContent=(div==="free"?"Free":DL[String(div)]+" at "+K.bpm.value+" BPM")+" = "+rate().toFixed(2)+" Hz";$("o_bpm").textContent=K.bpm.value+" BPM";$("o_free").textContent=(+K.free.value).toFixed(1)+" Hz";$("o_depth").textContent=K.depth.value;
+    drawWT();if(!v)return;const t=AC.currentTime;
+    v.o.forEach((x,i)=>{x.frequency.setTargetAtTime(f,t,0.02);x.detune.setTargetAtTime((i-1)*d,t,0.02);});
+    v.lp.frequency.setTargetAtTime(c,t,0.02);v.lp.Q.setTargetAtTime(+K.res.value,t,0.02);
+    v.lfo.frequency.setTargetAtTime(rate(),t,0.01);v.lg.gain.setTargetAtTime(c*(+K.depth.value/100)*0.95,t,0.02);}
+  function setWave(){if(!voice)return;const w=wave();voice.o.forEach(x=>x.setPeriodicWave(w));}
+  function on(mul){if(!voice)build();else if(retrig)newLfo();curMul=mul;apply();const t=AC.currentTime;voice.amp.gain.cancelScheduledValues(t);voice.amp.gain.setTargetAtTime(0.9,t,0.015);}
+  function off(){if(!voice||latched)return;const t=AC.currentTime;voice.amp.gain.cancelScheduledValues(t);voice.amp.gain.setTargetAtTime(0,t,0.08);}
+  Object.entries(K).forEach(([k,el])=>el.addEventListener("input",()=>{if(k==="wt")setWave();if(k==="drive"&&voice)voice.sh.curve=curve(+el.value);apply();}));
+  const notes=[["Root",1],["m3",1.189],["4th",1.335],["5th",1.498],["b7",1.782],["Oct",2]];
+  const pads=$("pads");notes.forEach(([l,m])=>{const b=document.createElement("button");b.className="pad";b.textContent=l;b.setAttribute("aria-label","Play "+l);
+    b.addEventListener("pointerdown",e=>{e.preventDefault();b.setPointerCapture(e.pointerId);document.querySelectorAll(".pad.on").forEach(p=>p.classList.remove("on"));b.classList.add("on");on(m);});
+    const up=()=>{if(!latched)b.classList.remove("on");off();};b.addEventListener("pointerup",up);b.addEventListener("pointercancel",up);pads.appendChild(b);});
+  $("latch").addEventListener("click",e=>{latched=!latched;e.target.textContent="Latch: "+(latched?"on":"off");e.target.setAttribute("aria-pressed",latched);if(!latched){document.querySelectorAll(".pad.on").forEach(p=>p.classList.remove("on"));off();}});
+  const P={hyper:{k:{wt:0,pitch:0,det:0,drive:0,cut:0.35,res:0,depth:0},d:1,s:"sine"},tekeli:{k:{wt:1.2,pitch:0.22,det:22,drive:25,cut:0.48,res:4,depth:30},d:0.5,s:"triangle"},old:{k:{wt:3,pitch:0.3,det:12,drive:85,cut:0.55,res:14,depth:70},d:3,s:"sine"},riddim:{k:{wt:2,pitch:0.35,det:4,drive:60,cut:0.5,res:12,depth:85},d:2,s:"square"}};
+  document.querySelectorAll("[data-p]").forEach(b=>b.addEventListener("click",()=>{const p=P[b.dataset.p];Object.entries(p.k).forEach(([k,v])=>K[k].value=v);div=p.d;shape=p.s;press("#divs",String(div),"d");press("#shapes",shape,"s");newLfo();setWave();if(voice)voice.sh.curve=curve(+K.drive.value);apply();on(1);if(!latched)setTimeout(off,1800);}));
+  const wv=$("wtview"),wc=wv.getContext("2d");
+  function drawWT(){const w=wv.width,h=wv.height,t=table(+K.wt.value);wc.fillStyle="#070c16";wc.fillRect(0,0,w,h);wc.strokeStyle="rgba(236,226,204,.15)";wc.beginPath();wc.moveTo(0,h/2);wc.lineTo(w,h/2);wc.stroke();
+    const pts=[];let mx=0;for(let x=0;x<w;x++){const ph=x/w*2*Math.PI;let y=0;for(let n=1;n<N;n++)y+=t[n]*Math.sin(n*ph);pts.push(y);mx=Math.max(mx,Math.abs(y));}
+    wc.strokeStyle="#6fb59a";wc.lineWidth=3;wc.beginPath();pts.forEach((y,x)=>{const yy=h/2-(y/(mx||1))*h*0.38;x?wc.lineTo(x,yy):wc.moveTo(x,yy);});wc.stroke();}
+
+  function press(sel,val,attr){document.querySelectorAll(sel+" button[data-"+attr+"]").forEach(x=>x.setAttribute("aria-pressed",x.dataset[attr]===val));}
+  document.querySelectorAll("#divs button").forEach(b=>b.addEventListener("click",()=>{div=b.dataset.d==="free"?"free":+b.dataset.d;press("#divs",b.dataset.d,"d");if(retrig)newLfo();apply();}));
+  document.querySelectorAll("#shapes button[data-s]").forEach(b=>b.addEventListener("click",()=>{shape=b.dataset.s;press("#shapes",shape,"s");newLfo();apply();}));
+  $("retrig").addEventListener("click",e=>{retrig=!retrig;e.target.textContent="Restart on note: "+(retrig?"on":"off");e.target.setAttribute("aria-pressed",retrig);});
+  const lv=$("lfoview"),lc=lv.getContext("2d");
+  function lfoVal(ph){ph=ph-Math.floor(ph);if(shape==="sine")return Math.sin(2*Math.PI*ph);if(shape==="triangle")return ph<.25?ph*4:ph<.75?2-ph*4:ph*4-4;if(shape==="square")return ph<.5?1:-1;if(shape==="sawup")return 2*ph-1;return 1-2*ph;}
+  (function dl(){requestAnimationFrame(dl);const w=lv.width,h=lv.height;lc.fillStyle="#070c16";lc.fillRect(0,0,w,h);const r=rate(),beats=2,secs=beats*60/(+K.bpm.value),dep=+K.depth.value/100;
+    lc.strokeStyle="rgba(236,226,204,.12)";for(let b=1;b<8;b++){lc.beginPath();lc.moveTo(w*b/8,0);lc.lineTo(w*b/8,h);lc.stroke();}
+    lc.strokeStyle="#6fb59a";lc.lineWidth=2;lc.beginPath();for(let x=0;x<w;x++){const t=x/w*secs;const y=h/2-lfoVal(t*r)*dep*h*0.4;x?lc.lineTo(x,y):lc.moveTo(x,y);}lc.stroke();
+    if(typeof AC!=="undefined"&&AC&&voice){const t=(AC.currentTime-lfoT0)%secs;const x=t/secs*w;lc.fillStyle="#e8743b";lc.fillRect(x-1,0,3,h);const y=h/2-lfoVal((AC.currentTime-lfoT0)*r)*dep*h*0.4;lc.beginPath();lc.arc(x,y,6,0,7);lc.fill();}
+    lc.fillStyle="#a9a69a";lc.font="12px monospace";lc.fillText("two beats · filter opens up, closes down",10,16);})();
+  drawWT();
+  const sc=$("scope"),sx=sc.getContext("2d");
+  (function draw(){requestAnimationFrame(draw);const w=sc.width,h=sc.height;sx.fillStyle="#070c16";sx.fillRect(0,0,w,h);sx.strokeStyle="rgba(236,226,204,.12)";sx.lineWidth=1;for(let i=1;i<4;i++){sx.beginPath();sx.moveTo(0,h*i/4);sx.lineTo(w,h*i/4);sx.stroke();}
+    if(typeof analyser==="undefined"||!analyser){sx.fillStyle="#a9a69a";sx.font="15px monospace";sx.fillText("Hold a pad or press a glyph to see the wave",18,h/2+5);return;}
+    const n=analyser.fftSize,d=new Float32Array(n);analyser.getFloatTimeDomainData(d);
+    let s=0;for(let i=1;i<n/2;i++){if(d[i-1]<0&&d[i]>=0){s=i;break;}}
+    const span=Math.min(n-s,Math.floor(n*0.75));sx.strokeStyle="#e8743b";sx.lineWidth=2.5;sx.shadowColor="#e8743b";sx.shadowBlur=8;sx.beginPath();
+    for(let x=0;x<w;x++){const i=s+Math.floor(x/w*span);const y=h/2-d[i]*h*0.34;x?sx.lineTo(x,y):sx.moveTo(x,y);}sx.stroke();sx.shadowBlur=0;})();
+})();
 
 /* ---------- POE BEAT + VISUALIZER ---------- */
 const poe=new Audio("a/poe-beat.mp3"); poe.preload="none"; let poeSrc=null;
