@@ -1,0 +1,664 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<!-- STYLE: Kuniyoshi night-print (ukiyo-e woodblock, indigo sea, bone paper, ember bass rings) | WHY: Foster already lives in Kunisada/Kuniyoshi woodblocks and his frog sage is drawn that way, so the Mythos arrives in his own visual language | ALT: David Carson grunge rave flyer, louder but generic to every bass act -->
+<title>Fang Speare: The Deep Low End</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Antique&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Martian+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: one long night-sea scroll; woodblock plates alternate with an altar of playable glyph-buttons; single dark world by choice. */
+:root{
+  --abyss:#0b1220;      /* deep night sea */
+  --ink:#121c30;        /* plate ground */
+  --tide:#1d2b47;       /* raised surface */
+  --paper:#ece2cc;      /* bone paper text */
+  --mist:#a9a69a;       /* secondary text */
+  --ember:#e8743b;      /* bass-wave orange */
+  --jade:#6fb59a;       /* Lovecraft green */
+  --blood:#c4412f;      /* cartouche red */
+  --line:rgba(236,226,204,.14);
+  --f-display:"Zen Antique","Hiragino Mincho ProN","Yu Mincho",Georgia,serif;
+  --f-body:"Newsreader",Georgia,"Times New Roman",serif;
+  --f-mono:"Martian Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{background:var(--abyss);color:var(--paper);font-family:var(--f-body);font-size:18px;line-height:1.6;margin:0;padding-inline:16px;overflow-x:hidden}
+.wrap{max-width:1080px;margin:0 auto}
+.prose{max-width:66ch}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;line-height:1.1;text-wrap:balance;margin:0}
+h2{font-size:clamp(30px,5vw,48px);margin-block:6px 18px}
+h3{font-size:22px;margin-bottom:6px}
+p{margin:0 0 14px}
+a{color:var(--ember)}
+.eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--jade)}
+.mono{font-family:var(--f-mono);font-size:13px}
+section{padding-block:56px;border-top:1px solid var(--line)}
+img,video{max-width:100%;display:block}
+.plate{border:1px solid var(--line);background:var(--ink)}
+.plate img,.plate video{width:100%;height:auto}
+.cap{font-family:var(--f-mono);font-size:11px;color:var(--mist);padding:8px 12px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px;align-items:start}
+.grid2>*{min-width:0}
+.tag{display:inline-block;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border:1px solid var(--line);margin:0 6px 6px 0;color:var(--mist)}
+.tag.v{border-color:var(--jade);color:var(--jade)}
+.tag.l{border-color:var(--ember);color:var(--ember)}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--ember);outline-offset:3px}
+
+/* HERO */
+.hero{position:relative;padding-block:24px 40px;border:0}
+.hero-media{position:relative;border:1px solid var(--line);overflow:hidden;background:var(--ink)}
+.hero-media video{width:100%;aspect-ratio:16/9;object-fit:cover}
+.hero h1{font-size:clamp(46px,11vw,128px);letter-spacing:.02em;margin-top:22px}
+.hero h1 span{color:var(--ember)}
+.hero .sub{font-size:clamp(18px,2.4vw,23px);max-width:52ch;color:var(--paper)}
+.wake{margin-top:18px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.btn-wake{background:var(--blood);border:0;padding:16px 26px;font-family:var(--f-display);font-size:22px;letter-spacing:.06em;box-shadow:0 0 0 0 rgba(232,116,59,.6);animation:pulse 2.4s infinite}
+.btn-wake:active{transform:scale(.97)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(232,116,59,.55)}70%{box-shadow:0 0 0 22px rgba(232,116,59,0)}100%{box-shadow:0 0 0 0 rgba(232,116,59,0)}}
+.note{font-family:var(--f-mono);font-size:11px;color:var(--mist)}
+
+/* ALTAR */
+.altar{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+.glyph{position:relative;aspect-ratio:1;background:radial-gradient(circle at 50% 60%,var(--tide),var(--ink) 70%);border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:10px;transition:transform .15s,border-color .2s}
+.glyph:hover{transform:translateY(-3px);border-color:var(--jade)}
+.glyph svg{width:62%;height:auto;overflow:visible}
+.glyph .gl{font-family:var(--f-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mist);text-align:center}
+.glyph.done{border-color:var(--ember)}
+.glyph.done::after{content:"";position:absolute;top:8px;right:8px;width:8px;height:8px;border-radius:50%;background:var(--ember)}
+.glyph.hit{animation:thump .45s}
+@keyframes thump{0%{transform:scale(1)}25%{transform:scale(1.08)}60%{transform:scale(.97)}100%{transform:scale(1)}}
+/* idle animations per glyph */
+.eye-lid{transform-origin:50% 50%;animation:blink 5s infinite}
+@keyframes blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.08)}}
+.tent{transform-origin:50% 95%;animation:sway 3.2s ease-in-out infinite}
+@keyframes sway{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
+.spin{transform-origin:50% 50%;animation:spin 14s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.bob{animation:bob 2.6s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.glow{animation:glow 2.2s ease-in-out infinite}
+@keyframes glow{0%,100%{opacity:.35}50%{opacity:1}}
+.ring{transform-origin:50% 50%;animation:ripple 2.4s ease-out infinite}
+@keyframes ripple{0%{transform:scale(.4);opacity:1}100%{transform:scale(1.5);opacity:0}}
+.progress{display:flex;align-items:center;gap:12px;margin:16px 0 0}
+.bar{flex:1;height:6px;background:var(--tide);position:relative}
+.bar i{position:absolute;inset:0 auto 0 0;background:var(--ember);width:0;transition:width .4s}
+#reveal{margin-top:18px;min-height:120px}
+.card{border:1px solid var(--line);background:var(--ink);display:grid;grid-template-columns:minmax(0,1fr);gap:0}
+.card .ct{padding:18px 20px}
+.card h3{color:var(--ember)}
+.card.in{animation:rise .5s ease-out}
+@keyframes rise{from{transform:translateY(12px);opacity:.3}to{transform:none;opacity:1}}
+@media(min-width:760px){.card.wide{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}}
+
+/* scope */
+.scope{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+canvas{display:block;max-width:100%}
+#viz{width:100%;height:120px;background:var(--ink);border:1px solid var(--line)}
+.player{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.pbtn{background:var(--ember);color:var(--abyss);border:0;padding:10px 18px;font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.pbtn.ghost{background:transparent;color:var(--paper);border:1px solid var(--line)}
+
+/* list rows */
+.rows{display:grid;gap:0;border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:minmax(0,180px) minmax(0,1fr);gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.row b{font-family:var(--f-mono);font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--jade);text-transform:uppercase}
+@media(max-width:560px){.row{grid-template-columns:minmax(0,1fr);gap:4px}}
+.tbl{overflow-x:auto;border:1px solid var(--line)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:15px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mist);font-weight:400}
+td.n{font-family:var(--f-mono);font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* road map */
+.steps{display:grid;gap:14px;counter-reset:s}
+.step{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;padding:16px 18px;background:var(--ink);border:1px solid var(--line)}
+.step .when{font-family:var(--f-mono);font-size:12px;color:var(--ember);white-space:nowrap;padding-top:4px}
+@media(max-width:560px){.step{grid-template-columns:minmax(0,1fr)}}
+
+/* 3D map */
+#eco{position:relative;width:100%;aspect-ratio:16/10;max-height:640px;background:radial-gradient(ellipse at 50% 60%,#13213a,var(--abyss) 75%);border:1px solid var(--line);overflow:hidden;touch-action:none}
+#eco canvas{width:100%!important;height:100%!important}
+#eco .lbl{position:absolute;transform:translate(-50%,-140%);font-family:var(--f-mono);font-size:10px;white-space:nowrap;pointer-events:none;color:var(--paper);text-shadow:0 0 4px var(--abyss),0 0 2px var(--abyss)}
+#eco .lbl.L{color:var(--jade)}#eco .lbl.B{color:var(--ember)}#eco .lbl.F{color:var(--paper);font-size:13px;font-weight:600}
+@media(max-width:600px){#eco{aspect-ratio:4/5}}
+#ecoInfo{margin-top:12px;padding:14px 16px;border:1px solid var(--line);background:var(--ink);min-height:84px}
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px}
+.legend span{font-family:var(--f-mono);font-size:11px;color:var(--mist)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.filters button{background:transparent;border:1px solid var(--line);padding:6px 12px;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mist)}
+.filters button[aria-pressed="true"]{border-color:var(--ember);color:var(--paper)}
+
+#idol{width:100%;aspect-ratio:1;max-width:520px;background:radial-gradient(circle at 50% 55%,#1a2a44,var(--abyss) 70%);border:1px solid var(--line);touch-action:none}
+
+/* finale */
+#finale{position:fixed;inset:0;background:rgba(5,9,16,.94);display:flex;align-items:center;justify-content:center;z-index:50;padding:16px}
+#finale .fin{max-width:900px;width:100%;text-align:center}
+#finale h2{color:var(--ember);font-size:clamp(34px,7vw,72px);margin-top:16px}
+.shake{animation:shake .5s}
+@keyframes shake{0%,100%{transform:none}20%{transform:translate(-6px,3px)}40%{transform:translate(5px,-4px)}60%{transform:translate(-4px,-2px)}80%{transform:translate(3px,4px)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+footer{padding-block:40px 60px;color:var(--mist);font-size:14px}
+.src li{margin-bottom:6px;font-size:14px;overflow-wrap:anywhere}
+</style>
+
+</head><body>
+<div class="wrap">
+
+<!-- HERO -->
+<header class="hero">
+  <div class="eyebrow">For Foster, from Gordon · October 13, 2026</div>
+  <h1>FANG <span>SPEARE</span></h1>
+  <p class="sub">The frog sage of the low end. Lovecraft's drowned gods, bass music's deepest frequencies, and a road map from two tracks today to a Brooklyn stage in July 2027.</p>
+  <div class="hero-media">
+    <video id="heroVid" src="a/rlyeh.mp4" poster="a/rlyeh-frame.jpg" autoplay muted loop playsinline aria-label="Animated woodblock: the frog sage blows a didgeridoo on a drowned monolith while sound rings pulse toward a waking tentacled god."></video>
+  </div>
+  <div class="wake">
+    <button class="btn-wake" id="wake">WAKE THE DEEP</button>
+    <span class="note">Sound on. Every glyph below plays a bass sound made live in your browser.</span>
+  </div>
+</header>
+
+<!-- ALTAR -->
+<section id="altar">
+  <div class="eyebrow">The altar · 12 glyphs</div>
+  <h2>Press the old stones.</h2>
+  <p class="prose">Each glyph plays a different bass sound in the Fang Speare style, sub drops, wobbles, growls, reese, riddim, and opens a piece of lore. Wake all twelve and something rises.</p>
+  <div class="altar" id="altarGrid"></div>
+  <div class="progress"><span class="mono" id="count">0 / 12 awake</span><div class="bar"><i id="barFill"></i></div></div>
+  <div id="reveal" aria-live="polite"></div>
+</section>
+
+<!-- WHO -->
+<section id="who">
+  <div class="grid2">
+    <div>
+      <div class="eyebrow">Who Fang Speare is</div>
+      <h2>A producer who started at fifty-five.</h2>
+      <div class="prose">
+        <p>Foster started making bass music in 2026. He spent ninety days learning from <b>Ace Aura</b>, the Texas producer known for melodic riddim. He cut <b>Poe Beat (92 BPM, Lars remix)</b> with <b>MC Lars</b>, the pioneer of lit-hop and author of an entire Edgar Allan Poe catalog. He founded a label, <b>Ghost Voltage Records</b>.</p>
+        <p>In his own words: the EP is "for the fans of HP Lovecraft and dubstep / experimental bass music / wave and the New Romantics." The Fang Speare character "is an inhabitant of the ancient world described in the HP Lovecraft stories," from "a time of civilization before the last Ice Age."</p>
+        <p>He already has two tracks, <b>Tekeli-li</b> and <b>Old Ones</b>, and a live site at <a href="https://fangspeare.com" target="_blank" rel="noopener">fangspeare.com</a> built on <i>At the Mountains of Madness</i>: Antarctic ice, a Miskatonic Expedition briefing film, and a synthesizer you can play.</p>
+      </div>
+      <div class="player" style="margin-top:14px">
+        <button class="pbtn" id="poeBtn">▶ Play Poe Beat</button>
+        <span class="mono" id="poeLbl">Fang Speare × MC Lars · 92 BPM</span>
+      </div>
+      <canvas id="viz" width="900" height="120" style="margin-top:12px" aria-label="Live frequency display of the playing track"></canvas>
+    </div>
+    <figure class="plate" style="margin:0">
+      <img src="a/4-synth.jpg" alt="Woodblock print of an ancient stone synthesizer in a sunken temple, knobs shaped like shells and tentacles, a webbed hand turning one knob.">
+      <figcaption class="cap">The stone synth · his site is already an instrument</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- LORE -->
+<section id="lore">
+  <div class="eyebrow">Why a frog sage belongs in the Mythos</div>
+  <h2>Tsathoggua, the toad god before the ice.</h2>
+  <div class="grid2">
+    <div class="prose">
+      <p>Clark Ashton Smith, Lovecraft's friend and correspondent, created <b>Tsathoggua</b> in "The Tale of Satampra Zeiros" (written 1929, <i>Weird Tales</i>, November 1931): squat, pot-bellied, "his head was more like a monstrous toad than a deity." He sleeps in caverns under Mount Voormithadreth in <b>Hyperborea</b>, a warm northern kingdom buried by the advancing ice sheets of the Pleistocene.</p>
+      <p>Lovecraft adopted him in "The Mound" and "The Whisperer in Darkness," and named him in <i>At the Mountains of Madness</i>, the very story Foster's site and his track <b>Tekeli-li</b> already draw from. The frog sage and the Antarctic expedition are one world.</p>
+      <p>Among the Mythos gods, Tsathoggua is the lazy, less malevolent one who holds deep knowledge. That is a sage. A second fit: in "The Doom That Came to Sarnath" (1920) the beings of Ib are green, bulge-eyed and voiceless. Fang Speare gives them a voice, and it is all bass.</p>
+      <p><span class="tag v">Public domain note</span> "The Whisperer in Darkness" (August 1931) enters the US public domain on January 1, 2027, and Smith's Tsathoggua story likely does too. A July 2027 show lands in Tsathoggua's first public-domain summer. <i>At the Mountains of Madness</i> stays under US copyright until 2032, so keep borrowing its themes, not long passages.</p>
+    </div>
+    <figure class="plate" style="margin:0">
+      <img src="a/1-hyperborea.jpg" alt="Woodblock print of a glacier city in Hyperborea under aurora; a giant sleepy toad god in a cavern; a small frog sage plays a didgeridoo on a bridge, orange sound waves rolling down the stairs.">
+      <figcaption class="cap">Hyperborea · the sage plays while Tsathoggua sleeps</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- LINEAGE -->
+<section id="lineage">
+  <div class="eyebrow">Lovecraft and the low end</div>
+  <h2>The lineage he is joining.</h2>
+  <p class="prose">Lovecraft has haunted heavy and electronic music for forty years, and the low end is how he gets in. Plenty of bass tracks borrow a Mythos title. Almost nobody has built a whole character world on it. That lane is open.</p>
+  <div class="rows">
+    <div class="row"><b>1984 · Metal</b><div>Metallica's <i>The Call of Ktulu</i> is an instrumental named for "The Call of Cthulhu." Bassist <b>Cliff Burton</b> brought Lovecraft to the band, and much of the track's mood is his bass. <i>The Thing That Should Not Be</i> (1986) draws on "The Shadow over Innsmouth."</div></div>
+    <div class="row"><b>1990s · Theory</b><div>Warwick's <b>CCRU</b> fused Lovecraft, the occult and jungle. Mark Fisher said the group was trying to do in writing what jungle was doing in sound. <b>Steve Goodman (Kode9)</b>, founder of Hyperdub, was a member, which ties the Mythos to the roots of UK bass.</div></div>
+    <div class="row"><b>2014 to now · Dark ambient</b><div><b>Cryo Chamber</b>'s yearly collaborations give each Mythos entity an hour of drone: Cthulhu (2014), then Azathoth, Nyarlathotep, Yog-Sothoth, Shub-Niggurath, Hastur, Yig, Dagon and Tsathoggua (2022).</div></div>
+    <div class="row"><b>2018 · Film</b><div>Jóhann Jóhannsson's <i>Mandy</i> score: doom drone with Stephen O'Malley of Sunn O))) and fretless bass. Salisbury and Barrow's <i>Annihilation</i> ends on a three-note pulse that feels Lovecraftian.</div></div>
+    <div class="row"><b>2019 · Film</b><div>Colin Stetson scored the Lovecraft adaptation <i>Color Out of Space</i> on bass saxophone with contrabass. The clearest case of low frequencies carrying cosmic horror.</div></div>
+    <div class="row"><b>2020 · TV</b><div><i>Lovecraft Country</i> (HBO, showrunner Misha Green), scored by Laura Karpman and Raphael Saadiq as "gothic R&B," with Gil Scott-Heron's "Whitey on the Moon" over episode 2.</div></div>
+    <div class="row"><b>Games</b><div><i>Darkest Dungeon</i> (Stuart Chatwood) cites Lovecraft directly; <i>Bloodborne</i>, <i>Dredge</i> and <i>Sunless Sea</i> each have devoted Mythos-adjacent fan scenes.</div></div>
+  </div>
+</section>
+
+
+<!-- CANON -->
+<section id="canon">
+  <div class="eyebrow">The Mythos bass canon · his peers</div>
+  <h2>Tracks already speaking the old tongue.</h2>
+  <p class="prose">Real releases, checked against store listings. Use them for reference listening, DJ sets and label targets. Crowsnest Audio and Muti Music are the two labels that keep returning to the Mythos.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Artist</th><th>Track</th><th>Year · label</th><th>Style</th></tr></thead>
+    <tbody>
+      <tr><td>INHUMAN</td><td><a href="https://music.apple.com/us/album/the-lovecraftian-horrors/1717833279" target="_blank" rel="noopener">The Lovecraftian Horrors</a> (album: Cthulhu, Dagon, Dunwich, From Beyond, The Lurking Fear; features Subtronics)</td><td class="n">2017 · Crowsnest Audio</td><td>Dubstep</td></tr>
+      <tr><td>Cthulhu Basscraft</td><td><a href="https://music.apple.com/us/album/rlyeh/1461495555?i=1461495809" target="_blank" rel="noopener">R'lyeh</a>, Fhtagn, Necronomicon EP</td><td class="n">2018 to 2019 · Muti Music</td><td>Halftime, dubstep</td></tr>
+      <tr><td>ill.Gates ft. Mr. Bill and more</td><td><a href="https://www.deezer.com/track/461471242" target="_blank" rel="noopener">Cthulhu</a></td><td class="n">2018 · Muti Music</td><td>Bass</td></tr>
+      <tr><td>Dubloadz</td><td><a href="https://www.deezer.com/track/649343852" target="_blank" rel="noopener">Necronomicon</a></td><td class="n">2019 · Never Say Die: Black Label</td><td>Riddim</td></tr>
+      <tr><td>Marauda</td><td><a href="https://www.deezer.com/track/2724809581" target="_blank" rel="noopener">CTHULHU</a></td><td class="n">2019 · Malignant Music</td><td>Deathstep</td></tr>
+      <tr><td>Sick Boy &amp; Zomdrack</td><td><a href="https://music.apple.com/us/album/shoggoth/1614472422?i=1614472431" target="_blank" rel="noopener">Shoggoth</a></td><td class="n">2022 · Blasphemy</td><td>Dubstep</td></tr>
+      <tr><td>RUSHKID</td><td><a href="https://music.apple.com/us/album/yog-sothoth/1441324195?i=1441324198" target="_blank" rel="noopener">Yog Sothoth</a></td><td class="n">2018 · Poltergeist</td><td>Dubstep</td></tr>
+      <tr><td>Kadath</td><td><a href="https://music.apple.com/us/album/cult-of-the-old-ones/1503217046?i=1503217049" target="_blank" rel="noopener">Cult of the Old Ones</a></td><td class="n">2020 · Biophaze</td><td>Bass</td></tr>
+      <tr><td>SPECTRON</td><td><a href="https://music.apple.com/us/album/mountains-of-madness/1193151578?i=1193151634" target="_blank" rel="noopener">Mountains of Madness</a> (album: The Shadow Out of Time)</td><td class="n">2017 · Monochrome</td><td>Drum and bass</td></tr>
+      <tr><td>Syk2ne</td><td><a href="https://music.apple.com/us/album/the-elder-things/1287221201?i=1287221217" target="_blank" rel="noopener">The Elder Things</a> / Yuggoth</td><td class="n">2018 · Sonic Terror</td><td>Neurofunk</td></tr>
+      <tr><td>Activ</td><td><a href="https://www.deezer.com/track/1761492847" target="_blank" rel="noopener">Miskatonic Valley</a></td><td class="n">2022 · Heart Twice</td><td>Drum and bass</td></tr>
+      <tr><td>Modeselektor</td><td><a href="https://www.beatport.com/track/cthulhu-drums/15036817" target="_blank" rel="noopener">Cthulhu Drums</a></td><td class="n">2021 · Monkeytown</td><td>Bass, 140 BPM</td></tr>
+      <tr><td>deadmau5</td><td><a href="https://en.wikipedia.org/wiki/4%C3%974%3D12" target="_blank" rel="noopener">Cthulhu Sleeps</a>; Rlyehs Lament (2014)</td><td class="n">2010 · mau5trap</td><td>Progressive</td></tr>
+    </tbody>
+  </table></div>
+  <p class="prose" style="margin-top:14px"><b>Where Fang Speare is different:</b> his two tracks already sit inside one story (At the Mountains of Madness), with a character, a site that is an instrument, and a label. INHUMAN made a concept album; nobody has made a character. And underneath it all is real science: in a 2003 concert experiment, hidden 17 Hz infrasound made 22 percent of listeners report unease or chills. The sub is the horror.</p>
+</section>
+
+<!-- ETHICS -->
+<section id="ethics">
+  <div class="grid2">
+    <div class="prose">
+      <div class="eyebrow">Say the hard part out loud</div>
+      <h2>Lovecraft's fear, and the artists who answer it.</h2>
+      <p>Lovecraft was openly racist. His 1912 poem about the creation of Black people is quoted in the first episode of <i>Lovecraft Country</i>, and many of his monsters stand for his fear of immigrants and of mixing. The World Fantasy Award retired his bust after 2015, after a push led by Nnedi Okorafor and Daniel José Older.</p>
+      <p>The strongest Mythos work now talks back. Victor LaValle's <i>The Ballad of Black Tom</i> (2016) rewrites "The Horror at Red Hook" through a Black Harlem musician. Ruthanna Emrys's <i>Winter Tide</i> recasts the people of Innsmouth as survivors of persecution, with queer found family at its center.</p>
+      <p>In electronic music, Detroit's <b>Drexciya</b> imagined an undersea nation born of pregnant African women thrown from slave ships: the same deep ocean as Innsmouth, told from inside. Sun Ra and Moor Mother's Black Quantum Futurism offer cosmologies of space and time that answer Lovecraft's void.</p>
+      <p><b>For Fang Speare:</b> the frog sage is the one who lives down there, the hero of the deep, not the thing to fear. Telling it that way keeps the dread and drops the bigotry.</p>
+    </div>
+    <figure class="plate" style="margin:0">
+      <img src="a/0-rlyeh.jpg" alt="Woodblock print: the frog sage stands on a black monolith in the Great Wave, blowing a didgeridoo whose sound rings spread across the water toward a vast tentacled god with one glowing eye.">
+      <figcaption class="cap">Key art · the sage faces the deep and plays</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ECOSYSTEM -->
+<section id="eco-sec">
+  <div class="eyebrow">Two fandoms, one frog</div>
+  <h2>The American map: Mythos fandom × bass music.</h2>
+  <p class="prose">Drag to spin. Big stars are labeled; tap any star for what it is and why it matters. Green stars are the Lovecraft world, orange stars are the bass world, white stars are where they already touch. Fang Speare sits in the middle.</p>
+  <div class="filters" id="ecoFilters">
+    <button aria-pressed="true" data-f="all">All</button>
+    <button aria-pressed="false" data-f="L">Lovecraft</button>
+    <button aria-pressed="false" data-f="B">Bass</button>
+    <button aria-pressed="false" data-f="X">Overlap</button>
+  </div>
+  <div id="eco" role="img" aria-label="Interactive 3D map of US Lovecraft fandom and bass music scenes around Fang Speare"></div>
+  <div class="legend"><span><i style="background:var(--jade)"></i>Lovecraft and horror fandom</span><span><i style="background:var(--ember)"></i>Bass music</span><span><i style="background:var(--paper)"></i>Overlap and Fang Speare</span></div>
+  <div id="ecoInfo"><span class="mono">Tap a star.</span></div>
+  <div id="ecoList" style="margin-top:22px"></div>
+</section>
+
+<!-- WHERE HE STANDS -->
+<section id="today">
+  <div class="eyebrow">Where Fang Speare stands today</div>
+  <h2>The site is built. Search can't find it yet.</h2>
+  <p class="prose">Checked October 13. Searching "fang speare" returns the <i>Valheim</i> weapon "Fang Spear." None of his pages rank yet. Everything below is fixable in an afternoon.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Place</th><th>What exists</th><th>Next move</th></tr></thead>
+    <tbody>
+      <tr><td>fangspeare.com</td><td>Live since Sept 15. Good metadata, MusicGroup data for Tekeli-li and Old Ones, sitemap. Mostly script, little readable text.</td><td>Add 200 words of plain text; link every profile; submit to Google Search Console.</td></tr>
+      <tr><td>Name spelling</td><td>Site says "Fangspeare," Bandcamp says "Fang Speare."</td><td>Pick one and use it everywhere. "Fang Speare" keeps the Shakespeare pun.</td></tr>
+      <tr><td>Bandcamp</td><td>fangspeare.bandcamp.com exists, no release found.</td><td>Put Tekeli-li up first, pay what you want.</td></tr>
+      <tr><td>Spotify</td><td>No artist profile yet.</td><td>Release through a distributor so a profile exists.</td></tr>
+      <tr><td>YouTube</td><td>@fangspeare, 2 subscribers.</td><td>Post the Miskatonic briefing film and a 30-second visualizer per track.</td></tr>
+      <tr><td>Instagram</td><td>@fangspeare, 1 post.</td><td>Weekly frog posts, same palette, same hat.</td></tr>
+      <tr><td>TikTok</td><td>@fangspeare, 0 videos.</td><td>Short "press the glyph" sound-design clips.</td></tr>
+      <tr><td>Ghost Voltage Records</td><td>Squarespace placeholder with noindex (hidden from search).</td><td>Remove noindex; one page linking to Fang Speare.</td></tr>
+      <tr><td>SoundCloud</td><td>No profile.</td><td>Claim /fangspeare for the bass community's DJ-friendly downloads.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- ROAD MAP -->
+<section id="road">
+  <div class="eyebrow">The road map · October 2026 to July 2027</div>
+  <h2>Stepping stones to the stage.</h2>
+  <figure class="plate" style="margin:0 0 22px">
+    <img src="a/5-map.jpg" alt="Woodblock sea chart: a path of stepping-stone islands from the frog sage's hut, past a studio, a lighthouse, a ship and a torii gate, to a glowing stage on a mountain island under a red sun.">
+  </figure>
+  <div class="steps">
+    <div class="step"><div class="when">Oct to Nov 2026</div><div><h3>Claim the name</h3><p>One spelling. Profiles linked from the site. Search Console. Bandcamp page live. Ghost Voltage Records page visible. A short bio: "Lovecraftian bass from before the Ice Age."</p></div></div>
+    <div class="step"><div class="when">Dec 2026</div><div><h3>Release Tekeli-li</h3><p>First single on Bandcamp and streaming. A 30-second visualizer with the frog in the ice. Send it to MC Lars and Ace Aura to share, which gives the site its first real links.</p></div></div>
+    <div class="step"><div class="when">Jan 2027</div><div><h3>The wubz button</h3><p>Give fangspeare.com an easy mode: one big button that plays a satisfying drop, with the full synth behind it for people who want to go deeper. This is the shareable thing.</p></div></div>
+    <div class="step"><div class="when">Feb to Apr 2027</div><div><h3>Finish the EP, one place per track</h3><p>Old Ones, Tekeli-li, plus tracks for Hyperborea, R'lyeh and Sarnath. A map of the world you listen to in order. Release in April with a run of short films.</p></div></div>
+    <div class="step"><div class="when">Feb 2027</div><div><h3>Book the room</h3><p>Lock a July date and venue (see the production plan below). Small, loud, friends first.</p></div></div>
+    <div class="step"><div class="when">Mar to Jun 2027</div><div><h3>Learn the live set</h3><p>Rehearse a 45-minute hybrid set on Push 3. Play two practice nights for friends at home or a tiny bar. Build the visuals.</p></div></div>
+    <div class="step"><div class="when">July 2027</div><div><h3>The Deep Low End, live</h3><p>The birthday-week show in Brooklyn. The frog on the screen, the subs in the floor, the people who love him in the room.</p></div></div>
+  </div>
+</section>
+
+<!-- LIVE SHOW PLAN -->
+<section id="live">
+  <div class="grid2">
+    <div>
+      <div class="eyebrow">Production plan · July 2027</div>
+      <h2>The Deep Low End, live in Brooklyn.</h2>
+      <div class="prose"><p>Target: a Friday or Saturday in the week of July 18, 2027, his 56th birthday. A 150 to 260 capacity room, a 45-minute headline set with two friends' sets before it, the Fang Speare world on a screen behind him.</p></div>
+    </div>
+    <figure class="plate" style="margin:0">
+      <video src="a/live.mp4" poster="a/live-frame.jpg" muted loop playsinline controls aria-label="Animated woodblock of the frog-masked performer at the decks while a tentacled god pulses on the LED wall and the crowd jumps."></video>
+      <figcaption class="cap">How it could feel · press play</figcaption>
+    </figure>
+  </div>
+  <h3 style="margin-top:28px">Venue short list</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Room</th><th>Capacity</th><th>Why</th><th>Booking</th></tr></thead>
+    <tbody>
+      <tr><td>Elsewhere, Zone One (Bushwick)</td><td class="n">260</td><td>Built for emerging artists, serious sound, bass-friendly crowd.</td><td>Private events form; price on inquiry</td></tr>
+      <tr><td>Le Poisson Rouge, Gallery Bar</td><td class="n">150</td><td>Birthday scale, Village location, host keeps ticket revenue.</td><td>events@lprnyc.com; room fee plus F&amp;B</td></tr>
+      <tr><td>Elsewhere, Hall</td><td class="n">750</td><td>The stretch goal if friends-of-friends turn out.</td><td>Same form</td></tr>
+      <tr><td>Schimanski (Williamsburg)</td><td class="n">750</td><td>Bass-music regular room; a later step.</td><td>Venue booking</td></tr>
+    </tbody>
+  </table></div>
+  <h3 style="margin-top:28px">Budget ranges (estimates, to confirm with each vendor)</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Line</th><th>Range</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Room rental or minimum spend</td><td class="n">$2,500 to $15,000</td><td>Small-room NYC buyouts list from about $2.5K; bigger rooms carry food and drink minimums.</td></tr>
+      <tr><td>Sub reinforcement</td><td class="n">$800 to $3,000</td><td>Only if the house system lacks enough sub. Ask for the spec sheet first.</td></tr>
+      <tr><td>Visuals software</td><td class="n">€299 to €799</td><td>Resolume Avenue or Arena, one-time license. TouchDesigner has a free non-commercial tier.</td></tr>
+      <tr><td>VJ for the night</td><td class="n">$500 to $2,000</td><td>Estimate. He can also run pre-built clips himself.</td></tr>
+      <tr><td>Controller</td><td class="n">about $2,000</td><td>Ableton Push 3 standalone runs his set with no laptop. He may already own gear.</td></tr>
+      <tr><td>Photo and video</td><td class="n">$600 to $1,500</td><td>Estimate. The footage becomes next year's promo.</td></tr>
+      <tr><td>Event insurance</td><td class="n">$200 to $600</td><td>Estimate; venues usually require a certificate.</td></tr>
+      <tr><td>Merch (frog pins, posters)</td><td class="n">$300 to $1,000</td><td>Estimate. Give them away to the first 100.</td></tr>
+    </tbody>
+  </table></div>
+  <h3 style="margin-top:28px">Crew</h3>
+  <div class="rows">
+    <div class="row"><b>Fang Speare</b><div>Headline hybrid set: his own stems in Ableton Session View, effects played live on Push 3.</div></div>
+    <div class="row"><b>Openers</b><div>Two friends' sets, 30 minutes each. Ask Ace Aura's community or MC Lars for a guest spot or a recorded intro.</div></div>
+    <div class="row"><b>Stage manager</b><div>One trusted person who runs the clock so he can just play.</div></div>
+    <div class="row"><b>Visuals</b><div>The woodblock world: R'lyeh, Hyperborea, the stone synth, the 3D idol, cut to each track.</div></div>
+    <div class="row"><b>Door and guest list</b><div>Ticketing on DICE or Eventbrite; friends list first.</div></div>
+  </div>
+  <h3 style="margin-top:28px">Rehearsal timeline</h3>
+  <div class="rows">
+    <div class="row"><b>Feb 2027</b><div>Hold the date. Deposit.</div></div>
+    <div class="row"><b>Mar</b><div>Draft the 45-minute set list; build stems.</div></div>
+    <div class="row"><b>Apr</b><div>First practice night for five friends at home. Record it.</div></div>
+    <div class="row"><b>May</b><div>Visual cues locked; flyers out; tickets on sale.</div></div>
+    <div class="row"><b>Jun</b><div>Second practice night in a small bar. Full run-throughs weekly.</div></div>
+    <div class="row"><b>Show week</b><div>Soundcheck at the venue the afternoon of; play.</div></div>
+  </div>
+</section>
+
+<!-- JOY -->
+<section id="joy">
+  <div class="eyebrow">Why he would love it</div>
+  <h2>How Foster might enjoy performing.</h2>
+  <div class="grid2">
+    <div class="prose">
+      <p><b>He already loves the room.</b> Gordon took him to Ultra and he ran past him. He chose Zeds Dead backstage for his own birthday. The best part of a bass show for him is the moment the drop lands and a crowd moves together. On stage he gets to cause that moment.</p>
+      <p><b>A hybrid set takes the fear out.</b> His tracks are the backbone. He plays the effects, the filters and the drops live. If anything slips, the music keeps going.</p>
+      <p><b>Friends first.</b> The first show is for people who already love him. That turns nerves into a party.</p>
+    </div>
+    <div class="prose">
+      <p><b>He gets to be the character.</b> A basket hat, a frog mask for the intro, the sage on the screen. Performers who play a persona often say it frees them. Fang Speare is a costume he already designed.</p>
+      <p><b>He likes to debate the drop.</b> He and Gordon argue about drops at midnight. Live, he hears the answer instantly, from the floor.</p>
+      <p><b>It is a mentor's gift back.</b> He has always backed the people around him. A show lets him do that for a whole room: show up, take a risk, make it look possible.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PODCAST -->
+<section id="podcast">
+  <div class="grid2">
+    <figure class="plate" style="margin:0;max-width:440px">
+      <img src="a/3-podcast.jpg" alt="Podcast cover: a frog sage in a basket hat and headphones at a microphone on a sea rock, framed by tentacles. Title Ghost Voltage Radio, The Deep Low End.">
+    </figure>
+    <div>
+      <div class="eyebrow">Because he loves podcasts</div>
+      <h2>Ghost Voltage Radio, episode 1.</h2>
+      <p class="prose">A four-minute, two-host episode about Fang Speare, the frog god, Cthulhu and the road map, with his own Poe Beat as the intro and outro.</p>
+      <audio id="pod" src="a/podcast.mp3" controls preload="metadata" style="width:100%"></audio>
+      <div class="rows" style="margin-top:12px" id="chapters"></div>
+      <h3 style="margin-top:24px">Podcasts he would love</h3>
+      <div class="rows">
+        <div class="row"><b>Lovecraft</b><div><a href="https://hppodcraft.com/" target="_blank" rel="noopener">The H.P. Lovecraft Literary Podcast</a> (now Strange Studies of Strange Stories), about 600 episodes, story by story.</div></div>
+        <div class="row"><b>Weird</b><div><a href="https://www.weirdstudies.com" target="_blank" rel="noopener">Weird Studies</a>: philosophy of the strange, a natural fit for his lore.</div></div>
+        <div class="row"><b>Horror</b><div><a href="https://lovecraftzine.com" target="_blank" rel="noopener">The Lovecraft eZine podcast</a>: friendly, current Mythos talk.</div></div>
+        <div class="row"><b>Production</b><div><a href="https://open.spotify.com/show/2GSjmNeXn9OhXLqrCex0Pj" target="_blank" rel="noopener">The Mr. Bill Podcast</a>. Episode #189 (Oct 8, 2026) is on granular sound design, the engine in his site.</div></div>
+        <div class="row"><b>Production</b><div><a href="https://open.spotify.com/show/135dPjPHlhQM8oqGUuhmtO" target="_blank" rel="noopener">The EDM Prodcast</a> (EDMProd) and <a href="https://brianfunk.com/podcast" target="_blank" rel="noopener">Music Production Podcast</a> (Brian Funk, Ableton).</div></div>
+        <div class="row"><b>Community</b><div><a href="https://open.spotify.com/episode/0WpvJdNkJgEgjXJj4Vxw6G" target="_blank" rel="noopener">Modern Musician, the ill.Gates / Producer Dojo episode</a>: how bass producers build a following.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3D IDOL -->
+<section id="idol-sec">
+  <div class="eyebrow">Made in Blender</div>
+  <h2>The Tsathoggua idol.</h2>
+  <p class="prose">A 3D toad idol on a tilted monolith. Drag to turn it. It is ready to drop into visuals, a site header or a stage screen.</p>
+  <div id="idolWrap"><div id="idol" aria-label="Rotatable 3D toad idol"></div><p class="note" id="idolNote">Loading the idol…</p></div>
+  <div class="grid2" id="blenderStills" style="margin-top:18px">
+    <figure class="plate" style="margin:0"><img src="a/b-idol-hero.jpg" alt="Blender render: stone toad idol in a basket hat on a twisted monolith, ember rim light, glowing rings on the floor."><figcaption class="cap">Blender · the idol, hero render</figcaption></figure>
+    <figure class="plate" style="margin:0"><img src="a/b-rlyeh.jpg" alt="Blender render: tilted cyclopean monoliths rising from dark water under a huge glowing eye in fog."><figcaption class="cap">Blender · R'lyeh rising</figcaption></figure>
+  </div>
+</section>
+
+<!-- CANVA KIT -->
+<section id="kit">
+  <div class="eyebrow">Made in Canva</div>
+  <h2>A starter kit for the feed.</h2>
+  <p class="prose">Three designs, editable in Canva: a teaser post, a podcast story and a flyer for the July show.</p>
+  <div class="grid2" id="kitGrid">
+    <figure class="plate" style="margin:0"><img src="a/kit-ig-post-tekeli-li-1080x1080.jpg" alt="Instagram post: FANG SPEARE, Tekeli-li, coming soon, with the frog sage art."><figcaption class="cap">Instagram post · Tekeli-li teaser</figcaption></figure>
+    <figure class="plate" style="margin:0"><img src="a/kit-flyer-deep-low-end-july2027-1080x1350.jpg" alt="Flyer: FANG SPEARE, The Deep Low End, July 2027, Brooklyn TBA."><figcaption class="cap">Flyer · The Deep Low End, July 2027</figcaption></figure>
+    <figure class="plate" style="margin:0;max-width:360px"><img src="a/kit-ig-story-podcast-ep1-1080x1920.jpg" alt="Instagram story for Ghost Voltage Radio episode 1."><figcaption class="cap">Story · Ghost Voltage Radio ep. 1</figcaption></figure>
+  </div>
+</section>
+
+<!-- SOURCES -->
+<section id="sources">
+  <div class="eyebrow">Sources</div>
+  <h2>Where every claim comes from.</h2>
+  <ul class="src">
+    <li>Fang Speare's own description of the EP and the character.</li>
+    <li>fangspeare.com, fetched Oct 13, 2026; whois registration Sept 15, 2026. ghostvoltagerecords.com placeholder, registered Apr 10, 2026.</li>
+    <li>Tsathoggua: <a href="https://en.wikipedia.org/wiki/Tsathoggua" target="_blank" rel="noopener">Wikipedia</a>. Hyperborea: <a href="https://en.wikipedia.org/wiki/Hyperborean_cycle" target="_blank" rel="noopener">Hyperborean cycle</a>. Sarnath: <a href="https://reactormag.com/rising-waters-the-doom-that-came-to-sarnath/" target="_blank" rel="noopener">Reactor</a>.</li>
+    <li>Public domain dates: <a href="https://en.wikisource.org/wiki/Author:H._P._Lovecraft" target="_blank" rel="noopener">Wikisource, H. P. Lovecraft</a>.</li>
+    <li>Metallica and Cliff Burton: <a href="https://www.invisibleoranges.com/?p=40018" target="_blank" rel="noopener">Invisible Oranges</a>; <a href="https://bookriot.com/songs-by-metallica-inspired-by-literature/" target="_blank" rel="noopener">Book Riot</a>.</li>
+    <li>CCRU and Kode9: <a href="https://en.wikipedia.org/wiki/Cybernetic_Culture_Research_Unit" target="_blank" rel="noopener">Wikipedia</a>. Cryo Chamber: <a href="https://ambientblog.net/blog/?p=8986" target="_blank" rel="noopener">Ambientblog</a>.</li>
+    <li>Color Out of Space: <a href="https://exclaim.ca/music/article/colin_stetson-color_out_of_space" target="_blank" rel="noopener">Exclaim</a>. Mandy: <a href="https://en.wikipedia.org/wiki/Mandy_(soundtrack)" target="_blank" rel="noopener">Wikipedia</a>. Annihilation: <a href="https://en.wikipedia.org/wiki/Annihilation_(soundtrack)" target="_blank" rel="noopener">Wikipedia</a>.</li>
+    <li>Lovecraft Country music: <a href="https://filmmusicreporter.com/2020/10/18/soundtrack-album-for-hbos-lovecraft-country-to-be-released/" target="_blank" rel="noopener">Film Music Reporter</a>.</li>
+    <li>World Fantasy Award: <a href="https://locusmag.com/2015/11/world-fantasy-trophy-change" target="_blank" rel="noopener">Locus</a>. LaValle: <a href="https://www.npr.org/transcripts/468558238" target="_blank" rel="noopener">NPR</a>. Winter Tide: <a href="https://fantasy-faction.com/2017/winter-tide-by-ruthanna-emrys" target="_blank" rel="noopener">Fantasy-Faction</a>.</li>
+    <li>Drexciya: <a href="https://en.wikipedia.org/wiki/Drexciya" target="_blank" rel="noopener">Wikipedia</a>; <a href="https://mixmag.net/feature/drexciya-history-interview-feature" target="_blank" rel="noopener">Mixmag</a>. Black Quantum Futurism: <a href="https://sjmusart.org/event/moor-mother-rasheedah-phillips-black-quantum-futurism" target="_blank" rel="noopener">SJMA</a>.</li>
+    <li>Ace Aura: <a href="https://en.wikipedia.org/wiki/Ace_Aura" target="_blank" rel="noopener">Wikipedia</a>. MC Lars: <a href="https://en.wikipedia.org/wiki/MC_Lars" target="_blank" rel="noopener">Wikipedia</a>.</li>
+    <li>Venues: <a href="https://web.elsewhere.club/pages/private-events" target="_blank" rel="noopener">Elsewhere private events</a>; <a href="https://lpr.com/rentals-private-events/" target="_blank" rel="noopener">LPR rentals</a>; <a href="https://app.ckord.com/venues/schimanski" target="_blank" rel="noopener">Schimanski</a>. Tools: <a href="https://www.ableton.com/push" target="_blank" rel="noopener">Push 3</a>; <a href="https://resolume.com/shop" target="_blank" rel="noopener">Resolume</a>; <a href="https://derivative.ca/shop" target="_blank" rel="noopener">TouchDesigner</a>.</li>
+    <li>NecronomiCon Providence: <a href="https://necronomicon-providence.com/welcome/" target="_blank" rel="noopener">official site</a>.</li>
+    <li>Mythos bass tracks: Apple Music and Deezer listings linked in the table. Infrasound experiment: <a href="https://www.theguardian.com/science/2003/sep/08/sciencenews.science" target="_blank" rel="noopener">The Guardian, 2003</a>. Lovecraft, <a href="https://www.hplovecraft.com/writings/texts/fiction/mez.aspx" target="_blank" rel="noopener">The Music of Erich Zann</a>.</li>
+    <li>Ecosystem nodes: each links to its official page, checked Oct 13, 2026.</li>
+    <li>Budget lines marked "estimate" are planning numbers, not quotes.</li>
+  </ul>
+</section>
+
+<footer>
+  <p>Made by Darby for Gordon Bellamy, for Foster. Art: Higgsfield (woodblock plates and two animations). Voices: ElevenLabs. 3D: Blender. Research: Darby with dot reviewing facts. Track: Fang Speare × MC Lars, Poe Beat.</p>
+</footer>
+</div>
+
+<div id="finale" hidden>
+  <div class="fin">
+    <video id="finVid" src="a/rlyeh.mp4" muted loop playsinline style="width:100%;border:1px solid var(--line)"></video>
+    <h2>Ph'nglui mglw'nafh Fang Speare.</h2>
+    <p>All twelve glyphs are awake. In his house at R'lyeh, the frog sage plays, and the old gods dance. See you on the floor in July.</p>
+    <button class="pbtn" id="finClose">Return to the surface</button>
+  </div>
+</div>
+
+<script src="a/eco.js"></script>
+<script src="a/idol.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+<script>
+/* ---------- AUDIO ENGINE: Fang Speare bass kit ---------- */
+let AC, master, comp, delay, fb, analyser;
+function ctx(){
+  if(AC) { if(AC.state==="suspended") AC.resume(); return AC; }
+  AC = new (window.AudioContext||window.webkitAudioContext)();
+  comp = AC.createDynamicsCompressor(); comp.threshold.value=-14; comp.ratio.value=6;
+  master = AC.createGain(); master.gain.value=0.9;
+  delay = AC.createDelay(1); delay.delayTime.value=0.32; fb=AC.createGain(); fb.gain.value=0.28;
+  const wet=AC.createGain(); wet.gain.value=0.22;
+  analyser = AC.createAnalyser(); analyser.fftSize=2048;
+  master.connect(comp); comp.connect(analyser); analyser.connect(AC.destination);
+  master.connect(delay); delay.connect(fb); fb.connect(delay); delay.connect(wet); wet.connect(comp);
+  return AC;
+}
+function env(g,t,a,d,peak,end){g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(peak,t+a);g.gain.exponentialRampToValueAtTime(end||0.0001,t+a+d);}
+function dist(amount){const n=2048,c=new Float32Array(n);for(let i=0;i<n;i++){const x=i*2/n-1;c[i]=(1+amount)*x/(1+amount*Math.abs(x));}const s=AC.createWaveShaper();s.curve=c;s.oversample="4x";return s;}
+function osc(type,f){const o=AC.createOscillator();o.type=type;o.frequency.value=f;return o;}
+function noise(dur){const b=AC.createBuffer(1,AC.sampleRate*dur,AC.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;const s=AC.createBufferSource();s.buffer=b;return s;}
+const S = {
+  sub(t=0,f0=120,f1=38,len=1.4){ctx();const n=AC.currentTime+t,o=osc("sine",f0),g=AC.createGain();o.frequency.exponentialRampToValueAtTime(f1,n+0.35);env(g,n,0.01,len,1.0);o.connect(g);g.connect(master);o.start(n);o.stop(n+len+0.1);},
+  wobble(t=0,rate=4,len=2,f=43.65){ctx();const n=AC.currentTime+t,a=osc("sawtooth",f),b=osc("sawtooth",f*1.006),lp=AC.createBiquadFilter(),g=AC.createGain(),l=osc("sine",rate),lg=AC.createGain();lp.type="lowpass";lp.Q.value=12;lp.frequency.value=500;lg.gain.value=650;l.connect(lg);lg.connect(lp.frequency);const sh=dist(8);a.connect(lp);b.connect(lp);lp.connect(sh);sh.connect(g);env(g,n,0.02,len,0.5);g.connect(master);[a,b,l].forEach(o=>{o.start(n);o.stop(n+len+0.1)});S.sub(t,60,43.65,len*.9);},
+  growl(t=0,len=1.5,f=55){ctx();const n=AC.currentTime+t,a=osc("sawtooth",f),b=osc("square",f*2.01),bp=AC.createBiquadFilter(),g=AC.createGain(),sh=dist(30);bp.type="bandpass";bp.Q.value=6;bp.frequency.setValueAtTime(300,n);bp.frequency.linearRampToValueAtTime(1800,n+len*.3);bp.frequency.linearRampToValueAtTime(400,n+len*.55);bp.frequency.linearRampToValueAtTime(2400,n+len*.8);bp.frequency.linearRampToValueAtTime(250,n+len);a.connect(sh);b.connect(sh);sh.connect(bp);bp.connect(g);env(g,n,0.01,len,0.55);g.connect(master);[a,b].forEach(o=>{o.start(n);o.stop(n+len+0.1)});S.sub(t,90,41,len);},
+  reese(t=0,len=2.4,f=41.2){ctx();const n=AC.currentTime+t,lp=AC.createBiquadFilter(),g=AC.createGain();lp.type="lowpass";lp.frequency.setValueAtTime(180,n);lp.frequency.linearRampToValueAtTime(900,n+len*.6);lp.frequency.linearRampToValueAtTime(220,n+len);lp.Q.value=4;[1,1.012,0.994].forEach(m=>{const o=osc("sawtooth",f*m);o.connect(lp);o.start(n);o.stop(n+len+0.1)});lp.connect(g);env(g,n,0.08,len,0.45);g.connect(master);},
+  riddim(t=0,bpm=140){ctx();const step=60/bpm/2,pat=[1,0,0,1,0,0,1,0,1,0,0,1,0,1,0,0];pat.forEach((p,i)=>{if(!p)return;const n=AC.currentTime+t+i*step,o=osc("square",49),o2=osc("square",98.4),lp=AC.createBiquadFilter(),g=AC.createGain();lp.type="lowpass";lp.frequency.value=i%4?700:1200;lp.Q.value=8;o.connect(lp);o2.connect(lp);lp.connect(g);env(g,n,0.005,step*.9,0.35);g.connect(master);[o,o2].forEach(x=>{x.start(n);x.stop(n+step)});});S.kick(t);S.kick(t+step*8);S.snare(t+step*4);S.snare(t+step*12);},
+  kick(t=0){ctx();const n=AC.currentTime+t,o=osc("sine",150),g=AC.createGain();o.frequency.exponentialRampToValueAtTime(45,n+0.12);env(g,n,0.002,0.35,1);o.connect(g);g.connect(master);o.start(n);o.stop(n+0.4);},
+  snare(t=0){ctx();const n=AC.currentTime+t,s=noise(0.3),hp=AC.createBiquadFilter(),g=AC.createGain();hp.type="highpass";hp.frequency.value=1500;s.connect(hp);hp.connect(g);env(g,n,0.002,0.2,0.5);g.connect(master);s.start(n);},
+  didge(t=0,len=3,f=65.4){ctx();const n=AC.currentTime+t,o=osc("sawtooth",f),bp1=AC.createBiquadFilter(),bp2=AC.createBiquadFilter(),g=AC.createGain(),l=osc("sine",1.6),lg=AC.createGain();bp1.type=bp2.type="bandpass";bp1.frequency.value=420;bp2.frequency.value=1100;bp1.Q.value=bp2.Q.value=5;lg.gain.value=260;l.connect(lg);lg.connect(bp1.frequency);o.connect(bp1);o.connect(bp2);const m=AC.createGain();bp1.connect(m);bp2.connect(m);const lo=AC.createGain();lo.gain.value=.5;o.connect(lo);lo.connect(m);m.connect(g);env(g,n,0.25,len,0.32);g.connect(master);[o,l].forEach(x=>{x.start(n);x.stop(n+len+0.3)});},
+  croak(t=0){ctx();for(let k=0;k<2;k++){const n=AC.currentTime+t+k*0.22,o=osc("square",110),bp=AC.createBiquadFilter(),g=AC.createGain(),l=osc("square",38),lg=AC.createGain();lg.gain.value=60;l.connect(lg);lg.connect(o.frequency);bp.type="bandpass";bp.frequency.value=600;bp.Q.value=3;o.connect(bp);bp.connect(g);env(g,n,0.01,0.16,0.5);g.connect(master);[o,l].forEach(x=>{x.start(n);x.stop(n+0.2)});}},
+  tekeli(t=0){ctx();[1568,1318,1175,1175].forEach((f,i)=>{const n=AC.currentTime+t+i*0.13,o=osc("square",f),g=AC.createGain(),lp=AC.createBiquadFilter();lp.type="lowpass";lp.frequency.value=3000;o.frequency.exponentialRampToValueAtTime(f*0.82,n+0.1);o.connect(lp);lp.connect(g);env(g,n,0.005,0.1,0.18);g.connect(master);o.start(n);o.stop(n+0.13);});},
+  bell(t=0,f=98){ctx();const n=AC.currentTime+t,c=osc("sine",f),m=osc("sine",f*1.41),mg=AC.createGain(),g=AC.createGain();mg.gain.setValueAtTime(f*6,n);mg.gain.exponentialRampToValueAtTime(1,n+3);m.connect(mg);mg.connect(c.frequency);c.connect(g);env(g,n,0.005,3.2,0.45);g.connect(master);[c,m].forEach(x=>{x.start(n);x.stop(n+3.4)});},
+  sonar(t=0){ctx();for(let k=0;k<3;k++){const n=AC.currentTime+t+k*0.7,o=osc("sine",880),g=AC.createGain();env(g,n,0.005,0.6,0.12/(k+1));o.connect(g);g.connect(master);o.start(n);o.stop(n+0.7);}},
+  riser(t=0,len=1.6){ctx();const n=AC.currentTime+t,s=noise(len),bp=AC.createBiquadFilter(),g=AC.createGain();bp.type="bandpass";bp.Q.value=2;bp.frequency.setValueAtTime(300,n);bp.frequency.exponentialRampToValueAtTime(6000,n+len);s.connect(bp);bp.connect(g);g.gain.setValueAtTime(0.0001,n);g.gain.exponentialRampToValueAtTime(0.35,n+len);g.gain.setValueAtTime(0.0001,n+len+0.01);g.connect(master);s.start(n);},
+  drop(t=0){S.riser(t,1.6);S.kick(t+1.6);S.sub(t+1.6,140,36,1.8);S.growl(t+1.65,1.6,55);}
+};
+
+/* ---------- GLYPHS ---------- */
+const SVG = {
+eye:`<svg viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="42" ry="26" fill="#0b1220" stroke="#6fb59a" stroke-width="3"/><g class="eye-lid"><ellipse cx="50" cy="50" rx="40" ry="24" fill="#1d2b47"/><circle cx="50" cy="50" r="15" fill="#e8743b"/><ellipse cx="50" cy="50" rx="3.5" ry="13" fill="#0b1220"/></g></svg>`,
+toad:`<svg viewBox="0 0 100 100"><g class="bob"><ellipse cx="50" cy="66" rx="34" ry="22" fill="#4f7d63"/><circle cx="34" cy="42" r="11" fill="#4f7d63"/><circle cx="66" cy="42" r="11" fill="#4f7d63"/><circle cx="34" cy="41" r="5" fill="#e8743b"/><circle cx="66" cy="41" r="5" fill="#e8743b"/><path d="M30 64 Q50 76 70 64" stroke="#0b1220" stroke-width="3" fill="none"/><path d="M22 30 L50 12 L78 30 Z" fill="#b8925a"/></g></svg>`,
+tekeli:`<svg viewBox="0 0 100 100"><path d="M10 78 L30 40 L42 58 L56 26 L72 52 L90 78 Z" fill="#cfe3ec" opacity=".85"/><g class="glow"><circle cx="30" cy="22" r="4" fill="#ece2cc"/><circle cx="46" cy="16" r="3" fill="#ece2cc"/><circle cx="62" cy="20" r="4" fill="#ece2cc"/><circle cx="76" cy="14" r="3" fill="#ece2cc"/></g></svg>`,
+tent:`<svg viewBox="0 0 100 100"><g class="tent"><path d="M50 96 C40 70 66 58 54 40 C44 26 58 14 70 12 C60 22 56 30 64 42 C76 60 58 72 60 96 Z" fill="#6fb59a"/><circle cx="58" cy="58" r="2.6" fill="#0b1220"/><circle cx="60" cy="70" r="2.6" fill="#0b1220"/><circle cx="59" cy="46" r="2.2" fill="#0b1220"/></g></svg>`,
+elder:`<svg viewBox="0 0 100 100"><g class="spin"><polygon points="50,8 90,36 75,86 25,86 10,36" fill="none" stroke="#e8743b" stroke-width="3"/></g><path d="M50 26 L50 74 M50 40 L36 30 M50 40 L64 30 M50 54 L34 50 M50 54 L66 50" stroke="#ece2cc" stroke-width="3" fill="none"/><circle cx="50" cy="56" r="6" fill="#c4412f"/></svg>`,
+shog:`<svg viewBox="0 0 100 100"><g class="bob"><path d="M14 80 C10 50 30 30 50 34 C74 22 92 48 86 80 Z" fill="#253b3a"/><circle cx="32" cy="54" r="6" fill="#6fb59a" class="glow"/><circle cx="52" cy="46" r="4" fill="#6fb59a"/><circle cx="68" cy="60" r="7" fill="#6fb59a" class="glow"/><circle cx="46" cy="66" r="3" fill="#6fb59a"/></g></svg>`,
+didge:`<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="30" fill="none" stroke="#e8743b" stroke-width="2" class="ring"/><rect x="14" y="44" width="72" height="12" rx="5" fill="#a5643a" transform="rotate(-24 50 50)"/><path d="M26 60 L74 40" stroke="#ece2cc" stroke-width="1.5" stroke-dasharray="4 5" transform="rotate(0 50 50)"/></svg>`,
+necro:`<svg viewBox="0 0 100 100"><rect x="18" y="20" width="64" height="62" fill="#3b2a24" stroke="#b8925a" stroke-width="2"/><path d="M50 22 V80" stroke="#b8925a" stroke-width="2"/><circle cx="50" cy="50" r="14" fill="none" stroke="#c4412f" stroke-width="2" class="glow"/><path d="M42 50 L58 50 M50 42 L50 58" stroke="#c4412f" stroke-width="2"/></svg>`,
+drex:`<svg viewBox="0 0 100 100"><path d="M6 60 Q18 46 30 60 T54 60 T78 60 T102 60" stroke="#6fb59a" stroke-width="3" fill="none" class="bob"/><path d="M6 74 Q18 60 30 74 T54 74 T78 74 T102 74" stroke="#1d6b6b" stroke-width="3" fill="none"/><circle cx="50" cy="30" r="10" fill="none" stroke="#ece2cc" stroke-width="2" class="ring"/><circle cx="50" cy="30" r="3" fill="#ece2cc"/></svg>`,
+deep:`<svg viewBox="0 0 100 100"><g class="bob"><path d="M28 86 C22 54 34 26 50 24 C66 26 78 54 72 86 Z" fill="#2f5f57"/><circle cx="40" cy="44" r="7" fill="#ece2cc"/><circle cx="60" cy="44" r="7" fill="#ece2cc"/><circle cx="41" cy="45" r="3" fill="#0b1220"/><circle cx="61" cy="45" r="3" fill="#0b1220"/><path d="M36 64 Q50 72 64 64" stroke="#0b1220" stroke-width="2" fill="none"/><path d="M28 56 L18 50 M28 64 L16 64 M72 56 L82 50 M72 64 L84 64" stroke="#6fb59a" stroke-width="2"/></g></svg>`,
+yog:`<svg viewBox="0 0 100 100"><g class="spin"><circle cx="50" cy="26" r="11" fill="#e8743b" opacity=".9"/><circle cx="72" cy="58" r="13" fill="#c4412f" opacity=".85"/><circle cx="30" cy="62" r="12" fill="#b8925a" opacity=".85"/><circle cx="52" cy="76" r="7" fill="#ece2cc" opacity=".8"/><circle cx="46" cy="50" r="8" fill="#6fb59a" opacity=".9"/></g></svg>`,
+star:`<svg viewBox="0 0 100 100"><g class="spin"><path d="M50 6 L58 40 L94 50 L58 60 L50 94 L42 60 L6 50 L42 40 Z" fill="#cfe3ec" opacity=".85"/></g><circle cx="50" cy="50" r="10" fill="#e8743b" class="glow"/></svg>`
+};
+const GLYPHS = [
+ {k:"eye", n:"Eye of R'lyeh", s:()=>S.sub(0,140,36,1.8), card:{h:"The Call of Cthulhu (1928)", p:"In a drowned city called R'lyeh, a vast being lies dead but dreaming. When the city rises, sensitive artists around the world share the same nightmares. Lovecraft makes artists the first to hear the signal, which is exactly what a sub-bass drop does to a room.", img:"a/0-rlyeh.jpg", alt:"The frog sage facing the tentacled god"}},
+ {k:"toad", n:"Tsathoggua", s:()=>{S.croak(0);S.sub(0.45,90,34,1.6)}, card:{h:"The toad god of Hyperborea", p:"Clark Ashton Smith's Tsathoggua sleeps under Mount Voormithadreth in Hyperborea, a kingdom swallowed by the Ice Age. Lovecraft named him in At the Mountains of Madness. Fang Speare's frog sage is his natural heir.", img:"a/1-hyperborea.jpg", alt:"Hyperborea plate"}},
+ {k:"tekeli", n:"Tekeli-li", s:()=>{S.tekeli(0);S.reese(0.55,1.8)}, card:{h:"Tekeli-li!", p:"The cry the shoggoths learned from the Old Ones, echoing through Antarctic ruins in At the Mountains of Madness. It is also the name of Fang Speare's first track. On his site, it is Excavation 01."}},
+ {k:"tent", n:"Tentacle", s:()=>S.wobble(0,4,2.2), card:{h:"Cliff Burton's bass", p:"Metallica's bassist brought Lovecraft to the band. The Call of Ktulu (1984) is an instrumental whose dread rides on his wah-pedal bass. Lovecraft has entered heavy music through the bass player from the start."}},
+ {k:"elder", n:"Elder Sign", s:()=>S.bell(0,73.4), card:{h:"Answering Lovecraft", p:"Victor LaValle's The Ballad of Black Tom. Misha Green's Lovecraft Country. Ruthanna Emrys's Winter Tide. The best Mythos work now talks back to the author's bigotry. The frog sage can be the hero of the deep, not the thing to fear."}},
+ {k:"shog", n:"Shoggoth", s:()=>S.riddim(0,140), card:{h:"The wubz button", p:"Foster's own note: his synth site needs an easy mode that delivers quick fun. One huge button that plays a perfect drop, the full engine behind it. This altar is a sketch of that idea.", img:"a/4-synth.jpg", alt:"Stone synthesizer plate"}},
+ {k:"didge", n:"Didgeridoo", s:()=>S.didge(0,3.2), card:{h:"The sage's instrument", p:"In Foster's character sheet the frog carries a didgeridoo and wears a woven basket hat. A didgeridoo is a drone instrument that lives in the same low range as a dubstep sub. The sage was always a bass player."}},
+ {k:"necro", n:"Necronomicon", s:()=>S.reese(0,2.6,36.7), card:{h:"Public domain, 2027", p:"The Whisperer in Darkness, which names Tsathoggua, enters the US public domain on January 1, 2027. A July 2027 show lands in Tsathoggua's first public-domain summer. At the Mountains of Madness stays protected until 2032."}},
+ {k:"drex", n:"Drexciya", s:()=>{S.sonar(0);S.sub(0.2,80,40,2)}, card:{h:"Drexciya's deep", p:"Detroit's Drexciya imagined an undersea nation born of African women thrown from slave ships. The same deep ocean as Innsmouth, told from inside. A Black counter-myth that bass music already carries."}},
+ {k:"deep", n:"Deep One", s:()=>S.growl(0,1.8,49), card:{h:"The live show", p:"July 2027, a 150 to 260 capacity Brooklyn room, a 45-minute hybrid set, friends in the crowd and the woodblock world behind him.", vid:"a/live.mp4", poster:"a/live-frame.jpg"}},
+ {k:"yog", n:"Yog-Sothoth", s:()=>{S.bell(0,98);S.bell(0.2,146.8);S.bell(0.4,110)}, card:{h:"Listen: Ghost Voltage Radio", p:"A four-minute, two-host podcast episode about Fang Speare and the Mythos. Tap below to jump to the road map chapter.", pod:172.4}},
+ {k:"star", n:"Old Ones", s:()=>S.drop(0), card:{h:"Old Ones", p:"His second track takes its name from the star-headed Elder Things of At the Mountains of Madness, who built a city before humanity. On fangspeare.com it is Excavation 02.", img:"a/5-map.jpg", alt:"Road map plate"}}
+];
+const grid=document.getElementById("altarGrid"), reveal=document.getElementById("reveal");
+let woke=new Set();
+try{ (JSON.parse(localStorage.getItem("fs-woke")||"[]")).forEach(k=>woke.add(k)); }catch(e){}
+function updateCount(){document.getElementById("count").textContent=woke.size+" / 12 awake";document.getElementById("barFill").style.width=(woke.size/12*100)+"%";}
+GLYPHS.forEach(g=>{
+  const b=document.createElement("button");b.className="glyph"+(woke.has(g.k)?" done":"");b.innerHTML=SVG[g.k]+`<span class="gl">${g.n}</span>`;b.setAttribute("aria-label",g.n+": play sound and reveal lore");
+  b.addEventListener("click",()=>{g.s();b.classList.remove("hit");void b.offsetWidth;b.classList.add("hit");woke.add(g.k);b.classList.add("done");try{localStorage.setItem("fs-woke",JSON.stringify([...woke]))}catch(e){}updateCount();showCard(g.card);if(woke.size===12&&!window.__fin){window.__fin=1;setTimeout(finale,700);}});
+  grid.appendChild(b);
+});
+updateCount();
+function showCard(c){
+  let media="";
+  if(c.img) media=`<img src="${c.img}" alt="${c.alt||""}">`;
+  if(c.vid) media=`<video src="${c.vid}" poster="${c.poster}" autoplay muted loop playsinline></video>`;
+  reveal.innerHTML=`<div class="card in ${media?"wide":""}">${media}<div class="ct"><h3>${c.h}</h3><p>${c.p}</p>${c.pod!=null?`<button class="pbtn" id="podJump">▶ Play from the road map</button>`:""}</div></div>`;
+  const pj=document.getElementById("podJump"); if(pj) pj.onclick=()=>{const a=document.getElementById("pod");a.currentTime=c.pod;a.play();a.scrollIntoView({behavior:"smooth",block:"center"});};
+}
+function finale(){
+  const f=document.getElementById("finale");f.hidden=false;const v=document.getElementById("finVid");v.currentTime=0;v.play().catch(()=>{});S.drop(0);S.wobble(2.2,6,2.4);S.growl(4.6,2,49);document.body.classList.add("shake");setTimeout(()=>document.body.classList.remove("shake"),600);
+}
+document.getElementById("finClose").onclick=()=>{document.getElementById("finale").hidden=true;document.getElementById("finVid").pause();};
+document.getElementById("wake").addEventListener("click",()=>{S.drop(0);const h=document.querySelector(".hero-media");setTimeout(()=>{h.classList.add("shake");setTimeout(()=>h.classList.remove("shake"),600)},1600);});
+
+/* ---------- POE BEAT + VISUALIZER ---------- */
+const poe=new Audio("a/poe-beat.mp3"); poe.preload="none"; let poeSrc=null;
+const pb=document.getElementById("poeBtn");
+pb.onclick=()=>{ctx(); if(!poeSrc){poeSrc=AC.createMediaElementSource(poe);poeSrc.connect(comp);} if(poe.paused){poe.play();pb.textContent="❚❚ Pause";}else{poe.pause();pb.textContent="▶ Play Poe Beat";}};
+const vz=document.getElementById("viz"),vc=vz.getContext("2d");
+function draw(){requestAnimationFrame(draw);const w=vz.width,h=vz.height;vc.fillStyle="#121c30";vc.fillRect(0,0,w,h);if(!analyser){vc.fillStyle="#a9a69a";vc.font="14px monospace";vc.fillText("Press a glyph or play the track to see the low end move",14,64);return;}const d=new Uint8Array(analyser.frequencyBinCount);analyser.getByteFrequencyData(d);const bars=96;for(let i=0;i<bars;i++){const idx=Math.floor(Math.pow(i/bars,2)*d.length*0.5);const v=d[idx]/255;const x=i*w/bars;const bh=v*h;vc.fillStyle=i<18?"#e8743b":(i<48?"#c4412f":"#6fb59a");vc.fillRect(x,h-bh,w/bars-2,bh);}}
+draw();
+
+/* ---------- PODCAST CHAPTERS ---------- */
+[[9,"Welcome to the deep"],[48.9,"The frog sage and Hyperborea"],[85.6,"Cthulhu, Cliff Burton and the bass"],[130.3,"The hard part, and who answers it"],[172.4,"The road map"],[228.4,"Playing live"]].forEach(([t,l])=>{const r=document.createElement("button");r.className="row";r.style.cssText="background:none;border:0;border-bottom:1px solid var(--line);text-align:left;width:100%";const m=Math.floor(t/60),s=String(Math.floor(t%60)).padStart(2,"0");r.innerHTML=`<b>${m}:${s}</b><div>${l}</div>`;r.onclick=()=>{const a=document.getElementById("pod");a.currentTime=t;a.play();};document.getElementById("chapters").appendChild(r);});
+
+/* ---------- ECOSYSTEM 3D MAP ---------- */
+const ECO = window.ECO_DATA || [];
+(function(){
+  const host=document.getElementById("eco"); if(!window.THREE){host.innerHTML='<p class="note" style="padding:16px">The 3D map needs WebGL. The full list is below.</p>';renderList();return;}
+  const W=()=>host.clientWidth,H=()=>host.clientHeight;
+  const scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(50,W()/H(),0.1,200);cam.position.set(0,4,34);
+  const r=new THREE.WebGLRenderer({antialias:true,alpha:true});r.setPixelRatio(Math.min(2,devicePixelRatio));r.setSize(W(),H());host.appendChild(r.domElement);
+  const root=new THREE.Group();scene.add(root);
+  const col={L:0x6fb59a,B:0xe8743b,X:0xece2cc,F:0xffffff};
+  const center={L:new THREE.Vector3(-11,0,0),B:new THREE.Vector3(11,0,0),X:new THREE.Vector3(0,0,0)};
+  const meshes=[],labels=[];
+  // stars backdrop
+  const sg=new THREE.BufferGeometry(),sp=[];for(let i=0;i<600;i++){sp.push((Math.random()-.5)*120,(Math.random()-.5)*80,(Math.random()-.5)*120-30);}sg.setAttribute("position",new THREE.Float32BufferAttribute(sp,3));scene.add(new THREE.Points(sg,new THREE.PointsMaterial({color:0x334466,size:.25})));
+  const fs={n:"Fang Speare",t:"F",d:"The frog sage. Lovecraftian experimental dubstep from New York. Ghost Voltage Records.",why:"Sits where both worlds meet."};
+  const all=[fs,...ECO];
+  all.forEach((d,i)=>{
+    let p;
+    if(d.t==="F") p=new THREE.Vector3(0,0,0);
+    else{const c=center[d.t]||center.X;const a=i*2.399,rad=d.t==="X"?2.6+((i*7)%5)*.45:4+((i*13)%7)*1.05;p=new THREE.Vector3(c.x+Math.cos(a)*rad*(d.t==="X"?.9:1),Math.sin(a*1.7)*rad*.75,Math.sin(a)*rad);}
+    const m=new THREE.Mesh(new THREE.SphereGeometry(d.t==="F"?.9:(d.big?.55:.38),20,16),new THREE.MeshBasicMaterial({color:col[d.t]}));m.position.copy(p);m.userData=d;root.add(m);meshes.push(m);
+    const halo=new THREE.Mesh(new THREE.SphereGeometry(d.t==="F"?1.6:.7,16,12),new THREE.MeshBasicMaterial({color:col[d.t],transparent:true,opacity:.12}));halo.position.copy(p);root.add(halo);m.userData.halo=halo;
+    if(d.t!=="F"){const g=new THREE.BufferGeometry().setFromPoints([p,d.t==="X"?new THREE.Vector3(0,0,0):center[d.t]]);const l=new THREE.Line(g,new THREE.LineBasicMaterial({color:col[d.t],transparent:true,opacity:.22}));root.add(l);m.userData.line=l;}
+    const lb=document.createElement("div");lb.className="lbl "+d.t;lb.textContent=d.n;host.appendChild(lb);labels.push(lb);
+  });
+  // hubs
+  [["L",-11],["B",11]].forEach(([t,x])=>{const g=new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(x,0,0),new THREE.Vector3(0,0,0)]);root.add(new THREE.Line(g,new THREE.LineBasicMaterial({color:col[t],transparent:true,opacity:.5})));});
+  let sel=null,rx=0.15,ry=0,drag=false,lx=0,ly=0,moved=0,filter="all";
+  host.addEventListener("pointerdown",e=>{drag=true;moved=0;lx=e.clientX;ly=e.clientY;host.setPointerCapture(e.pointerId);});
+  host.addEventListener("pointermove",e=>{if(!drag)return;ry+=(e.clientX-lx)*.006;rx+=(e.clientY-ly)*.004;rx=Math.max(-1,Math.min(1,rx));moved+=Math.abs(e.clientX-lx)+Math.abs(e.clientY-ly);lx=e.clientX;ly=e.clientY;});
+  host.addEventListener("pointerup",e=>{drag=false;if(moved<6)pick(e);});
+  const ray=new THREE.Raycaster(),mv=new THREE.Vector2();
+  function pick(e){const b=host.getBoundingClientRect();mv.x=(e.clientX-b.left)/b.width*2-1;mv.y=-(e.clientY-b.top)/b.height*2+1;ray.setFromCamera(mv,cam);const hit=ray.intersectObjects(meshes.filter(m=>m.visible).concat(meshes.filter(m=>m.visible).map(m=>m.userData.halo)))[0];if(hit){const m=meshes.find(x=>x===hit.object||x.userData.halo===hit.object);sel=m;info(m.userData);ctx();({L:()=>S.bell(0,110),B:()=>S.sub(0,120,40,1),X:()=>S.wobble(0,6,1),F:()=>{S.croak(0);S.sub(.4,90,36,1.4)}})[m.userData.t]();}}
+  function info(d){document.getElementById("ecoInfo").innerHTML=`<div class="eyebrow">${{L:"Lovecraft and horror",B:"Bass music",X:"Where they meet",F:"Center"}[d.t]}${d.where?" · "+d.where:""}</div><h3 style="margin-top:6px">${d.u?`<a href="${d.u}" target="_blank" rel="noopener">${d.n}</a>`:d.n}</h3><p style="margin:4px 0">${d.d||""}</p>${d.why?`<p style="margin:0;color:var(--ember)"><b>For Fang Speare:</b> ${d.why}</p>`:""}`;}
+  document.querySelectorAll("#ecoFilters button").forEach(b=>b.onclick=()=>{filter=b.dataset.f;document.querySelectorAll("#ecoFilters button").forEach(x=>x.setAttribute("aria-pressed",x===b));meshes.forEach(m=>{const vis=filter==="all"||m.userData.t===filter||m.userData.t==="F";m.visible=vis;m.userData.halo.visible=vis;if(m.userData.line)m.userData.line.visible=vis;});});
+  const v=new THREE.Vector3();
+  function loop(){requestAnimationFrame(loop);if(!drag)ry+=0.0018;root.rotation.set(rx,ry,0);const t=performance.now()/1000;meshes.forEach((m,i)=>{m.userData.halo.scale.setScalar(1+Math.sin(t*2+i)*.15);});r.render(scene,cam);const w=W(),h=H();meshes.forEach((m,i)=>{const lb=labels[i];if(!m.visible){lb.style.display="none";return;}m.getWorldPosition(v);v.project(cam);if(v.z>1){lb.style.display="none";return;}lb.style.display="";lb.style.left=((v.x+1)/2*w)+"px";lb.style.top=((1-v.y)/2*h)+"px";const show=m.userData.t==="F"||m.userData.big||m===sel;lb.style.display=show?"":"none";lb.style.opacity=m.userData.t==="F"||m===sel?1:Math.max(.35,1-(v.z-.95)*12);});}
+  loop();
+  addEventListener("resize",()=>{cam.aspect=W()/H();cam.updateProjectionMatrix();r.setSize(W(),H());});
+  info(fs);renderList();
+})();
+function renderList(){
+  const groups={L:"Lovecraft and horror fandom",B:"Bass music",X:"Where they already meet"};const out=document.getElementById("ecoList");
+  Object.entries(groups).forEach(([t,title])=>{const items=ECO.filter(d=>d.t===t);if(!items.length)return;const h=document.createElement("h3");h.textContent=title;h.style.margin="22px 0 8px";h.style.color=t==="L"?"var(--jade)":t==="B"?"var(--ember)":"var(--paper)";out.appendChild(h);const rows=document.createElement("div");rows.className="rows";items.forEach(d=>{const r=document.createElement("div");r.className="row";r.innerHTML=`<b>${d.where||""}</b><div>${d.u?`<a href="${d.u}" target="_blank" rel="noopener">${d.n}</a>`:d.n}. ${d.d||""} ${d.why?`<span style="color:var(--mist)">${d.why}</span>`:""}</div>`;rows.appendChild(r);});out.appendChild(rows);});
+}
+
+/* ---------- 3D IDOL (Blender GLB) ---------- */
+(function(){
+  const host=document.getElementById("idol"),note=document.getElementById("idolNote");
+  if(!window.THREE||!THREE.GLTFLoader){note.textContent="The 3D viewer needs WebGL.";return;}
+  const s=new THREE.Scene(),c=new THREE.PerspectiveCamera(35,1,0.1,100);c.position.set(0,0.6,6.2);c.lookAt(0,0,0);
+  const r=new THREE.WebGLRenderer({antialias:true,alpha:true});r.setPixelRatio(Math.min(2,devicePixelRatio));const sz=()=>{const w=host.clientWidth;r.setSize(w,w);};sz();host.appendChild(r.domElement);
+  s.add(new THREE.HemisphereLight(0x8fb7ff,0x1a1208,.7));const d1=new THREE.DirectionalLight(0xe8743b,1.6);d1.position.set(-3,3,-2);s.add(d1);const d2=new THREE.DirectionalLight(0xbfd8ff,.9);d2.position.set(3,4,4);s.add(d2);
+  const g=new THREE.Group();s.add(g);let ry=0,drag=false,lx=0;
+  host.addEventListener("pointerdown",e=>{drag=true;lx=e.clientX;host.setPointerCapture(e.pointerId);});host.addEventListener("pointermove",e=>{if(drag){ry+=(e.clientX-lx)*.01;lx=e.clientX;}});host.addEventListener("pointerup",()=>{drag=false;ctx();S.croak(0);});
+  const onLoad=gl=>{const m=gl.scene;let box=new THREE.Box3().setFromObject(m);const size=box.getSize(new THREE.Vector3());m.scale.setScalar(3.2/Math.max(size.x,size.y,size.z));box=new THREE.Box3().setFromObject(m);m.position.sub(box.getCenter(new THREE.Vector3()));g.add(m);note.textContent="Drag to turn. Tap to hear the croak.";};
+  const onErr=()=>{note.textContent="The 3D idol could not load here. The stills below show it.";host.hidden=true;};
+  try{const bin=Uint8Array.from(atob(window.IDOL_B64||""),c=>c.charCodeAt(0)).buffer;new THREE.GLTFLoader().parse(bin,"",onLoad,onErr);}catch(e){onErr();}
+  (function loop(){requestAnimationFrame(loop);if(!drag)ry+=.006;g.rotation.y=ry;r.render(s,c);})();
+  addEventListener("resize",sz);
+})();
+</script>
+
+</body></html>
