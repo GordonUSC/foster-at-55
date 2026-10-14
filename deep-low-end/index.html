@@ -220,6 +220,20 @@ td.n{font-family:var(--f-mono);font-size:13px;font-variant-numeric:tabular-nums;
 #s3d canvas{display:block;width:100%!important;height:100%!important}
 .s3dtip{position:absolute;left:12px;top:10px;font-family:var(--f-mono);font-size:12px;color:var(--paper);background:rgba(5,10,19,.7);padding:6px 10px;border:1px solid var(--line);pointer-events:none}
 
+#nycmapBox{border:1px solid var(--line);background:radial-gradient(ellipse at 85% 30%,#13213a,#070c16 70%)}
+#nycmapSvg{width:100%;height:auto;display:block}
+#nycmapSvg .st{fill:#121c30;stroke:#2b3d5e;stroke-width:.7}
+#nycmapSvg .ring{fill:none;stroke:var(--ember);stroke-opacity:.6;stroke-width:1.4;stroke-dasharray:5 5}
+#nycmapSvg .ringl{fill:var(--ember);fill-opacity:.8;font:11px var(--f-mono)}
+#nycmapSvg .pin{cursor:pointer;stroke:#070c16;stroke-width:1.5}
+#nycmapSvg .pin.L{fill:var(--jade)}#nycmapSvg .pin.B{fill:var(--ember)}#nycmapSvg .pin.X{fill:var(--paper)}
+#nycmapSvg .pin:hover,#nycmapSvg .pin.sel{stroke:var(--paper);stroke-width:2.5}
+#nycmapSvg .home{fill:var(--blood);stroke:var(--paper);stroke-width:2}
+#nycmapSvg .homel{fill:var(--paper);font:700 13px var(--f-mono)}
+#nycmapSvg .line{stroke:var(--paper);stroke-opacity:.5;stroke-width:1.2;fill:none}
+#mapInfo{margin-top:12px;padding:14px 16px;border:1px solid var(--line);background:var(--ink);min-height:70px}
+#mapTable td.n{white-space:nowrap}
+
 footer{padding-block:40px 60px;color:var(--mist);font-size:14px}
 .src li{margin-bottom:6px;font-size:14px;overflow-wrap:anywhere}
 </style>
@@ -299,7 +313,10 @@ footer{padding-block:40px 60px;color:var(--mist);font-size:14px}
       <div class="frhead"><span class="eyebrow">Sequencer · 16 steps into the bass</span><span class="mono" id="o_seq">Stopped · 140 BPM · 1/16 steps</span></div>
       <div class="frrow">
         <button id="seqPlay" class="seqbig">▶ Play</button>
-        <button data-pat="riddim">Riddim</button><button data-pat="half">Halftime</button><button data-pat="tekeli">Tekeli-li</button><button data-pat="clear">Clear</button>
+        <button data-pat="clear">Clear</button>
+      </div>
+      <div class="frrow"><span class="mono" style="align-self:center;color:var(--jade)">From his tracks (measured: 140 BPM halftime, root near F):</span><button data-pat="trk_tekeli">Tekeli-li</button><button data-pat="trk_old">Old Ones</button></div>
+      <div class="frrow"><span class="mono" style="align-self:center;color:var(--mist)">EDM patterns:</span><button data-pat="half">Dubstep halftime</button><button data-pat="riddim">Riddim</button><button data-pat="ridtrip">Riddim triplet</button><button data-pat="bro">Brostep</button><button data-pat="death">Deathstep stab</button><button data-pat="dnb">Drum and bass roller</button><button data-pat="trap">140 trap 808</button><button data-pat="wave">Wave</button><button data-pat="ukg">UK garage</button><button data-pat="tekeli">Tekeli-li run</button>
       </div>
       <div class="seqwrap"><div class="seqgrid" id="seqGrid" role="grid" aria-label="Step sequencer"></div></div>
       <div class="knobs">
@@ -457,6 +474,19 @@ footer{padding-block:40px 60px;color:var(--mist);font-size:14px}
   <div class="legend"><span><i style="background:var(--jade)"></i>Lovecraft and horror fandom</span><span><i style="background:var(--ember)"></i>Bass music</span><span><i style="background:var(--paper)"></i>Overlap and Fangspeare</span></div>
   <div id="ecoInfo"><span class="mono">Tap a star.</span></div>
   <div id="ecoList" style="margin-top:22px"></div>
+</section>
+
+<!-- NYCMAP -->
+<section id="nycmap">
+  <div class="eyebrow">From Brooklyn · every stop on the map</div>
+  <h2>How far is the deep?</h2>
+  <p class="prose">Every event and place in this dossier, measured from Brooklyn. Rings mark 100, 300, 1,000 and 2,500 miles. Tap a pin for the dates and how to get there. Six of the stops are right in New York.</p>
+  <div class="filters" id="mapFilters">
+    <button aria-pressed="true" data-f="all">All</button><button aria-pressed="false" data-f="L">Lovecraft</button><button aria-pressed="false" data-f="B">Bass</button><button aria-pressed="false" data-f="X">Overlap</button>
+  </div>
+  <div id="nycmapBox"><svg id="nycmapSvg" viewBox="0 0 975 610" style="overflow:hidden" role="img" aria-label="Map of the United States with events plotted by distance from New York City"></svg></div>
+  <div id="mapInfo"><span class="mono">Tap a pin.</span></div>
+  <div class="tbl" style="margin-top:16px"><table id="mapTable"><thead><tr><th>Place</th><th>Where</th><th>From Brooklyn</th><th>Getting there</th><th>When</th></tr></thead><tbody></tbody></table></div>
 </section>
 
 <!-- WHERE HE STANDS -->
@@ -661,6 +691,10 @@ footer{padding-block:40px 60px;color:var(--mist);font-size:14px}
 <script src="a/eco.js"></script>
 <script src="a/idol.js"></script>
 <script src="a/synth3d.js"></script>
+<script src="a/usmap.js"></script>
+<script src="a/mapdata.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 <script>
@@ -838,8 +872,24 @@ document.getElementById("wake").addEventListener("click",()=>{S.drop(0);const h=
   function sched(){while(nextT<AC.currentTime+0.12){const i=stepI,sw=(i%2)?stepDur()*(+$("k_swing").value/100)*0.66:0,at=nextT+sw,d=Math.max(0,(at-AC.currentTime)*1000);setTimeout(()=>{if(playing)playStep(i);},d);nextT+=stepDur();stepI=(stepI+1)%16;}
     $("o_seq").textContent="Playing · "+K.bpm.value+" BPM · step "+(stepI+1)+"/16";}
   $("seqPlay").onclick=()=>{ctx();playing=!playing;const b=$("seqPlay");if(playing){if(!voice)build();stepI=0;nextT=AC.currentTime+0.05;timer=setInterval(sched,25);b.textContent="■ Stop";b.setAttribute("aria-pressed","true");}else{clearInterval(timer);clearTimeout(relT);rel();lastOn=false;window.__seqPad=-1;playhead(-1);document.querySelectorAll(".pad").forEach(p=>p.classList.remove("on"));b.textContent="▶ Play";b.setAttribute("aria-pressed","false");$("o_seq").textContent="Stopped · "+K.bpm.value+" BPM · 1/16 steps";}};
-  const PAT={riddim:{n:[0,-1,-1,0,-1,-1,0,-1,0,-1,-1,0,-1,0,-1,-1],a:[0,8],s:[]},half:{n:[0,-1,-1,-1,-1,-1,3,-1,-1,-1,0,-1,-1,-1,4,-1],a:[0,10],s:[6]},tekeli:{n:[0,-1,2,-1,3,-1,2,-1,0,-1,5,-1,4,-1,3,2],a:[0,8,10],s:[3,7,14]}};
-  document.querySelectorAll("[data-pat]").forEach(b=>b.onclick=()=>{const p=PAT[b.dataset.pat];if(!p){sq.fill(-1);acc.fill(false);sld.fill(false);}else{sq=p.n.slice();acc=sq.map((_,i)=>p.a.includes(i));sld=sq.map((_,i)=>p.s.includes(i));}paint();});
+  const PAT={
+ riddim:{n:[0,-1,-1,0,-1,-1,0,-1,0,-1,-1,0,-1,0,-1,-1],a:[0,8],s:[],c:{bpm:140,wt:2,drive:60,cut:0.5,res:12,depth:85,div:"2",shape:"square",a:5,d:200,su:80,r:120,gate:55,swing:0}},
+ half:{n:[0,-1,-1,-1,-1,-1,-1,-1,0,-1,-1,3,-1,-1,5,-1],a:[0],s:[11],c:{bpm:140,wt:1,drive:40,cut:0.48,res:8,depth:70,div:"1",shape:"sine",a:10,d:400,su:70,r:300,gate:80,swing:0}},
+ ridtrip:{n:[0,-1,-1,0,-1,-1,0,-1,-1,0,-1,-1,0,-1,-1,-1],a:[0,6,12],s:[],c:{bpm:140,wt:2.4,drive:70,cut:0.5,res:14,depth:90,div:"3",shape:"square",a:3,d:150,su:75,r:80,gate:50,swing:0}},
+ bro:{n:[0,0,-1,0,-1,-1,3,3,-1,0,-1,5,-1,4,3,-1],a:[0,6,11],s:[13],c:{bpm:140,wt:1.6,drive:80,cut:0.55,res:16,depth:80,div:"4",shape:"sawdown",a:5,d:250,su:70,r:150,gate:70,swing:0}},
+ death:{n:[0,-1,0,-1,-1,-1,-1,-1,0,0,-1,-1,-1,-1,-1,-1],a:[0,2,8,9],s:[],c:{bpm:140,wt:3,drive:100,cut:0.62,res:18,depth:40,div:"8",shape:"square",a:2,d:120,su:40,r:60,gate:40,swing:0}},
+ dnb:{n:[0,-1,-1,0,-1,-1,0,-1,-1,0,-1,0,-1,-1,3,-1],a:[0,9],s:[2,13],c:{bpm:174,wt:1.1,drive:35,cut:0.45,res:6,depth:45,div:"4",shape:"sine",a:5,d:300,su:80,r:200,gate:85,swing:0}},
+ trap:{n:[0,-1,-1,-1,-1,-1,0,-1,-1,-1,3,-1,-1,-1,-1,-1],a:[0],s:[6],c:{bpm:140,wt:0,drive:30,cut:0.6,res:2,depth:0,div:"1",shape:"sine",a:2,d:900,su:30,r:600,gate:95,swing:0}},
+ wave:{n:[0,-1,-1,-1,4,-1,-1,-1,3,-1,-1,-1,1,-1,-1,-1],a:[],s:[0,4,8],c:{bpm:140,wt:1.4,drive:20,cut:0.42,res:5,depth:30,div:"0.5",shape:"triangle",a:250,d:600,su:85,r:900,gate:100,swing:0}},
+ ukg:{n:[0,-1,-1,0,-1,-1,-1,3,-1,-1,0,-1,-1,3,-1,-1],a:[0,10],s:[],c:{bpm:132,wt:1,drive:25,cut:0.52,res:8,depth:35,div:"2",shape:"sine",a:5,d:250,su:60,r:150,gate:60,swing:40}},
+ tekeli:{n:[0,-1,2,-1,3,-1,2,-1,0,-1,5,-1,4,-1,3,2],a:[0,8,10],s:[3,7,14],c:null},
+ trk_tekeli:{n:[0,-1,-1,-1,-1,-1,-1,-1,3,-1,-1,-1,5,-1,4,-1],a:[0,8],s:[12,14],c:{bpm:140,pitch:0.458,wt:1.2,det:22,drive:25,cut:0.46,res:5,depth:35,div:"0.5",shape:"triangle",a:120,d:700,su:80,r:700,gate:100,swing:0}},
+ trk_old:{n:[0,-1,-1,0,-1,-1,-1,-1,0,-1,3,-1,-1,0,-1,-1],a:[0,8,10],s:[],c:{bpm:140,pitch:0.458,wt:3,det:12,drive:85,cut:0.55,res:14,depth:75,div:"3",shape:"sine",a:4,d:220,su:70,r:160,gate:60,swing:0}}
+};
+  function setK(el,v){if(!el)return;el.value=v;el.dispatchEvent(new Event("input"));}
+  document.querySelectorAll("[data-pat]").forEach(b=>b.onclick=()=>{ctx();const p=PAT[b.dataset.pat];document.querySelectorAll("[data-pat]").forEach(x=>x.setAttribute("aria-pressed",x===b&&!!p));if(!p){sq.fill(-1);acc.fill(false);sld.fill(false);paint();return;}sq=p.n.slice();acc=sq.map((_,i)=>p.a.includes(i));sld=sq.map((_,i)=>p.s.includes(i));
+    const c=p.c;if(c){["bpm","pitch","wt","det","drive","cut","res","depth"].forEach(k=>{if(c[k]!=null)setK(K[k],c[k]);});setK(E.a,c.a);setK(E.d,c.d);setK(E.s,c.su);setK(E.r,c.r);setK($("k_gate"),c.gate);setK($("k_swing"),c.swing);div=+c.div;shape=c.shape;press("#divs",String(c.div),"d");press("#shapes",shape,"s");if(voice){setWave();voice.sh.curve=curve(+K.drive.value);newLfo();}apply();}
+    paint();if(!playing)$("seqPlay").click();});
   $("k_swing").addEventListener("input",e=>$("o_swing").textContent=e.target.value+"%");$("k_gate").addEventListener("input",e=>$("o_gate").textContent=e.target.value+"%");
   sq=PAT.riddim.n.slice();acc=sq.map((_,i)=>PAT.riddim.a.includes(i));paint();
   window.__fs={on:on,off:off,K:K,getDiv:()=>div,setDiv:d=>{div=d==="free"?"free":+d;press("#divs",String(d),"d");if(retrig)newLfo();apply();}};
@@ -928,6 +978,33 @@ document.getElementById("wake").addEventListener("click",()=>{S.drop(0);const h=
     const t=performance.now()/1000;rings.forEach((g,i)=>{const ph=((t*0.8+i/3)%1);const sc=1+ph*0.6+lvl*0.4;g.scale.set(sc,sc,sc);g.material.opacity=(1-ph)*(0.25+lvl*0.9);});
     if(scrTex)scrTex.needsUpdate=true;if(wtTex)wtTex.needsUpdate=true;r.render(scene,cam);})();
   addEventListener("resize",()=>{cam.aspect=W()/H();cam.updateProjectionMatrix();r.setSize(W(),H());});
+})();
+
+/* ---------- NYC DISTANCE MAP ---------- */
+(function(){
+  const svg=document.getElementById("nycmapSvg");if(!svg)return;
+  const EV=window.MAP_EVENTS||[],BK=[-73.944,40.678];
+  function miles(a,b){const R=3958.8,r=Math.PI/180,dl=(b[1]-a[1])*r,dn=(b[0]-a[0])*r,x=Math.sin(dl/2)**2+Math.cos(a[1]*r)*Math.cos(b[1]*r)*Math.sin(dn/2)**2;return 2*R*Math.asin(Math.sqrt(x));}
+  function trip(m){if(m<15)return "Subway or a short ride";if(m<250)return "Train, about "+(Math.round((m/55+0.5)*2)/2)+" hr";if(m<500)return "Drive or train, about "+Math.round(m/55)+" hr";return "Fly, about "+(Math.round((m/450+2.5)*2)/2)+" hr door to door";}
+  EV.forEach(e=>{e.mi=miles(BK,e.ll);e.trip=trip(e.mi);});EV.sort((a,b)=>a.mi-b.mi);
+  const tbody=document.querySelector("#mapTable tbody");
+  EV.forEach(e=>{const tr=document.createElement("tr");tr.innerHTML=`<td>${e.n}</td><td>${e.c}</td><td class="n">${e.mi<1?"under 1":Math.round(e.mi).toLocaleString()} mi</td><td>${e.trip}</td><td>${e.w}</td>`;tbody.appendChild(tr);});
+  if(!window.d3||!window.topojson||!window.US_TOPO){svg.style.display="none";return;}
+  const proj=d3.geoAlbersUsa().scale(1300).translate([487.5,305]),path=d3.geoPath(),gpath=d3.geoPath(proj);
+  const S=d3.select(svg);
+  S.append("g").selectAll("path").data(topojson.feature(US_TOPO,US_TOPO.objects.states).features).join("path").attr("class","st").attr("d",path);
+  const home0=proj(BK);[100,300,1000,2500].forEach(m=>{const w=proj([BK[0]-m/(69.1*Math.cos(BK[1]*Math.PI/180)),BK[1]]);if(!w||!home0)return;const rr=Math.hypot(w[0]-home0[0],w[1]-home0[1]);S.append("circle").attr("class","ring").attr("cx",home0[0]).attr("cy",home0[1]).attr("r",rr);const ly=home0[1]+rr*0.72,lx=home0[0]-rr*0.69;S.append("text").attr("class","ringl").attr("x",lx).attr("y",ly).attr("text-anchor","end").text(m.toLocaleString()+" mi");});
+  const home=proj(BK),info=document.getElementById("mapInfo");let selEl=null,line=S.append("path").attr("class","line");
+  const local=EV.filter(e=>e.mi<15),far=EV.filter(e=>e.mi>=15);
+  const pins=S.append("g").selectAll("circle").data(far).join("circle").attr("class",d=>"pin "+d.t).attr("r",7).attr("cx",d=>(proj(d.ll)||[-99])[0]).attr("cy",d=>(proj(d.ll)||[-99])[1]).attr("tabindex",0).attr("role","button").attr("aria-label",d=>d.n+", "+Math.round(d.mi)+" miles");
+  pins.append("title").text(d=>d.n);
+  function show(d,el){if(selEl)selEl.classList.remove("sel");selEl=el;el&&el.classList.add("sel");const p=proj(d.ll);if(p)line.attr("d",`M${home[0]},${home[1]}Q${(home[0]+p[0])/2},${Math.min(home[1],p[1])-60} ${p[0]},${p[1]}`);
+    info.innerHTML=`<div class="eyebrow">${{L:"Lovecraft and horror",B:"Bass music",X:"Where they meet"}[d.t]} · ${d.c}</div><h3 style="margin-top:6px">${d.n}</h3><p style="margin:4px 0">${d.w}</p><p style="margin:0;color:var(--ember)"><b>${Math.round(d.mi).toLocaleString()} miles from Brooklyn</b> · ${d.trip}</p>`;
+}
+  pins.on("click",function(ev,d){show(d,this);}).on("keydown",function(ev,d){if(ev.key==="Enter")show(d,this);});
+  S.append("circle").attr("class","home").attr("cx",home[0]).attr("cy",home[1]).attr("r",10).style("cursor","pointer").on("click",()=>{line.attr("d","");info.innerHTML=`<div class="eyebrow">Home base · New York</div><h3 style="margin-top:6px">${local.length} stops in the city</h3><p style="margin:4px 0">${local.map(e=>e.n).join(" · ")}</p>`;});
+  S.append("text").attr("class","homel").attr("x",home[0]-14).attr("y",home[1]-14).attr("text-anchor","end").text("NYC · "+local.length+" stops");
+  document.querySelectorAll("#mapFilters button").forEach(b=>b.onclick=()=>{const f=b.dataset.f;document.querySelectorAll("#mapFilters button").forEach(x=>x.setAttribute("aria-pressed",x===b));pins.style("display",d=>f==="all"||d.t===f?null:"none");});
 })();
 
 /* ---------- POE BEAT + VISUALIZER ---------- */
