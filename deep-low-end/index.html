@@ -147,16 +147,19 @@ td.n{font-family:var(--f-mono);font-size:13px;font-variant-numeric:tabular-nums;
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media print{#synth,#idol,#idolNote,.btn-wake,.wake .note,#ecoFilters,#eco,#viz,.player,#altar .progress{display:none!important}.print-only{display:block!important}section{break-inside:auto}.step,.row,figure,.card{break-inside:avoid}}
 .print-only{display:none}
-.synth{border:1px solid var(--line);background:var(--ink);padding:16px;display:grid;gap:16px}
+.synth{border:1px solid var(--jade);background:linear-gradient(rgba(9,15,27,.80),rgba(9,15,27,.88)),url(a/stone-panel.jpg) center/cover,var(--ink);padding:18px;display:grid;gap:16px;box-shadow:inset 0 0 60px rgba(0,0,0,.6),0 0 0 1px rgba(111,181,154,.15)}
+.synth-banner{margin:0 0 16px;border:1px solid var(--line)}
+.synth-banner img{width:100%;height:auto;display:block}
 .screens{display:grid;grid-template-columns:minmax(0,2.2fr) minmax(0,1fr);gap:12px}
 @media(max-width:640px){.screens{grid-template-columns:minmax(0,1fr)}}
-.scr{position:relative;border:1px solid var(--line);background:#070c16}
+.scr{position:relative;border:1px solid rgba(111,181,154,.35);border-radius:4px;background:#050a13;box-shadow:inset 0 0 30px rgba(0,0,0,.8)}
 .scr canvas{width:100%;height:auto;display:block}
 .scrl{position:absolute;left:8px;top:6px;font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--mist)}
 .pads{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
 @media(max-width:520px){.pads{grid-template-columns:repeat(3,minmax(0,1fr))}}
-.pad{aspect-ratio:1.4;background:var(--tide);border:1px solid var(--line);font-family:var(--f-mono);font-size:12px;color:var(--paper);touch-action:none;user-select:none;-webkit-user-select:none}
-.pad.on{background:var(--ember);color:var(--abyss);border-color:var(--ember)}
+.pad{aspect-ratio:1.15;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:radial-gradient(circle at 50% 40%,#22344f,#0d1525 72%);border:1px solid rgba(111,181,154,.35);border-radius:6px;font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;color:var(--paper);touch-action:none;user-select:none;-webkit-user-select:none;transition:box-shadow .12s,transform .08s}
+.pad svg{width:46%;height:auto;pointer-events:none}
+.pad.on{border-color:var(--ember);box-shadow:0 0 0 2px var(--ember),0 0 28px rgba(232,116,59,.65),inset 0 0 22px rgba(232,116,59,.35);transform:scale(.97)}
 .knobs{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px 18px}
 .knobs label{display:grid;gap:4px;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mist)}
 .knobs output{color:var(--ember);float:right}
@@ -207,6 +210,7 @@ footer{padding-block:40px 60px;color:var(--mist);font-size:14px}
 <section id="synth">
   <div class="eyebrow">The Tsathoggua synth · a wavetable bass you can play</div>
   <h2>See the bass. Bend it.</h2>
+  <figure class="synth-banner"><img src="a/synth-banner.jpg" alt="Woodblock banner: the frog sage at a giant stone synthesizer carved into a sunken temple, ember waveform screens glowing, sound rings pouring over dark water."></figure>
   <p class="prose">Hold a pad and watch the actual sound wave move. Slide the wavetable from a pure sine to saw, square and a custom Tsathoggua wave. Drive it into distortion, close the filter, and set the wobble. Pitch goes down to 20 Hz for a real subwoofer. Every glyph above shows on this scope too.</p>
   <div class="synth">
     <div class="screens">
@@ -697,7 +701,7 @@ document.getElementById("wake").addEventListener("click",()=>{S.drop(0);const h=
   function off(){if(!voice||latched)return;const t=AC.currentTime;voice.amp.gain.cancelScheduledValues(t);voice.amp.gain.setTargetAtTime(0,t,0.08);}
   Object.entries(K).forEach(([k,el])=>el.addEventListener("input",()=>{if(k==="wt")setWave();if(k==="drive"&&voice)voice.sh.curve=curve(+el.value);apply();}));
   const notes=[["Root",1],["m3",1.189],["4th",1.335],["5th",1.498],["b7",1.782],["Oct",2]];
-  const pads=$("pads");notes.forEach(([l,m])=>{const b=document.createElement("button");b.className="pad";b.textContent=l;b.setAttribute("aria-label","Play "+l);
+  const pads=$("pads"),PG=["eye","toad","tent","shog","deep","star"];notes.forEach(([l,m],pi)=>{const b=document.createElement("button");b.className="pad";b.innerHTML=(typeof SVG!=="undefined"&&SVG[PG[pi]]?SVG[PG[pi]]:"")+"<span>"+l+"</span>";b.setAttribute("aria-label","Play "+l);
     b.addEventListener("pointerdown",e=>{e.preventDefault();b.setPointerCapture(e.pointerId);document.querySelectorAll(".pad.on").forEach(p=>p.classList.remove("on"));b.classList.add("on");on(m);});
     const up=()=>{if(!latched)b.classList.remove("on");off();};b.addEventListener("pointerup",up);b.addEventListener("pointercancel",up);pads.appendChild(b);});
   $("latch").addEventListener("click",e=>{latched=!latched;e.target.textContent="Latch: "+(latched?"on":"off");e.target.setAttribute("aria-pressed",latched);if(!latched){document.querySelectorAll(".pad.on").forEach(p=>p.classList.remove("on"));off();}});
