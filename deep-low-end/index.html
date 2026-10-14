@@ -145,7 +145,7 @@ td.n{font-family:var(--f-mono);font-size:13px;font-variant-numeric:tabular-nums;
 .shake{animation:shake .5s}
 @keyframes shake{0%,100%{transform:none}20%{transform:translate(-6px,3px)}40%{transform:translate(5px,-4px)}60%{transform:translate(-4px,-2px)}80%{transform:translate(3px,4px)}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-@media print{#synth,#idol,#idolNote,.btn-wake,.wake .note,#ecoFilters,#eco,#viz,.player,#altar .progress{display:none!important}.print-only{display:block!important}section{break-inside:auto}.step,.row,figure,.card{break-inside:avoid}}
+@media print{#synth,#synth3d,#idol,#idolNote,.btn-wake,.wake .note,#ecoFilters,#eco,#viz,.player,#altar .progress{display:none!important}.print-only{display:block!important}section{break-inside:auto}.step,.row,figure,.card{break-inside:avoid}}
 .print-only{display:none}
 .synth{border:1px solid var(--jade);background:linear-gradient(rgba(9,15,27,.80),rgba(9,15,27,.88)),url(a/stone-panel.jpg) center/cover,var(--ink);padding:18px;display:grid;gap:16px;box-shadow:inset 0 0 60px rgba(0,0,0,.6),0 0 0 1px rgba(111,181,154,.15)}
 .synth-banner{margin:0 0 16px;border:1px solid var(--line)}
@@ -199,6 +199,11 @@ td.n{font-family:var(--f-mono);font-size:13px;font-variant-numeric:tabular-nums;
 .frrow{display:flex;flex-wrap:wrap;gap:6px}
 .frrow button{background:transparent;border:1px solid var(--line);color:var(--mist);font-family:var(--f-mono);font-size:12px;padding:8px 11px;min-width:52px}
 .frrow button[aria-pressed="true"]{background:var(--ember);border-color:var(--ember);color:var(--abyss)}
+
+#s3d{position:relative;width:100%;aspect-ratio:16/9;max-height:680px;border:1px solid var(--jade);background:#050a13 url(a/temple-bg.jpg) center/cover;overflow:hidden;touch-action:none}
+@media(max-width:600px){#s3d{aspect-ratio:4/5}}
+#s3d canvas{display:block;width:100%!important;height:100%!important}
+.s3dtip{position:absolute;left:12px;top:10px;font-family:var(--f-mono);font-size:12px;color:var(--paper);background:rgba(5,10,19,.7);padding:6px 10px;border:1px solid var(--line);pointer-events:none}
 
 footer{padding-block:40px 60px;color:var(--mist);font-size:14px}
 .src li{margin-bottom:6px;font-size:14px;overflow-wrap:anywhere}
@@ -295,6 +300,15 @@ footer{padding-block:40px 60px;color:var(--mist);font-size:14px}
       <button class="pbtn" id="latch" aria-pressed="false">Latch: off</button>
     </div>
   </div>
+</section>
+
+<!-- SYNTH3D -->
+<section id="synth3d">
+  <div class="eyebrow">The stone synth in 3D · built in Blender</div>
+  <h2>Play the old machine.</h2>
+  <p class="prose">This is the Tsathoggua synth as a carved stone console in a sunken temple. Tap a glyph pad to play, drag a tentacle knob up or down to turn it, and drag the empty water to walk around it. The screens show the live wave, and the rings pulse with the bass. It drives the same engine as the synth above, so every setting carries over.</p>
+  <div id="s3d" aria-label="Interactive 3D stone synthesizer"><div id="s3dTip" class="s3dtip">Loading the stone synth…</div></div>
+  <p class="note" id="s3dNote" style="margin-top:8px">Pads: tap and hold. Knobs: press and drag up or down. Water: drag to orbit.</p>
 </section>
 
 <!-- WHO -->
@@ -618,6 +632,7 @@ footer{padding-block:40px 60px;color:var(--mist);font-size:14px}
 
 <script src="a/eco.js"></script>
 <script src="a/idol.js"></script>
+<script src="a/synth3d.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 <script>
@@ -804,6 +819,65 @@ document.getElementById("wake").addEventListener("click",()=>{S.drop(0);const h=
     let s=0;for(let i=1;i<n/2;i++){if(d[i-1]<0&&d[i]>=0){s=i;break;}}
     const span=Math.min(n-s,Math.floor(n*0.75));const sc2=window.__studio?"#ffb532":"#e8743b";sx.strokeStyle=sc2;sx.lineWidth=window.__studio?1.6:2.5;sx.shadowColor=sc2;sx.shadowBlur=window.__studio?0:8;sx.beginPath();
     for(let x=0;x<w;x++){const i=s+Math.floor(x/w*span);const y=h/2-d[i]*h*0.34;x?sx.lineTo(x,y):sx.moveTo(x,y);}sx.stroke();sx.shadowBlur=0;})();
+})();
+
+/* ---------- 3D STONE SYNTH ---------- */
+(function(){
+  const host=document.getElementById("s3d"),tip=document.getElementById("s3dTip");
+  if(!host||!window.THREE||!THREE.GLTFLoader||!window.SYNTH_B64){if(tip)tip.textContent="The 3D synth needs WebGL. The flat synth above plays the same sound.";return;}
+  const W=()=>host.clientWidth,H=()=>host.clientHeight;
+  const scene=new THREE.Scene(); scene.fog=new THREE.FogExp2(0x070c16,0.09);
+  const cam=new THREE.PerspectiveCamera(40,W()/H(),0.05,60);
+  const r=new THREE.WebGLRenderer({antialias:true,alpha:true});r.setPixelRatio(Math.min(2,devicePixelRatio));r.setSize(W(),H());r.outputEncoding=THREE.sRGBEncoding;host.appendChild(r.domElement);
+  scene.add(new THREE.HemisphereLight(0x7fa8c8,0x0b0806,0.55));
+  const key=new THREE.DirectionalLight(0xdfe8ff,0.9);key.position.set(2,3,3);scene.add(key);
+  const rim=new THREE.PointLight(0xe8743b,1.4,8);rim.position.set(-1.6,1.2,-1.4);scene.add(rim);
+  const glow=new THREE.PointLight(0xe8743b,0,4);glow.position.set(0,0.4,1.0);scene.add(glow);
+  let az=0.35,el=0.32,dist=3.4;const tgt=new THREE.Vector3(0,0.62,0.1);
+  function place(){cam.position.set(tgt.x+dist*Math.sin(az)*Math.cos(el),tgt.y+dist*Math.sin(el),tgt.z+dist*Math.cos(az)*Math.cos(el));cam.lookAt(tgt);}place();
+  const parts={},pads=[],knobs={};let rings=[];
+  const KN={knob_wt:"wt",knob_pitch:"pitch",knob_drive:"drive",knob_cut:"cut",knob_res:"res",knob_rate:"__rate",knob_depth:"depth"};
+  const DIVS=["0.25","0.5","1","1.5","2","3","4","6","8"];
+  let scrTex=null,wtTex=null;
+  function canvasTex(id){const c=document.getElementById(id);if(!c)return null;const t=new THREE.CanvasTexture(c);t.encoding=THREE.sRGBEncoding;t.flipY=false;return t;}
+  function onLoad(gl){const root=gl.scene;scene.add(root);
+    root.traverse(o=>{if(!o.isMesh)return;parts[o.name]=o;o.material=o.material.clone();
+      if(/^pad_\d/.test(o.name)){pads[+o.name.split("_")[1]]=o;o.material.emissive=new THREE.Color(0xe8743b);o.material.emissiveIntensity=0;}
+      if(KN[o.name])knobs[o.name]=o;
+      if(/^ring_\d/.test(o.name)){o.material.transparent=true;o.material.depthWrite=false;rings.push(o);}
+    });
+    // names may sit on parent nodes: also map by node name
+    root.traverse(o=>{if(!parts[o.name])parts[o.name]=o;if(/^pad_\d$/.test(o.name)&&!pads[+o.name.split("_")[1]]){pads[+o.name.split("_")[1]]=o;}if(KN[o.name]&&!knobs[o.name])knobs[o.name]=o;});
+    scrTex=canvasTex("scope");wtTex=canvasTex("wtview");
+    [["screen_main",scrTex],["screen_wt",wtTex]].forEach(([n,t])=>{const m=parts[n];if(!m||!t)return;const mesh=m.isMesh?m:m.children.find(c=>c.isMesh);if(!mesh)return;mesh.material=new THREE.MeshBasicMaterial({map:t,toneMapped:false});});
+    Object.values(knobs).forEach(k=>k.userData.r0=k.rotation.clone());
+    syncKnobs();tip.textContent="Tap a glyph pad to play";setTimeout(()=>tip.hidden=true,4000);}
+  function onErr(){tip.textContent="The 3D synth could not load here. The flat synth above plays the same sound.";}
+  try{const bin=Uint8Array.from(atob(window.SYNTH_B64),c=>c.charCodeAt(0)).buffer;new THREE.GLTFLoader().parse(bin,"",onLoad,onErr);}catch(e){onErr();}
+  function norm(name){const fs=window.__fs;if(!fs)return 0;if(name==="__rate"){const d=fs.getDiv();const i=DIVS.indexOf(String(d));return i<0?1:i/(DIVS.length-1);}const el=fs.K[name];return (+el.value-+el.min)/(+el.max-+el.min);}
+  function setNorm(name,v){const fs=window.__fs;if(!fs)return;v=Math.max(0,Math.min(1,v));if(name==="__rate"){fs.setDiv(DIVS[Math.round(v*(DIVS.length-1))]);return;}const el=fs.K[name];el.value=+el.min+v*(+el.max-+el.min);el.dispatchEvent(new Event("input"));}
+  function syncKnobs(){Object.entries(knobs).forEach(([n,k])=>{const v=norm(KN[n]);const r0=k.userData.r0||k.rotation;k.rotation.set(r0.x,r0.y,r0.z);k.rotateOnAxis(new THREE.Vector3(0,0,1),-(v-0.5)*Math.PI*1.5);});}
+  const ray=new THREE.Raycaster(),mv=new THREE.Vector2();let mode=null,lx=0,ly=0,knobName=null,knobStart=0,padOn=-1;
+  const MUL=[1,1.189,1.335,1.498,1.782,2];
+  function hit(e){const b=host.getBoundingClientRect();mv.x=(e.clientX-b.left)/b.width*2-1;mv.y=-(e.clientY-b.top)/b.height*2+1;ray.setFromCamera(mv,cam);const list=[];pads.forEach(p=>p&&list.push(p));Object.values(knobs).forEach(k=>list.push(k));const h=ray.intersectObjects(list,true)[0];if(!h)return null;let o=h.object;while(o&&!(/^pad_\d$/.test(o.name)||KN[o.name]))o=o.parent;return o;}
+  host.addEventListener("pointerdown",e=>{host.setPointerCapture(e.pointerId);lx=e.clientX;ly=e.clientY;ctx();const o=hit(e);
+    if(o&&/^pad_\d$/.test(o.name)){mode="pad";padOn=+o.name.split("_")[1];window.__fs&&window.__fs.on(MUL[padOn]);}
+    else if(o&&KN[o.name]){mode="knob";knobName=o.name;knobStart=norm(KN[o.name]);tip.hidden=false;}
+    else mode="orbit";});
+  host.addEventListener("pointermove",e=>{const dx=e.clientX-lx,dy=e.clientY-ly;
+    if(mode==="orbit"){az-=dx*0.006;el=Math.max(0.05,Math.min(1.2,el+dy*0.004));place();lx=e.clientX;ly=e.clientY;}
+    else if(mode==="knob"){const v=knobStart-(e.clientY-ly)/180;setNorm(KN[knobName],v);syncKnobs();tip.textContent=knobName.replace("knob_","").replace("cut","filter").replace("res","resonance").replace("wt","wavetable")+": "+Math.round(norm(KN[knobName])*100)+"%";}});
+  const end=()=>{if(mode==="pad"){window.__fs&&window.__fs.off();padOn=-1;}if(mode==="knob")setTimeout(()=>tip.hidden=true,900);mode=null;};
+  host.addEventListener("pointerup",end);host.addEventListener("pointercancel",end);
+  host.addEventListener("wheel",e=>{e.preventDefault();dist=Math.max(2,Math.min(6,dist+e.deltaY*0.002));place();},{passive:false});
+  document.querySelectorAll(".knobs input,#divs button,[data-p]").forEach(x=>x.addEventListener("input",syncKnobs));document.querySelectorAll("#divs button,[data-p]").forEach(x=>x.addEventListener("click",()=>setTimeout(syncKnobs,30)));
+  let td=null;
+  (function loop(){requestAnimationFrame(loop);let rms=0;if(typeof analyser!=="undefined"&&analyser){if(!td||td.length!==analyser.fftSize)td=new Float32Array(analyser.fftSize);analyser.getFloatTimeDomainData(td);let s=0;for(let i=0;i<td.length;i+=4)s+=td[i]*td[i];rms=Math.sqrt(s/(td.length/4));}
+    const lvl=Math.min(1,rms*3.2);glow.intensity=lvl*3;
+    pads.forEach((p,i)=>{if(!p)return;const m=p.isMesh?p.material:(p.children[0]&&p.children[0].material);if(m&&m.emissive)m.emissiveIntensity+=(((i===padOn)?1.6:0)+lvl*0.25-m.emissiveIntensity)*0.25;});
+    const t=performance.now()/1000;rings.forEach((g,i)=>{const ph=((t*0.8+i/3)%1);const sc=1+ph*0.6+lvl*0.4;g.scale.set(sc,sc,sc);g.material.opacity=(1-ph)*(0.25+lvl*0.9);});
+    if(scrTex)scrTex.needsUpdate=true;if(wtTex)wtTex.needsUpdate=true;r.render(scene,cam);})();
+  addEventListener("resize",()=>{cam.aspect=W()/H();cam.updateProjectionMatrix();r.setSize(W(),H());});
 })();
 
 /* ---------- POE BEAT + VISUALIZER ---------- */
