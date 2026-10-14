@@ -166,6 +166,33 @@ td.n{font-family:var(--f-mono);font-size:13px;font-variant-numeric:tabular-nums;
 .knobs input[type=range]{width:100%;accent-color:var(--ember)}
 .presets{display:flex;flex-wrap:wrap;gap:8px}
 
+
+.viewbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+.viewbar button{background:transparent;border:1px solid var(--line);color:var(--mist);font-family:var(--f-mono);font-size:12px;padding:8px 12px}
+.viewbar button[aria-pressed="true"]{border-color:var(--ember);color:var(--paper)}
+#midiStat{flex:1 1 260px;color:var(--mist);font-size:11px}
+.devtitle{display:none}
+/* Studio view: an Ableton Live-style device */
+.synth.studio{background:#2a2a2a;border:1px solid #111;border-radius:2px;box-shadow:none;padding:0 12px 12px;font-family:Arial,Helvetica,sans-serif;gap:10px}
+.synth.studio .devtitle{display:flex;align-items:center;gap:8px;margin:0 -12px;padding:5px 10px;background:#3c3c3c;color:#d8d8d8;font:600 12px Arial,Helvetica,sans-serif;border-bottom:1px solid #111}
+.synth.studio .devdot{width:9px;height:9px;border-radius:50%;background:#ffb532;box-shadow:0 0 4px #ffb532}
+.synth.studio .scr{background:#1b1b1b;border:1px solid #111;border-radius:0;box-shadow:none}
+.synth.studio .scrl{color:#9a9a9a;font-family:Arial,Helvetica,sans-serif;letter-spacing:0;text-transform:none;font-size:11px}
+.synth.studio .pad{background:#4a4a4a;border:1px solid #1a1a1a;border-radius:2px;aspect-ratio:2.2;color:#e0e0e0;font:600 11px Arial,Helvetica,sans-serif;box-shadow:none;transform:none}
+.synth.studio .pad svg{display:none}
+.synth.studio .pad.on{background:#ffb532;color:#111;box-shadow:none}
+.synth.studio .knobs label{color:#b4b4b4;font:11px Arial,Helvetica,sans-serif;letter-spacing:0;text-transform:none;background:#333;border:1px solid #1d1d1d;padding:6px 8px}
+.synth.studio .knobs output{color:#ffb532}
+.synth.studio input[type=range]{accent-color:#ffb532}
+.synth.studio .frate{background:#2f2f2f;border:1px solid #111}
+.synth.studio .frate .eyebrow{color:#cfcfcf;font-family:Arial,Helvetica,sans-serif;letter-spacing:0;text-transform:none}
+.synth.studio .frrow button{border-color:#1a1a1a;background:#4a4a4a;color:#ddd;font-family:Arial,Helvetica,sans-serif;border-radius:2px}
+.synth.studio .frrow button[aria-pressed="true"]{background:#ffb532;color:#111;border-color:#ffb532}
+.synth.studio #lfoview{background:#1b1b1b;border-color:#111}
+.synth.studio .presets .pbtn{border-radius:2px;font-family:Arial,Helvetica,sans-serif}
+.synth.studio .presets .pbtn.ghost{background:#4a4a4a;color:#ddd;border:1px solid #1a1a1a}
+.synth.studio .presets #latch{background:#ffb532;color:#111}
+
 .frate{border:1px solid var(--ember);padding:12px;display:grid;gap:10px;background:#0e1626}
 .frhead{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline}
 #lfoview{width:100%;height:auto;background:#070c16;border:1px solid var(--line)}
@@ -212,7 +239,13 @@ footer{padding-block:40px 60px;color:var(--mist);font-size:14px}
   <h2>See the bass. Bend it.</h2>
   <figure class="synth-banner"><img src="a/synth-banner.jpg" alt="Woodblock banner: the frog sage at a giant stone synthesizer carved into a sunken temple, ember waveform screens glowing, sound rings pouring over dark water."></figure>
   <p class="prose">Hold a pad and watch the actual sound wave move. Slide the wavetable from a pure sine to saw, square and a custom Tsathoggua wave. Drive it into distortion, close the filter, and set the wobble. Pitch goes down to 20 Hz for a real subwoofer. Every glyph above shows on this scope too.</p>
-  <div class="synth">
+  <div class="viewbar" role="group" aria-label="Synth view">
+    <button id="v_stone" aria-pressed="true">Stone view</button>
+    <button id="v_studio" aria-pressed="false">Studio view (Ableton-style)</button>
+    <button id="midiBtn">Connect MIDI keyboard or Push</button>
+    <span class="mono" id="midiStat">Chrome or Edge on a computer. Notes play the synth; knobs: CC74 filter, CC71 resonance, CC1 wobble depth, CC72 drive, CC73 wavetable, CC76 free rate.</span>
+  </div>
+  <div class="synth"><div class="devtitle"><span class="devdot"></span>Tsathoggua · Wavetable</div>
     <div class="screens">
       <div class="scr"><canvas id="scope" width="900" height="260" aria-label="Live oscilloscope of the sound wave"></canvas><span class="scrl">Scope · the live sound wave</span></div>
       <div class="scr"><canvas id="wtview" width="400" height="260" aria-label="Current wavetable shape"></canvas><span class="scrl" id="wtname">Wavetable · Sine</span></div>
@@ -705,12 +738,25 @@ document.getElementById("wake").addEventListener("click",()=>{S.drop(0);const h=
     b.addEventListener("pointerdown",e=>{e.preventDefault();b.setPointerCapture(e.pointerId);document.querySelectorAll(".pad.on").forEach(p=>p.classList.remove("on"));b.classList.add("on");on(m);});
     const up=()=>{if(!latched)b.classList.remove("on");off();};b.addEventListener("pointerup",up);b.addEventListener("pointercancel",up);pads.appendChild(b);});
   $("latch").addEventListener("click",e=>{latched=!latched;e.target.textContent="Latch: "+(latched?"on":"off");e.target.setAttribute("aria-pressed",latched);if(!latched){document.querySelectorAll(".pad.on").forEach(p=>p.classList.remove("on"));off();}});
+
+  /* views + MIDI */
+  const syn=document.querySelector(".synth"),banner=document.querySelector(".synth-banner");
+  function view(studio){syn.classList.toggle("studio",studio);if(banner)banner.hidden=studio;$("v_stone").setAttribute("aria-pressed",!studio);$("v_studio").setAttribute("aria-pressed",studio);window.__studio=studio;drawWT();try{localStorage.setItem("fs-view",studio?"studio":"stone")}catch(e){}}
+  $("v_stone").onclick=()=>view(false);$("v_studio").onclick=()=>view(true);
+  try{if(localStorage.getItem("fs-view")==="studio")view(true)}catch(e){}
+  const midiHeld=new Set();
+  function midiMsg(e){const [st,d1,d2]=e.data,cmd=st&0xf0;
+    if(cmd===0x90&&d2>0){let f=440*Math.pow(2,(d1-69)/12);while(f>110)f/=2;while(f<20)f*=2;midiHeld.add(d1);curMul=f/hz(+K.pitch.value);if(!voice)build();else if(retrig)newLfo();apply();const t=AC.currentTime;voice.amp.gain.cancelScheduledValues(t);voice.amp.gain.setTargetAtTime(0.9*Math.max(.35,d2/127),t,0.01);$("midiStat").textContent="Note "+d1+" · "+Math.round(f)+" Hz";}
+    else if(cmd===0x80||(cmd===0x90&&d2===0)){midiHeld.delete(d1);if(!midiHeld.size)off();}
+    else if(cmd===0xb0){const m={74:"cut",71:"res",1:"depth",72:"drive",73:"wt",76:"free"}[d1];if(!m)return;const el=K[m];el.value=+el.min+(d2/127)*(+el.max-+el.min);el.dispatchEvent(new Event("input"));$("midiStat").textContent="CC"+d1+" → "+m+" "+el.value;}}
+  $("midiBtn").onclick=()=>{ctx();if(!navigator.requestMIDIAccess){$("midiStat").textContent="This browser has no Web MIDI. Use Chrome or Edge on a computer.";return;}
+    navigator.requestMIDIAccess().then(a=>{let n=0;a.inputs.forEach(i=>{i.onmidimessage=midiMsg;n++;});a.onstatechange=()=>a.inputs.forEach(i=>i.onmidimessage=midiMsg);$("midiStat").textContent=n?"MIDI connected: "+n+" input"+(n>1?"s":"")+". Play a note.":"MIDI allowed, but no device found. Plug one in.";$("midiBtn").setAttribute("aria-pressed","true");},()=>{$("midiStat").textContent="MIDI was blocked here. Open the public page in Chrome: gordonusc.github.io/foster-at-55/deep-low-end/";});};
   const P={hyper:{k:{wt:0,pitch:0,det:0,drive:0,cut:0.35,res:0,depth:0},d:1,s:"sine"},tekeli:{k:{wt:1.2,pitch:0.22,det:22,drive:25,cut:0.48,res:4,depth:30},d:0.5,s:"triangle"},old:{k:{wt:3,pitch:0.3,det:12,drive:85,cut:0.55,res:14,depth:70},d:3,s:"sine"},riddim:{k:{wt:2,pitch:0.35,det:4,drive:60,cut:0.5,res:12,depth:85},d:2,s:"square"}};
   document.querySelectorAll("[data-p]").forEach(b=>b.addEventListener("click",()=>{const p=P[b.dataset.p];Object.entries(p.k).forEach(([k,v])=>K[k].value=v);div=p.d;shape=p.s;press("#divs",String(div),"d");press("#shapes",shape,"s");newLfo();setWave();if(voice)voice.sh.curve=curve(+K.drive.value);apply();on(1);if(!latched)setTimeout(off,1800);}));
   const wv=$("wtview"),wc=wv.getContext("2d");
   function drawWT(){const w=wv.width,h=wv.height,t=table(+K.wt.value);wc.fillStyle="#070c16";wc.fillRect(0,0,w,h);wc.strokeStyle="rgba(236,226,204,.15)";wc.beginPath();wc.moveTo(0,h/2);wc.lineTo(w,h/2);wc.stroke();
     const pts=[];let mx=0;for(let x=0;x<w;x++){const ph=x/w*2*Math.PI;let y=0;for(let n=1;n<N;n++)y+=t[n]*Math.sin(n*ph);pts.push(y);mx=Math.max(mx,Math.abs(y));}
-    wc.strokeStyle="#6fb59a";wc.lineWidth=3;wc.beginPath();pts.forEach((y,x)=>{const yy=h/2-(y/(mx||1))*h*0.38;x?wc.lineTo(x,yy):wc.moveTo(x,yy);});wc.stroke();}
+    wc.strokeStyle=window.__studio?"#5ad1e8":"#6fb59a";wc.lineWidth=window.__studio?2:3;wc.beginPath();pts.forEach((y,x)=>{const yy=h/2-(y/(mx||1))*h*0.38;x?wc.lineTo(x,yy):wc.moveTo(x,yy);});wc.stroke();}
 
   function press(sel,val,attr){document.querySelectorAll(sel+" button[data-"+attr+"]").forEach(x=>x.setAttribute("aria-pressed",x.dataset[attr]===val));}
   document.querySelectorAll("#divs button").forEach(b=>b.addEventListener("click",()=>{div=b.dataset.d==="free"?"free":+b.dataset.d;press("#divs",b.dataset.d,"d");if(retrig)newLfo();apply();}));
@@ -729,7 +775,7 @@ document.getElementById("wake").addEventListener("click",()=>{S.drop(0);const h=
     if(typeof analyser==="undefined"||!analyser){sx.fillStyle="#a9a69a";sx.font="15px monospace";sx.fillText("Hold a pad or press a glyph to see the wave",18,h/2+5);return;}
     const n=analyser.fftSize,d=new Float32Array(n);analyser.getFloatTimeDomainData(d);
     let s=0;for(let i=1;i<n/2;i++){if(d[i-1]<0&&d[i]>=0){s=i;break;}}
-    const span=Math.min(n-s,Math.floor(n*0.75));sx.strokeStyle="#e8743b";sx.lineWidth=2.5;sx.shadowColor="#e8743b";sx.shadowBlur=8;sx.beginPath();
+    const span=Math.min(n-s,Math.floor(n*0.75));const sc2=window.__studio?"#ffb532":"#e8743b";sx.strokeStyle=sc2;sx.lineWidth=window.__studio?1.6:2.5;sx.shadowColor=sc2;sx.shadowBlur=window.__studio?0:8;sx.beginPath();
     for(let x=0;x<w;x++){const i=s+Math.floor(x/w*span);const y=h/2-d[i]*h*0.34;x?sx.lineTo(x,y):sx.moveTo(x,y);}sx.stroke();sx.shadowBlur=0;})();
 })();
 
