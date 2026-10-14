@@ -195,7 +195,7 @@ td.n{font-family:var(--f-mono);font-size:13px;font-variant-numeric:tabular-nums;
 
 .frate{border:1px solid var(--ember);padding:12px;display:grid;gap:10px;background:#0e1626}
 .frhead{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline}
-#lfoview{width:100%;height:auto;background:#070c16;border:1px solid var(--line)}
+#lfoview,#envview{width:100%;height:auto;background:#070c16;border:1px solid var(--line)}
 .frrow{display:flex;flex-wrap:wrap;gap:6px}
 .frrow button{background:transparent;border:1px solid var(--line);color:var(--mist);font-family:var(--f-mono);font-size:12px;padding:8px 11px;min-width:52px}
 .frrow button[aria-pressed="true"]{background:var(--ember);border-color:var(--ember);color:var(--abyss)}
@@ -273,6 +273,18 @@ footer{padding-block:40px 60px;color:var(--mist);font-size:14px}
       <div class="frrow" id="shapes" role="group" aria-label="Sweep shape">
         <button data-s="sine" aria-pressed="true">Smooth</button><button data-s="triangle">Triangle</button><button data-s="square">Hard</button><button data-s="sawup">Saw up</button><button data-s="sawdown">Saw down</button>
         <button id="retrig" aria-pressed="true">Restart on note: on</button>
+      </div>
+    </div>
+    <div class="frate envp">
+      <div class="frhead"><span class="eyebrow">Envelope · attack, decay, sustain, release</span><span class="mono" id="o_env">A 10 ms · D 300 ms · S 70% · R 400 ms</span></div>
+      <canvas id="envview" width="900" height="110" aria-label="The envelope shape, with a dot that follows each note"></canvas>
+      <div class="knobs">
+        <label>Attack <output id="o_a">10 ms</output><input type="range" id="k_a" min="0" max="2000" step="5" value="10"></label>
+        <label>Decay <output id="o_d">300 ms</output><input type="range" id="k_d" min="5" max="3000" step="5" value="300"></label>
+        <label>Sustain <output id="o_s">70%</output><input type="range" id="k_s" min="0" max="100" step="1" value="70"></label>
+        <label>Release <output id="o_r">400 ms</output><input type="range" id="k_r" min="10" max="5000" step="10" value="400"></label>
+        <label>Env to Wavetable <output id="o_ewt">0</output><input type="range" id="k_ewt" min="-100" max="100" step="1" value="0"></label>
+        <label>Env to Filter <output id="o_ecut">0</output><input type="range" id="k_ecut" min="-100" max="100" step="1" value="0"></label>
       </div>
     </div>
     <div class="presets">
@@ -730,8 +742,11 @@ document.getElementById("wake").addEventListener("click",()=>{S.drop(0);const h=
     v.lp.frequency.setTargetAtTime(c,t,0.02);v.lp.Q.setTargetAtTime(+K.res.value,t,0.02);
     v.lfo.frequency.setTargetAtTime(rate(),t,0.01);v.lg.gain.setTargetAtTime(c*(+K.depth.value/100)*0.95,t,0.02);}
   function setWave(){if(!voice)return;const w=wave();voice.o.forEach(x=>x.setPeriodicWave(w));}
-  function on(mul){if(!voice)build();else if(retrig)newLfo();curMul=mul;apply();const t=AC.currentTime;voice.amp.gain.cancelScheduledValues(t);voice.amp.gain.setTargetAtTime(0.9,t,0.015);}
-  function off(){if(!voice||latched)return;const t=AC.currentTime;voice.amp.gain.cancelScheduledValues(t);voice.amp.gain.setTargetAtTime(0,t,0.08);}
+  function trig(peak){const t=AC.currentTime,g=voice.amp.gain,a=+E.a.value/1000,d=+E.d.value/1000,su=+E.s.value/100;const cur=envAt(t)*envPeak;g.cancelScheduledValues(t);g.setValueAtTime(cur,t);g.linearRampToValueAtTime(peak,t+Math.max(.003,a));g.setTargetAtTime(peak*su,t+Math.max(.003,a),Math.max(.005,d/3));envPeak=peak;envOn=t;envGate=true;}
+  function on(mul){if(!voice)build();else if(retrig)newLfo();curMul=mul;apply();trig(0.9);}
+  function off(){if(!voice||latched)return;const t=AC.currentTime,g=voice.amp.gain,lv=envAt(t);g.cancelScheduledValues(t);g.setValueAtTime(lv*envPeak,t);g.setTargetAtTime(0,t,Math.max(.01,+E.r.value/4000));envOffLvl=lv;envOff=t;envGate=false;}
+  const E={a:$("k_a"),d:$("k_d"),s:$("k_s"),r:$("k_r"),ewt:$("k_ewt"),ecut:$("k_ecut")};let envOn=-9,envOff=-9,envGate=false,envPeak=0.9,envOffLvl=0,lastWtPos=-1;
+  function envAt(t){const a=+E.a.value/1000,d=+E.d.value/1000,su=+E.s.value/100;if(envGate){const x=t-envOn;if(x<a)return a>0?x/a:1;return su+(1-su)*Math.exp(-(x-a)/Math.max(.005,d/3));}const y=t-envOff;return Math.max(0,envOffLvl*Math.exp(-y/Math.max(.01,+E.r.value/4000)));}
   Object.entries(K).forEach(([k,el])=>el.addEventListener("input",()=>{if(k==="wt")setWave();if(k==="drive"&&voice)voice.sh.curve=curve(+el.value);apply();}));
   const notes=[["Root",1],["m3",1.189],["4th",1.335],["5th",1.498],["b7",1.782],["Oct",2]];
   const pads=$("pads"),PG=["eye","toad","tent","shog","deep","star"];notes.forEach(([l,m],pi)=>{const b=document.createElement("button");b.className="pad";b.innerHTML=(typeof SVG!=="undefined"&&SVG[PG[pi]]?SVG[PG[pi]]:"")+"<span>"+l+"</span>";b.setAttribute("aria-label","Play "+l);
@@ -746,11 +761,23 @@ document.getElementById("wake").addEventListener("click",()=>{S.drop(0);const h=
   try{if(localStorage.getItem("fs-view")==="studio")view(true)}catch(e){}
   const midiHeld=new Set();
   function midiMsg(e){const [st,d1,d2]=e.data,cmd=st&0xf0;
-    if(cmd===0x90&&d2>0){let f=440*Math.pow(2,(d1-69)/12);while(f>110)f/=2;while(f<20)f*=2;midiHeld.add(d1);curMul=f/hz(+K.pitch.value);if(!voice)build();else if(retrig)newLfo();apply();const t=AC.currentTime;voice.amp.gain.cancelScheduledValues(t);voice.amp.gain.setTargetAtTime(0.9*Math.max(.35,d2/127),t,0.01);$("midiStat").textContent="Note "+d1+" · "+Math.round(f)+" Hz";}
+    if(cmd===0x90&&d2>0){let f=440*Math.pow(2,(d1-69)/12);while(f>110)f/=2;while(f<20)f*=2;midiHeld.add(d1);curMul=f/hz(+K.pitch.value);if(!voice)build();else if(retrig)newLfo();apply();trig(0.9*Math.max(.35,d2/127));$("midiStat").textContent="Note "+d1+" · "+Math.round(f)+" Hz";}
     else if(cmd===0x80||(cmd===0x90&&d2===0)){midiHeld.delete(d1);if(!midiHeld.size)off();}
     else if(cmd===0xb0){const m={74:"cut",71:"res",1:"depth",72:"drive",73:"wt",76:"free"}[d1];if(!m)return;const el=K[m];el.value=+el.min+(d2/127)*(+el.max-+el.min);el.dispatchEvent(new Event("input"));$("midiStat").textContent="CC"+d1+" → "+m+" "+el.value;}}
   $("midiBtn").onclick=()=>{ctx();if(!navigator.requestMIDIAccess){$("midiStat").textContent="This browser has no Web MIDI. Use Chrome or Edge on a computer.";return;}
     navigator.requestMIDIAccess().then(a=>{let n=0;a.inputs.forEach(i=>{i.onmidimessage=midiMsg;n++;});a.onstatechange=()=>a.inputs.forEach(i=>i.onmidimessage=midiMsg);$("midiStat").textContent=n?"MIDI connected: "+n+" input"+(n>1?"s":"")+". Play a note.":"MIDI allowed, but no device found. Plug one in.";$("midiBtn").setAttribute("aria-pressed","true");},()=>{$("midiStat").textContent="MIDI was blocked here. Open the public page in Chrome: gordonusc.github.io/foster-at-55/deep-low-end/";});};
+  Object.values(E).forEach(el=>el.addEventListener("input",()=>{$("o_a").textContent=E.a.value+" ms";$("o_d").textContent=E.d.value+" ms";$("o_s").textContent=E.s.value+"%";$("o_r").textContent=E.r.value+" ms";$("o_ewt").textContent=E.ewt.value;$("o_ecut").textContent=E.ecut.value;$("o_env").textContent="A "+E.a.value+" ms · D "+E.d.value+" ms · S "+E.s.value+"% · R "+E.r.value+" ms";}));
+  const ev=$("envview"),ec=ev.getContext("2d");
+  (function envLoop(){requestAnimationFrame(envLoop);const w=ev.width,h=ev.height,a=+E.a.value,d=+E.d.value,su=+E.s.value/100,rl=+E.r.value,hold=600,tot=a+d+hold+rl,X=ms=>12+ms/tot*(w-24),Y=v=>h-10-v*(h-26);
+    ec.fillStyle="#070c16";ec.fillRect(0,0,w,h);const stu=window.__studio;ec.strokeStyle=stu?"#5ad1e8":"#6fb59a";ec.lineWidth=2.5;ec.beginPath();ec.moveTo(X(0),Y(0));ec.lineTo(X(a),Y(1));
+    for(let i=0;i<=30;i++){const x=i/30*d;ec.lineTo(X(a+x),Y(su+(1-su)*Math.exp(-x/Math.max(1,d/3))));}ec.lineTo(X(a+d+hold),Y(su));for(let i=0;i<=30;i++){const x=i/30*rl;ec.lineTo(X(a+d+hold+x),Y(su*Math.exp(-x/Math.max(1,rl/4))));}ec.stroke();
+    ec.fillStyle="#a9a69a";ec.font="12px monospace";ec.fillText("A",X(a/2)-4,h-2);ec.fillText("D",X(a+d/2)-4,h-2);ec.fillText("S",X(a+d+hold/2)-4,h-2);ec.fillText("R",X(a+d+hold+rl/2)-4,h-2);
+    if(typeof AC==="undefined"||!AC||!voice)return;const t=AC.currentTime,e=envAt(t);let ms;if(envGate){const x=(t-envOn)*1000;ms=x<a+d?x:a+d+Math.min(hold,(x-a-d)%hold);}else{ms=a+d+hold+Math.min(rl,(t-envOff)*1000);}
+    ec.fillStyle=stu?"#ffb532":"#e8743b";ec.beginPath();ec.arc(X(ms),Y(e),6,0,7);ec.fill();
+    const ew=+E.ewt.value/100,ecu=+E.ecut.value/100;
+    if(ew!==0){const pos=Math.max(0,Math.min(3,+K.wt.value+ew*3*e));if(Math.abs(pos-lastWtPos)>0.03){lastWtPos=pos;const wv2=AC.createPeriodicWave(table(pos),new Float32Array(N));voice.o.forEach(x=>x.setPeriodicWave(wv2));}}
+    if(ecu!==0){const c=cutHz(Math.max(0,Math.min(1,+K.cut.value+ecu*e)));voice.lp.frequency.setTargetAtTime(c,t,0.008);voice.lg.gain.setTargetAtTime(c*(+K.depth.value/100)*0.95,t,0.008);}})();
+  window.__fs={on:on,off:off,K:K,getDiv:()=>div,setDiv:d=>{div=d==="free"?"free":+d;press("#divs",String(d),"d");if(retrig)newLfo();apply();}};
   const P={hyper:{k:{wt:0,pitch:0,det:0,drive:0,cut:0.35,res:0,depth:0},d:1,s:"sine"},tekeli:{k:{wt:1.2,pitch:0.22,det:22,drive:25,cut:0.48,res:4,depth:30},d:0.5,s:"triangle"},old:{k:{wt:3,pitch:0.3,det:12,drive:85,cut:0.55,res:14,depth:70},d:3,s:"sine"},riddim:{k:{wt:2,pitch:0.35,det:4,drive:60,cut:0.5,res:12,depth:85},d:2,s:"square"}};
   document.querySelectorAll("[data-p]").forEach(b=>b.addEventListener("click",()=>{const p=P[b.dataset.p];Object.entries(p.k).forEach(([k,v])=>K[k].value=v);div=p.d;shape=p.s;press("#divs",String(div),"d");press("#shapes",shape,"s");newLfo();setWave();if(voice)voice.sh.curve=curve(+K.drive.value);apply();on(1);if(!latched)setTimeout(off,1800);}));
   const wv=$("wtview"),wc=wv.getContext("2d");
