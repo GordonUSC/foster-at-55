@@ -1,6 +1,6 @@
 window.ECO_DATA = [
  {t:"L",big:1,n:"NecronomiCon Providence",where:"Providence, RI",u:"https://necronomicon-providence.com/",d:"The biennial Lovecraft convention; last held Aug 13 to 16, 2026. Has an art show (Ars Necronomica) and a film program.",why:"Pitch an AV set or art piece for 2028 once dates post."},
- {t:"L",big:1,n:"H.P. Lovecraft Film Festival & CthulhuCon",where:"Portland, OR",u:"https://hplfilmfestival.com/",d:"31st edition ran Oct 2 to 4, 2026 at the Hollywood Theatre. Streaming edition Dec 4 to 11, 2026.",why:"Submit a Fang Speare music-video short for 2027."},
+ {t:"L",big:1,n:"H.P. Lovecraft Film Festival & CthulhuCon",where:"Portland, OR",u:"https://hplfilmfestival.com/",d:"31st edition ran Oct 2 to 4, 2026 at the Hollywood Theatre. Streaming edition Dec 4 to 11, 2026.",why:"Submit a Fangspeare music-video short for 2027."},
  {t:"L",n:"H.P. Lovecraft Historical Society",where:"Glendale, CA",u:"https://www.hplhs.org/",d:"Since 1984: Dark Adventure Radio Theatre, silent films, Mythos carols and sea-shanty albums.",why:"Proof Mythos fans buy Mythos audio; a natural collaborator."},
  {t:"L",big:1,n:"Chaosium · Call of Cthulhu RPG",where:"Tabletop",u:"https://www.chaosium.com/call-of-cthulhu-rpg/",d:"The biggest game built on the Mythos, first released 1981, now in its 7th edition.",why:"A pre-Ice Age session-music pack for players."},
  {t:"L",big:1,n:"Gen Con",where:"Indianapolis, IN",u:"https://www.gencon.com/",d:"Nearly 70,000 unique attendees (2019). Next: Aug 5 to 8, 2027.",why:"Huge Call of Cthulhu and Arkham audience; evening events."},
@@ -39,7 +39,7 @@ window.ECO_DATA = [
  {t:"B",big:1,n:"Elsewhere",where:"Brooklyn, NY",u:"https://www.elsewhere.club/",d:"599 Johnson Ave, Bushwick. Five rooms from 100 to 750.",why:"First-choice venue for July 2027."},
  {t:"B",n:"Webster Hall",where:"Manhattan, NY",u:"https://www.websterhall.com/",d:"Classic NYC dance room.",why:"A later-stage headline goal."},
  {t:"B",n:"Brooklyn Storehouse",where:"Brooklyn Navy Yard",u:"https://brooklynstorehouse.com/",d:"Large warehouse event space.",why:"For a future bigger production."},
- {t:"B",n:"Subtronics · Cyclops Army",where:"Case study",u:"https://en.wikipedia.org/wiki/Subtronics",d:"One icon, a name for the fans, then a label (Cyclops Recordings) and a festival (Cyclops Cove).",why:"The exact ladder Fang Speare can climb: frog, fan name, Ghost Voltage, a festival."},
+ {t:"B",n:"Subtronics · Cyclops Army",where:"Case study",u:"https://en.wikipedia.org/wiki/Subtronics",d:"One icon, a name for the fans, then a label (Cyclops Recordings) and a festival (Cyclops Cove).",why:"The exact ladder Fangspeare can climb: frog, fan name, Ghost Voltage, a festival."},
  {t:"B",n:"Rezz · Hypnovizion",where:"Case study",u:"https://www.officialrezz.com/",d:"A whole brand built on the hypnotic-eye icon.",why:"A single icon can carry an identity."},
  {t:"B",n:"Deadmau5 · the mau5head",where:"Case study",u:"https://en.wikipedia.org/wiki/Deadmau5",d:"The helmet that became the brand.",why:"The frog mask idea, proven."},
 
