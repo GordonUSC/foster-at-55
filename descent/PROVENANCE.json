@@ -1,0 +1,270 @@
+{
+ "art/1-grid-sm.jpg": {
+  "tool": "higgsfield nano_banana_pro (poster.jpg style reference)",
+  "sha256": "5fda42e77d870864"
+ },
+ "art/1-grid.jpg": {
+  "tool": "higgsfield nano_banana_pro (poster.jpg style reference)",
+  "sha256": "7b5c69edf7b96a6a"
+ },
+ "art/2-set-sm.jpg": {
+  "tool": "higgsfield nano_banana_pro (poster.jpg style reference)",
+  "sha256": "040c543cb48917f8"
+ },
+ "art/2-set.jpg": {
+  "tool": "higgsfield nano_banana_pro (poster.jpg style reference)",
+  "sha256": "1eaba61239a8c44e"
+ },
+ "art/3-room-sm.jpg": {
+  "tool": "higgsfield nano_banana_pro (poster.jpg style reference)",
+  "sha256": "71a105376f244abd"
+ },
+ "art/3-room.jpg": {
+  "tool": "higgsfield nano_banana_pro (poster.jpg style reference)",
+  "sha256": "18737bba09c5e4a7"
+ },
+ "art/4-show-sm.jpg": {
+  "tool": "higgsfield nano_banana_pro (poster.jpg style reference)",
+  "sha256": "47b4cf4f15921bc3"
+ },
+ "art/4-show.jpg": {
+  "tool": "higgsfield nano_banana_pro (poster.jpg style reference)",
+  "sha256": "2cd75369a7312d3d"
+ },
+ "art/icon.png": {
+  "tool": "FANGSPEARE brand book icon (kit/brand/icon.png)",
+  "sha256": "3dafce4959cefa01"
+ },
+ "art/l-arc.jpg": {
+  "tool": "higgsfield nano_banana_pro (poster.jpg style reference)",
+  "sha256": "180b84e17143d299"
+ },
+ "art/l-capstone.jpg": {
+  "tool": "higgsfield nano_banana_pro (poster.jpg style reference)",
+  "sha256": "482439f58ddae4cb"
+ },
+ "art/l-hear.jpg": {
+  "tool": "higgsfield nano_banana_pro (poster.jpg style reference)",
+  "sha256": "ca778542c9a0fd0a"
+ },
+ "art/l-identity.jpg": {
+  "tool": "higgsfield nano_banana_pro (poster.jpg style reference)",
+  "sha256": "0b6396c74321eb53"
+ },
+ "art/l-map.jpg": {
+  "tool": "higgsfield nano_banana_pro (poster.jpg style reference)",
+  "sha256": "39488e0a6c50a2cb"
+ },
+ "art/l-presence.jpg": {
+  "tool": "higgsfield nano_banana_pro (poster.jpg style reference)",
+  "sha256": "01ebbb027789a6c6"
+ },
+ "art/l-selection.jpg": {
+  "tool": "higgsfield nano_banana_pro (poster.jpg style reference)",
+  "sha256": "f98186f3e74381b5"
+ },
+ "art/l-signal.jpg": {
+  "tool": "higgsfield nano_banana_pro (poster.jpg style reference)",
+  "sha256": "3c11aa886428c9f5"
+ },
+ "art/l-signature.jpg": {
+  "tool": "higgsfield nano_banana_pro (poster.jpg style reference)",
+  "sha256": "ac390ac0df457cb7"
+ },
+ "art/l-space.jpg": {
+  "tool": "higgsfield nano_banana_pro (poster.jpg style reference)",
+  "sha256": "74d4da4c7803bcee"
+ },
+ "art/l-timing.jpg": {
+  "tool": "higgsfield nano_banana_pro (poster.jpg style reference)",
+  "sha256": "a9f890075456e291"
+ },
+ "art/l-transitions.jpg": {
+  "tool": "higgsfield nano_banana_pro (poster.jpg style reference)",
+  "sha256": "dd3e099f83f433da"
+ },
+ "snd/bed.mp3": {
+  "tool": "elevenlabs",
+  "sha256": "f5cc4b924d60e952"
+ },
+ "snd/ignite.mp3": {
+  "tool": "elevenlabs",
+  "sha256": "3d6eb123534e5c47"
+ },
+ "snd/n1.mp3": {
+  "tool": "elevenlabs",
+  "sha256": "b87577d3f73c8df5"
+ },
+ "snd/n2.mp3": {
+  "tool": "elevenlabs",
+  "sha256": "db784aead6e0b8c1"
+ },
+ "snd/n3.mp3": {
+  "tool": "elevenlabs",
+  "sha256": "3ebeb9969a181f17"
+ },
+ "snd/n4.mp3": {
+  "tool": "elevenlabs",
+  "sha256": "1265ff2fcc4aefda"
+ },
+ "snd/reveal.mp3": {
+  "tool": "elevenlabs",
+  "sha256": "3322029d6284347c"
+ },
+ "snd/saved.mp3": {
+  "tool": "elevenlabs",
+  "sha256": "7ef84e3e978f6c7f"
+ },
+ "vid/1-grid.mp4": {
+  "tool": "higgsfield kling3_0, start=end frame loop",
+  "sha256": "ade08d7a676f4a16"
+ },
+ "vid/2-set.mp4": {
+  "tool": "higgsfield kling3_0, start=end frame loop",
+  "sha256": "157a6f0a7d0b2d14"
+ },
+ "vid/3-room.mp4": {
+  "tool": "higgsfield kling3_0, start=end frame loop",
+  "sha256": "4e8197036d76797b"
+ },
+ "vid/4-show.mp4": {
+  "tool": "higgsfield kling3_0, start=end frame loop",
+  "sha256": "1be38c2760dbbec0"
+ },
+ "vid/mask.mp4": {
+  "tool": "derived: FANGSPEARE brand kit mask3d-turntable.mp4 (Blender, made for Foster 10/13), re-encoded",
+  "sha256": "f2bd8cd0c5527984"
+ },
+ "vid/vj-eye.mp4": {
+  "tool": "derived: Foster's FANGSPEARE ViSUALS 305_Swarm-eye5 preview (Blender VJ pack 10/15), 8 s excerpt",
+  "sha256": "9d836dba7960679c"
+ },
+ "vid/vj-logo.mp4": {
+  "tool": "derived: FANGSPEARE ViSUALS 005_Logo-emissive1, 8 s excerpt",
+  "sha256": "639520ea344a3646"
+ },
+ "vid/vj-sage.mp4": {
+  "tool": "derived: FANGSPEARE ViSUALS 201_Sage-particles1, 8 s excerpt",
+  "sha256": "abef928ca296532c"
+ },
+ "snd/c-capstone.mp3": {
+  "tool": "elevenlabs",
+  "note": "coach line, eleven_v3, stock library voice Brad (l3OCvamakRoSUNIIz75n), transcript verified verbatim",
+  "sha256": "5693f1c52eb12f92"
+ },
+ "snd/c-map.mp3": {
+  "tool": "elevenlabs",
+  "note": "coach line, eleven_v3, stock library voice Brad (l3OCvamakRoSUNIIz75n), transcript verified verbatim",
+  "sha256": "2f1083e1bb002601"
+ },
+ "snd/c-presence.mp3": {
+  "tool": "elevenlabs",
+  "note": "coach line, eleven_v3, stock library voice Brad (l3OCvamakRoSUNIIz75n), transcript verified verbatim",
+  "sha256": "95cd0be0ef3a7a03"
+ },
+ "snd/c-selection.mp3": {
+  "tool": "elevenlabs",
+  "note": "coach line, eleven_v3, stock library voice Brad (l3OCvamakRoSUNIIz75n), transcript verified verbatim",
+  "sha256": "1280e0db47c32b64"
+ },
+ "snd/c-signal.mp3": {
+  "tool": "elevenlabs",
+  "note": "coach line, eleven_v3, stock library voice Brad (l3OCvamakRoSUNIIz75n), transcript verified verbatim",
+  "sha256": "ca2559c5f3c1ac70"
+ },
+ "snd/c-signature.mp3": {
+  "tool": "elevenlabs",
+  "note": "coach line, eleven_v3, stock library voice Brad (l3OCvamakRoSUNIIz75n), transcript verified verbatim",
+  "sha256": "687b930bdbe409d3"
+ },
+ "snd/c-timing.mp3": {
+  "tool": "elevenlabs",
+  "note": "coach line, eleven_v3, stock library voice Brad (l3OCvamakRoSUNIIz75n), transcript verified verbatim",
+  "sha256": "7322879f8e4cf55b"
+ },
+ "snd/c-transitions.mp3": {
+  "tool": "elevenlabs",
+  "note": "coach line, eleven_v3, stock library voice Brad (l3OCvamakRoSUNIIz75n), transcript verified verbatim",
+  "sha256": "18f07df8a13a7bcd"
+ },
+ "snd/enter-grid.mp3": {
+  "tool": "elevenlabs",
+  "note": "chamber entry sfx, eleven_text_to_sound_v2",
+  "sha256": "38dcfd7b4ca71e48"
+ },
+ "snd/enter-room.mp3": {
+  "tool": "elevenlabs",
+  "note": "chamber entry sfx, eleven_text_to_sound_v2",
+  "sha256": "33d2cda8222bcc8a"
+ },
+ "snd/enter-set.mp3": {
+  "tool": "elevenlabs",
+  "note": "chamber entry sfx, eleven_text_to_sound_v2",
+  "sha256": "0ec38bc97f360b94"
+ },
+ "snd/enter-show.mp3": {
+  "tool": "elevenlabs",
+  "note": "chamber entry sfx, eleven_text_to_sound_v2",
+  "sha256": "db84819f2eb025a9"
+ },
+ "snd/kit/crash.mp3": {
+  "tool": "elevenlabs",
+  "model": "eleven_text_to_sound_v2",
+  "note": "diagram one-shot, trimmed and loudness-leveled; sequenced by app.js on the diagram clock",
+  "sha256": "20bc7479f06198b2"
+ },
+ "snd/kit/crowd.mp3": {
+  "tool": "elevenlabs",
+  "model": "eleven_text_to_sound_v2",
+  "note": "diagram one-shot, trimmed and loudness-leveled; sequenced by app.js on the diagram clock",
+  "sha256": "d5d9c049b3fef759"
+ },
+ "snd/kit/hat.mp3": {
+  "tool": "elevenlabs",
+  "model": "eleven_text_to_sound_v2",
+  "note": "diagram one-shot, trimmed and loudness-leveled; sequenced by app.js on the diagram clock",
+  "sha256": "4c0da05922b50e95"
+ },
+ "snd/kit/impact.mp3": {
+  "tool": "elevenlabs",
+  "model": "eleven_text_to_sound_v2",
+  "note": "diagram one-shot, trimmed and loudness-leveled; sequenced by app.js on the diagram clock",
+  "sha256": "db6800490abf3afe"
+ },
+ "snd/kit/kick.mp3": {
+  "tool": "elevenlabs",
+  "model": "eleven_text_to_sound_v2",
+  "note": "diagram one-shot, trimmed and loudness-leveled; sequenced by app.js on the diagram clock",
+  "sha256": "c09826ec393a6a4b"
+ },
+ "snd/kit/riser.mp3": {
+  "tool": "elevenlabs",
+  "model": "eleven_text_to_sound_v2",
+  "note": "diagram one-shot, trimmed and loudness-leveled; sequenced by app.js on the diagram clock",
+  "sha256": "dc4fec5ca7016463"
+ },
+ "snd/kit/sand.mp3": {
+  "tool": "elevenlabs",
+  "model": "eleven_text_to_sound_v2",
+  "note": "diagram one-shot, trimmed and loudness-leveled; sequenced by app.js on the diagram clock",
+  "sha256": "a58d7599526930fd"
+ },
+ "snd/kit/snare.mp3": {
+  "tool": "elevenlabs",
+  "model": "eleven_text_to_sound_v2",
+  "note": "diagram one-shot, trimmed and loudness-leveled; sequenced by app.js on the diagram clock",
+  "sha256": "3e889449b8aefef4"
+ },
+ "snd/kit/sub.mp3": {
+  "tool": "elevenlabs",
+  "model": "eleven_text_to_sound_v2",
+  "note": "diagram one-shot, trimmed and loudness-leveled; sequenced by app.js on the diagram clock",
+  "sha256": "fb28de3911cdef20"
+ },
+ "snd/kit/tape.mp3": {
+  "tool": "elevenlabs",
+  "model": "eleven_text_to_sound_v2",
+  "note": "diagram one-shot, trimmed and loudness-leveled; sequenced by app.js on the diagram clock",
+  "sha256": "0d547eab32467952"
+ }
+}
